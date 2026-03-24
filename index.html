@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simon Paige | AV Systems Programming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f2ee;
+      --steel: #1c2b3a;
+      --amber: #e8a020;
+      --amber-dim: #c47f10;
+      --gray: #8a9aaa;
+      --rule: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--steel);
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--amber);
+    }
+
+    .logo-mark {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 9vw, 130px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    .hero-name span {
+      display: block;
+      color: var(--amber);
+    }
+
+    .hero-tagline {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+    }
+
+    .hero-right {
+      background: var(--black);
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .experience-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .badge-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      line-height: 1;
+      color: var(--amber);
+    }
+
+    .badge-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      max-width: 120px;
+      line-height: 1.4;
+    }
+
+    .hero-pitch {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--white);
+      max-width: 420px;
+      margin-bottom: 48px;
+    }
+
+    .hero-pitch strong {
+      color: var(--amber);
+      font-weight: 500;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--black);
+      padding: 14px 32px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--amber-dim); }
+
+    .btn-secondary {
+      border: 1px solid var(--rule);
+      color: var(--gray);
+      padding: 14px 32px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--amber);
+      color: var(--black);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 12px 0;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0 40px;
+    }
+
+    .ticker-item::before {
+      content: '◆';
+      margin-right: 40px;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 100px 80px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 48px;
+    }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--rule);
+    }
+
+    .service-card {
+      background: var(--black);
+      padding: 48px 40px;
+      transition: background 0.3s;
+    }
+
+    .service-card:hover {
+      background: #111;
+    }
+
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .service-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .service-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── VERTICALS ── */
+    .verticals {
+      background: var(--steel);
+    }
+
+    .verticals-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .vertical-item {
+      border-left: 2px solid var(--amber);
+      padding-left: 20px;
+    }
+
+    .vertical-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .vertical-note {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ── CERTS ── */
+    .certs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cert-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--rule);
+      padding: 8px 16px;
+      color: var(--gray);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .cert-tag:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .cert-tag.featured {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      margin-top: 48px;
+    }
+
+    .step {
+      background: var(--black);
+      padding: 40px 32px;
+    }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--steel);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contact-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: 0.95;
+      color: var(--white);
+    }
+
+    .contact-headline span {
+      color: var(--amber);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-item-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .contact-item-value {
+      font-size: 18px;
+      color: var(--white);
+    }
+
+    .contact-item-value a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item-value a:hover { color: var(--amber); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 80px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 32px; }
+      .hero-right { padding: 60px 32px; }
+      .hero-left::after { display: none; }
+      section { padding: 60px 32px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .verticals-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .contact { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero" style="border:none; padding:0;">
+    <div class="hero-left">
+      <div class="logo-mark">AV Systems Consulting</div>
+      <div>
+        <div class="hero-name">Simon<span>Paige</span></div>
+      </div>
+      <div class="hero-tagline">Remote Programming &amp; DSP Consulting · Kansas City, MO</div>
+    </div>
+    <div class="hero-right">
+      <div class="experience-badge">
+        <div class="badge-number">20+</div>
+        <div class="badge-label">Years AV &amp; Systems Integration</div>
+      </div>
+      <p class="hero-pitch">
+        Your integrator does the install.<br/>
+        <strong>I handle the brain.</strong><br/><br/>
+        Remote QSYS programming, DSP tuning, and lighting controls from a
+        CTS-I/D certified engineer with two decades of real-world installs.
+      </p>
+      <div class="cta-row">
+        <a href="#contact" class="btn-primary">Start a Project</a>
+        <a href="#services" class="btn-secondary">What I Do</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">QSYS Level 2</span>
+      <span class="ticker-item">CTS-I Certified</span>
+      <span class="ticker-item">CTS-D Certified</span>
+      <span class="ticker-item">Biamp</span>
+      <span class="ticker-item">BSS Audio</span>
+      <span class="ticker-item">L-Acoustics</span>
+      <span class="ticker-item">D&amp;B Audiotechnik</span>
+      <span class="ticker-item">ETC Lighting</span>
+      <span class="ticker-item">Extron Pro</span>
+      <span class="ticker-item">Absen</span>
+      <span class="ticker-item">QSYS Level 2</span>
+      <span class="ticker-item">CTS-I Certified</span>
+      <span class="ticker-item">CTS-D Certified</span>
+      <span class="ticker-item">Biamp</span>
+      <span class="ticker-item">BSS Audio</span>
+      <span class="ticker-item">L-Acoustics</span>
+      <span class="ticker-item">D&amp;B Audiotechnik</span>
+      <span class="ticker-item">ETC Lighting</span>
+      <span class="ticker-item">Extron Pro</span>
+      <span class="ticker-item">Absen</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">// What I Do</div>
+    <div class="services-grid fade-in">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">QSYS Programming</div>
+        <p class="service-desc">Full system programming, UCI design, control logic, and remote commissioning for QSYS-based installs of any scale — from boardrooms to auditoriums.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">DSP & Audio Tuning</div>
+        <p class="service-desc">Remote system tuning, EQ, gain structure, and signal flow optimization across Biamp, BSS, L-Acoustics, D&B, and other platforms.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Lighting Controls</div>
+        <p class="service-desc">ETC certified programming for theatrical and architectural lighting systems, including scene design, show file creation, and remote commissioning support.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">System Design</div>
+        <p class="service-desc">CTS-D qualified design consulting — signal flow, equipment selection, rack layouts, and documentation for new builds or renovations.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-title">Remote Commissioning</div>
+        <p class="service-desc">Walk your on-site tech through final commissioning via video call. No travel costs, same-day availability, and deep platform expertise on every call.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-title">Ongoing Support</div>
+        <p class="service-desc">Monthly retainer agreements for integrators who need a certified engineer on call — program updates, troubleshooting, and client change orders handled fast.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERTICALS -->
+  <section class="verticals">
+    <div class="section-label">// Industries Served</div>
+    <div class="verticals-grid fade-in">
+      <div class="vertical-item">
+        <div class="vertical-name">Houses of Worship</div>
+        <p class="vertical-note">Sanctuary sound, broadcast integration, and lighting programming for congregations of all sizes.</p>
+      </div>
+      <div class="vertical-item">
+        <div class="vertical-name">Courts &amp; Government</div>
+        <p class="vertical-note">Courtroom AV, council chambers, secure conferencing, and hearing-loop systems.</p>
+      </div>
+      <div class="vertical-item">
+        <div class="vertical-name">K–12 &amp; Higher Ed</div>
+        <p class="vertical-note">Classroom AV, auditoriums, performing arts centers, and campus-wide system integration.</p>
+      </div>
+      <div class="vertical-item">
+        <div class="vertical-name">Corporate &amp; Commercial</div>
+        <p class="vertical-note">Boardrooms, huddle spaces, divisible conference rooms, and large-format display systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="section-label">// How It Works</div>
+    <div class="steps fade-in">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Submit Your Project</div>
+        <p class="step-desc">Send drawings, equipment lists, and scope. I'll review and respond within 24 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Scope &amp; Quote</div>
+        <p class="step-desc">Flat-rate or hourly — we agree on pricing and timeline before any work begins.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Remote Programming</div>
+        <p class="step-desc">I build and test the program. You review via shared session before files are delivered.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Commissioning Support</div>
+        <p class="step-desc">Live video call support for your on-site tech during final commissioning and handoff.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section style="background: var(--steel);">
+    <div class="section-label">// Certifications &amp; Platforms</div>
+    <div class="certs-row fade-in">
+      <div class="cert-tag featured">CTS-I</div>
+      <div class="cert-tag featured">CTS-D</div>
+      <div class="cert-tag featured">QSYS Level 2</div>
+      <div class="cert-tag featured">ETC Certified</div>
+      <div class="cert-tag">Biamp</div>
+      <div class="cert-tag">BSS Audio</div>
+      <div class="cert-tag">L-Acoustics</div>
+      <div class="cert-tag">D&amp;B Audiotechnik</div>
+      <div class="cert-tag">Extron Pro</div>
+      <div class="cert-tag">Absen</div>
+      <div class="cert-tag">OSHA 10</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div>
+      <div class="section-label">// Let's Work Together</div>
+      <div class="contact-headline fade-in">
+        Your next<br/><span>project</span><br/>starts here.
+      </div>
+    </div>
+    <div class="contact-details fade-in">
+      <div class="contact-item">
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value"><a href="mailto:simonlpaige@gmail.com">simonlpaige@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value"><a href="tel:8163160092">816.316.0092</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Location</div>
+        <div class="contact-item-value">Kansas City, MO · Serving clients nationwide</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Availability</div>
+        <div class="contact-item-value">Currently accepting new projects</div>
+      </div>
+      <a href="mailto:simonlpaige@gmail.com" class="btn-primary" style="margin-top:8px; display:inline-block;">Send a Project Brief</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Simon L. Paige · AV Systems Consulting</p>
+    <p>Kansas City, MO · Remote Nationwide</p>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
