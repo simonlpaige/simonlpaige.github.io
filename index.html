@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simon Paige | AV Systems Programming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>Simon Paige | AI Developer & Systems Engineer</title>
+  <meta name="description" content="Simon Paige — AI developer, systems engineer, and web developer building intelligent systems and SaaS products in Kansas City, MO." />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -12,8 +13,9 @@
       --black: #0a0a0a;
       --white: #f5f2ee;
       --steel: #1c2b3a;
-      --amber: #e8a020;
-      --amber-dim: #c47f10;
+      --accent: #6ee7b7;
+      --accent-dim: #34d399;
+      --accent-glow: rgba(110, 231, 183, 0.12);
       --gray: #8a9aaa;
       --rule: rgba(255,255,255,0.08);
     }
@@ -29,7 +31,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -66,14 +67,14 @@
       top: 0;
       bottom: 0;
       width: 3px;
-      background: var(--amber);
+      background: var(--accent);
     }
 
     .logo-mark {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.2em;
-      color: var(--amber);
+      color: var(--accent);
       text-transform: uppercase;
     }
 
@@ -87,7 +88,7 @@
 
     .hero-name span {
       display: block;
-      color: var(--amber);
+      color: var(--accent);
     }
 
     .hero-tagline {
@@ -108,40 +109,27 @@
       position: relative;
     }
 
-    .experience-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 40px;
-    }
-
-    .badge-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 80px;
-      line-height: 1;
-      color: var(--amber);
-    }
-
-    .badge-label {
-      font-size: 12px;
-      letter-spacing: 0.12em;
+    .hero-intro {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--gray);
-      max-width: 120px;
-      line-height: 1.4;
+      margin-bottom: 20px;
+      font-family: 'DM Mono', monospace;
     }
 
     .hero-pitch {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 400;
       line-height: 1.7;
       color: var(--white);
-      max-width: 420px;
+      max-width: 460px;
       margin-bottom: 48px;
     }
 
     .hero-pitch strong {
-      color: var(--amber);
+      color: var(--accent);
       font-weight: 500;
     }
 
@@ -152,7 +140,7 @@
     }
 
     .btn-primary {
-      background: var(--amber);
+      background: var(--accent);
       color: var(--black);
       padding: 14px 32px;
       font-family: 'DM Mono', monospace;
@@ -163,7 +151,7 @@
       font-weight: 500;
       transition: background 0.2s;
     }
-    .btn-primary:hover { background: var(--amber-dim); }
+    .btn-primary:hover { background: var(--accent-dim); }
 
     .btn-secondary {
       border: 1px solid var(--rule);
@@ -176,11 +164,11 @@
       text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
     }
-    .btn-secondary:hover { border-color: var(--amber); color: var(--amber); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── TICKER ── */
     .ticker {
-      background: var(--amber);
+      background: var(--accent);
       color: var(--black);
       overflow: hidden;
       white-space: nowrap;
@@ -189,7 +177,7 @@
 
     .ticker-inner {
       display: inline-flex;
-      animation: ticker 28s linear infinite;
+      animation: ticker 32s linear infinite;
     }
 
     .ticker-item {
@@ -222,7 +210,7 @@
       font-size: 10px;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: var(--accent);
       margin-bottom: 48px;
     }
 
@@ -266,64 +254,95 @@
       line-height: 1.7;
     }
 
-    /* ── VERTICALS ── */
-    .verticals {
+    /* ── PROJECTS ── */
+    .projects {
       background: var(--steel);
     }
 
-    .verticals-grid {
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--rule);
+    }
+
+    .project-card {
+      background: var(--steel);
+      padding: 48px 40px;
+      transition: background 0.3s;
+    }
+
+    .project-card:hover {
+      background: #1f3044;
+    }
+
+    .project-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .project-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--rule);
+      padding: 4px 10px;
+      color: var(--gray);
+    }
+
+    /* ── STACK ── */
+    .stack-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 32px;
     }
 
-    .vertical-item {
-      border-left: 2px solid var(--amber);
+    .stack-group {
+      border-left: 2px solid var(--accent);
       padding-left: 20px;
     }
 
-    .vertical-name {
+    .stack-group-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 22px;
       letter-spacing: 0.05em;
       color: var(--white);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
-    .vertical-note {
+    .stack-group-items {
       font-size: 13px;
       color: var(--gray);
+      line-height: 1.9;
     }
 
-    /* ── CERTS ── */
-    .certs-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .cert-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid var(--rule);
-      padding: 8px 16px;
-      color: var(--gray);
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .cert-tag:hover {
-      border-color: var(--amber);
-      color: var(--amber);
-    }
-
-    .cert-tag.featured {
-      border-color: var(--amber);
-      color: var(--amber);
-    }
-
-    /* ── HOW IT WORKS ── */
+    /* ── APPROACH ── */
     .steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -340,7 +359,7 @@
     .step-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 56px;
-      color: var(--amber);
+      color: var(--accent);
       line-height: 1;
       margin-bottom: 16px;
     }
@@ -375,7 +394,7 @@
     }
 
     .contact-headline span {
-      color: var(--amber);
+      color: var(--accent);
     }
 
     .contact-details {
@@ -395,7 +414,7 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: var(--accent);
     }
 
     .contact-item-value {
@@ -409,7 +428,30 @@
       transition: color 0.2s;
     }
 
-    .contact-item-value a:hover { color: var(--amber); }
+    .contact-item-value a:hover { color: var(--accent); }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .social-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--rule);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -448,9 +490,11 @@
       .hero-left::after { display: none; }
       section { padding: 60px 32px; }
       .services-grid { grid-template-columns: 1fr; }
-      .verticals-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr 1fr; }
       .steps { grid-template-columns: 1fr 1fr; }
       .contact { grid-template-columns: 1fr; gap: 40px; }
+      .social-links { flex-wrap: wrap; }
       footer { flex-direction: column; gap: 8px; text-align: center; padding: 32px; }
     }
   </style>
@@ -460,26 +504,21 @@
   <!-- HERO -->
   <section class="hero" style="border:none; padding:0;">
     <div class="hero-left">
-      <div class="logo-mark">AV Systems Consulting</div>
+      <div class="logo-mark">AI · Systems · Web</div>
       <div>
         <div class="hero-name">Simon<span>Paige</span></div>
       </div>
-      <div class="hero-tagline">Remote Programming &amp; DSP Consulting · Kansas City, MO</div>
+      <div class="hero-tagline">AI Developer &amp; Systems Engineer · Kansas City, MO</div>
     </div>
     <div class="hero-right">
-      <div class="experience-badge">
-        <div class="badge-number">20+</div>
-        <div class="badge-label">Years AV &amp; Systems Integration</div>
-      </div>
+      <div class="hero-intro">Builder of intelligent systems</div>
       <p class="hero-pitch">
-        Your integrator does the install.<br/>
-        <strong>I handle the brain.</strong><br/><br/>
-        Remote QSYS programming, DSP tuning, and lighting controls from a
-        CTS-I/D certified engineer with two decades of real-world installs.
+        I design and build <strong>AI-powered products</strong>, multi-agent systems, and full-stack web applications — from architecture to deployment.<br/><br/>
+        Shipping real software that thinks, adapts, and delivers value.
       </p>
       <div class="cta-row">
-        <a href="#contact" class="btn-primary">Start a Project</a>
-        <a href="#services" class="btn-secondary">What I Do</a>
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#work" class="btn-secondary">See My Work</a>
       </div>
     </div>
   </section>
@@ -487,140 +526,196 @@
   <!-- TICKER -->
   <div class="ticker">
     <div class="ticker-inner">
-      <span class="ticker-item">QSYS Level 2</span>
-      <span class="ticker-item">CTS-I Certified</span>
-      <span class="ticker-item">CTS-D Certified</span>
-      <span class="ticker-item">Biamp</span>
-      <span class="ticker-item">BSS Audio</span>
-      <span class="ticker-item">L-Acoustics</span>
-      <span class="ticker-item">D&amp;B Audiotechnik</span>
-      <span class="ticker-item">ETC Lighting</span>
-      <span class="ticker-item">Extron Pro</span>
-      <span class="ticker-item">Absen</span>
-      <span class="ticker-item">QSYS Level 2</span>
-      <span class="ticker-item">CTS-I Certified</span>
-      <span class="ticker-item">CTS-D Certified</span>
-      <span class="ticker-item">Biamp</span>
-      <span class="ticker-item">BSS Audio</span>
-      <span class="ticker-item">L-Acoustics</span>
-      <span class="ticker-item">D&amp;B Audiotechnik</span>
-      <span class="ticker-item">ETC Lighting</span>
-      <span class="ticker-item">Extron Pro</span>
-      <span class="ticker-item">Absen</span>
+      <span class="ticker-item">AI/ML Systems</span>
+      <span class="ticker-item">Multi-Agent Architectures</span>
+      <span class="ticker-item">Full-Stack Development</span>
+      <span class="ticker-item">LLM Integration</span>
+      <span class="ticker-item">Systems Design</span>
+      <span class="ticker-item">Cloud Infrastructure</span>
+      <span class="ticker-item">SaaS Products</span>
+      <span class="ticker-item">UI/UX Design</span>
+      <span class="ticker-item">AI/ML Systems</span>
+      <span class="ticker-item">Multi-Agent Architectures</span>
+      <span class="ticker-item">Full-Stack Development</span>
+      <span class="ticker-item">LLM Integration</span>
+      <span class="ticker-item">Systems Design</span>
+      <span class="ticker-item">Cloud Infrastructure</span>
+      <span class="ticker-item">SaaS Products</span>
+      <span class="ticker-item">UI/UX Design</span>
     </div>
   </div>
 
-  <!-- SERVICES -->
+  <!-- WHAT I DO -->
   <section id="services">
     <div class="section-label">// What I Do</div>
     <div class="services-grid fade-in">
       <div class="service-card">
         <div class="service-num">01</div>
-        <div class="service-title">QSYS Programming</div>
-        <p class="service-desc">Full system programming, UCI design, control logic, and remote commissioning for QSYS-based installs of any scale — from boardrooms to auditoriums.</p>
+        <div class="service-title">AI Product Development</div>
+        <p class="service-desc">End-to-end development of AI-powered SaaS products — from concept and architecture through to production deployment and monitoring.</p>
       </div>
       <div class="service-card">
         <div class="service-num">02</div>
-        <div class="service-title">DSP & Audio Tuning</div>
-        <p class="service-desc">Remote system tuning, EQ, gain structure, and signal flow optimization across Biamp, BSS, L-Acoustics, D&B, and other platforms.</p>
+        <div class="service-title">Multi-Agent Systems</div>
+        <p class="service-desc">Designing autonomous agent architectures that coordinate, delegate, and execute complex workflows with minimal human oversight.</p>
       </div>
       <div class="service-card">
         <div class="service-num">03</div>
-        <div class="service-title">Lighting Controls</div>
-        <p class="service-desc">ETC certified programming for theatrical and architectural lighting systems, including scene design, show file creation, and remote commissioning support.</p>
+        <div class="service-title">Full-Stack Web Development</div>
+        <p class="service-desc">Modern web applications built with React, Next.js, Node, Python, and PostgreSQL — responsive, fast, and production-ready from day one.</p>
       </div>
       <div class="service-card">
         <div class="service-num">04</div>
-        <div class="service-title">System Design</div>
-        <p class="service-desc">CTS-D qualified design consulting — signal flow, equipment selection, rack layouts, and documentation for new builds or renovations.</p>
+        <div class="service-title">Systems Architecture</div>
+        <p class="service-desc">Infrastructure design and deployment across cloud platforms — Railway, Netlify, Cloudflare, Docker — with CI/CD pipelines and observability.</p>
       </div>
       <div class="service-card">
         <div class="service-num">05</div>
-        <div class="service-title">Remote Commissioning</div>
-        <p class="service-desc">Walk your on-site tech through final commissioning via video call. No travel costs, same-day availability, and deep platform expertise on every call.</p>
+        <div class="service-title">LLM Integration</div>
+        <p class="service-desc">Integrating large language models into production systems — prompt engineering, RAG pipelines, fine-tuning strategies, and cost optimization.</p>
       </div>
       <div class="service-card">
         <div class="service-num">06</div>
-        <div class="service-title">Ongoing Support</div>
-        <p class="service-desc">Monthly retainer agreements for integrators who need a certified engineer on call — program updates, troubleshooting, and client change orders handled fast.</p>
+        <div class="service-title">UI/UX Design</div>
+        <p class="service-desc">Clean, purposeful interface design for complex technical products — making AI tools and dashboards that users actually want to use.</p>
       </div>
     </div>
   </section>
 
-  <!-- VERTICALS -->
-  <section class="verticals">
-    <div class="section-label">// Industries Served</div>
-    <div class="verticals-grid fade-in">
-      <div class="vertical-item">
-        <div class="vertical-name">Houses of Worship</div>
-        <p class="vertical-note">Sanctuary sound, broadcast integration, and lighting programming for congregations of all sizes.</p>
+  <!-- PROJECTS -->
+  <section class="projects" id="work">
+    <div class="section-label">// Selected Work</div>
+    <div class="projects-grid fade-in">
+      <div class="project-card">
+        <div class="project-tag">SaaS · AI</div>
+        <div class="project-name">RivalDrop</div>
+        <p class="project-desc">Competitive intelligence platform for Shopify brands. Multi-agent system that autonomously tracks competitors, analyzes pricing shifts, and delivers actionable reports.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">PostgreSQL</span>
+          <span class="tech-pill">Multi-Agent AI</span>
+          <span class="tech-pill">Stripe</span>
+        </div>
       </div>
-      <div class="vertical-item">
-        <div class="vertical-name">Courts &amp; Government</div>
-        <p class="vertical-note">Courtroom AV, council chambers, secure conferencing, and hearing-loop systems.</p>
+      <div class="project-card">
+        <div class="project-tag">Community · Infrastructure</div>
+        <div class="project-name">WaldoNet AI</div>
+        <p class="project-desc">Neighborhood-owned AI co-op in Kansas City. Dual RTX 3090 inference server providing local AI services through Ollama, Open WebUI, and LiteLLM — bridging the digital divide.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Ollama</span>
+          <span class="tech-pill">LiteLLM</span>
+          <span class="tech-pill">Open WebUI</span>
+          <span class="tech-pill">Linux</span>
+          <span class="tech-pill">GPU Compute</span>
+        </div>
       </div>
-      <div class="vertical-item">
-        <div class="vertical-name">K–12 &amp; Higher Ed</div>
-        <p class="vertical-note">Classroom AV, auditoriums, performing arts centers, and campus-wide system integration.</p>
+      <div class="project-card">
+        <div class="project-tag">Web App · AI</div>
+        <div class="project-name">aiVerify</div>
+        <p class="project-desc">Suite of AI-powered verification tools — content authenticity, media analysis, and data validation — deployed on Railway with a microservices architecture.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Django</span>
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">Railway</span>
+          <span class="tech-pill">Redis</span>
+          <span class="tech-pill">Celery</span>
+        </div>
       </div>
-      <div class="vertical-item">
-        <div class="vertical-name">Corporate &amp; Commercial</div>
-        <p class="vertical-note">Boardrooms, huddle spaces, divisible conference rooms, and large-format display systems.</p>
+      <div class="project-card">
+        <div class="project-tag">Agent Framework</div>
+        <div class="project-name">Autonomous Agent Systems</div>
+        <p class="project-desc">Custom multi-agent orchestration framework coordinating specialized AI agents — CEO, marketing, engineering, and research roles working together on complex business operations.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Claude API</span>
+          <span class="tech-pill">Ollama</span>
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">Orchestration</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- STACK -->
   <section>
-    <div class="section-label">// How It Works</div>
+    <div class="section-label">// Tech Stack</div>
+    <div class="stack-grid fade-in">
+      <div class="stack-group">
+        <div class="stack-group-title">Languages</div>
+        <div class="stack-group-items">
+          Python<br/>
+          JavaScript / TypeScript<br/>
+          HTML / CSS<br/>
+          SQL<br/>
+          Lua
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-title">Frameworks</div>
+        <div class="stack-group-items">
+          React / Next.js<br/>
+          Django / FastAPI<br/>
+          Node.js / Express<br/>
+          Tailwind CSS<br/>
+          Celery / Redis
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-title">AI / ML</div>
+        <div class="stack-group-items">
+          Claude / OpenAI APIs<br/>
+          Ollama / Local LLMs<br/>
+          LiteLLM / LangChain<br/>
+          RAG / Embeddings<br/>
+          Multi-Agent Systems
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-title">Infrastructure</div>
+        <div class="stack-group-items">
+          Railway / Netlify<br/>
+          Docker / Linux<br/>
+          PostgreSQL<br/>
+          Cloudflare<br/>
+          Git / GitHub Actions
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section style="background: var(--steel);">
+    <div class="section-label">// How I Work</div>
     <div class="steps fade-in">
       <div class="step">
         <div class="step-num">01</div>
-        <div class="step-title">Submit Your Project</div>
-        <p class="step-desc">Send drawings, equipment lists, and scope. I'll review and respond within 24 hours.</p>
+        <div class="step-title">Understand the Problem</div>
+        <p class="step-desc">Deep-dive into your domain, users, and constraints before writing a single line of code.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div class="step-title">Scope &amp; Quote</div>
-        <p class="step-desc">Flat-rate or hourly — we agree on pricing and timeline before any work begins.</p>
+        <div class="step-title">Architect the System</div>
+        <p class="step-desc">Design for scale, maintainability, and cost — choosing the right tools instead of the trendy ones.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div class="step-title">Remote Programming</div>
-        <p class="step-desc">I build and test the program. You review via shared session before files are delivered.</p>
+        <div class="step-title">Build & Ship Fast</div>
+        <p class="step-desc">Iterative development with real deployments. Working software over polished slide decks.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <div class="step-title">Commissioning Support</div>
-        <p class="step-desc">Live video call support for your on-site tech during final commissioning and handoff.</p>
+        <div class="step-title">Measure & Iterate</div>
+        <p class="step-desc">Data-driven refinement. Monitor, learn, improve — the system gets smarter over time.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section style="background: var(--steel);">
-    <div class="section-label">// Certifications &amp; Platforms</div>
-    <div class="certs-row fade-in">
-      <div class="cert-tag featured">CTS-I</div>
-      <div class="cert-tag featured">CTS-D</div>
-      <div class="cert-tag featured">QSYS Level 2</div>
-      <div class="cert-tag featured">ETC Certified</div>
-      <div class="cert-tag">Biamp</div>
-      <div class="cert-tag">BSS Audio</div>
-      <div class="cert-tag">L-Acoustics</div>
-      <div class="cert-tag">D&amp;B Audiotechnik</div>
-      <div class="cert-tag">Extron Pro</div>
-      <div class="cert-tag">Absen</div>
-      <div class="cert-tag">OSHA 10</div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div>
-      <div class="section-label">// Let's Work Together</div>
+      <div class="section-label">// Let's Build Something</div>
       <div class="contact-headline fade-in">
-        Your next<br/><span>project</span><br/>starts here.
+        Got an<br/><span>idea?</span><br/>Let's ship it.
       </div>
     </div>
     <div class="contact-details fade-in">
@@ -629,25 +724,25 @@
         <div class="contact-item-value"><a href="mailto:simonlpaige@gmail.com">simonlpaige@gmail.com</a></div>
       </div>
       <div class="contact-item">
-        <div class="contact-item-label">Phone</div>
-        <div class="contact-item-value"><a href="tel:8163160092">816.316.0092</a></div>
-      </div>
-      <div class="contact-item">
         <div class="contact-item-label">Location</div>
-        <div class="contact-item-value">Kansas City, MO · Serving clients nationwide</div>
+        <div class="contact-item-value">Kansas City, MO</div>
       </div>
       <div class="contact-item">
-        <div class="contact-item-label">Availability</div>
-        <div class="contact-item-value">Currently accepting new projects</div>
+        <div class="contact-item-label">Status</div>
+        <div class="contact-item-value">Available for projects &amp; collaborations</div>
       </div>
-      <a href="mailto:simonlpaige@gmail.com" class="btn-primary" style="margin-top:8px; display:inline-block;">Send a Project Brief</a>
+      <div class="social-links">
+        <a href="https://github.com/simonlpaige" class="social-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/simonlpaige" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <a href="mailto:simonlpaige@gmail.com" class="btn-primary" style="margin-top:8px; display:inline-block;">Start a Conversation</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 Simon L. Paige · AV Systems Consulting</p>
-    <p>Kansas City, MO · Remote Nationwide</p>
+    <p>&copy; 2026 Simon Paige</p>
+    <p>Kansas City, MO</p>
   </footer>
 
   <script>
