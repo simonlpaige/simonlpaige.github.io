@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Plans & Pricing | Simon Paige — Kansas City Web Design</title>
+  <meta name="description" content="Affordable website design plans for small businesses in Kansas City. Professional sites starting at $150. Photography, e-commerce, SEO, and more." />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f2ee;
+      --steel: #1c2b3a;
+      --accent: #6ee7b7;
+      --accent-dim: #34d399;
+      --accent-glow: rgba(110, 231, 183, 0.12);
+      --gray: #8a9aaa;
+      --rule: rgba(255,255,255,0.08);
+      --card-bg: #111318;
+      --popular-border: var(--accent);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .topnav-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .topnav-brand span { color: var(--accent); }
+
+    .topnav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .topnav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .topnav-links a:hover { color: var(--accent); }
+
+    .topnav-links .btn-nav {
+      background: var(--accent);
+      color: var(--black);
+      padding: 10px 20px;
+      font-weight: 600;
+    }
+    .topnav-links .btn-nav:hover { background: var(--accent-dim); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 48px 80px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero h1 span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 16px;
+      line-height: 1.7;
+    }
+
+    .hero-compare {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      margin-top: 24px;
+      opacity: 0.8;
+    }
+
+    .hero-compare s {
+      color: var(--gray);
+      text-decoration: line-through;
+    }
+
+    /* ── PRICING GRID ── */
+    .pricing-section {
+      padding: 60px 48px 100px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .plan-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .plan-card:hover {
+      border-color: rgba(110,231,183,0.3);
+      transform: translateY(-4px);
+    }
+
+    .plan-card.popular {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px rgba(110,231,183,0.08);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--black);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 4px 16px;
+      border-radius: 20px;
+    }
+
+    .plan-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .plan-desc {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .plan-price {
+      margin-bottom: 8px;
+    }
+
+    .plan-price .amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .plan-price .period {
+      font-size: 14px;
+      color: var(--gray);
+      margin-left: 4px;
+    }
+
+    .plan-monthly {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .plan-monthly strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .plan-features {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 32px;
+    }
+
+    .plan-features li {
+      font-size: 14px;
+      color: var(--gray);
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .plan-features li.not-included {
+      opacity: 0.35;
+    }
+    .plan-features li.not-included::before {
+      content: '—';
+      color: var(--gray);
+    }
+
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 16px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .plan-btn-primary {
+      background: var(--accent);
+      color: var(--black);
+    }
+    .plan-btn-primary:hover { background: var(--accent-dim); }
+
+    .plan-btn-outline {
+      border: 1px solid var(--rule);
+      color: var(--gray);
+    }
+    .plan-btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── ADD-ONS ── */
+    .addons-section {
+      padding: 80px 48px;
+      background: var(--steel);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 48px;
+    }
+
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .addon-card {
+      background: var(--steel);
+      padding: 36px 28px;
+      transition: background 0.3s;
+    }
+    .addon-card:hover { background: #1f3044; }
+
+    .addon-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .addon-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .addon-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── COMPARISON ── */
+    .compare-section {
+      padding: 80px 48px;
+    }
+
+    .compare-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .compare-section h2 span { color: var(--accent); }
+
+    .compare-table {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .compare-table th {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 2px solid var(--accent);
+    }
+    .compare-table th:not(:first-child) { text-align: center; }
+
+    .compare-table td {
+      font-size: 14px;
+      color: var(--gray);
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .compare-table td:not(:first-child) { text-align: center; }
+
+    .compare-table tr:hover td { color: var(--white); }
+
+    .compare-table .check { color: var(--accent); font-weight: 700; }
+    .compare-table .nope { color: #555; }
+
+    .compare-table .highlight-col {
+      background: rgba(110,231,183,0.04);
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      padding: 80px 48px;
+      background: var(--steel);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .p-step {
+      background: var(--steel);
+      padding: 40px 28px;
+    }
+
+    .p-step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .p-step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .p-step-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: 80px 48px;
+    }
+
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--rule);
+      padding: 24px 0;
+    }
+
+    .faq-q {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-q::after {
+      content: '+';
+      font-family: 'DM Mono', monospace;
+      font-size: 20px;
+      color: var(--accent);
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding-top: 0;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-top: 16px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 48px;
+      background: var(--steel);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 6vw, 72px);
+      color: var(--white);
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+    .cta-section h2 span { color: var(--accent); }
+
+    .cta-section p {
+      font-size: 16px;
+      color: var(--gray);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+      padding: 16px 36px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+      border-radius: 4px;
+    }
+    .btn-primary:hover { background: var(--accent-dim); }
+
+    .btn-secondary {
+      border: 1px solid var(--rule);
+      color: var(--gray);
+      padding: 16px 36px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      border-radius: 4px;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 48px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    footer a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .topnav { padding: 16px 24px; }
+      .topnav-links { gap: 16px; }
+      .hero { padding: 140px 24px 60px; }
+      .pricing-section { padding: 40px 20px 60px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; }
+      .addons-section, .compare-section, .process-section, .faq-section, .cta-section { padding: 60px 24px; }
+      .addons-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .compare-table { font-size: 13px; }
+      .compare-table th, .compare-table td { padding: 10px 8px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .addons-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .topnav-links .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <a href="/" class="topnav-brand">Simon<span>Paige</span></a>
+    <div class="topnav-links">
+      <a href="/" class="hide-mobile">Portfolio</a>
+      <a href="#plans">Plans</a>
+      <a href="#addons">Add-Ons</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn-nav">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero fade-in">
+    <div class="hero-tag">Kansas City Small Business Web Design</div>
+    <h1>A Real Website<br/>for <span>Real Businesses</span></h1>
+    <p class="hero-sub">No templates. No page builders. A custom-built website designed for your business, your customers, and your neighborhood — at prices KC agencies can't touch.</p>
+    <p class="hero-compare">KC agencies charge <s>$3,000–$15,000</s> &nbsp; → &nbsp; You pay <strong>$150–$500</strong></p>
+  </div>
+
+  <!-- PRICING CARDS -->
+  <div class="pricing-section" id="plans">
+    <div class="pricing-grid">
+
+      <!-- STARTER -->
+      <div class="plan-card fade-in">
+        <div class="plan-name">Starter</div>
+        <div class="plan-desc">Perfect for shops, stands, and service businesses that just need to show up online.</div>
+        <div class="plan-price">
+          <span class="amount">$150</span>
+          <span class="period">one-time</span>
+        </div>
+        <div class="plan-monthly">then <strong>$10/mo</strong> hosting &amp; support</div>
+        <ul class="plan-features">
+          <li>Custom single-page website</li>
+          <li>Mobile-optimized &amp; responsive</li>
+          <li>Google Maps &amp; directions</li>
+          <li>Hours, phone, location info</li>
+          <li>Contact form or click-to-call</li>
+          <li>Basic SEO setup</li>
+          <li>1 round of revisions</li>
+          <li class="not-included">Professional photography</li>
+          <li class="not-included">E-commerce / online store</li>
+          <li class="not-included">Multi-page site</li>
+        </ul>
+        <a href="#contact" class="plan-btn plan-btn-outline">Get Started →</a>
+      </div>
+
+      <!-- BUSINESS -->
+      <div class="plan-card popular fade-in">
+        <div class="popular-badge">Most Popular</div>
+        <div class="plan-name">Business</div>
+        <div class="plan-desc">The full package for businesses ready to compete online. Multiple pages, better SEO, real photos.</div>
+        <div class="plan-price">
+          <span class="amount">$350</span>
+          <span class="period">one-time</span>
+        </div>
+        <div class="plan-monthly">then <strong>$25/mo</strong> hosting &amp; support</div>
+        <ul class="plan-features">
+          <li>Up to 5-page custom website</li>
+          <li>Mobile-optimized &amp; responsive</li>
+          <li>Google Maps &amp; directions</li>
+          <li>Hours, phone, location info</li>
+          <li>Contact form + email integration</li>
+          <li>Full SEO optimization</li>
+          <li>3 rounds of revisions</li>
+          <li>Professional photography (up to 20 photos)</li>
+          <li class="not-included">E-commerce / online store</li>
+          <li>Google Business Profile setup</li>
+        </ul>
+        <a href="#contact" class="plan-btn plan-btn-primary">Get Started →</a>
+      </div>
+
+      <!-- STOREFRONT -->
+      <div class="plan-card fade-in">
+        <div class="plan-name">Storefront</div>
+        <div class="plan-desc">Sell products online. Full e-commerce with payments, inventory, and shipping — done for you.</div>
+        <div class="plan-price">
+          <span class="amount">$500</span>
+          <span class="period">one-time</span>
+        </div>
+        <div class="plan-monthly">then <strong>$40/mo</strong> hosting &amp; support</div>
+        <ul class="plan-features">
+          <li>Up to 10-page custom website</li>
+          <li>Mobile-optimized &amp; responsive</li>
+          <li>Google Maps &amp; directions</li>
+          <li>Full e-commerce store (Stripe)</li>
+          <li>Product catalog &amp; inventory</li>
+          <li>Shipping &amp; tax configuration</li>
+          <li>Full SEO optimization</li>
+          <li>Professional photography (up to 40 photos)</li>
+          <li>5 rounds of revisions</li>
+          <li>Google Business Profile setup</li>
+        </ul>
+        <a href="#contact" class="plan-btn plan-btn-outline">Get Started →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADD-ONS -->
+  <section class="addons-section" id="addons">
+    <div class="section-label">// À La Carte Add-Ons</div>
+    <div class="addons-grid fade-in">
+      <div class="addon-card">
+        <div class="addon-price">$75</div>
+        <div class="addon-name">Photography Session</div>
+        <p class="addon-desc">On-location shoot — storefront, products, team portraits. 20+ edited photos, yours to keep.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$50</div>
+        <div class="addon-name">Logo Design</div>
+        <p class="addon-desc">Clean, professional logo with 3 concepts and 2 revision rounds. Delivered in all formats (PNG, SVG, print).</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$100</div>
+        <div class="addon-name">Google Ads Setup</div>
+        <p class="addon-desc">Keyword research, ad creation, conversion tracking, and campaign launch. Get found when customers search.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$50</div>
+        <div class="addon-name">Social Media Kit</div>
+        <p class="addon-desc">Branded templates for Instagram, Facebook, and Google Business. 10 customizable post designs.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$75</div>
+        <div class="addon-name">Menu / Price List</div>
+        <p class="addon-desc">Interactive online menu or service price list — searchable, mobile-friendly, easy to update.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$60</div>
+        <div class="addon-name">Booking / Scheduling</div>
+        <p class="addon-desc">Online appointment booking integrated into your site. Customers pick a time, you get notified.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$40</div>
+        <div class="addon-name">Email Setup</div>
+        <p class="addon-desc">Professional email (you@yourbusiness.com) with inbox, calendar, and mobile access.</p>
+      </div>
+      <div class="addon-card">
+        <div class="addon-price">$30/mo</div>
+        <div class="addon-name">Monthly Content</div>
+        <p class="addon-desc">Monthly blog post or page update to keep your site fresh and ranking. SEO-optimized writing included.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="compare-section" id="compare">
+    <div class="section-label" style="text-align:center;">// How We Compare</div>
+    <h2>KC Agencies vs. <span>Simon Paige</span></h2>
+    <table class="compare-table fade-in">
+      <thead>
+        <tr>
+          <th></th>
+          <th>KC Agency</th>
+          <th class="highlight-col">Simon Paige</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Small business website</td>
+          <td>$3,000 – $15,000</td>
+          <td class="highlight-col"><span class="check">$150 – $500</span></td>
+        </tr>
+        <tr>
+          <td>Monthly hosting</td>
+          <td>$50 – $200/mo</td>
+          <td class="highlight-col"><span class="check">$10 – $40/mo</span></td>
+        </tr>
+        <tr>
+          <td>Timeline</td>
+          <td>4 – 8 weeks</td>
+          <td class="highlight-col"><span class="check">3 – 7 days</span></td>
+        </tr>
+        <tr>
+          <td>Custom design (no templates)</td>
+          <td><span class="check">✓</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Mobile-optimized</td>
+          <td><span class="check">✓</span></td>
+          <td class="highlight-col"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Professional photography</td>
+          <td>Extra $500+</td>
+          <td class="highlight-col"><span class="check">Included (Business+)</span></td>
+        </tr>
+        <tr>
+          <td>Direct access to your developer</td>
+          <td><span class="nope">—</span></td>
+          <td class="highlight-col"><span class="check">✓ Always</span></td>
+        </tr>
+        <tr>
+          <td>Local KC owner</td>
+          <td>Maybe</td>
+          <td class="highlight-col"><span class="check">✓ Waldo, KC MO</span></td>
+        </tr>
+        <tr>
+          <td>Content updates included</td>
+          <td><span class="nope">$50–100/change</span></td>
+          <td class="highlight-col"><span class="check">✓ Free with hosting</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="section-label">// How It Works</div>
+    <div class="process-steps fade-in">
+      <div class="p-step">
+        <div class="p-step-num">01</div>
+        <div class="p-step-title">We Talk</div>
+        <p class="p-step-desc">Quick call or meetup. I learn your business, your customers, and what you need. 20 minutes, tops.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">02</div>
+        <div class="p-step-title">I Build</div>
+        <p class="p-step-desc">Custom design and development. You'll see a live preview within 3–5 days — not a mockup, the real thing.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">03</div>
+        <div class="p-step-title">You Review</div>
+        <p class="p-step-desc">Feedback, revisions, final tweaks. Nothing launches until you're 100% happy with it.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">04</div>
+        <div class="p-step-title">Go Live</div>
+        <p class="p-step-desc">Domain connected, Google indexed, analytics running. You're online and open for business.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="section-label">// Frequently Asked Questions</div>
+    <div class="faq-grid fade-in">
+      <div class="faq-item">
+        <div class="faq-q">How can you charge so much less than agencies?</div>
+        <div class="faq-a">No office rent, no sales team, no project managers, no overhead. I'm one developer with AI-assisted tooling that lets me build faster than a team of five. You're paying for the work, not the bureaucracy.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I own my website?</div>
+        <div class="faq-a">Yes. You own the design, the content, and the code. If you ever want to leave, I'll hand over everything — no lock-in, no hostage fees.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I need changes after launch?</div>
+        <div class="faq-a">Content updates (hours, photos, text changes) are included free with your monthly hosting. Just text or email me and it gets done, usually same day. Larger feature additions are quoted separately.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need to provide my own photos?</div>
+        <div class="faq-a">You can, but you don't have to. The Business and Storefront plans include professional photography. For Starter, I can use stock photos or shoot your business for an additional $75.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What about a domain name?</div>
+        <div class="faq-a">If you already have one, I'll connect it. If you need one, I'll help you pick and register it — typically $12-15/year through a registrar like Namecheap or Google Domains.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I see an example?</div>
+        <div class="faq-a">Sure — check out <a href="/EDP/" style="color:var(--accent)">Everyday Produce Market</a>, a site I built for a local Waldo business. Every project gets the same attention to detail.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How fast can I get my website?</div>
+        <div class="faq-a">Starter sites: 3 days. Business sites: 5-7 days. Storefront with e-commerce: 7-10 days. That's calendar days, not "business weeks."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="section-label">// Ready?</div>
+    <h2>Let's Get Your Business<br/><span>Online</span></h2>
+    <p>Free 20-minute consultation. No pressure, no commitments — just a conversation about what your business needs.</p>
+    <div class="cta-btns">
+      <a href="tel:8163160092" class="btn-primary">Call (816) 316-0092</a>
+      <a href="mailto:simonlpaige@gmail.com" class="btn-secondary">Email Me</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Simon Paige &middot; Kansas City, MO</p>
+    <p><a href="/">Portfolio</a> &nbsp;·&nbsp; <a href="/waldo/">Waldo Businesses</a> &nbsp;·&nbsp; <a href="/EDP/">Everyday Produce</a></p>
+  </footer>
+
+  <script>
+    // Fade-in observer
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
