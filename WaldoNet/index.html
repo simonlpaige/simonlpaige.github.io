@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaldoNet AI — Community-Owned AI for Waldo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0d2137 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e8edf3;
+        }
+        .container {
+            text-align: center;
+            max-width: 640px;
+            padding: 3rem 2rem;
+        }
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #4ecdc4, #44a8c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tagline {
+            font-size: 1.1rem;
+            color: #8ba4bd;
+            margin-bottom: 2.5rem;
+        }
+        .tools {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .tool {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .tool:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #4ecdc4;
+        }
+        .tool-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .tool-name { font-weight: 600; font-size: 1.1rem; color: #4ecdc4; }
+        .tool-desc { font-size: 0.9rem; color: #8ba4bd; margin-top: 0.25rem; line-height: 1.4; }
+        .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #4ecdc4, #2ea89e);
+            color: #0a1628;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+        }
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(78,205,196,0.3);
+        }
+        .powered {
+            font-size: 0.8rem;
+            color: #5a7a96;
+            margin-top: 1rem;
+        }
+        .powered strong { color: #8ba4bd; }
+        .badge {
+            display: inline-block;
+            background: rgba(78,205,196,0.15);
+            color: #4ecdc4;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(78,205,196,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🏘️</div>
+        <h1>WaldoNet AI</h1>
+        <p class="tagline">Community-Owned AI for the Waldo Neighborhood</p>
+        <div class="badge">🟢 Running on local hardware — your data stays in Waldo</div>
+
+        <div class="tools">
+            <div class="tool">
+                <div class="tool-icon">🗺️</div>
+                <div class="tool-name">Waldo Local Guide</div>
+                <div class="tool-desc">Ask about restaurants, businesses, events, city services, and neighborhood history. AI that actually knows your neighborhood.</div>
+            </div>
+            <div class="tool">
+                <div class="tool-icon">💼</div>
+                <div class="tool-name">Business Marketing Assistant</div>
+                <div class="tool-desc">Generate social media posts, email newsletters, Google Business descriptions, and review responses for Waldo small businesses.</div>
+            </div>
+            <div class="tool">
+                <div class="tool-icon">📚</div>
+                <div class="tool-name">AI Homework Tutor</div>
+                <div class="tool-desc">Patient, Socratic-method tutoring for K-12 students. Math, reading, science, coding, GED prep — aligned to Missouri standards.</div>
+            </div>
+        </div>
+
+        <a href="https://candles-morning-knowing-enormous.trycloudflare.com" class="cta" id="launchBtn">Launch WaldoNet AI →</a>
+
+        <div class="powered">
+            Powered by <strong>Gemma 4 26B</strong> on <strong>NVIDIA RTX 3090</strong> via <strong>Google Fiber</strong><br>
+            Open-source · Community-owned · Zero cloud dependency<br>
+            <br>
+            <a href="https://simonlpaige.com" style="color: #4ecdc4; text-decoration: none;">simonlpaige.com</a> · Simon Paige · Waldo, Kansas City
+        </div>
+    </div>
+</body>
+</html>
