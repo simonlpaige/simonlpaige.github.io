@@ -597,50 +597,59 @@
     }
 
     /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .topnav { padding: 16px 20px; }
       .topnav-links { gap: 14px; }
-      .topnav-links a { font-size: 10px; }
-      .topnav-links .btn-nav { padding: 8px 16px; }
+      .topnav-links a { font-size: 12px; letter-spacing: 0.08em; }
+      .topnav-links .btn-nav { padding: 10px 18px; font-size: 12px; }
       .hero { padding: 120px 20px 48px; }
       .hero-sub { font-size: 16px; }
+      .hero-compare { font-size: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; line-height: 1.6; }
       .pricing-section { padding: 32px 20px 48px; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 100%; margin: 0 auto; }
       .plan-card { padding: 32px 24px; }
+      .plan-desc { font-size: 14px; }
+      .plan-monthly { font-size: 14px; }
+      .plan-features li { font-size: 15px; }
+      .plan-btn { font-size: 14px; padding: 18px 24px; }
       .addons-section, .compare-section, .process-section, .faq-section, .cta-section { padding: 48px 20px; }
       .addons-grid { grid-template-columns: 1fr; }
+      .addon-name { font-size: 14px; }
+      .addon-desc { font-size: 14px; }
       .process-steps { grid-template-columns: 1fr 1fr; }
+      .p-step-desc { font-size: 14px; }
       .compare-section h2 { font-size: 36px; }
-      .compare-table { font-size: 13px; max-width: 100%; }
-      .compare-table th, .compare-table td { padding: 10px 8px; }
+      .compare-table { font-size: 14px; max-width: 100%; }
+      .compare-table th { font-size: 12px; }
+      .compare-table th, .compare-table td { padding: 12px 10px; }
       .faq-grid { max-width: 100%; }
-      .section-label { max-width: 100%; }
+      .faq-q { font-size: 16px; }
+      .faq-a { font-size: 14px; }
+      .section-label { max-width: 100%; font-size: 12px; }
       .upsell-grid { grid-template-columns: 1fr !important; }
       .upsell-card-middle { border-left: none !important; border-right: none !important; border-top: 2px solid var(--accent) !important; border-bottom: 2px solid var(--accent) !important; }
       .cta-section h2 { font-size: clamp(32px, 8vw, 48px); }
+      .cta-section p { font-size: 16px; }
       .cta-btns { flex-direction: column; align-items: center; }
-      .cta-btns a { width: 100%; max-width: 320px; text-align: center; }
+      .cta-btns a { width: 100%; max-width: 320px; text-align: center; font-size: 14px; }
       footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px 20px; }
+      footer p { font-size: 11px; }
     }
 
     @media (max-width: 600px) {
       .topnav { padding: 12px 16px; }
       .topnav-links .hide-mobile { display: none; }
       .topnav-links { gap: 10px; }
-      .topnav-links .btn-nav { padding: 8px 14px; font-size: 10px; }
       .hero { padding: 110px 16px 40px; }
-      .hero-compare { font-size: 12px; }
       .pricing-section { padding: 24px 16px 40px; }
       .addons-section, .compare-section, .process-section, .faq-section, .cta-section { padding: 40px 16px; }
       .process-steps { grid-template-columns: 1fr; }
-      .compare-table { font-size: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .compare-table th, .compare-table td { padding: 8px 6px; }
-      .faq-q { font-size: 14px; }
-      .faq-a { font-size: 13px; }
+      .compare-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .compare-table th, .compare-table td { padding: 10px 8px; white-space: nowrap; }
       .addon-card { padding: 28px 20px; }
       .p-step { padding: 28px 20px; }
       footer { padding: 20px 16px; }
-      footer p { font-size: 9px; }
     }
   </style>
 </head>
@@ -664,7 +673,7 @@
     <div class="hero-tag">Kansas City Small Business Web Design</div>
     <h1>A Real Website<br/>for <span>Real Businesses</span></h1>
     <p class="hero-sub">No templates. No page builders. A custom-built website designed for your business, your customers, and your neighborhood — at prices KC agencies can't touch.</p>
-    <p class="hero-compare">KC agencies charge <s>$3,000–$15,000</s> &nbsp; → &nbsp; You pay <strong>$399–$1,299</strong></p>
+    <p class="hero-compare"><span>KC agencies charge <s>$3,000–$15,000</s></span> <span class="hero-arrow">→</span> <span>You pay <strong>$399–$1,299</strong></span></p>
   </div>
 
   <!-- PRICING CARDS -->
