@@ -259,7 +259,7 @@
     }
 
     .plan-features li.not-included {
-      opacity: 0.35;
+      opacity: 0.5;
     }
     .plan-features li.not-included::before {
       content: '—';
@@ -389,7 +389,7 @@
     .compare-table tr:hover td { color: var(--white); }
 
     .compare-table .check { color: var(--accent); font-weight: 700; }
-    .compare-table .nope { color: #555; }
+    .compare-table .nope { color: #9ca3af; }
 
     .compare-table .highlight-col {
       background: rgba(110,231,183,0.04);
@@ -606,8 +606,9 @@
 </head>
 <body>
 
+  <a href="#plans" class="sr-only" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;&:focus{position:static;width:auto;height:auto;}">Skip to content</a>
   <!-- NAV -->
-  <nav class="topnav">
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
     <a href="/" class="topnav-brand">Simon<span>Paige</span></a>
     <div class="topnav-links">
       <a href="/" class="hide-mobile">Portfolio</a>

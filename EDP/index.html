@@ -21,7 +21,7 @@
       --green-pale: #f0f7ee;
       --gold: #d4a843;
       --gold-light: #fdf6e3;
-      --warm-gray: #7a7265;
+      --warm-gray: #635b50;
       --border: #e6e0d6;
       --terracotta: #c26e4a;
       --terracotta-light: #fdf0eb;
@@ -304,7 +304,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--green);
+      color: var(--green-dark);
       margin-bottom: 16px;
     }
 
@@ -312,7 +312,7 @@
       content: '';
       width: 24px;
       height: 2px;
-      background: var(--green);
+      background: var(--green-dark);
     }
 
     .about-text h2 {
@@ -368,6 +368,7 @@
     }
 
     .seasonal .section-tag {
+      color: #fff;
       color: var(--gold);
     }
 
@@ -475,7 +476,7 @@
     }
 
     .review-stars {
-      color: var(--gold);
+      color: #9a7a1e;
       font-size: 14px;
       margin-bottom: 12px;
     }
@@ -769,7 +770,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: var(--terracotta);
+      background: #a35535;
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
@@ -828,6 +829,7 @@
   </style>
 </head>
 <body>
+  <a href="#about" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" onfocus="this.style.position='static';this.style.width='auto';this.style.height='auto';" onblur="this.style.position='absolute';this.style.width='1px';this.style.height='1px';">Skip to main content</a>
 
   <!-- SEASONAL BANNER (toggle class "closed" for off-season) -->
   <div class="season-banner">
@@ -835,7 +837,7 @@
   </div>
 
   <!-- NAV -->
-  <nav class="nav">
+  <nav class="nav" role="navigation" aria-label="Main navigation">
     <a href="#" class="nav-brand">
       <div class="nav-icon">🍎</div>
       <div class="nav-name">Everyday Produce</div>
