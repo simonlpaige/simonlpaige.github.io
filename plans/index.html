@@ -598,45 +598,48 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .topnav { padding: 16px 24px; }
-      .topnav-links { gap: 16px; }
-      .hero { padding: 140px 24px 60px; }
-      .pricing-section { padding: 40px 16px 60px; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; }
-      .addons-section, .compare-section, .process-section, .faq-section, .cta-section { padding: 60px 16px; }
-      .addons-grid { grid-template-columns: 1fr 1fr; }
+      .topnav { padding: 16px 20px; }
+      .topnav-links { gap: 14px; }
+      .topnav-links a { font-size: 10px; }
+      .topnav-links .btn-nav { padding: 8px 16px; }
+      .hero { padding: 120px 20px 48px; }
+      .hero-sub { font-size: 16px; }
+      .pricing-section { padding: 32px 20px 48px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 100%; margin: 0 auto; }
+      .plan-card { padding: 32px 24px; }
+      .addons-section, .compare-section, .process-section, .faq-section, .cta-section { padding: 48px 20px; }
+      .addons-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr 1fr; }
-      .compare-table { font-size: 13px; }
+      .compare-section h2 { font-size: 36px; }
+      .compare-table { font-size: 13px; max-width: 100%; }
       .compare-table th, .compare-table td { padding: 10px 8px; }
-      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px 16px; }
-      .section-label { padding-left: 0; margin-left: 16px; margin-right: 16px; }
+      .faq-grid { max-width: 100%; }
+      .section-label { max-width: 100%; }
       .upsell-grid { grid-template-columns: 1fr !important; }
+      .upsell-card-middle { border-left: none !important; border-right: none !important; border-top: 2px solid var(--accent) !important; border-bottom: 2px solid var(--accent) !important; }
+      .cta-section h2 { font-size: clamp(32px, 8vw, 48px); }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-btns a { width: 100%; max-width: 320px; text-align: center; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px 20px; }
     }
 
     @media (max-width: 600px) {
       .topnav { padding: 12px 16px; }
       .topnav-links .hide-mobile { display: none; }
-      .topnav-links { gap: 12px; }
+      .topnav-links { gap: 10px; }
       .topnav-links .btn-nav { padding: 8px 14px; font-size: 10px; }
-      .hero { padding: 120px 16px 48px; }
-      .hero-sub { font-size: 16px; }
+      .hero { padding: 110px 16px 40px; }
       .hero-compare { font-size: 12px; }
-      .pricing-section { padding: 32px 16px 48px; }
-      .pricing-grid { max-width: 100%; }
-      .plan-card { padding: 32px 24px; }
-      .addons-section, .compare-section, .process-section, .faq-section, .cta-section { padding: 48px 16px; }
-      .addons-grid { grid-template-columns: 1fr; }
+      .pricing-section { padding: 24px 16px 40px; }
+      .addons-section, .compare-section, .process-section, .faq-section, .cta-section { padding: 40px 16px; }
       .process-steps { grid-template-columns: 1fr; }
-      .compare-section h2 { font-size: 36px; }
-      .compare-table { font-size: 12px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .compare-table th, .compare-table td { padding: 10px 8px; white-space: nowrap; }
+      .compare-table { font-size: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .compare-table th, .compare-table td { padding: 8px 6px; }
       .faq-q { font-size: 14px; }
       .faq-a { font-size: 13px; }
-      .cta-section h2 { font-size: 36px; }
-      .cta-btns { flex-direction: column; align-items: center; }
-      .cta-btns a { width: 100%; max-width: 300px; text-align: center; }
-      .upsell-grid { grid-template-columns: 1fr !important; }
-      .upsell-card-middle { border-left: none !important; border-right: none !important; border-top: 2px solid var(--accent) !important; border-bottom: 2px solid var(--accent) !important; }
+      .addon-card { padding: 28px 20px; }
+      .p-step { padding: 28px 20px; }
+      footer { padding: 20px 16px; }
       footer p { font-size: 9px; }
     }
   </style>
@@ -649,8 +652,8 @@
     <a href="/" class="topnav-brand">Simon<span>Paige</span></a>
     <div class="topnav-links">
       <a href="/" class="hide-mobile">Portfolio</a>
-      <a href="#plans">Plans</a>
-      <a href="#addons">Add-Ons</a>
+      <a href="#plans" class="hide-mobile">Plans</a>
+      <a href="#addons" class="hide-mobile">Add-Ons</a>
       <a href="#faq">FAQ</a>
       <a href="#contact" class="btn-nav">Get Started</a>
     </div>
