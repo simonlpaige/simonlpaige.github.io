@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecolibrium — A Framework for the Effortless Economy</title>
+<meta name="description" content="An open-source blueprint for the peaceful transition to a post-scarcity, ecologically sustainable, democratically governed society. 300+ organizations already building the pieces.">
+<meta property="og:title" content="Ecolibrium">
+<meta property="og:description" content="300+ organizations worldwide working unknowingly as part of the same movement.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0d16;
+    --surface: #131722;
+    --border: #1e2433;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --accent: #60a5fa;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,13,22,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+  }
+
+  .nav-logo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+  /* HERO */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0d16;
+  }
+  .btn-primary:hover { background: #93c5fd; text-decoration: none; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { background: var(--surface); text-decoration: none; }
+
+  /* STATS */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-width: 760px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* MAP SECTION */
+  .map-section {
+    padding: 60px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .section-header p {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .map-frame-container {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .map-frame-container iframe {
+    width: 100%;
+    height: 560px;
+    border: none;
+    display: block;
+  }
+
+  .map-caption {
+    padding: 10px 16px;
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* WHAT */
+  .what-section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .what-section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .what-section p {
+    color: #94a3b8;
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* SECTIONS GRID */
+  .sections-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    transition: border-color 0.15s;
+  }
+
+  .section-card:hover { border-color: var(--card-color); }
+
+  .section-card-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--card-color);
+    margin-bottom: 10px;
+  }
+
+  .section-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .section-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .section-card .count {
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--card-color);
+  }
+
+  /* CTA */
+  .cta {
+    text-align: center;
+    padding: 60px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta h2 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  .cta p { color: var(--muted); margin-bottom: 28px; font-size: 15px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">🌍 Ecolibrium</span>
+  <div class="nav-links">
+    <a href="#map">Map</a>
+    <a href="#what">About</a>
+    <a href="https://github.com/simonlpaige/ecolibrium" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-label">Open Source · CC0 · Community-built</div>
+  <h1>The movement already exists.<br>Nobody named it <em>yet.</em></h1>
+  <p>In 2007, Paul Hawken catalogued 114,994 organizations across 243 countries building alternatives to the systems that don't work. The website disappeared in 2014. This is the continuation.</p>
+  <div class="hero-actions">
+    <a href="#map" class="btn btn-primary">Explore the Map</a>
+    <a href="https://github.com/simonlpaige/ecolibrium" target="_blank" class="btn btn-outline">Read the Framework →</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-number">300+</div>
+    <div class="stat-label">Organizations mapped</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">90+</div>
+    <div class="stat-label">Countries represented</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">12</div>
+    <div class="stat-label">Framework sections</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">CC0</div>
+    <div class="stat-label">Fully open data</div>
+  </div>
+</div>
+
+<section id="map" class="map-section">
+  <div class="section-header">
+    <h2>Global Directory Map</h2>
+    <p>Filter by section, hover for details, scroll to zoom</p>
+  </div>
+  <div class="map-frame-container">
+    <iframe src="map.html" title="Ecolibrium Global Directory Map" loading="lazy"></iframe>
+    <div class="map-caption">
+      <span>~170 plotted organizations across 12 sections</span>
+      <a href="map.html" target="_blank">Open full screen →</a>
+    </div>
+  </div>
+</section>
+
+<section id="what" class="what-section">
+  <h2>What this is</h2>
+  <p>Here is a thing that is true and that almost no one talks about clearly: the machines are going to do most of the work. Not eventually -- now, and accelerating. And the interesting question isn't whether that happens. It's who benefits when it does.</p>
+  <p>Right now the answer is: whoever owns the machines. That's a design choice, not a law of nature. You could design it differently.</p>
+  <p>Ecolibrium is an attempt to think carefully about what "differently" actually means -- what systems would need to exist, how you'd build them, what's already being built, and how you get from here to there without everything going badly wrong in the middle.</p>
+  <p>It's not a manifesto. It's more like an engineering problem with a lot of political and historical constraints. The directory maps organizations that are already building pieces of the answer -- community land trusts, worker cooperatives, open-source health systems, participatory democracy tools, community energy grids -- most of them without knowing they're part of a larger pattern.</p>
+</section>
+
+<div class="sections-grid">
+  <div class="section-card" style="--card-color:#60a5fa">
+    <div class="section-card-dot"></div>
+    <h3>Democratic Infrastructure</h3>
+    <p>Liquid democracy, sortition, verifiable voting, participatory platforms</p>
+    <div class="count">21 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#34d399">
+    <div class="section-card-dot"></div>
+    <h3>Wealth & Cooperatives</h3>
+    <p>UBI pilots, worker cooperatives, community wealth building</p>
+    <div class="count">21 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#f472b6">
+    <div class="section-card-dot"></div>
+    <h3>Healthcare</h3>
+    <p>Open-source health IT, community health worker models, universal systems</p>
+    <div class="count">15 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#fb923c">
+    <div class="section-card-dot"></div>
+    <h3>Food Sovereignty</h3>
+    <p>Agroecology, seed sovereignty, open food networks, CSA movements</p>
+    <div class="count">13 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#a78bfa">
+    <div class="section-card-dot"></div>
+    <h3>Education</h3>
+    <p>Open courseware, democratic schooling, offline-first platforms</p>
+    <div class="count">15 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#fbbf24">
+    <div class="section-card-dot"></div>
+    <h3>Land & Housing</h3>
+    <p>Community land trusts, social housing, stewardship models</p>
+    <div class="count">8 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#f87171">
+    <div class="section-card-dot"></div>
+    <h3>Conflict Resolution</h3>
+    <p>Restorative justice, transitional justice, community accountability</p>
+    <div class="count">8 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#22d3ee">
+    <div class="section-card-dot"></div>
+    <h3>Energy & Digital Commons</h3>
+    <p>Community energy cooperatives, open protocols, privacy infrastructure</p>
+    <div class="count">11 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#e879f9">
+    <div class="section-card-dot"></div>
+    <h3>Recreation & Arts</h3>
+    <p>Basic income for artists, open cultural heritage, free media</p>
+    <div class="count">7 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#4ade80">
+    <div class="section-card-dot"></div>
+    <h3>Wellbeing Economics</h3>
+    <p>Beyond-GDP frameworks, Doughnut Economics, GNH, WEGo</p>
+    <div class="count">9 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#94a3b8">
+    <div class="section-card-dot"></div>
+    <h3>Allied Projects</h3>
+    <p>Open-source platforms, civic tech, humanitarian data tools</p>
+    <div class="count">10 organizations</div>
+  </div>
+  <div class="section-card" style="--card-color:#ffffff">
+    <div class="section-card-dot"></div>
+    <h3>Networks & Federations</h3>
+    <p>Meta-organizations, ecovillage networks, solidarity economy federations</p>
+    <div class="count">8 organizations</div>
+  </div>
+</div>
+
+<div class="cta">
+  <h2>This belongs to everyone</h2>
+  <p>The data is CC0. Fork it, extend it, add organizations, correct errors.<br>The framework is the same -- open, anonymous, no center.</p>
+  <a href="https://github.com/simonlpaige/ecolibrium" target="_blank" class="btn btn-primary">Contribute on GitHub</a>
+</div>
+
+<footer>
+  <p>Data: <a href="https://github.com/simonlpaige/ecolibrium/blob/master/DIRECTORY.md" target="_blank">DIRECTORY.md</a> · Released under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">CC0</a> · Inspired by <a href="https://web.archive.org/web/20140411042711/http://wiser.org/" target="_blank">WiserEarth</a> (2007-2014)</p>
+</footer>
+
+</body>
+</html>
