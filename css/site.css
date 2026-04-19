@@ -1,0 +1,594 @@
+/* ================================================================
+   Simon L. Paige Web Design - Prairie Clarity
+   Single stylesheet. Hand-written. No framework.
+   ================================================================ */
+
+/* ── Tokens ────────────────────────────────────────────────────── */
+:root {
+  --cast-iron: #1C1A17;
+  --limestone: #F4EEE2;
+  --chalk: #FBF8F1;
+  --prairie-rust: #B45B2E;
+  --horizon: #3E6A83;
+  --wheat: #D9C48B;
+  --moss: #5A6B3B;
+  --stone: #6B665D;
+  --rule: #C9BEAB;
+  --rust-dark: #8F4523;
+
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+  --shadow-rest: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,0.10);
+
+  --radius: 4px;
+  --max-body: 62ch;
+  --baseline: 8px;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--limestone);
+  color: var(--cast-iron);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--horizon); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--prairie-rust); }
+
+/* ── Focus ─────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--horizon);
+  outline-offset: 2px;
+}
+
+/* ── Skip link ─────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--prairie-rust);
+  color: var(--chalk);
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: var(--radius);
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ── Typography ────────────────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  text-align: left;
+}
+
+h1 {
+  font-size: 3.052rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+h2 {
+  font-size: 2.441rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.953rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: 1.563rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+small, .text-small {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--stone);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ── Layout ────────────────────────────────────────────────────── */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.body-text {
+  max-width: var(--max-body);
+}
+
+/* Wright horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* ── Header ────────────────────────────────────────────────────── */
+.site-header {
+  padding: 24px 0;
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.site-logo img {
+  height: 100%;
+  width: auto;
+}
+
+.site-nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.site-nav a {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--cast-iron);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.site-nav a:hover {
+  color: var(--prairie-rust);
+}
+
+/* ── Hero ──────────────────────────────────────────────────────── */
+.hero {
+  padding: 64px 0 80px;
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+}
+
+.hero .subhead {
+  font-size: 1.25rem;
+  font-weight: 400;
+  max-width: var(--max-body);
+  margin-bottom: 40px;
+  color: var(--cast-iron);
+}
+
+.cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--prairie-rust);
+  color: var(--chalk);
+}
+.btn-primary:hover {
+  background: var(--rust-dark);
+  color: var(--chalk);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--prairie-rust);
+  border: 1px solid var(--rule);
+}
+.btn-secondary:hover {
+  border-color: var(--prairie-rust);
+  color: var(--rust-dark);
+}
+
+/* ── Sections ──────────────────────────────────────────────────── */
+.section {
+  padding: 64px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+/* ── Work grid (Wright triplet) ────────────────────────────────── */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.work-card {
+  background: var(--chalk);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow-rest);
+  transition: box-shadow 0.15s ease;
+  text-decoration: none;
+  color: var(--cast-iron);
+  display: flex;
+  flex-direction: column;
+}
+
+.work-card:hover {
+  box-shadow: var(--shadow-hover);
+  color: var(--cast-iron);
+}
+
+.work-card .card-title {
+  font-family: var(--font-display);
+  font-size: 1.563rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.work-card .card-tagline {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.work-card .card-tag {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--stone);
+  margin-bottom: 16px;
+}
+
+.work-card .card-preview {
+  background: var(--limestone);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.work-card .card-preview .preview-url {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--horizon);
+  word-break: break-all;
+}
+
+.work-card .card-preview .preview-note {
+  font-size: 0.8rem;
+  color: var(--stone);
+  margin-top: 8px;
+}
+
+/* ── Feynman callout ───────────────────────────────────────────── */
+.feynman {
+  background: var(--chalk);
+  padding: 48px 0;
+}
+
+.feynman .body-text {
+  font-size: 1.25rem;
+  line-height: 1.65;
+}
+
+/* ── Machine section ───────────────────────────────────────────── */
+.machine-item {
+  margin-bottom: 32px;
+}
+
+.machine-item h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.machine-item h4 a {
+  color: var(--horizon);
+}
+
+.machine-item p {
+  max-width: var(--max-body);
+}
+
+/* ── About ─────────────────────────────────────────────────────── */
+.about p {
+  max-width: var(--max-body);
+}
+
+/* ── Contact ───────────────────────────────────────────────────── */
+.contact .body-text {
+  margin-bottom: 24px;
+}
+
+/* ── Footer ────────────────────────────────────────────────────── */
+.site-footer {
+  padding: 32px 0;
+  font-size: 0.875rem;
+  color: var(--stone);
+}
+
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-left {
+  font-weight: 500;
+  color: var(--cast-iron);
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-right a {
+  color: var(--stone);
+  font-size: 0.875rem;
+}
+.footer-right a:hover {
+  color: var(--prairie-rust);
+}
+
+.footer-credit {
+  padding: 16px 0 32px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--stone);
+}
+
+/* ── Plans page ────────────────────────────────────────────────── */
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 48px;
+}
+
+.plan-table th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-align: left;
+  padding: 16px 24px;
+  border-bottom: 2px solid var(--rule);
+  color: var(--cast-iron);
+}
+
+.plan-table td {
+  padding: 16px 24px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+}
+
+.plan-table tbody tr:nth-child(even) {
+  background: var(--wheat);
+}
+
+.plan-table tbody tr:nth-child(odd) {
+  background: var(--chalk);
+}
+
+.plan-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.plan-price {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--prairie-rust);
+  font-size: 1.125rem;
+}
+
+.plan-desc {
+  font-style: italic;
+  color: var(--stone);
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+}
+
+.plan-features li {
+  padding: 4px 0;
+  font-size: 0.95rem;
+}
+
+.plan-features li::before {
+  content: "- ";
+  color: var(--stone);
+}
+
+/* ── FAQ ───────────────────────────────────────────────────────── */
+.faq-item {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.faq-q {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.faq-a {
+  max-width: var(--max-body);
+}
+
+/* ── Legal pages ───────────────────────────────────────────────── */
+.legal h1 {
+  margin-bottom: 8px;
+}
+
+.legal .updated {
+  color: var(--stone);
+  font-size: 0.875rem;
+  margin-bottom: 40px;
+}
+
+.legal h2 {
+  font-size: 1.563rem;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.legal p, .legal ul {
+  max-width: var(--max-body);
+  margin-bottom: 16px;
+}
+
+.legal ul {
+  padding-left: 24px;
+}
+
+.legal li {
+  margin-bottom: 8px;
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .work-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  h1 { font-size: 2.441rem; }
+  h2 { font-size: 1.953rem; }
+  h3 { font-size: 1.563rem; }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header .wrap {
+    gap: 16px;
+  }
+
+  .site-nav {
+    gap: 16px;
+  }
+
+  .plan-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .site-footer .wrap {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-right {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 0 20px;
+  }
+
+  h1 { font-size: 1.953rem; }
+
+  .hero {
+    padding: 40px 0 56px;
+  }
+
+  .section {
+    padding: 48px 0;
+  }
+
+  .site-header .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .cta-row {
+    flex-direction: column;
+  }
+
+  .cta-row .btn {
+    text-align: center;
+  }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ── Print ─────────────────────────────────────────────────────── */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 12pt;
+  }
+
+  .site-header, .site-footer, .cta-row, .btn {
+    display: none;
+  }
+
+  a { color: #000; text-decoration: underline; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+
+  .work-grid { grid-template-columns: 1fr; }
+
+  hr { border-top-color: #ccc; }
+}

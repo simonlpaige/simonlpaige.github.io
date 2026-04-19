@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Simon L. Paige Web Design - Wordmark
+  SLP twist: thin horizontal rules flank the name (Wright "signature plate"),
+  "WEB DESIGN" in Inter below. Warmest brand in the family.
+  Palette: Cast Iron on Limestone. Prairie Rust accent square.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 140" width="600" height="140" role="img" aria-label="Simon L. Paige Web Design">
+  <style>
+    .paper { fill: #F4EEE2; }
+    .ink   { fill: #1C1A17; }
+    .rule  { stroke: #1C1A17; stroke-width: 1.5; }
+    .rust  { fill: #B45B2E; }
+    .display { font-family: "Source Serif 4", "Fraunces", Georgia, serif; font-weight: 700; }
+    .body    { font-family: "Inter", system-ui, sans-serif; font-weight: 500; letter-spacing: 0.28em; }
+  </style>
+  <rect class="paper" width="600" height="140"/>
+  <!-- left rule -->
+  <line class="rule" x1="40" y1="70" x2="108" y2="70"/>
+  <!-- right rule -->
+  <line class="rule" x1="492" y1="70" x2="560" y2="70"/>
+  <!-- wordmark - Cast Iron, Source Serif 4 -->
+  <text class="display ink" x="300" y="80" font-size="44" text-anchor="middle" letter-spacing="0.04em">SIMON  L.  PAIGE</text>
+  <!-- subline - Inter 500, wide tracked -->
+  <text class="body ink" x="300" y="108" font-size="12" text-anchor="middle">WEB  DESIGN</text>
+  <!-- prairie rust accent square - art glass cue -->
+  <rect class="rust" x="296" y="24" width="8" height="8"/>
+</svg>
