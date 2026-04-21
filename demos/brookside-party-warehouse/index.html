@@ -504,15 +504,36 @@
     }
     .plan-btn.gold:hover { background: #d4920a; }
 
+    /* ── ADDON GRID ── */
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 36px;
+    }
+    .addon-chip {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .addon-chip-name { font-size: 14px; font-weight: 500; color: var(--dark); }
+    .addon-chip-price { font-size: 14px; font-weight: 700; color: var(--purple-dark); white-space: nowrap; }
+
     .payment-note {
       text-align: center;
-      margin-top: 32px;
+      margin-top: 40px;
       font-size: 14px;
       color: var(--warm-gray);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
     .payment-note span { font-size: 18px; }
     .stripe-badge {
@@ -759,76 +780,98 @@
     </div>
   </section>
 
-  <!-- PAYMENT / PRICING SECTION -->
+  <!-- WEB DESIGN PACKAGES SECTION -->
   <section class="payment-section" id="get-started">
     <div class="section-inner">
       <div class="payment-header">
-        <p class="section-label">Simple Pricing</p>
-        <h2 class="section-title">Ready to Make Your Party Happen?</h2>
-        <p class="section-sub" style="margin: 0 auto; font-size:16px; color: var(--warm-gray);">Order supplies ahead, book balloon fills, or call us for event planning help. Pay securely online or in-store.</p>
+        <p class="section-label">Built by Simon L. Paige Web Design</p>
+        <h2 class="section-title">Get a Site Like This One</h2>
+        <p class="section-sub" style="margin: 0 auto; font-size:16px; color: var(--warm-gray);">This is a demo of what your site could look like. Pick a package below, pay securely, and we'll build it out with your real photos, hours, and content.</p>
       </div>
+
+      <!-- PACKAGES -->
       <div class="payment-grid">
 
-        <!-- Balloon Fill Order -->
+        <!-- Starter -->
         <div class="plan-card">
-          <div class="plan-name">Balloon Fill Order</div>
-          <div class="plan-price"><sup>$</sup>15<span style="font-size:22px;font-family:'DM Sans',sans-serif;font-weight:400">+</span></div>
-          <div class="plan-billing">starting price &bull; <strong>pick up in-store</strong></div>
-          <p class="plan-desc">Order your balloon fill ahead of time so it's ready when you arrive. Great for parties, events, and last-minute pickups.</p>
+          <div class="plan-name">Starter</div>
+          <div class="plan-price"><sup>$</sup>399</div>
+          <div class="plan-billing">one-time &bull; then <strong>$29/mo</strong> hosting</div>
+          <p class="plan-desc">One polished page with your hours, contact info, location, and what you sell. Gets you off the parked domain and onto Google.</p>
           <ul class="plan-features">
-            <li>Latex fills from $1 each</li>
-            <li>Foil & Mylar from $5</li>
-            <li>Giant numbers & letters from $8</li>
-            <li>Ready same-day</li>
-            <li class="muted">Delivery not available</li>
+            <li>1-page custom site</li>
+            <li>Mobile-friendly</li>
+            <li>Google Maps embed</li>
+            <li>Contact form</li>
+            <li class="muted">No e-commerce</li>
+            <li class="muted">No multiple pages</li>
           </ul>
-          <a href="tel:8163332332" class="plan-btn outline">Call to Order</a>
+          <a href="https://buy.stripe.com/starter-placeholder" class="plan-btn outline">Pay $399 to Start</a>
         </div>
 
-        <!-- Party Bundle — Popular -->
+        <!-- Business — Popular -->
         <div class="plan-card popular">
-          <div class="popular-badge">Most Popular</div>
-          <div class="plan-name">Party Bundle</div>
-          <div class="plan-price"><sup>$</sup>49</div>
-          <div class="plan-billing">one-time &bull; <strong>customize in-store</strong></div>
-          <p class="plan-desc">Tell us your theme, colors, and headcount. We'll pull together everything you need — plates, cups, balloons, decorations, and more.</p>
+          <div class="popular-badge">Best Fit for Your Store</div>
+          <div class="plan-name">Business</div>
+          <div class="plan-price"><sup>$</sup>799</div>
+          <div class="plan-billing">one-time &bull; then <strong>$49/mo</strong> hosting</div>
+          <p class="plan-desc">Five pages covering everything: home, shop overview, costumes, balloons, and contact. This is what you're looking at right now.</p>
           <ul class="plan-features">
-            <li>Themed plates, cups & napkins</li>
-            <li>Coordinated balloons (6-pack)</li>
-            <li>Tablecloth & banner</li>
-            <li>Candles & confetti included</li>
-            <li>Staff helps you choose in-store</li>
+            <li>5-page custom site</li>
+            <li>Mobile-friendly</li>
+            <li>Google Maps + hours</li>
+            <li>Contact form</li>
+            <li>Photo gallery section</li>
+            <li>You own it — no contract</li>
           </ul>
-          <a href="tel:8163332332" class="plan-btn primary">Call to Start</a>
+          <a href="https://buy.stripe.com/business-placeholder" class="plan-btn primary">Pay $799 to Start</a>
         </div>
 
-        <!-- Event Planning -->
+        <!-- Storefront -->
         <div class="plan-card">
-          <div class="plan-name">Event Order</div>
-          <div class="plan-price"><sup>$</sup>99<span style="font-size:22px;font-family:'DM Sans',sans-serif;font-weight:400">+</span></div>
-          <div class="plan-billing">custom quote &bull; <strong>for bigger events</strong></div>
-          <p class="plan-desc">Corporate events, weddings, school parties, and large celebrations. We help you plan quantities, themes, and pickup logistics.</p>
+          <div class="plan-name">Storefront</div>
+          <div class="plan-price"><sup>$</sup>1,299</div>
+          <div class="plan-billing">one-time &bull; then <strong>$79/mo</strong> hosting</div>
+          <p class="plan-desc">Ten pages plus online ordering capability. Good if you ever want to take balloon pre-orders or event deposits online.</p>
           <ul class="plan-features">
-            <li>Full decor consultation</li>
-            <li>Bulk balloon orders</li>
-            <li>Costume coordination for groups</li>
-            <li>Advance order & hold available</li>
-            <li>Flexible pickup scheduling</li>
+            <li>10-page custom site</li>
+            <li>Online ordering / deposits</li>
+            <li>Mobile-friendly</li>
+            <li>Full photo gallery</li>
+            <li>Contact + booking form</li>
+            <li>You own it — no contract</li>
           </ul>
-          <a href="tel:8163332332" class="plan-btn gold">Get a Quote</a>
+          <a href="https://buy.stripe.com/storefront-placeholder" class="plan-btn gold">Pay $1,299 to Start</a>
         </div>
 
       </div>
 
-      <!-- Stripe / Payment note -->
+      <!-- ADD-ONS -->
+      <div style="margin-top: 56px;">
+        <p class="section-label" style="text-align:center;">Optional Add-Ons</p>
+        <h3 style="font-family:'Playfair Display',serif; font-size:26px; font-weight:700; text-align:center; margin-bottom:8px;">Customize Your Package</h3>
+        <p style="text-align:center; color:var(--warm-gray); font-size:15px; margin-bottom:0;">Add any of these at checkout or any time after launch.</p>
+        <div class="addon-grid">
+          <div class="addon-chip"><span class="addon-chip-name">📸 Photography</span><span class="addon-chip-price">$75</span></div>
+          <div class="addon-chip"><span class="addon-chip-name">🎨 Logo Design</span><span class="addon-chip-price">$50</span></div>
+          <div class="addon-chip"><span class="addon-chip-name">📣 Google Ads Setup</span><span class="addon-chip-price">$100</span></div>
+          <div class="addon-chip"><span class="addon-chip-name">📱 Social Media Kit</span><span class="addon-chip-price">$50</span></div>
+          <div class="addon-chip"><span class="addon-chip-name">📅 Booking / Reservations</span><span class="addon-chip-price">$60</span></div>
+          <div class="addon-chip"><span class="addon-chip-name">✉️ Email Setup</span><span class="addon-chip-price">$40</span></div>
+          <div class="addon-chip"><span class="addon-chip-name">📝 Monthly Content</span><span class="addon-chip-price">$30/mo</span></div>
+          <div class="addon-chip"><span class="addon-chip-name">🗺️ Google Maps Optimization</span><span class="addon-chip-price">$75</span></div>
+        </div>
+      </div>
+
+      <!-- Stripe note -->
       <p class="payment-note">
         <span>🔒</span>
-        Secure online payments processed by
+        Payments processed securely by
         <span class="stripe-badge">
           <svg width="14" height="14" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M59.64 14.28c0-4.63-2.24-8.28-6.53-8.28-4.3 0-6.9 3.65-6.9 8.25 0 5.44 3.08 8.19 7.48 8.19 2.15 0 3.78-.49 5.01-1.18v-3.62c-1.23.62-2.64.97-4.41.97-1.74 0-3.28-.61-3.48-2.73h8.77c0-.23.06-.89.06-1.6zm-8.83-1.72c0-2.03 1.24-2.87 2.37-2.87 1.1 0 2.27.84 2.27 2.87h-4.64zM40.68 6c-1.75 0-2.87.82-3.5 1.39l-.23-1.1h-3.93v20.97l4.47-.95.01-5.09c.64.47 1.59 1.13 3.16 1.13 3.19 0 6.1-2.56 6.1-8.21C46.76 8.49 43.84 6 40.68 6zm-.74 12.65c-1.05 0-1.67-.37-2.1-.84l-.03-6.63c.46-.51 1.1-.86 2.13-.86 1.63 0 2.76 1.83 2.76 4.16 0 2.38-1.11 4.17-2.76 4.17zM27.39 4.43l4.48-.96V0l-4.48.94v3.49zM27.39 6.26h4.48v15.73h-4.48V6.26zM22.83 7.49l-.28-1.23H18.7v15.73h4.47V11.5c1.05-1.37 2.84-1.12 3.39-.94V6.26c-.58-.2-2.69-.57-3.73 1.23zM13.38 2.23L9.01 3.16.77 21.98h4.6l1.7-4.51h8.7l1.7 4.51h4.72L13.38 2.23zm-5.53 11.42l2.97-7.93 2.97 7.93H7.85z" fill="#6772e5"/></svg>
           Stripe
         </span>
-        &nbsp;— no account needed
+        &nbsp;— no account needed &nbsp;&bull;&nbsp; questions? <a href="tel:" style="color:var(--purple); font-weight:600;">Call Simon</a>
       </p>
     </div>
   </section>
@@ -842,7 +885,7 @@
       <a href="#costumes">Costumes</a>
       <a href="#balloons">Balloons</a>
       <a href="#hours">Hours</a>
-      <a href="#get-started">Order</a>
+      <a href="#get-started">Get a Site</a>
     </div>
     <div class="footer-copy">© 2026 Brookside Party Warehouse &nbsp;|&nbsp; Jerri Brandon, Owner</div>
     <div class="footer-demo-note">Demo site built by Simon L. Paige Web Design · simonlpaige.com</div>
