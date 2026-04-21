@@ -1,186 +1,186 @@
 # 🌍 Ecolibrium Global Civil Society Directory
 
-*Last updated: 2026-04-20 20:54 UTC*
+*Last updated: 2026-04-21 01:42 UTC*
 
 
 ## Coverage
 
 | Country / Region | Organizations | Source | Status |
 |-----------------|--------------|--------|--------|
-| 🇺🇸 United States | 24,508 | IRS EO Business Master File | ✅ Complete |
-| 🌐 United Arab Emirates (AE) | ~17 | Field Research | ✅ |
-| 🌐 Afghanistan (AF) | ~2 | Field Research | ✅ |
-| 🌐 Albania (AL) | ~2 | Field Research | ✅ |
-| 🌐 Armenia (AM) | ~2 | Field Research | ✅ |
-| 🌐 Angola (AO) | ~2 | Field Research | ✅ |
-| 🌐 Argentina (AR) | ~2 | Field Research | ✅ |
-| 🌐 Austria (AT) | ~2 | Field Research | ✅ |
-| 🌐 Australia (AU) | ~2 | Field Research | ✅ |
-| 🌐 Bosnia and Herzegovina (BA) | ~13 | Field Research | ✅ |
-| 🌐 Bangladesh (BD) | ~2 | Field Research | ✅ |
-| 🌐 Belgium (BE) | ~2 | Field Research | ✅ |
-| 🌐 Burkina Faso (BF) | ~2 | Field Research | ✅ |
-| 🌐 Bulgaria (BG) | ~2 | Field Research | ✅ |
-| 🌐 Bahrain (BH) | ~2 | Field Research | ✅ |
-| 🌐 Benin (BJ) | ~2 | Field Research | ✅ |
-| 🌐 Brunei (BN) | ~2 | Field Research | ✅ |
-| 🌐 DIRECTORY_BO.md (BO) | ~12 | Field Research | ✅ |
-| 🌐 Brazil (BR) | ~2 | Field Research | ✅ |
-| 🌐 Botswana (BW) | ~15 | Field Research | ✅ |
-| 🌐 Belarus (BY) | ~2 | Field Research | ✅ |
-| 🌐 Belize (BZ) | ~2 | Field Research | ✅ |
-| 🌐 Canada (CA) | ~2 | Field Research | ✅ |
-| 🌐 Democratic Republic of the Congo (CD) | ~2 | Field Research | ✅ |
-| 🌐 Republic of the Congo (CG) | ~2 | Field Research | ✅ |
-| 🌐 Switzerland (CH) | ~2 | Field Research | ✅ |
-| 🌐 Cote d'Ivoire (CI) | ~2 | Field Research | ✅ |
-| 🌐 Chile (CL) | ~2 | Field Research | ✅ |
-| 🌐 Cameroon (CM) | ~2 | Field Research | ✅ |
-| 🌐 China (CN) | ~2 | Field Research | ✅ |
-| 🌐 Colombia (CO) | ~2 | Field Research | ✅ |
-| 🌐 Costa Rica (CR) | ~17 | Field Research | ✅ |
-| 🌐 Cuba (CU) | ~2 | Field Research | ✅ |
-| 🌐 Cyprus (CY) | ~2 | Field Research | ✅ |
-| 🌐 Czechia (CZ) | ~2 | Field Research | ✅ |
-| 🌐 Germany (DE) | ~2 | Field Research | ✅ |
-| 🌐 Djibouti (DJ) | ~2 | Field Research | ✅ |
-| 🌐 Denmark (DK) | ~2 | Field Research | ✅ |
-| 🌐 Dominican Republic (DO) | ~2 | Field Research | ✅ |
-| 🌐 DIRECTORY_EC.md (EC) | ~9 | Field Research | ✅ |
-| 🌐 Estonia (EE) | ~2 | Field Research | ✅ |
-| 🌐 Egypt (EG) | ~2 | Field Research | ✅ |
-| 🌐 Eritrea (ER) | ~2 | Field Research | ✅ |
-| 🌐 Spain (ES) | ~2 | Field Research | ✅ |
-| 🌐 Ethiopia (ET) | ~2 | Field Research | ✅ |
-| 🌐 Finland (FI) | ~2 | Field Research | ✅ |
-| 🌐 Fiji (FJ) | ~16 | Field Research | ✅ |
-| 🌐 France (FR) | ~2 | Field Research | ✅ |
-| 🌐 Gabon (GA) | ~2 | Field Research | ✅ |
-| 🌐 United Kingdom (GB) | ~2 | Field Research | ✅ |
-| 🌐 Georgia (GE) | ~2 | Field Research | ✅ |
-| 🌐 Ghana (GH) | ~2 | Field Research | ✅ |
-| 🌐 Gambia (GM) | ~13 | Field Research | ✅ |
-| 🌐 Guinea (GN) | ~2 | Field Research | ✅ |
-| 🌐 Greece (GR) | ~2 | Field Research | ✅ |
-| 🌐 Guatemala (GT) | ~13 | Field Research | ✅ |
-| 🌐 Guinea-Bissau (GW) | ~2 | Field Research | ✅ |
-| 🌐 DIRECTORY_GY.md (GY) | ~12 | Field Research | ✅ |
-| 🌐 DIRECTORY_HN.md (HN) | ~10 | Field Research | ✅ |
-| 🌐 Croatia (HR) | ~2 | Field Research | ✅ |
-| 🌐 Haiti (HT) | ~2 | Field Research | ✅ |
-| 🌐 Hungary (HU) | ~2 | Field Research | ✅ |
-| 🌐 Indonesia (ID) | ~2 | Field Research | ✅ |
-| 🌐 Ireland (IE) | ~2 | Field Research | ✅ |
-| 🌐 India (IN) | ~19 | Field Research | ✅ |
-| 🌐 Iraq (IQ) | ~2 | Field Research | ✅ |
-| 🌐 Iran (IR) | ~2 | Field Research | ✅ |
-| 🌐 Iceland (IS) | ~18 | Field Research | ✅ |
-| 🌐 Italy (IT) | ~2 | Field Research | ✅ |
-| 🌐 Jamaica (JM) | ~2 | Field Research | ✅ |
-| 🌐 Jordan (JO) | ~2 | Field Research | ✅ |
-| 🌐 Japan (JP) | ~14 | Field Research | ✅ |
-| 🌐 Kenya (KE) | ~53 | Field Research | ✅ |
-| 🌐 Kyrgyzstan (KG) | ~2 | Field Research | ✅ |
-| 🌐 Cambodia (KH) | ~2 | Field Research | ✅ |
-| 🌐 South Korea (KR) | ~2 | Field Research | ✅ |
-| 🌐 Kuwait (KW) | ~2 | Field Research | ✅ |
-| 🌐 Kazakhstan (KZ) | ~2 | Field Research | ✅ |
-| 🌐 Laos (LA) | ~2 | Field Research | ✅ |
-| 🌐 Lebanon (LB) | ~2 | Field Research | ✅ |
-| 🌐 Sri Lanka (LK) | ~2 | Field Research | ✅ |
-| 🌐 Liberia (LR) | ~2 | Field Research | ✅ |
-| 🌐 Lesotho (LS) | ~2 | Field Research | ✅ |
-| 🌐 Lithuania (LT) | ~14 | Field Research | ✅ |
-| 🌐 Luxembourg (LU) | ~2 | Field Research | ✅ |
-| 🌐 Latvia (LV) | ~2 | Field Research | ✅ |
-| 🌐 Libya (LY) | ~2 | Field Research | ✅ |
-| 🌐 Morocco (MA) | ~2 | Field Research | ✅ |
-| 🌐 Moldova (MD) | ~2 | Field Research | ✅ |
-| 🌐 Montenegro (ME) | ~2 | Field Research | ✅ |
-| 🌐 Madagascar (MG) | ~2 | Field Research | ✅ |
-| 🌐 North Macedonia (MK) | ~2 | Field Research | ✅ |
-| 🌐 Mali (ML) | ~13 | Field Research | ✅ |
-| 🌐 Myanmar (MM) | ~2 | Field Research | ✅ |
-| 🌐 Mongolia (MN) | ~2 | Field Research | ✅ |
-| 🌐 Malta (MT) | ~2 | Field Research | ✅ |
-| 🌐 Malawi (MW) | ~2 | Field Research | ✅ |
-| 🌐 Mexico (MX) | ~2 | Field Research | ✅ |
-| 🌐 Malaysia (MY) | ~2 | Field Research | ✅ |
-| 🌐 Mozambique (MZ) | ~2 | Field Research | ✅ |
-| 🌐 Namibia (NA) | ~2 | Field Research | ✅ |
-| 🌐 Niger (NE) | ~2 | Field Research | ✅ |
-| 🌐 DIRECTORY_NG.md (NG) | ~9 | Field Research | ✅ |
-| 🌐 Nicaragua (NI) | ~13 | Field Research | ✅ |
-| 🌐 Netherlands (NL) | ~2 | Field Research | ✅ |
-| 🌐 Norway (NO) | ~2 | Field Research | ✅ |
-| 🌐 Nepal (NP) | ~17 | Field Research | ✅ |
-| 🌐 New Zealand (NZ) | ~2 | Field Research | ✅ |
-| 🌐 Oman (OM) | ~2 | Field Research | ✅ |
-| 🌐 Phase 2: (??) | ~41 | Field Research | ✅ |
-| 🌐 Panama (PA) | ~2 | Field Research | ✅ |
-| 🌐 Peru (PE) | ~2 | Field Research | ✅ |
-| 🌐 Papua New Guinea (PG) | ~2 | Field Research | ✅ |
-| 🌐 Philippines (PH) | ~16 | Field Research | ✅ |
-| 🌐 Pakistan (PK) | ~2 | Field Research | ✅ |
-| 🌐 Poland (PL) | ~2 | Field Research | ✅ |
-| 🌐 Palestine (PS) | ~2 | Field Research | ✅ |
-| 🌐 Portugal (PT) | ~2 | Field Research | ✅ |
-| 🌐 DIRECTORY_PY.md (PY) | ~10 | Field Research | ✅ |
-| 🌐 Qatar (QA) | ~2 | Field Research | ✅ |
-| 🌐 Romania (RO) | ~2 | Field Research | ✅ |
-| 🌐 Serbia (RS) | ~2 | Field Research | ✅ |
-| 🌐 Russia (RU) | ~2 | Field Research | ✅ |
-| 🌐 Rwanda (RW) | ~2 | Field Research | ✅ |
-| 🌐 Saudi Arabia (SA) | ~2 | Field Research | ✅ |
-| 🌐 Sudan (SD) | ~2 | Field Research | ✅ |
-| 🌐 Sweden (SE) | ~14 | Field Research | ✅ |
-| 🌐 Slovenia (SI) | ~2 | Field Research | ✅ |
-| 🌐 Slovakia (SK) | ~2 | Field Research | ✅ |
-| 🌐 Sierra Leone (SL) | ~15 | Field Research | ✅ |
-| 🌐 Senegal (SN) | ~2 | Field Research | ✅ |
-| 🌐 Somalia (SO) | ~2 | Field Research | ✅ |
-| 🌐 DIRECTORY_SR.md (SR) | ~9 | Field Research | ✅ |
-| 🌐 South Sudan (SS) | ~14 | Field Research | ✅ |
-| 🌐 El Salvador (SV) | ~2 | Field Research | ✅ |
-| 🌐 Syria (SY) | ~2 | Field Research | ✅ |
-| 🌐 Eswatini (SZ) | ~2 | Field Research | ✅ |
-| 🌐 Chad (TD) | ~2 | Field Research | ✅ |
-| 🌐 Togo (TG) | ~2 | Field Research | ✅ |
-| 🌐 Thailand (TH) | ~2 | Field Research | ✅ |
-| 🌐 Tajikistan (TJ) | ~2 | Field Research | ✅ |
-| 🌐 Timor-Leste (TL) | ~2 | Field Research | ✅ |
-| 🌐 Turkmenistan (TM) | ~12 | Field Research | ✅ |
-| 🌐 Tunisia (TN) | ~2 | Field Research | ✅ |
-| 🌐 Turkey (TR) | ~2 | Field Research | ✅ |
-| 🌐 Trinidad and Tobago (TT) | ~2 | Field Research | ✅ |
-| 🌐 Taiwan (TW) | ~16 | Field Research | ✅ |
-| 🌐 Tanzania (TZ) | ~2 | Field Research | ✅ |
-| 🌐 Ukraine (UA) | ~2 | Field Research | ✅ |
-| 🌐 Uganda (UG) | ~2 | Field Research | ✅ |
-| 🌐 Uruguay (UY) | ~12 | Field Research | ✅ |
-| 🌐 Uzbekistan (UZ) | ~2 | Field Research | ✅ |
-| 🌐 DIRECTORY_VE.md (VE) | ~13 | Field Research | ✅ |
-| 🌐 Vietnam (VN) | ~11 | Field Research | ✅ |
-| 🌐 Yemen (YE) | ~2 | Field Research | ✅ |
-| 🌐 South Africa (ZA) | ~59 | Field Research | ✅ |
-| 🌐 Zambia (ZM) | ~2 | Field Research | ✅ |
-| 🌐 Zimbabwe (ZW) | ~17 | Field Research | ✅ |
+| 🇺🇸 United States | 9,998 | IRS EO Business Master File | ✅ Complete |
+| 🌐 United Arab Emirates (AE) | 0 | Field Research | ✅ |
+| 🌐 Afghanistan (AF) | 0 | Field Research | ✅ |
+| 🌐 Albania (AL) | 0 | Field Research | ✅ |
+| 🌐 Armenia (AM) | 0 | Field Research | ✅ |
+| 🌐 Angola (AO) | 0 | Field Research | ✅ |
+| 🌐 Argentina (AR) | 102 | Field Research | ✅ |
+| 🌐 Austria (AT) | 0 | Field Research | ✅ |
+| 🌐 Australia (AU) | 268 | Field Research | ✅ |
+| 🌐 Bosnia and Herzegovina (BA) | 0 | Field Research | ✅ |
+| 🌐 Bangladesh (BD) | 0 | Field Research | ✅ |
+| 🌐 Belgium (BE) | 1 | Field Research | ✅ |
+| 🌐 Burkina Faso (BF) | 0 | Field Research | ✅ |
+| 🌐 Bulgaria (BG) | 0 | Field Research | ✅ |
+| 🌐 Bahrain (BH) | 0 | Field Research | ✅ |
+| 🌐 Benin (BJ) | 0 | Field Research | ✅ |
+| 🌐 Brunei (BN) | 0 | Field Research | ✅ |
+| 🌐 Bolivia (BO) | 20 | Field Research | ✅ |
+| 🌐 Brazil (BR) | 86 | Field Research | ✅ |
+| 🌐 Botswana (BW) | 0 | Field Research | ✅ |
+| 🌐 Belarus (BY) | 0 | Field Research | ✅ |
+| 🌐 Belize (BZ) | 0 | Field Research | ✅ |
+| 🌐 Canada (CA) | 126 | Field Research | ✅ |
+| 🌐 Democratic Republic of the Congo (CD) | 0 | Field Research | ✅ |
+| 🌐 Republic of the Congo (CG) | 0 | Field Research | ✅ |
+| 🌐 Switzerland (CH) | 0 | Field Research | ✅ |
+| 🌐 Cote d'Ivoire (CI) | 0 | Field Research | ✅ |
+| 🌐 Chile (CL) | 14 | Field Research | ✅ |
+| 🌐 Cameroon (CM) | 0 | Field Research | ✅ |
+| 🌐 China (CN) | 0 | Field Research | ✅ |
+| 🌐 Colombia (CO) | 65 | Field Research | ✅ |
+| 🌐 Costa Rica (CR) | 26 | Field Research | ✅ |
+| 🌐 Cuba (CU) | 26 | Field Research | ✅ |
+| 🌐 Cyprus (CY) | 0 | Field Research | ✅ |
+| 🌐 Czechia (CZ) | 0 | Field Research | ✅ |
+| 🌐 Germany (DE) | 52 | Field Research | ✅ |
+| 🌐 Djibouti (DJ) | 0 | Field Research | ✅ |
+| 🌐 Denmark (DK) | 0 | Field Research | ✅ |
+| 🌐 Dominican Republic (DO) | 9 | Field Research | ✅ |
+| 🌐 Ecuador (EC) | 18 | Field Research | ✅ |
+| 🌐 Estonia (EE) | 0 | Field Research | ✅ |
+| 🌐 Egypt (EG) | 96 | Field Research | ✅ |
+| 🌐 Eritrea (ER) | 0 | Field Research | ✅ |
+| 🌐 Spain (ES) | 4 | Field Research | ✅ |
+| 🌐 Ethiopia (ET) | 21 | Field Research | ✅ |
+| 🌐 Finland (FI) | 0 | Field Research | ✅ |
+| 🌐 Fiji (FJ) | 1 | Field Research | ✅ |
+| 🌐 France (FR) | 4 | Field Research | ✅ |
+| 🌐 Gabon (GA) | 0 | Field Research | ✅ |
+| 🌐 United Kingdom (GB) | 11,433 | Field Research | ✅ |
+| 🌐 Georgia (GE) | 0 | Field Research | ✅ |
+| 🌐 Ghana (GH) | 140 | Field Research | ✅ |
+| 🌐 Gambia (GM) | 0 | Field Research | ✅ |
+| 🌐 Guinea (GN) | 0 | Field Research | ✅ |
+| 🌐 Greece (GR) | 139 | Field Research | ✅ |
+| 🌐 Guatemala (GT) | 10 | Field Research | ✅ |
+| 🌐 Guinea-Bissau (GW) | 0 | Field Research | ✅ |
+| 🌐 Guyana (GY) | 3 | Field Research | ✅ |
+| 🌐 Honduras (HN) | 10 | Field Research | ✅ |
+| 🌐 Croatia (HR) | 0 | Field Research | ✅ |
+| 🌐 Haiti (HT) | 3 | Field Research | ✅ |
+| 🌐 Hungary (HU) | 1 | Field Research | ✅ |
+| 🌐 Indonesia (ID) | 21 | Field Research | ✅ |
+| 🌐 Ireland (IE) | 0 | Field Research | ✅ |
+| 🌐 India (IN) | 29 | Field Research | ✅ |
+| 🌐 Iraq (IQ) | 0 | Field Research | ✅ |
+| 🌐 Iran (IR) | 0 | Field Research | ✅ |
+| 🌐 Iceland (IS) | 0 | Field Research | ✅ |
+| 🌐 Italy (IT) | 83 | Field Research | ✅ |
+| 🌐 Jamaica (JM) | 8 | Field Research | ✅ |
+| 🌐 Jordan (JO) | 0 | Field Research | ✅ |
+| 🌐 Japan (JP) | 21 | Field Research | ✅ |
+| 🌐 Kenya (KE) | 190 | Field Research | ✅ |
+| 🌐 Kyrgyzstan (KG) | 0 | Field Research | ✅ |
+| 🌐 Cambodia (KH) | 0 | Field Research | ✅ |
+| 🌐 South Korea (KR) | 0 | Field Research | ✅ |
+| 🌐 Kuwait (KW) | 0 | Field Research | ✅ |
+| 🌐 Kazakhstan (KZ) | 0 | Field Research | ✅ |
+| 🌐 Laos (LA) | 0 | Field Research | ✅ |
+| 🌐 Lebanon (LB) | 0 | Field Research | ✅ |
+| 🌐 Sri Lanka (LK) | 0 | Field Research | ✅ |
+| 🌐 Liberia (LR) | 0 | Field Research | ✅ |
+| 🌐 Lesotho (LS) | 0 | Field Research | ✅ |
+| 🌐 Lithuania (LT) | 1 | Field Research | ✅ |
+| 🌐 Luxembourg (LU) | 0 | Field Research | ✅ |
+| 🌐 Latvia (LV) | 0 | Field Research | ✅ |
+| 🌐 Libya (LY) | 0 | Field Research | ✅ |
+| 🌐 Morocco (MA) | 0 | Field Research | ✅ |
+| 🌐 Moldova (MD) | 0 | Field Research | ✅ |
+| 🌐 Montenegro (ME) | 0 | Field Research | ✅ |
+| 🌐 Madagascar (MG) | 0 | Field Research | ✅ |
+| 🌐 North Macedonia (MK) | 0 | Field Research | ✅ |
+| 🌐 Mali (ML) | 0 | Field Research | ✅ |
+| 🌐 Myanmar (MM) | 0 | Field Research | ✅ |
+| 🌐 Mongolia (MN) | 0 | Field Research | ✅ |
+| 🌐 Malta (MT) | 0 | Field Research | ✅ |
+| 🌐 Malawi (MW) | 0 | Field Research | ✅ |
+| 🌐 Mexico (MX) | 108 | Field Research | ✅ |
+| 🌐 Malaysia (MY) | 0 | Field Research | ✅ |
+| 🌐 Mozambique (MZ) | 6 | Field Research | ✅ |
+| 🌐 Namibia (NA) | 0 | Field Research | ✅ |
+| 🌐 Niger (NE) | 0 | Field Research | ✅ |
+| 🌐 DIRECTORY_NG.md (NG) | 305 | Field Research | ✅ |
+| 🌐 Nicaragua (NI) | 10 | Field Research | ✅ |
+| 🌐 Netherlands (NL) | 106 | Field Research | ✅ |
+| 🌐 Norway (NO) | 1 | Field Research | ✅ |
+| 🌐 Nepal (NP) | 2 | Field Research | ✅ |
+| 🌐 New Zealand (NZ) | 334 | Field Research | ✅ |
+| 🌐 Oman (OM) | 0 | Field Research | ✅ |
+| 🌐 Phase 2: (??) | 0 | Field Research | ✅ |
+| 🌐 Panama (PA) | 5 | Field Research | ✅ |
+| 🌐 Peru (PE) | 43 | Field Research | ✅ |
+| 🌐 Papua New Guinea (PG) | 0 | Field Research | ✅ |
+| 🌐 Philippines (PH) | 36 | Field Research | ✅ |
+| 🌐 Pakistan (PK) | 0 | Field Research | ✅ |
+| 🌐 Poland (PL) | 0 | Field Research | ✅ |
+| 🌐 Palestine (PS) | 0 | Field Research | ✅ |
+| 🌐 Portugal (PT) | 0 | Field Research | ✅ |
+| 🌐 Paraguay (PY) | 8 | Field Research | ✅ |
+| 🌐 Qatar (QA) | 0 | Field Research | ✅ |
+| 🌐 Romania (RO) | 0 | Field Research | ✅ |
+| 🌐 Serbia (RS) | 0 | Field Research | ✅ |
+| 🌐 Russia (RU) | 1 | Field Research | ✅ |
+| 🌐 Rwanda (RW) | 15 | Field Research | ✅ |
+| 🌐 Saudi Arabia (SA) | 0 | Field Research | ✅ |
+| 🌐 Sudan (SD) | 0 | Field Research | ✅ |
+| 🌐 Sweden (SE) | 26 | Field Research | ✅ |
+| 🌐 Slovenia (SI) | 0 | Field Research | ✅ |
+| 🌐 Slovakia (SK) | 0 | Field Research | ✅ |
+| 🌐 Sierra Leone (SL) | 0 | Field Research | ✅ |
+| 🌐 Senegal (SN) | 6 | Field Research | ✅ |
+| 🌐 Somalia (SO) | 0 | Field Research | ✅ |
+| 🌐 Suriname (SR) | 14 | Field Research | ✅ |
+| 🌐 South Sudan (SS) | 0 | Field Research | ✅ |
+| 🌐 El Salvador (SV) | 0 | Field Research | ✅ |
+| 🌐 Syria (SY) | 0 | Field Research | ✅ |
+| 🌐 Eswatini (SZ) | 0 | Field Research | ✅ |
+| 🌐 Chad (TD) | 0 | Field Research | ✅ |
+| 🌐 Togo (TG) | 0 | Field Research | ✅ |
+| 🌐 Thailand (TH) | 41 | Field Research | ✅ |
+| 🌐 Tajikistan (TJ) | 0 | Field Research | ✅ |
+| 🌐 Timor-Leste (TL) | 0 | Field Research | ✅ |
+| 🌐 Turkmenistan (TM) | 1 | Field Research | ✅ |
+| 🌐 Tunisia (TN) | 0 | Field Research | ✅ |
+| 🌐 Turkey (TR) | 1 | Field Research | ✅ |
+| 🌐 Trinidad and Tobago (TT) | 9 | Field Research | ✅ |
+| 🌐 Taiwan (TW) | 0 | Field Research | ✅ |
+| 🌐 Tanzania (TZ) | 36 | Field Research | ✅ |
+| 🌐 Ukraine (UA) | 0 | Field Research | ✅ |
+| 🌐 Uganda (UG) | 138 | Field Research | ✅ |
+| 🌐 Uruguay (UY) | 0 | Field Research | ✅ |
+| 🌐 Uzbekistan (UZ) | 0 | Field Research | ✅ |
+| 🌐 Venezuela (VE) | 29 | Field Research | ✅ |
+| 🌐 Vietnam (VN) | 1 | Field Research | ✅ |
+| 🌐 Yemen (YE) | 0 | Field Research | ✅ |
+| 🌐 South Africa (ZA) | 109 | Field Research | ✅ |
+| 🌐 Zambia (ZM) | 7 | Field Research | ✅ |
+| 🌐 Zimbabwe (ZW) | 0 | Field Research | ✅ |
 | 🌐 Ecuador, Kenya, Bangladesh, Indonesia... | TBD | In progress | 🔄 |
 
-**Total: 24,508+ organizations indexed** across 158 countries
+**Total: 24,427 organizations indexed** across 61 countries
 
 
 ---
 
 ## 🇺🇸 United States
 
-*24,508 registered nonprofits from IRS EO Business Master File (all 53 state/territory files)*
+*9,998 active registered nonprofits from IRS EO Business Master File (all 53 state/territory files)*
 
 
 ### Top Organizations by Category
 
 
-#### Environment (808 orgs)
+#### Environment (807 orgs)
 
 - **LEAGUE OF CONSERVATION VOTERS EDUCATION FUND** — WASHINGTON, DC `C013` ($75,210,318/yr)
 - **CLIMATE AND CLEAN ENERGY EQUITY FUND** — WASHINGTON, DC `C01` ($29,514,763/yr)
@@ -203,7 +203,7 @@
 - **DELAWARE BAY AND RIVER COOPERATIVE INC** — LINWOOD, PA `C32` ($4,055,196/yr)
 - **ENVIRONMENTAL HEALTH WATCH INC** — CLEVELAND, OH `C600` ($4,034,955/yr)
 
-#### Health Care (1,613 orgs)
+#### Health Care (1,612 orgs)
 
 - **COOPER HEALTH SYSTEM A NEW JERSEY NON-PROFIT CORPORATION** — CAMDEN, NJ `E22` ($2,550,029,191/yr)
 - **COMMUNITY HEALTH NETWORK INC** — INDIANAPOLIS, IN `E20` ($2,322,217,395/yr)
@@ -295,7 +295,7 @@
 - **TALEN ENERGY BARGAINING UNIT RETIREE HEALTH PLAN TR** — PITTSBURGH, PA `J99` ($3,491,317/yr)
 - **LOCAL 1010 LABORERS EMPLOYERS COOPERATION AND EDUCATION TRUST** — WHITESTONE, NY `J40` ($2,981,472/yr)
 
-#### Food, Agriculture & Nutrition (2,572 orgs)
+#### Food, Agriculture & Nutrition (2,567 orgs)
 
 - **ATLANTA COMMUNITY FOOD BANK INC** — ATLANTA, GA `K31Z` ($253,751,797/yr)
 - **ST MARYS FOOD BANK ALLIANCE** — PHOENIX, AZ `K31` ($248,697,999/yr)
@@ -400,7 +400,7 @@
 - **CIVIL RIGHTS CORPS** — WASHINGTON, DC `R60` ($6,836,087/yr)
 - **MASSACHUSETTS IMMIGRANT AND REFUGEE ADVOCACY COALITION INC** — BOSTON, MA `R21Z` ($6,733,777/yr)
 
-#### Community Improvement (690 orgs)
+#### Community Improvement (689 orgs)
 
 - **FOOD BANK FOR NEW YORK CITY** — BRONX, NY `S50` ($195,841,027/yr)
 - **CREDIT UNION NATIONAL ASSOCIATION INC** — MADISON, WI `S41` ($103,908,424/yr)
@@ -423,7 +423,7 @@
 - **CREDIT UNION HEALTH BENEFITS OF AMERICA** — ORANGEVALE, CA `S41` ($3,784,211/yr)
 - **FADF COMMUNITY ARTS INC** — SAN FRANCISCO, CA `S20` ($3,290,000/yr)
 
-#### Public & Societal Benefit (370 orgs)
+#### Public & Societal Benefit (369 orgs)
 
 - **ALLIANT CREDIT UNION** — CHICAGO, IL `W61` ($1,266,937,770/yr)
 - **SUNCOAST CREDIT UNION** — TAMPA, FL `W61` ($1,106,877,469/yr)
@@ -809,195 +809,78 @@ Model: nonprofit
 
 ---
 
-# Bolivia (BO) -- Regional Directory
+# 🌐 Bolivia (BO) Civil Society Directory
 
-**Searches conducted:** 23
-**Organizations found:** 115
-**Generated:** ECO-65 Researcher run
-
-*Note: These orgs were found via web search and need verification. Bolivia has rich indigenous and campesino organizational traditions that are underrepresented in English-language databases. Treat as leads for human review.*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 13*
 
 ---
 
-## Conflict (4 orgs)
+## Organizations
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Directorio Nacional - Plataforma de Recursos | Bolivia | conflict | GÉNERO, JUSTICIA |  | Web search: Bolivia organizaciones socie |
-| Implementación piloto de Justicia Restaurativa en Bolivia | Bolivia | conflict | Introducción Progettomondo es una organización no gubernamental italiana que, en  Bolivia , promueve proyectos en benefi |  | Web search: Bolivia justicia restaurativ |
-| Justicia Restaurativa en Bolivia: Principios y Mecanismos | Bolivia | conflict | Found via: Bolivia justicia restaurativa paz reconciliacion organizaciones |  | Web search: Bolivia justicia restaurativ |
-| España y Bolivia intercambian experiencias sobre justicia restaurativa ... | Bolivia | conflict | Found via: Bolivia justicia restaurativa paz reconciliacion organizaciones |  | Web search: Bolivia justicia restaurativ |
+### List of Ngos, Charities and non-profits in Bolivia - NGO Base
+Framework: democracy
+Model: nonprofit
+> Comprehensive list of NGOs, Charities and Nonprofits in Bolivia. Browse organizations by their focus work areas. Page 1 of 3
 
-## Cooperatives (9 orgs)
+### BO/bolivia-ngos
+Framework: democracy
+Model: nonprofit
+> Comprehensive list of NGOs, Charities and Nonprofits in Bolivia. Browse organizations by their focus work areas. Page 1 of 3
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Confederación Nacional de Cooperativas de Bolivia RL - La Paz | Bolivia | cooperatives | Artículo transitorio 2°.- El Ministerio de Trabajo, Empleo y Previsión Social a partir de la publicación del presente De |  | Web search: Bolivia cooperativas federac |
-| Confederación de Cooperativas de Bolivia (CONCOBOL) - OIBESCOOP | Bolivia | cooperatives | Found via: Bolivia cooperativas federacion nacional trabajadores |  | Web search: Bolivia cooperativas federac |
-| Autoridad de Fiscalización y Control de Cooperativas - AFCOOP | Bolivia | cooperatives | Found via: Bolivia cooperativas federacion nacional trabajadores |  | Web search: Bolivia cooperativas federac |
-| Cómo funciona las cooperativas de vivienda - ribeter.org | Bolivia | cooperatives | Found via: Bolivia vivienda cooperativa tierra comunidad |  | Web search: Bolivia vivienda cooperativa |
-| Cooperativas en Bolivia: clave del desarrollo rural y urbano | Bolivia | cooperatives | Found via: Bolivia vivienda cooperativa tierra comunidad |  | Web search: Bolivia vivienda cooperativa |
-| Cooperativas de vivienda en Bolivia, un sueño colectivo | Bolivia | cooperatives | Found via: Bolivia vivienda cooperativa tierra comunidad |  | Web search: Bolivia vivienda cooperativa |
-| Ayuda Mutua en las cooperativas de vivienda en Bolivia - IPDRS | Bolivia | cooperatives | Fundación Levántate Mujer Una iniciativa de la Congregación de Nuestra Señora de la Caridad del Buen Pastor en  Bolivia |  | Web search: Bolivia mujeres organizacion |
-| Construir comunidad desde la economía solidaria y el mutualismo | Bolivia | cooperatives | Found via: Bolivia economia solidaria redes mutualismo |  | Web search: Bolivia economia solidaria r |
-| CEPAL presenta en Foro de Economía Social y Solidaria en la Asamblea ... | Bolivia | cooperatives |  | prezi.com/p/3w5polufmvpz/la-economia-solidaria-y-comunitaria | Targeted: Bolivia redes economia solidar |
+### Bolivia - Global Impact - Project World Impact
+Framework: democracy
+Model: nonprofit
+> Addressing these challenges requires comprehensive efforts from the government, civil society organizations, and international partners to ensure that every child in Bolivia has access to essential se
 
-## Democracy (62 orgs)
+### NATIONAL NGOs | PDF | Bolivia | Non Governmental Organization
+Framework: democracy
+Model: nonprofit
+> The document provides a detailed list of national NGOs in Bolivia, including their names, acronyms, sectors of operation, validity dates, office locations, telephone numbers, and addresses. Each NGO f
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Red Unitas - Red UNITAS - Bolivia | Bolivia | democracy | 24 ago 2026 |  | Web search: Bolivia organizaciones socie |
-| ONG Nacionales - AMDECRUZ | Bolivia | democracy | Found via: Bolivia organizaciones sociedad civil ONG directorio |  | Web search: Bolivia organizaciones socie |
-| Asociaciones - Teléfonos en Bolivia | Bolivia | democracy | Found via: Bolivia organizaciones sociedad civil ONG directorio |  | Web search: Bolivia organizaciones socie |
-| ONGs Nacionales Vigentes en Bolivia | Bolivia | democracy | Found via: Bolivia organizaciones sociedad civil ONG directorio |  | Web search: Bolivia organizaciones socie |
-| DIRECTORIO: Organizaciones de la sociedad civil para la prevención y ... | Bolivia | democracy | Found via: Bolivia organizaciones sociedad civil ONG directorio |  | Web search: Bolivia organizaciones socie |
-| Directorio de ONG españolas en Bolivia y sus socias locales, 2023 | Bolivia | democracy | Found via: Bolivia organizaciones sociedad civil ONG directorio |  | Web search: Bolivia organizaciones socie |
-| Confederación General de Trabajadores Fabriles de Bolivia | Bolivia | democracy | Found via: Bolivia cooperativas federacion nacional trabajadores |  | Web search: Bolivia cooperativas federac |
-| Actores clave del sistema cooperativo boliviano | Bolivia | democracy | Found via: Bolivia cooperativas federacion nacional trabajadores |  | Web search: Bolivia cooperativas federac |
-| Foro de Agroecología exige protagonismo político y transformación ... | Bolivia | democracy | Found via: Bolivia soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Bolivia soberania alimentari |
-| Agroecología rumbo al Bicentenario: desde los territorios se siembra el ... | Bolivia | democracy | Found via: Bolivia soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Bolivia soberania alimentari |
-| Bolivia refuerza la participación social de la población indígena en el ... | Bolivia | democracy | PRODECO Proyectos en Ejecución |  | Web search: Bolivia salud comunitaria or |
-| Proyectos en Ejecución - PRODECO | Bolivia | democracy | Found via: Bolivia salud comunitaria organizaciones salud indigena |  | Web search: Bolivia salud comunitaria or |
-| Fundación Social Universal » Mujeres, niños y grupos indígenas ... | Bolivia | democracy | Found via: Bolivia salud comunitaria organizaciones salud indigena |  | Web search: Bolivia salud comunitaria or |
-| Observa Bolivia: la sociedad civil organizada se articula para ... | Bolivia | democracy | CIUDADANÍA se dedica a la producción de conocimientos socialmente relevantes y al diálogo y a la acción pública para fac |  | Web search: Bolivia gobernanza democrati |
-| Nueve Organizaciones Contribuirán a Mejorar La Gobernanza Electoral | Bolivia | democracy | Found via: Bolivia gobernanza democratica participacion ciudadana organizaciones |  | Web search: Bolivia gobernanza democrati |
-| SEPAMOS BOLIVIA - Servicios y Estudios para la participación ciudadana ... | Bolivia | democracy | Found via: Bolivia gobernanza democratica participacion ciudadana organizaciones |  | Web search: Bolivia gobernanza democrati |
-| Ciudadanía organizada en la democracia boliviana | Bolivia | democracy | Found via: Bolivia gobernanza democratica participacion ciudadana organizaciones |  | Web search: Bolivia gobernanza democrati |
-| Nueve organizaciones recibirán fondos para fortalecer la gobernanza ... | Bolivia | democracy | Found via: Bolivia gobernanza democratica participacion ciudadana organizaciones |  | Web search: Bolivia gobernanza democrati |
-| Ciudadanía - Comunidad de Estudios Sociales y Acción Pública | Bolivia | democracy | Found via: Bolivia gobernanza democratica participacion ciudadana organizaciones |  | Web search: Bolivia gobernanza democrati |
-| Organizaciones sociales en el nuevo tiempo político que vive Bolivia | Bolivia | democracy | Found via: Bolivia gobernanza democratica participacion ciudadana organizaciones |  | Web search: Bolivia gobernanza democrati |
-| Proyectos - PROCASHA | Bolivia | democracy | Found via: Bolivia vivienda cooperativa tierra comunidad |  | Web search: Bolivia vivienda cooperativa |
-| CRE R.L. impulsa la generación distribuida | Bolivia | democracy | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
-| Fundación SOLYDES - Blog - Energías renovables en Bolivia: El futuro ... | Bolivia | democracy | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
-| CRE habilitó a los primeros consumidores de su propia energía para ... | Bolivia | democracy | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
-| &quot;Energía Rural&quot; asiste a comunidades rurales - correodelsur.com | Bolivia | democracy | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
-| Tema Nº 2: Organizaciones Sociales y Derechos Indígenas en Bolivia | Bolivia | democracy | Found via: Bolivia pueblos indigenas organizaciones derechos CIDOB CONAMAQ |  | Web search: Bolivia pueblos indigenas or |
-| Quienes Somos - Conamaq | Bolivia | democracy | Found via: Bolivia pueblos indigenas organizaciones derechos CIDOB CONAMAQ |  | Web search: Bolivia pueblos indigenas or |
-| Página Pro Mujer IFD 2025 - Bolivia | Bolivia | democracy | Found via: Bolivia mujeres organizaciones cooperativa ayuda mutua |  | Web search: Bolivia mujeres organizacion |
-| &#x27;Hábitat para la Mujer&#x27; - la Comunidad María Auxiliadora | Bolivia | democracy | Found via: Bolivia mujeres organizaciones cooperativa ayuda mutua |  | Web search: Bolivia mujeres organizacion |
-| Instituciones de ayuda a la mujer en Bolivia | Bolivia | democracy | Found via: Bolivia mujeres organizaciones cooperativa ayuda mutua |  | Web search: Bolivia mujeres organizacion |
-| Una iniciativa de las Hermanas del Buen Pastor en Bolivia | Bolivia | democracy | Found via: Bolivia mujeres organizaciones cooperativa ayuda mutua |  | Web search: Bolivia mujeres organizacion |
-| Fortalecimiento Organizacional - Omak Bolivia | Bolivia | democracy | Found via: Bolivia mujeres organizaciones cooperativa ayuda mutua |  | Web search: Bolivia mujeres organizacion |
-| Bolivia archivos - economiasolidaria.org | Bolivia | democracy | Found via: Bolivia economia solidaria redes mutualismo |  | Web search: Bolivia economia solidaria r |
-| Economía Solidaria: Una Oportunidad para Bolivia | Bolivia | democracy | Found via: Bolivia economia solidaria redes mutualismo |  | Web search: Bolivia economia solidaria r |
-| Economía Solidaria en Bolivia 2023 - Scribd | Bolivia | democracy | Found via: Bolivia economia solidaria redes mutualismo |  | Web search: Bolivia economia solidaria r |
-| La economía solidaria y comunitaria en Bolivia | Bolivia | democracy | Found via: Bolivia economia solidaria redes mutualismo |  | Web search: Bolivia economia solidaria r |
-| La economía solidaria en Bolivia - Conclusiones - IRD Éditions | Bolivia | democracy | Found via: Bolivia economia solidaria redes mutualismo |  | Web search: Bolivia economia solidaria r |
-| InternetBolivia.org 2025 - Organización ciudadana para la defensa de ... | Bolivia | democracy | Found via: Bolivia tecnologia civica codigo abierto organizaciones |  | Web search: Bolivia tecnologia civica co |
-| Sarvam y su apuesta por la IA de código abierto en Bolivia | Bolivia | democracy | Found via: Bolivia tecnologia civica codigo abierto organizaciones |  | Web search: Bolivia tecnologia civica co |
-| Cochabamba- Hackathon de innovación y educación ciudadana: ideas desde ... | Bolivia | democracy | Found via: Bolivia tecnologia civica codigo abierto organizaciones |  | Web search: Bolivia tecnologia civica co |
-| Conocimiento Abierto | Bolivia | democracy | Found via: Bolivia tecnologia civica codigo abierto organizaciones |  | Web search: Bolivia tecnologia civica co |
-| Mapeo TIC 2025: Bolivia lanza el Directorio de Startups y de ... | Bolivia | democracy | Found via: Bolivia tecnologia civica codigo abierto organizaciones |  | Web search: Bolivia tecnologia civica co |
-| Bolivia: Decreto Supremo Nº 5322, 23 de enero de 2025 | Bolivia | democracy | Found via: Bolivia tecnologia civica codigo abierto organizaciones |  | Web search: Bolivia tecnologia civica co |
-| Bolivia y la migración hacia el Software Libre: Un Camino hacia la ... | Bolivia | democracy | Found via: Bolivia tecnologia civica codigo abierto organizaciones |  | Web search: Bolivia tecnologia civica co |
-| Gob.bo | Bolivia | democracy | Found via: Bolivia registro ONGs SEPREC fundaciones sociedad civil |  | Web search: Bolivia registro ONGs SEPREC |
-| Otorgación y registro de personalidad jurídica a organizaciones ... | Bolivia | democracy | Found via: Bolivia registro ONGs SEPREC fundaciones sociedad civil |  | Web search: Bolivia registro ONGs SEPREC |
-| Cómo Crear una ONG en Bolivia: Requisitos y Pasos Legales | Bolivia | democracy | Found via: Bolivia registro ONGs SEPREC fundaciones sociedad civil |  | Web search: Bolivia registro ONGs SEPREC |
-| Requisitos Legales Para Constituir Una Ong En Bolivia | Bolivia | democracy | Found via: Bolivia registro ONGs SEPREC fundaciones sociedad civil |  | Web search: Bolivia registro ONGs SEPREC |
-| Herramientas para el Funcionamiento de las OSC en Bolivia | Bolivia | democracy | Found via: Bolivia registro ONGs SEPREC fundaciones sociedad civil |  | Web search: Bolivia registro ONGs SEPREC |
-| El Seprec admite 12 tipos de trámites, desde registros hasta disolución ... | Bolivia | democracy | Found via: Bolivia registro ONGs SEPREC fundaciones sociedad civil |  | Web search: Bolivia registro ONGs SEPREC |
-| Educación Comunitaria En Bolivia | Bolivia | democracy | La  educación  es una acción simbólica ya que permite que se transmitan y pervivan los símbolos esenciales de una socied |  | Web search: Bolivia educacion grassroots |
-| La Práctica Educativa Comunitaria Y La Investigación Educativa En La ... | Bolivia | democracy | Found via: Bolivia educacion grassroots escuela comunitaria federacion |  | Web search: Bolivia educacion grassroots |
-| Una educación en población para la juventud rural a nivel comunitario ... | Bolivia | democracy | Found via: Bolivia educacion grassroots escuela comunitaria federacion |  | Web search: Bolivia educacion grassroots |
-| Piensa Verde Bolivia - Comprometidos con la conservación ambiental | Bolivia | democracy | Ser la organización líder en  Bolivia , reconocida por su contribución tangible a un futuro donde la protección ambienta |  | Web search: Bolivia medio ambiente ecolo |
-| Página de inicio - Conservación Internacional Bolivia | Bolivia | democracy | Found via: Bolivia medio ambiente ecologia conservacion organizaciones |  | Web search: Bolivia medio ambiente ecolo |
-| Quiénes somos - LIDEMA | Bolivia | democracy | Found via: Bolivia medio ambiente ecologia conservacion organizaciones |  | Web search: Bolivia medio ambiente ecolo |
-| Nativa - Nativa Bolivia | Bolivia | democracy | Found via: Bolivia medio ambiente ecologia conservacion organizaciones |  | Web search: Bolivia medio ambiente ecolo |
-| Perspectiva - Organización Ecológica Perspectiva | Bolivia | democracy | Found via: Bolivia medio ambiente ecologia conservacion organizaciones |  | Web search: Bolivia medio ambiente ecolo |
-| Bolivia Sostenible: Voluntariado en la Amazonía Boliviana | Bolivia | democracy | Found via: Bolivia medio ambiente ecologia conservacion organizaciones |  | Web search: Bolivia medio ambiente ecolo |
-| Bienvenidos al CEDIB - La nueva CEDIB | Bolivia | democracy | Somos una organización civil sin ánimo de lucro que desde 1970 documenta e investiga temas sociales y ambientales de  Bo | www.cedib.org | Targeted: CEDIB Bolivia informacion docu |
-| Cedib Centro Documentación - Facebook | Bolivia | democracy |  | www.facebook.com/CEDIBolivia/ | Targeted: CEDIB Bolivia informacion docu |
-| Cedib Centro Documentación (2026) - Find Local Businesses | Bolivia | democracy |  | www.findglocal.com/BO/Unknown/1044550925572722/Cedib-Centro- | Targeted: CEDIB Bolivia informacion docu |
+### The information
+Framework: democracy
+Model: nonprofit
+> ## United Nations Civil Society Participation - Advanced Search
 
-## Ecology (1 orgs)
+### United Nations Civil Society Participation
+Framework: democracy
+Model: nonprofit
+> Advanced search for Civil Society Organizations Please use any of the search combinations below to find organizations in our database. You can also expand the headings "Areas of Expertise & Fields of 
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Conservation programs across Bolivia | Bolivia | ecology | Found via: Bolivia medio ambiente ecologia conservacion organizaciones |  | Web search: Bolivia medio ambiente ecolo |
+### 5 Charities Operating in Bolivia - The Borgen Project
+Framework: democracy
+Model: nonprofit
+> The first of 5 charities operating in Bolivia is Fundación Bolivia Digna. This nonprofit was set up in 2006 to protect the rights of vulnerable young people and other marginalized groups.
 
-## Education (3 orgs)
+### This nonprofit
+Framework: democracy
+Model: nonprofit
+> ## Bolivia | NGO Explorer
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Educación comunitaria: escuela &#x27;Kusikuna&#x27; busca reconocimiento del Est | Bolivia | education | Found via: Bolivia educacion grassroots escuela comunitaria federacion |  | Web search: Bolivia educacion grassroots |
-| La escuela, centro y motor de la Vida Comunitaria. - EIIPD | Bolivia | education | Found via: Bolivia educacion grassroots escuela comunitaria federacion |  | Web search: Bolivia educacion grassroots |
-| Construcción De La Escuela Global Comunitaria De Tierra Del Futuro En ... | Bolivia | education | Found via: Bolivia educacion grassroots escuela comunitaria federacion |  | Web search: Bolivia educacion grassroots |
+### Bolivia | NGO Explorer
+Framework: education
+Model: nonprofit
+> Most common words from the description of a random set of 30 NGOs matching your search. children work bolivia projects support people mission education america training world communities grants latin 
 
-## Energy Digital (4 orgs)
+### PDF SISTEMA DE ONGS SISONG v.2.0 DETALLE DE ONGs NACIONALES VIGENTES Al 19 
+Framework: democracy
+Model: nonprofit
+> GÉNERO, JUSTICIA
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Renewable Energies in Bolivia - energypedia | Bolivia | energy_digital | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
-| Proyectos Renovables Bolivia: Solar, Eólico, Hidroeléctrico | Bolivia | energy_digital | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
-| La Energía Solar en Bolivia - mapeko.org | Bolivia | energy_digital | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
-| S.Solar Bolivia: Energía Renovable con Impacto Global | Bolivia | energy_digital | Found via: Bolivia energia renovable solar comunidad cooperativa |  | Web search: Bolivia energia renovable so |
+### GlobalGiving Atlas - the world's largest list of nonprofits
+Framework: energy_digital
+Model: nonprofit
+> The largest database of NGOs GlobalGiving Atlas has more than 10.7 million validated nonprofits, charities, and NGOs, making it the largest list of nonprofits available.
 
-## Food (8 orgs)
+### Red Unitas - Red UNITAS - Bolivia
+Framework: democracy
+Model: nonprofit
+> Somos una red de 24 ONG en Bolivia UNITAS es una red de 24 Organizaciones de la Sociedad Civil que […]
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Agroecología y soberanía alimentaria en Bolivia | Bolivia | food | Found via: Bolivia soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Bolivia soberania alimentari |
-| Soberanía alimentaria en Bolivia - Enraíza Derechos | Bolivia | food | Found via: Bolivia soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Bolivia soberania alimentari |
-| CSUTCB - Confederación Sindical Única de Trabajadores Campesinos de Bolivia | Bolivia | food |  | www.csutcb.org | Targeted: CSUTCB Bolivia Confederacion S |
-| Unified Syndical Confederation of Peasant Workers of Bolivia | Bolivia | food |  | en.wikipedia.org/wiki/Unified_Syndical_Confederation_of_Peas | Targeted: CSUTCB Bolivia Confederacion S |
-| CSUTCB Comunicaciones - Facebook | Bolivia | food |  | www.facebook.com/CSUTCBComunicaciones/ | Targeted: CSUTCB Bolivia Confederacion S |
-| Bartolina Sisa Confederation - Wikipedia | Bolivia | food |  | en.wikipedia.org/wiki/Bartolina_Sisa_Confederation | Targeted: CNMCIOB Bartolina Sisa Bolivia |
-| Confederación Nacional Bartolina Sisa - Cnmciob-Bs - La Paz | Bolivia | food |  | www.facebook.com/confederacionbartolinasisa/ | Targeted: CNMCIOB Bartolina Sisa Bolivia |
-| Confederación Nacional de Mujeres Campesinas Indígenas Originarias de ... | Bolivia | food |  | uprdoc.ohchr.org/uprweb/downloadfile.aspx?filename=3272&amp; | Targeted: CNMCIOB Bartolina Sisa Bolivia |
-
-## Healthcare (3 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Política SAFCI en Salud Comunitaria Bolivia | Bolivia | healthcare | Found via: Bolivia salud comunitaria organizaciones salud indigena |  | Web search: Bolivia salud comunitaria or |
-| La SAFCI en Bolivia transforma el sistema de salud | Bolivia | healthcare | Found via: Bolivia salud comunitaria organizaciones salud indigena |  | Web search: Bolivia salud comunitaria or |
-| Bolivia. Salud intercultural: los resultados del proyecto Qullasuyu | Bolivia | healthcare | Found via: Bolivia salud comunitaria organizaciones salud indigena |  | Web search: Bolivia salud comunitaria or |
-
-## Housing Land (6 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Construyendo comunidad y bienestar en Bolivia: reflexiones del ... | Bolivia | housing_land | La Agencia Estatal de  Vivienda  sigue de cerca las necesidades habitacionales de las hermanas y hermanos bolivianos. |  | Web search: Bolivia vivienda cooperativa |
-| Agencia Estatal De Vivienda | Bolivia | housing_land | Una investigación colaborativa del Instituto para el Desarrollo Rural de Sudamérica y We Effect El cooperativismo bolivi |  | Web search: Bolivia vivienda cooperativa |
-| Bolivia, Si, se puede contar con viviendas propias y tenencia de tierra ... | Bolivia | housing_land | Found via: Bolivia vivienda cooperativa tierra comunidad |  | Web search: Bolivia vivienda cooperativa |
-| TIERRA | Bolivia | housing_land |  | ftierra.org | Targeted: Fundacion Tierra Bolivia derec |
-| Fundación Tierra - Mujeres y Derechos a Tierra y Territorios | Bolivia | housing_land |  | mujerestierrayterritorio.org/fundacion-tierra/ | Targeted: Fundacion Tierra Bolivia derec |
-| Fundación Tierra cumple 25 años y presenta nuevas investigaciones | Bolivia | housing_land |  | www.noticiasfides.com/cultura-y-farandula/fundacion-tierra-c | Targeted: Fundacion Tierra Bolivia derec |
-
-## Indigenous (12 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Ministerio de Salud y Deportes de Bolivia - PUEBLOS INDÍGENA ORIGINARIO ... | Bolivia | indigenous | Found via: Bolivia salud comunitaria organizaciones salud indigena |  | Web search: Bolivia salud comunitaria or |
-| ODPIB - Observatorio de Derechos de los Pueblos Indígenas - Bolivia | Bolivia | indigenous | Found via: Bolivia pueblos indigenas organizaciones derechos CIDOB CONAMAQ |  | Web search: Bolivia pueblos indigenas or |
-| Organizaciones Indigenas - Territorio Indígena y Gobernanza | Bolivia | indigenous | Found via: Bolivia pueblos indigenas organizaciones derechos CIDOB CONAMAQ |  | Web search: Bolivia pueblos indigenas or |
-| Organizaciones de Los Pueblos Indigenas Originarios en Bolivia | Bolivia | indigenous | Found via: Bolivia pueblos indigenas organizaciones derechos CIDOB CONAMAQ |  | Web search: Bolivia pueblos indigenas or |
-| Confederation of Indigenous Peoples of Bolivia - Wikipedia | Bolivia | indigenous |  | en.wikipedia.org/wiki/Confederation_of_Indigenous_Peoples_of | Targeted: CIDOB Bolivia Confederacion in |
-| CIDOB Nacional - Facebook | Bolivia | indigenous |  | www.facebook.com/CIDOBNACIONAL/ | Targeted: CIDOB Bolivia Confederacion in |
-| Dirigentes y representantes destacan el rol de la CIDOB en el avance de ... | Bolivia | indigenous |  | apcbolivia.org/2025/10/dirigentes-y-representantes-destacan- | Targeted: CIDOB Bolivia Confederacion in |
-| CONAMAQ-Consejo Nacional de Ayllus y Markas del Qullasuyu - La Paz | Bolivia | indigenous |  | www.facebook.com/conamaqconsejonacionaldeayllusymarkasdelqul | Targeted: CONAMAQ Bolivia Consejo Nacion |
-| National Council of Ayllus and Markas of Qullasuyu - Wikipedia | Bolivia | indigenous |  | en.wikipedia.org/wiki/National_Council_of_Ayllus_and_Markas_ | Targeted: CONAMAQ Bolivia Consejo Nacion |
-| Pact of Unity - Wikipedia | Bolivia | indigenous |  | en.wikipedia.org/wiki/Pact_of_Unity | Targeted: CONAMAQ CIDOB Pacto Unidad Bol |
-| Del &quot;Pacto de Unidad&quot; al paralelismo en las organizaciones indígenas . | Bolivia | indigenous |  | www.academia.edu/27915857/Del_Pacto_de_Unidad_al_paralelismo | Targeted: CONAMAQ CIDOB Pacto Unidad Bol |
-| Bolivia: Organizaciones firman Pacto de Unidad - servindi.org | Bolivia | indigenous |  | www.servindi.org/actualidad/2294 | Targeted: CONAMAQ CIDOB Pacto Unidad Bol |
-
-## Recreation Arts (3 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| AFCOOP | Bolivia | recreation_arts | El sistema cooperativo boliviano, arraigado en la historia y la cultura del país, se erige como un pilar importante de l |  | Web search: Bolivia cooperativas federac |
-| CERAI y CIPCA fomentan la agricultura familiar en Bolivia | Bolivia | recreation_arts | Found via: Bolivia soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Bolivia soberania alimentari |
-| Capitalismo multicultural y movimientos indígneas en Bolivia ... - Redalyc | Bolivia | recreation_arts | Found via: Bolivia pueblos indigenas organizaciones derechos CIDOB CONAMAQ |  | Web search: Bolivia pueblos indigenas or |
-
----
-
-## Coverage Assessment
-
-- IRS BMF records for BO: 0 (US-only database)
-- This research adds: 115 Bolivian organizations
-- Framework coverage: conflict(4), cooperatives(9), democracy(62), ecology(1), education(3), energy_digital(4), food(8), healthcare(3), housing_land(6), indigenous(12), recreation_arts(3)
-- Key gaps: Informal mutual aid networks, rural community organizations, sub-national grassroots
-- Recommended follow-up: Contact SEPREC registry, CEDIB documentation center
+### NGO Directories - Non-Governmental Organizations
+Framework: education
+Model: nonprofit
+> Gale Directory Library The Encyclopedia of Associations: International Organ
 
 
 ---
@@ -1183,7 +1066,7 @@ Model: nonprofit
 
 # 🌐 Cote d'Ivoire (CI) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-21 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -1197,7 +1080,7 @@ Model: nonprofit
 
 # 🌐 Chile (CL) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -1211,7 +1094,7 @@ Model: nonprofit
 
 # 🌐 Cameroon (CM) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-21 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -1225,21 +1108,20 @@ Model: nonprofit
 
 # 🌐 China (CN) Civil Society Directory
 
-*Compiled: 2026-04-15 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-21 | Source: Web research | Organizations: 0*
 
 ---
 
 ## Organizations
 
-### China Civil Society Network
-> Primary civil society network in China
+_No evidence-backed organizations found in this pass._
 
 
 ---
 
 # 🌐 Colombia (CO) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -1253,97 +1135,21 @@ Model: nonprofit
 
 # 🌐 Costa Rica (CR) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 16*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
 ## Organizations
 
-### List of Ngos, Charities and non-profits in Costa Rica - NGO Base
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Costa Rica. Browse organizations by their focus work areas. Page 1 of 7
-
-### CR/costa-rica-ngos
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Costa Rica. Browse organizations by their focus work areas. Page 1 of 7
-
-### Browse Non-profit Orgs in Costa Rica | Amigos of Costa Rica
-Framework: democracy
-Model: nonprofit
-> Contribute to the well-being of Costa Rica by connecting your values and resources with a vetted non-profit solution. Browse our organizations and donate today.
-
-### Contribute to the well
-Framework: democracy
-Model: nonprofit
-> ## List of NGOs in Costa Rica - GlobalGiving Atlas
-
-### List of NGOs in Costa Rica - GlobalGiving Atlas
-Framework: energy_digital
-Model: nonprofit
-> The largest database of NGOs GlobalGiving Atlas has more than 10.7 million validated nonprofits, charities, and NGOs, including 3,202 charities and nonprofits in Costa Rica, making it the largest list
-
-### Civil Society/NGOs - MESECVI EN
-Framework: education
-Model: nonprofit
-> Its mission is to educate society by promoting the cultural, economic, political, and social development of Afro-Costa Rican women and populations. To achieve its objectives, it holds educational semi
-
-### MESECVI/civil-society
-Framework: education
-Model: nonprofit
-> Its mission is to educate society by promoting the cultural, economic, political, and social development of Afro-Costa Rican women and populations. To achieve its objectives, it holds educational semi
-
-### Its mission
-Framework: democracy
-Model: nonprofit
-> ## List of Non-profit organizations in Costa Rica in 2026
-
-### List of Non-profit organizations in Costa Rica in 2026
-Framework: energy_digital
-Model: nonprofit
-> There are 479 Non-profit organizations in Costa Rica as of March, 2026. Download latest business data with contact info, ratings & locations.
-
-### FOS - Directorio de ONG y Empresas Sociales
-Framework: democracy
-Model: nonprofit
-> Misión Convertir a las organizaciones sociales y a las empresas sociales, en protagonistas del desarrollo sostenible de Costa Rica. Visión Ser reconocidos como la plataforma que agrupa y representa a 
-
-### Directorio de Organismos No Gubernamentales (ONG)
-Framework: democracy
-Model: nonprofit
-> Informe de investigación sobre las calidades de todas las ONGs que trabajan de una u otra forma el tema de la Paz y Prevención de la Violencia
-
-### Associations and NGO in Costa Rica - Expat.com
-Framework: democracy
-Model: nonprofit
-> List of associations and NGOs in Costa Rica, non-governmental organization in Costa Rica, non-profit organizations in Costa Rica. Costa Rica charity organizations.
-
-### List of associations and NGOs in Costa Rica, non
-Framework: democracy
-Model: nonprofit
-> ## 6 Amazing Nonprofits in Costa Rica | Special Places
-
-### 6 Amazing Nonprofits in Costa Rica | Special Places
-Framework: democracy
-Model: nonprofit
-> Costa Rica is home to several influential nonprofits in Costa Rica that put in an endless effort to take on these challenges. In this article, we'll look into some of Costa Rica's top nonprofit organi
-
-### Costa Rica
-Framework: democracy
-Model: nonprofit
-> ## 5 Charities Operating in Co
-
-### 5 Charities Operating in Co
-Framework: democracy
-Model: nonprofit
+### Costa Rica Civil Society Network
+> Primary civil society network in Costa Rica
 
 
 ---
 
 # 🌐 Cuba (CU) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -1427,7 +1233,7 @@ Model: nonprofit
 
 # 🌐 Dominican Republic (DO) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -1439,166 +1245,16 @@ Model: nonprofit
 
 ---
 
-# Ecuador (EC) -- Regional Directory
+# 🌐 Ecuador (EC) Civil Society Directory
 
-**Searches conducted:** 22
-**Organizations found:** 102
-**Generated:** ECO-66 Researcher run
-
-*Note: These orgs were found via web search and need verification. Most are NOT in the IRS bulk data (Ecuador is non-US). Quality varies -- treat as leads for human review.*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
-## Conflict (13 orgs)
+## Organizations
 
-| Name | Description | Website | Source |
-|---|---|---|---|
-| FENOCIN - Organización de la sociedad civil que reivindica los derechos ... | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| Derechos Humanos y Justicia Juvenil Restaurativa | Found via: Ecuador justicia restaurativa paz derechos humanos |  | Web search: Ecuador justicia restaurativ |
-| Justicia Restaurativa - Derecho Ecuador | Found via: Ecuador justicia restaurativa paz derechos humanos |  | Web search: Ecuador justicia restaurativ |
-| Terre des hommes y una década del proyecto &quot;Justicia juvenil ... | Found via: Ecuador justicia restaurativa paz derechos humanos |  | Web search: Ecuador justicia restaurativ |
-| Justicia juvenil restaurativa y garantías constitucionales en Ecuador ... | Found via: Ecuador justicia restaurativa paz derechos humanos |  | Web search: Ecuador justicia restaurativ |
-| Restorative justice, a means of dealing with juvenile delinquency in ... | Found via: Ecuador justicia restaurativa paz derechos humanos |  | Web search: Ecuador justicia restaurativ |
-| Educación popular en comunidades de Guayaquil 2021 - 2023 - Comité ... | Este trabajo se realizó con la finalidad de describir la vulneración de derechos laborales de los educadores populares c |  | Web search: Ecuador educacion popular es |
-| Cedhu - Comisión Ecuménica De Derechos Humanos |  | cedhu.org | Targeted: CEDHU Ecuador derechos humanos |
-| cedhu - Alianza por los Derechos Humanos - ddhhecuador.org |  | ddhhecuador.org/org/cedhu | Targeted: CEDHU Ecuador derechos humanos |
-| Comisión Ecuménica Derechos Humanos - Facebook |  | www.facebook.com/CEDerechosHUmanos/ | Targeted: CEDHU Ecuador derechos humanos |
-| CDES - Centro de Derechos Económicos y Sociales | El caso Furukawa revela décadas de explotación laboral y servidumbre en  Ecuador . Justicia económica y ambiental para l | cdes.org.ec | Targeted: CDES Centro Derechos Economico |
-| CDES -Centro de Derechos Economicos y Sociales- Home | CDES&#x27;s mission is to promote ESCR in social movements and organizations to promote the discussion, development, and | www.ecuanex.net.ec/cdes/index.html | Targeted: CDES Centro Derechos Economico |
-| CDES - Quito - Facebook |  | www.facebook.com/cdesderechos/ | Targeted: CDES Centro Derechos Economico |
-
-## Cooperatives (12 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Federación Nacional de Cooperativas de Ahorro y Crédito | El cooperativismo en  Ecuador  ha sido una de las herramientas cruciales para el crecimiento económico y social del país |  | Web search: Ecuador cooperativas organiz |
-| Todo lo que no sabías sobre las cooperativas en Ecuador | Found via: Ecuador cooperativas organizaciones trabajadores federacion |  | Web search: Ecuador cooperativas organiz |
-| TOP 10 Mejores Cooperativas en Ecuador en 2026 - Biblioteca Cooperativa | Found via: Ecuador cooperativas organizaciones trabajadores federacion |  | Web search: Ecuador cooperativas organiz |
-| La disolución y liquidación de cooperativas de vivienda en el Ecuador | Found via: Ecuador vivienda cooperativa tierra comunidad |  | Web search: Ecuador vivienda cooperativa |
-| La vida cooperativa ante la crisis de vivienda: &quot;Me decían que iba a ... | Found via: Ecuador vivienda cooperativa tierra comunidad |  | Web search: Ecuador vivienda cooperativa |
-| Cooperativa de vivienda en Ecuador: qué es y cómo funciona | Found via: Ecuador vivienda cooperativa tierra comunidad |  | Web search: Ecuador vivienda cooperativa |
-| Qué es la Cooperativa de Ahorro Mujeres Unidas - Cooperativas en Ecuador | Microcréditos Simulador de Crédito Inversiones  Ahorro  Cesantía Deposito a Plazo Fijo Simulador de Inversiones Servicio |  | Web search: Ecuador mujeres organizacion |
-| agenciasCacmu - CACMU Cooperativa de Ahorro y Crédito Mujeres Unidas | Found via: Ecuador mujeres organizaciones cooperativa ahorro |  | Web search: Ecuador mujeres organizacion |
-| Cooperativa De Ahorro Y Credito Mujeres Lideres Ltda - Organizaciones ... | Found via: Ecuador mujeres organizaciones cooperativa ahorro |  | Web search: Ecuador mujeres organizacion |
-| La 29 - Cooperativa de Ahorro y Crédito - Mujer Líder | Found via: Ecuador mujeres organizaciones cooperativa ahorro |  | Web search: Ecuador mujeres organizacion |
-| Cooperativa CACMU - Ecuador — MCE Social Capital | Found via: Ecuador mujeres organizaciones cooperativa ahorro |  | Web search: Ecuador mujeres organizacion |
-| Home - Mundo Mujer Cooperativa de Ahorro y Credito | Found via: Ecuador mujeres organizaciones cooperativa ahorro |  | Web search: Ecuador mujeres organizacion |
-
-## Democracy (51 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| SUIOS - Sistema Unificado de Información de Organizaciones Sociales | Comprehensive list of NGOs, Charities and Nonprofits in  Ecuador . Browse organizations by their focus work areas. Page  |  | Web search: Ecuador ONGs directorio orga |
-| Secretaría General &gt; sadye &gt; orsc &gt; organizaciones sociedad civil &gt;  | GlobalGiving Atlas makes it easy to access the database of 68,037 nonprofits in  Ecuador . Use our standardized API or J |  | Web search: Ecuador ONGs directorio orga |
-| CEOSC - Confederación Ecuatoriana de Organizaciones de la Sociedad Civil | 10 Casa de Acogida para mujeres víctimas de violencia de género &quot;Manos Unidas Tejiendo Progreso&quot; Telf. Emergen |  | Web search: Ecuador ONGs directorio orga |
-| List of Ngos, Charities and non-profits in Ecuador - NGO Base | Found via: Ecuador ONGs directorio organizaciones sociedad civil |  | Web search: Ecuador ONGs directorio orga |
-| ¿Cómo encontrar una base de datos de fundaciones y ONGs en Ecuador ... | Found via: Ecuador ONGs directorio organizaciones sociedad civil |  | Web search: Ecuador ONGs directorio orga |
-| Asociaciones y ONG en Ecuador - Expat.com | Found via: Ecuador ONGs directorio organizaciones sociedad civil |  | Web search: Ecuador ONGs directorio orga |
-| Ecuador - 4.2 Organizaciones Humanitarias Lista de Contactos | Found via: Ecuador ONGs directorio organizaciones sociedad civil |  | Web search: Ecuador ONGs directorio orga |
-| List of NGOs in Ecuador - GlobalGiving Atlas | Found via: Ecuador ONGs directorio organizaciones sociedad civil |  | Web search: Ecuador ONGs directorio orga |
-| Federación de Trabajadores y Organizaciones Gremiales del Ecuador | Found via: Ecuador cooperativas organizaciones trabajadores federacion |  | Web search: Ecuador cooperativas organiz |
-| El Cooperativismo en Ecuador: actualidad y perspectivas - SciELO | Found via: Ecuador cooperativas organizaciones trabajadores federacion |  | Web search: Ecuador cooperativas organiz |
-| Colectivo Agroecológico - Colectivo Agroecológico del Ecuador | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| Agroecología política - IEE | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| Llacta! - Organizaciones Indígenas y Sociales del Ecuador | Found via: Ecuador salud comunitaria organizaciones pueblos indigenas |  | Web search: Ecuador salud comunitaria or |
-| Vea cómo las comunidades indígenas amazónicas de Ecuador abordan la ... | Found via: Ecuador salud comunitaria organizaciones pueblos indigenas |  | Web search: Ecuador salud comunitaria or |
-| FOA Ecuador - Organización comunitaria | Found via: Ecuador salud comunitaria organizaciones pueblos indigenas |  | Web search: Ecuador salud comunitaria or |
-| Plataforma Nacional de Participación Ciudadana Digital del Ecuador. | Found via: Ecuador democracia participacion ciudadana organizaciones |  | Web search: Ecuador democracia participa |
-| La participación ciudadana: fundamento esencial de la democracia en Ecuador | Found via: Ecuador democracia participacion ciudadana organizaciones |  | Web search: Ecuador democracia participa |
-| 5 claves para comprender la democracia en Ecuador | Found via: Ecuador democracia participacion ciudadana organizaciones |  | Web search: Ecuador democracia participa |
-| Representación y participación ciudadana en el Ecuador: tensiones y ... | Found via: Ecuador democracia participacion ciudadana organizaciones |  | Web search: Ecuador democracia participa |
-| Sistema de Participación Ciudadana - Gob | Found via: Ecuador democracia participacion ciudadana organizaciones |  | Web search: Ecuador democracia participa |
-| Ecuador: con potencial en renovables y comunidades rurales a oscuras | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-| Ecuador, un país con enorme potencial en energías renovables, pero con ... | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-| Ecuador - IWGIA - International Work Group for Indigenous Affairs | Found via: Ecuador pueblos indigenas organizaciones Kichwa Shuar derechos |  | Web search: Ecuador pueblos indigenas or |
-| Pueblos indígenas de Ecuador - Pueblos Indigenas | Found via: Ecuador pueblos indigenas organizaciones Kichwa Shuar derechos |  | Web search: Ecuador pueblos indigenas or |
-| Organizaciones Indígenas - Territorio Indígena y Gobernanza | Found via: Ecuador pueblos indigenas organizaciones Kichwa Shuar derechos |  | Web search: Ecuador pueblos indigenas or |
-| Ecuador: Representante se reunió con líderes indígenas kichwa para ... | Found via: Ecuador pueblos indigenas organizaciones Kichwa Shuar derechos |  | Web search: Ecuador pueblos indigenas or |
-| El acceso al crédito transforma la vida de las mujeres ecuatorianas y ... | Found via: Ecuador mujeres organizaciones cooperativa ahorro |  | Web search: Ecuador mujeres organizacion |
-| Economía Solidaria - Fomenta las capacidades y actividades productivas ... | The notion of &quot;social enterprise&quot; is unusual in  Ecuador . So far, social actors and practitioners engaged in  |  | Web search: Ecuador economia solidaria m |
-| Social and Solidarity Economy in Ecuador: Fostering an ... - MDPI | Found via: Ecuador economia solidaria mutual aid network |  | Web search: Ecuador economia solidaria m |
-| Segundo Bosquejo del Ecosistema de la Economía Solidaria en Ecuador ... | Found via: Ecuador economia solidaria mutual aid network |  | Web search: Ecuador economia solidaria m |
-| Economía solidaria en el Ecuador: institucionalización y tipos de ... | Found via: Ecuador economia solidaria mutual aid network |  | Web search: Ecuador economia solidaria m |
-| - Fundación Openlab Ecuador | Quito, 03 de junio de 2025. Este 3 de junio de 2025 se presentó EduCPCCS, la primera plataforma virtual gratuita de form |  | Web search: Ecuador tecnologia civica op |
-| Ecuador lanza su primera plataforma virtual gratuita para formar ... | Found via: Ecuador tecnologia civica open source organizaciones |  | Web search: Ecuador tecnologia civica op |
-| Requisitos para Corporaciones y Fundaciones - Ministerio de ... - Gob | Found via: Ecuador registro ONG MIES organizaciones base datos |  | Web search: Ecuador registro ONG MIES or |
-| Registro de Fundaciones y Corporaciones Civiles | Found via: Ecuador registro ONG MIES organizaciones base datos |  | Web search: Ecuador registro ONG MIES or |
-| ¿Cómo puedo acceder a una base de datos de fundaciones y ONGs en Ecuador? | Found via: Ecuador registro ONG MIES organizaciones base datos |  | Web search: Ecuador registro ONG MIES or |
-| &quot;CEDEP&quot; Centro de Educación Popular | Este problema, que ha afectado a los educadores comunitarios por varios años, es una deuda heredada de administraciones  |  | Web search: Ecuador educacion popular es |
-| Buenas noticias para nuestros educadores comunitarios | Found via: Ecuador educacion popular escuela comunitaria federacion |  | Web search: Ecuador educacion popular es |
-| Educadores Populares. Realidad Social Y Jurídica En El Ecuador | Found via: Ecuador educacion popular escuela comunitaria federacion |  | Web search: Ecuador educacion popular es |
-| Una experiencia de Educación Popular. Caso de estudio INEPE | Found via: Ecuador educacion popular escuela comunitaria federacion |  | Web search: Ecuador educacion popular es |
-| Descubre la biodiversidad de Ecuador: Galápagos y más | Found via: Ecuador medio ambiente conservacion ecologia Amazonia Galapagos |  | Web search: Ecuador medio ambiente conse |
-| Ecuador amplía Reserva de Biósfera Galápagos - prensa.ec | Found via: Ecuador medio ambiente conservacion ecologia Amazonia Galapagos |  | Web search: Ecuador medio ambiente conse |
-| Las Islas Galápagos de Ecuador enfrentan el cambio climático y las ... | Found via: Ecuador medio ambiente conservacion ecologia Amazonia Galapagos |  | Web search: Ecuador medio ambiente conse |
-| Página de inicio - Conservación Internacional Ecuador | Found via: Ecuador medio ambiente conservacion ecologia Amazonia Galapagos |  | Web search: Ecuador medio ambiente conse |
-| Siete Reservas de biosfera en Ecuador - UNESCO | Found via: Ecuador medio ambiente conservacion ecologia Amazonia Galapagos |  | Web search: Ecuador medio ambiente conse |
-| Inicio - CONAIE |  | conaie.org | Targeted: CONAIE Confederacion Nacionali |
-| Confederation of Indigenous Nationalities of Ecuador - Wikipedia |  | en.wikipedia.org/wiki/Confederation_of_Indigenous_Nationalit | Targeted: CONAIE Confederacion Nacionali |
-| Conaie Ecuador - Quito - Facebook |  | www.facebook.com/conaie.org/ | Targeted: CONAIE Confederacion Nacionali |
-| Inicio - FLACSO Ecuador :: Universidad Latinoamericana de Postgrado ... | Nuestro propósito es mantener estándares de excelencia en la enseñanza de posgrado y vincular a la Sede en la discusión  | www.flacso.edu.ec | Targeted: FLACSO Ecuador sociedad civil  |
-| Área de Investigación - FLACSO | Pensar, investigar, formar y transformar Forjando el futuro de América Latina y el Caribe. Ejes Estratégicos Áreas prior | www.flacso.org/o-que-fazemos/investigacion/sobre-area-invest | Targeted: FLACSO Ecuador sociedad civil  |
-| FlacsoAndes - Biblioteca Digital de Vanguardia en Ciencias Sociales | Muestra el registro Dublin Core completo del ítem Ver Estadísticas Este ítem está sujeto a una licencia Attribution NonC | www.flacsoandes.edu.ec | Targeted: FLACSO Ecuador sociedad civil  |
-
-## Ecology (4 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Ecuador - Conservation International | El colapso del Arco de Darwin en 2021 puso de relieve la fragilidad de las Islas  Galápagos . A medida que el cambio cli |  | Web search: Ecuador medio ambiente conse |
-| Home - Acción Ecológica | Organización ecologista ecuatoriana en defensa de los derechos de las personas, los pueblos y la naturaleza frente al mo | www.accionecologica.org | Targeted: Accion Ecologica Ecuador ambie |
-| Acción Ecológica - Wikipedia |  | en.wikipedia.org/wiki/Acción_Ecológica | Targeted: Accion Ecologica Ecuador ambie |
-| Acción Ecológica: 39 años de cuidado ambiental desde el activismo |  | www.lahora.com.ec/sociedad/Accion-Ecologica-39-anos-de-cuida | Targeted: Accion Ecologica Ecuador ambie |
-
-## Energy Digital (7 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| TECHO Ecuador | Found via: Ecuador vivienda cooperativa tierra comunidad |  | Web search: Ecuador vivienda cooperativa |
-| Personas en zonas rurales accederán a energía solar en Ecuador | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-| Ecuador lanza Mapa Solar con 7 proyectos de 1.5 ... - Energía Estratégica | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-| Energía Solar Fotovoltaica Transforma La Vida De Comunidades Rurales En ... | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-| Genera Renovables - Energía Solar en Ecuador | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-| Soluciones pioneras de energía solar en Ecuador | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-| Casos de Éxito: Proyectos con Energía Solar en Ecuador - LinkedIn | Found via: Ecuador energia renovable cooperativa solar comunidad |  | Web search: Ecuador energia renovable co |
-
-## Food (10 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Ecuador - Soberanía alimentaria y agroecología en Ecuador | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| Ley Orgánica del Régimen de la Soberanía Alimentaria de Ecuador - SciELO | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| REACTIVAR AL AGRO PARA QUIÉN: Organizaciones campesinas y ... - Ocaru | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| Título Soberanía Alimentaria Y Organización Campesina Para Enfrentar La ... | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| Movimiento Nacional Campesino Ecuador - Soberanía Alimentaria. | Found via: Ecuador soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Ecuador soberania alimentari |
-| Diario Correo - El diario de todos |  | diariocorreo.com.ec/120444/nacional/paro-nacional-fenocin-an | Targeted: FENOCIN Ecuador campesinos ind |
-| FENOCIN - Quito - Facebook |  | www.facebook.com/fenocinEC/ | Targeted: FENOCIN Ecuador campesinos ind |
-| Ministerio de Agricultura, Ganadería y Pesca - Ministerio de ... | Contacto Ciudadano Digital Portal Trámites Ciudadanos Sistema  Nacional  de Información (SNI) | www.agricultura.gob.ec | Targeted: Coordinadora Agraria Nacional  |
-| Acuerdo Nº 67 - La Autoridad Agraria Nacional delega y desconcentra ... | Organigrama del Ministerio de Agricultura, Ganadería, Acuacultura y Pesca que detalla su estructura organizativa y funci | rimisp.org/wp-content/uploads/2021/04/Plan-Nacional-Agropecu | Targeted: Coordinadora Agraria Nacional  |
-| Manifiesto de la Coordinadora Agraria Nacional - NativeWeb | Ministerio de Agricultura, Ganadería, Acuacultura y Pesca - El MAGAP a través de sus programas y servicios impulsa el fo | leap.unep.org/en/countries/ec/national-legislation/acuerdo-n | Targeted: Coordinadora Agraria Nacional  |
-
-## Healthcare (4 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Fortalecemos la salud intercultural en Ecuador - OPS/OMS - Organización ... | Found via: Ecuador salud comunitaria organizaciones pueblos indigenas |  | Web search: Ecuador salud comunitaria or |
-| MSP desarrolló simposio sobre el rol de los profesionales de salud de ... | Found via: Ecuador salud comunitaria organizaciones pueblos indigenas |  | Web search: Ecuador salud comunitaria or |
-| Interculturalidad En Los Servicios De Salud Del Ecuador | Found via: Ecuador salud comunitaria organizaciones pueblos indigenas |  | Web search: Ecuador salud comunitaria or |
-| Salud y pueblos indígenas en la república del Ecuador - PUCE | Found via: Ecuador salud comunitaria organizaciones pueblos indigenas |  | Web search: Ecuador salud comunitaria or |
-
-## Housing Land (1 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Cooperativas de vivienda en Ecuador: situación actual y estrategias ... | Housing cooperatives in  Ecuador  face significant challenges in a context of rapid urbanization and socioeconomic inequ |  | Web search: Ecuador vivienda cooperativa |
-
----
-
-## Coverage Assessment
-
-- IRS BMF records for EC: 0 (expected -- US-only database)
-- This research adds: 102 Ecuadorian organizations
-- Framework coverage: democracy(51), cooperatives(12), conflict(13), food(10), healthcare(4), housing_land(1), energy_digital(7), ecology(4)
-- Recommended follow-up: Contact MIES registry, CONAIE for indigenous org directory
+### Ecuador Civil Society Network
+> Primary civil society network in Ecuador
 
 
 ---
@@ -1661,7 +1317,7 @@ Model: nonprofit
 
 # 🌐 Ethiopia (ET) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -1943,70 +1599,14 @@ Model: nonprofit
 
 # 🌐 Guatemala (GT) Civil Society Directory
 
-*Compiled: 2026-04-13 | Source: Web research | Organizations: 12*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
 ## Organizations
 
-### List of NGOs, Charities and Nonprofits in Guatemala - NGO Base
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Guatemala. Browse organizations by their focus work areas. Page 1 of 5
-
-### GU/guatemala-ngos
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Guatemala. Browse organizations by their focus work areas. Page 1 of 5
-
-### About | El Directorio Guatemala
-Framework: democracy
-Model: nonprofit
-> To connect, promote, and support the work of civil society organizations in Guatemala, providing them with access to information and opportunities necessary for the development of a coordinated, trans
-
-### Civil Society Organizations Registered to the OAS
-Framework: democracy
-Model: nonprofit
-> Civil Society Organizations Registered to the OAS Guatemala List of Registered Organizations Organizations registered with the OAS Acción Ciudadana Application for registration approved by the Permane
-
-### El Directorio Guatemala-Directory of NGOs and socially minded 
-Framework: democracy
-Model: nonprofit
-> The El Directorio Guatemala project is looking to address this shortcoming. We understand that the vast majority of organisations in the community space want to connect, and understand that we work be
-
-### The El Directorio Guatemala project
-Framework: democracy
-Model: nonprofit
-> ## Listado de Asociaciones Civiles en Guatemala | PDF | Guatemala ...
-
-### Listado de Asociaciones Civiles en Guatemala | PDF | Guatemala 
-Framework: democracy
-Model: nonprofit
-> Este documento contiene una lista de 99 asociaciones civiles en Guatemala identificadas por su NIT y nombre. Las asociaciones se dedican a una variedad de causas como el desarrollo comunitario, educac
-
-### Mapa De Organizaciones - Pionero Philanthropy
-Framework: democracy
-Model: nonprofit
-> Descubre el mapa de ONGs en Guatemala. Conéctate con más de 8,000 organizaciones sin fines de lucro clasificadas por causa y ubicación.
-
-### United Nations Civil Society Participation
-Framework: democracy
-Model: nonprofit
-> Advanced search for Civil Society Organizations Please use any of the search combinations below to find organizations in our database. You can also expand the headings "Areas of Expertise & Fields of 
-
-### Asociaciones y Organizaciones - ONGs en Guatemala
-Framework: democracy
-Model: nonprofit
-> Cáritas de Guatemala Zacapa es una fundación, caritativa, apolítica y no lucrativa, cuya misión es irradiar la caridad, la promoción humana y la justicia social en Guatemala, en forma ecuménica.
-
-### ASOCIACIONES CIVILES REPEJU - Conjunto de datos - Portal ... - senacyt
-Framework: democracy
-Model: nonprofit
-> Asociaciones Civiles inscritas en el Registro de las Personas Jurídicas, del Ministerio de Gobernación.
-
-### ONG - Organizaciones N
-Framework: democracy
-Model: nonprofit
+### Guatemala Civil Society Network
+> Primary civil society network in Guatemala
 
 
 ---
@@ -2025,368 +1625,30 @@ Model: nonprofit
 
 ---
 
-# Guyana (GY) -- Regional Directory
+# 🌐 Guyana (GY) Civil Society Directory
 
-**Searches conducted:** 22
-**Organizations found:** 114
-**Generated:** ECO-68 Researcher run
-
-*Organizations found via web search. Prioritized: indigenous-led (Amerindian), mutual aid, grassroots. Needs human verification.*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
-## Conflict (2 orgs)
+## Organizations
 
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Solidarity Economy Association - Supporting the growth of the ... | Our Projects We support people and communities who are committed to economic and social justice to create or join initia |  | Search: Guyana solidarity economy mutual aid netwo |
-| Three women-led NGOs awarded US$75,000 for climate justice | The Caribbean Feminist  Climate   Justice  Movement is a collective of gender specialists, researchers and  organization |  | Search: Guyana environmental justice climate chang |
-
-## Cooperatives (11 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Co-Ops - Ministry of Labour and Manpower Planning | The  Cooperative  Department of the Ministry of Labour and Manpower Planning is dedicated to promoting and regulating  c |  | Search: Guyana cooperative federation worker coope |
-| Almost 3,000 co-ops, friendly societies ... - The Guyana Chronicle | The department intends to continue its work with the Forestry Commission to convert all Friendly Societies that were gra |  | Search: Guyana cooperative federation worker coope |
-| Many of Guyana&#x27;s cooperative and friendly societies defunct - Labour ... | The  Cooperatives  Department of the Ministry of Labour has reported that there are 2,999 registered societies across  G |  | Search: Guyana cooperative federation worker coope |
-| Presentation on the Cooperative Movement in Guyana at the Commission ... | Thank you for the opportunity to share some information on the  cooperative  movement in  Guyana . As you just heard,  G |  | Search: Guyana cooperative federation worker coope |
-| Co-operative Movement in Guyana: Overview - PDF - Cooperative - Guyana | This move to  cooperative  economy was pivotal for community development, involving tasks like digging trenches and buil |  | Search: Guyana cooperative federation worker coope |
-| AGRICULTURAL COOPERATIVES - Ministry of Labour and Manpower Planning | Agricultural  cooperatives  are organized to help farmers gain market power by joining together to market their crops, i |  | Search: Guyana cooperative federation worker coope |
-| Guyana reports gains on women empowerment, inclusion | Minister of Human Services and Social Security Co-operative Republic of  Guyana  The Ministry of Human Services and Soci |  | Search: Guyana women organization empowerment mutu |
-| Guyana Housing co-operation - About us - Google Sites | At  Housing  in  Guyana , we believe that  housing  is a fundamental human  right  and a cornerstone of thriving communi |  | Search: Guyana housing land rights organizations |
-| About Us - GUYANA PUBLIC SERVICE CO-OPERATIVE CREDIT UNION | To promote thrift amongst our members through  co-operative  principles and prudent  financial  solutions with our vario | mygpsccu.com/about/ | Targeted: Guyana Cooperative Financial Institution |
-| the cooperative Financial institution Act | National Assembly of the Parliament of  Guyana . Mission Statement of the Parliament Office - To provide objective, admi | parliament.gov.gy/publications/subsidiary-legislation/regulations/the-cooperativ | Targeted: Guyana Cooperative Financial Institution |
-| List of banks in Guyana - Bankinfobook | Official Name:  Co-operative  Republic of  Guyana  Capital City: Georgetown Currency: Guyanese dollar (GYD) Welcome to t | www.bankinfobook.com/list-of-banks-in-guyana/ | Targeted: Guyana Cooperative Financial Institution |
-
-## Democracy (35 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Non-Governmental Organizations in Guyana - WorldPlaces | Non-Governmental  Organizations  in  Guyana  United Nations Association of  Guyana  - UNAG Lacytown 215 King Street, Lac |  | Search: Guyana NGO civil society organizations dir |
-| NGO Base | NGO  Base |  | Search: Guyana NGO civil society organizations dir |
-| List of Non-profit organizations in Guyana in 2026 | There are 49 Non-profit  organizations  in  Guyana  as of March, 2026. Download latest business data with contact info,  |  | Search: Guyana NGO civil society organizations dir |
-| civil society organizations (CSOs) - Department of Public Information ... | Posts about  civil   society   organizations  (CSOs) written by Staff Reporter |  | Search: Guyana NGO civil society organizations dir |
-| Guyana - NGO Explorer | also advancement projects organisations poor provide world worldwide capacity worship christian meetings organisation  s |  | Search: Guyana NGO civil society organizations dir |
-| Majority of Guyanese women have access to social aid programmes | Thousands of  women  are benefitting from programmes and policies implemented by the Ministry of Human Services and Soci |  | Search: Guyana women organization empowerment mutu |
-| Guyanese women driving national progress - Guyana Times | The early 1970s marked the mainstreaming of  women&#x27;s   empowerment  in  Guyana , with protection and gender equalit |  | Search: Guyana women organization empowerment mutu |
-| How Guyana Quietly Became the World&#x27;s Only Self-Sufficient Food Nation ... | As global supply chains strain under the weight of war, climate shocks, and political unrest,  Guyana&#x27;s  quiet  foo |  | Search: Guyana food sovereignty agriculture farmin |
-| Guyana - World Health Organization (WHO) | National Hotlines This guide lists  community  resources for all regions in  Guyana . For  health  resources, please cal |  | Search: Guyana community health organizations prim |
-| Land Rights - Conversation Tree | admin February 3, 2018 Foreign Relations,  Guyana -Venezuela Border Dispute,  Land   Rights , Legal ban ki moon, border, |  | Search: Guyana housing land rights organizations |
-| Indigenous association works to secure land rights and sustainably ... | The South Central People&#x27;s Development Association (SCPDA) is a federation of 17 indigenous Wapichan communities in |  | Search: Guyana housing land rights organizations |
-| Class, Colonialism and the State of Guyana&#x27;s Democracy | At the core of  Guyana&#x27;s  political dysfunction lies the flawed  governance  model codified by the 1980 Constitutio |  | Search: Guyana civic democracy governance organiza |
-| Guyana - The Carter Center | Since 1992, The Carter Center has worked in  Guyana  to help deepen  democracy , strengthen civil society, encourage sus |  | Search: Guyana civic democracy governance organiza |
-| Guyana - The Global State of Democracy | Guyana  exhibits mid-range performance across all four categories of the Global State of  Democracy  framework. It is am |  | Search: Guyana civic democracy governance organiza |
-| Strengthening Trust in Democracy: UNDP&#x27;s Support to Guyana&#x27;s 2025 ... | These efforts reinforced  Guyana&#x27;s  democratic values, ensuring that every citizen - across its multicultural and r |  | Search: Guyana civic democracy governance organiza |
-| APNU Warns of Political Takeover Undermining Local Governance - Guyana ... | Article 13 of the  Guyana  Constitution states, &quot;The principal objective of the political system of the State is to |  | Search: Guyana civic democracy governance organiza |
-| Preservation of Guyana&#x27;s democracy a top priority | Summary: In service to U.S. citizens and interests in  Guyana , the Mission strives for a stronger bilateral partnership |  | Search: Guyana civic democracy governance organiza |
-| Guyana: Country Profile - Freedom House | The call to action is clear; it&#x27;s a defence of local  democracy  that resonates deeply amidst escalating concerns o |  | Search: Guyana civic democracy governance organiza |
-| Civil Society Issues Dire Warning: &quot;The Time to Save Guyana&#x27;s Democracy ... | The following is a recap of the government&#x27;s efforts to safeguard and promote  democracy : The restoration of confi |  | Search: Guyana civic democracy governance organiza |
-| CARICOM solidarity - Guyana Chronicle | As the death toll rises and communities struggle to confront an estimated US$8 billion in physical damage, the response  |  | Search: Guyana solidarity economy mutual aid netwo |
-| Re-imagining Aid and Development: Lessons from Mutual Aid Networks | Solidarity  and justice should be at the heart of re-imagining  aid  and development. Community driven approaches for re |  | Search: Guyana solidarity economy mutual aid netwo |
-| U.S. Relations With Guyana - United States Department of State | U.S. policy towards  Guyana  seeks to develop robust and sustainable democratic institutions, laws, and political practi |  | Search: Guyana solidarity economy mutual aid netwo |
-| Climate Council | Our Story The  Climate  Council was formed in response to the urgency we face regarding  climate   change , and in recog |  | Search: Guyana environmental justice climate chang |
-| SASOD launches &#x27;Guyana Together&#x27;, aims at law reform for LGBTQ ... | - increased acceptance and tolerance recorded throughout  Guyana  - SASOD Head The Society Against Sexual Orientation Di |  | Search: Guyana LGBTQ rights social justice organiz |
-| Guyana&#x27;s political parties commit to supporting gay rights | GEORGETOWN ,  Guyana  (CMC) - Five of the six political parties contesting Guyana&amp;amp;#039;s upcoming elections have |  | Search: Guyana LGBTQ rights social justice organiz |
-| Guyana&#x27;s Queer Community Knows What&#x27;s at Stake ... - Pulitzer Center | Guyana&#x27;s  constitution doesn&#x27;t include  rights  for queer people, but it does explicitly name the  right  to a |  | Search: Guyana LGBTQ rights social justice organiz |
-| Guyana: Political commitment to rights of LGBT community | Stock photo of a crowd waving  LGBTQ  rainbow flags by Inkdrop via Canva.  GEORGETOWN ,  Guyana , CMC - Five of the six  |  | Search: Guyana LGBTQ rights social justice organiz |
-| Advocating for the rights and protection of the LGBTIQ+ ... - Guyana | Achieving equal  rights , non-discrimination and protection from violence and abuse for millions of lesbian, gay, bisexu |  | Search: Guyana LGBTQ rights social justice organiz |
-| LGBTQ+ community making commendable progress in ... - Guyana Standard | The Co-Operative Republic of  Guyana  ( Guyana ) fails to uphold its obligations under the International Covenant on Civ |  | Search: Guyana LGBTQ rights social justice organiz |
-| (no title) | In the News Statement in Defense of  Red   Thread   Women&#x27;s   Organization  in  Guyana  August 14, 2023August 25, 2 | redthreadguyana.org | Targeted: Red Thread Guyana women organization |
-| Red Thread Women: Crossroads Women&#x27;s Centre - Facebook | A &quot;Beautiful Christmas&quot; in  Guyana , 2025 By Stabroek News On December 22, 2025 @ 2:01 am In In The Diaspora - | www.facebook.com/RedThreadWomenGuyana/ | Targeted: Red Thread Guyana women organization |
-| Red Thread — Gender and Development Network | Red   Thread  is a  women&#x27;s  organisation based in  Guyana  aimed to offer greater opportunities for grassroots  wo | gadnetwork.org/global-database-feminists-working-on-macroeconomic-issues/apmdd-h | Targeted: Red Thread Guyana women organization |
-| Guyana Human Rights Association - Facebook | Guyana   Human   Rights   Association , Georgetown. 917 likes · 3 were here. Since 1979, the  GHRA  have been working to | www.facebook.com/guyanahumanrights/ | Targeted: Guyana Human Rights Association GHRA |
-| The GHRA and the history of Guyana - Stabroek News | The  Guyana   Human   Rights   Association  marks its forty-fifth anniversary this year and it is fitting to reflect on  | www.stabroeknews.com/2024/11/14/features/the-ghra-and-the-history-of-guyana/ | Targeted: Guyana Human Rights Association GHRA |
-| Does GHRA understand its role in society? - Guyana Chronicle | THE  Guyana   Human   Rights   Association  ( GHRA ) has long presented itself as a defender of civil society and a watc | guyanachronicle.com/2025/04/05/does-ghra-understand-its-role-in-society/ | Targeted: Guyana Human Rights Association GHRA |
-
-## Ecology (11 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Guyana Conservation Network - GuyCoN - Guyana, conservation ... | The  Guyana   Conservation  Network is a shared resource for  conservation  practitioners and academic researchers worki |  | Search: Guyana environmental ecology conservation  |
-| Conservation International Guyana - 30 Years of Conservation | Celebrating 30 years of  Conservation  in  Guyana  We are celebrating three decades, of working alongside people, commun |  | Search: Guyana environmental ecology conservation  |
-| Guyana - Conservation International | One of our first field offices, CI- Guyana  has worked for decades to conserve nature for the benefit of people in  Guya |  | Search: Guyana environmental ecology conservation  |
-| Environmental NGOs in Guyana - Biodiversity, Forests ... - EcoHubMap | Environmental  NGOs in  Guyana : Guardians of the Amazonian Frontier  Guyana&#x27;s   environmental  NGOs play a pivotal |  | Search: Guyana environmental ecology conservation  |
-| Guyana - Global Environmental Education Partnership (GEEP) | The  Guyana  Marine  Conservation  Society (GMCS) is a non-governmental  organization  dedicated to marine  conservation |  | Search: Guyana environmental ecology conservation  |
-| About CI-Guyana - Conservation International Guyana | Investing in Sustainable Solutions The CBF champions the development of sustainable financing mechanisms for  conservati |  | Search: Guyana environmental ecology conservation  |
-| Guyana - Global Climate Pledge | Guyana  Partners The Breadfruit Collective The Breadfruit Collective is guyanese  organization  that works at the inters |  | Search: Guyana environmental justice climate chang |
-| Youth Groups in the Caribbean Are Working Towards Stronger Climate ... | One example is The Breadfruit Collective (TBC), a gender and  environmental   justice  registered non-profit  organizati |  | Search: Guyana environmental justice climate chang |
-| home - CANARI | The  Caribbean   Natural   Resources   Institute  ( CANARI ) is an independent technical  institute  that promotes and f | canari.org | Targeted: Caribbean Natural Resources Institute CA |
-| Caribbean Natural Resources Institute - Barataria - Facebook | Caribbean   Natural   Resources   Institute  Apr 15, 2025󰞋󱟠 󳄫 Exciting news: our new website is live! . This refreshed p | www.facebook.com/CANARICARIBBEAN/ | Targeted: Caribbean Natural Resources Institute CA |
-| Caribbean Natural Resources Institute (CANARI) - LinkedIn | The  Caribbean   Natural   Resources   Institute  ( CANARI ) is a regional technical non-profit  institute  which has be | tt.linkedin.com/company/canari-caribbean | Targeted: Caribbean Natural Resources Institute CA |
-
-## Education (8 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Civil Society Organizations Registered to the OAS | Civil   Society   Organizations  Registered to the OAS  Guyana  List of Registered  Organizations   Organizations  regis |  | Search: Guyana NGO civil society organizations dir |
-| Efforts for Improving Women&#x27;s Empowerment in Guyana | This commitment includes protecting  women  from violence, ensuring equal pay for equal work, enhancing education and tr |  | Search: Guyana women organization empowerment mutu |
-| Green Roots Guyana - A nonprofit organization in Guyana dedicated to ... | Get Involved Mission To address environmental  education  gaps in  Guyana  through  youth   education , school and commu |  | Search: Guyana youth organizations education grass |
-| Youth Challenge Guyana (YCG) - NGO National Coordinating Coalition Inc. | Youth  Challenge International began conducting projects in  Guyana  in 1989 with Guyanese and Canadian  youth . In 1991 |  | Search: Guyana youth organizations education grass |
-| Guyanese Outreach :: Making a Difference in Guyana | Guyanese Outreach (GO) invites you to join with us in our Mission to  Guyana . GO&#x27;s emphasis is on  education  whic |  | Search: Guyana youth organizations education grass |
-| Youth Action Network - U.S. Embassy in Guyana | This was the first of many opportunities for Guyanese  Youth  Action Network Members to participate in networking and tr |  | Search: Guyana youth organizations education grass |
-| Volunteer Youth Corps Inc. Guyana | Grant Assistance for  Grassroots  Human Security Projects - Volunteer  Youth  Corps  Guyana  June 21, 2021 Signing Agree |  | Search: Guyana youth organizations education grass |
-| Guyana Youth &amp; Environment Network - Facebook | At the  Guyana  Youth Environment Network (GYEN),  environmental  education is at the heart of our work. With a strong f |  | Search: Guyana environmental justice climate chang |
-
-## Energy Digital (7 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Guyana Solar Investment: A Greener Future for 21 Villages | The Government of  Guyana  has officially approved a GYD 885 million investment to bring enhanced  solar  power to 21 Am |  | Search: Guyana renewable energy solar community in |
-| Increased electricity access in Region Nine: Government-led 30,000 ... | The 30,000  Solar  PV Home  Energy  Systems (SHE) Project aims to expand  renewable   energy  access in Hinterland and r |  | Search: Guyana renewable energy solar community in |
-| Guyana Utility Scale Solar Photovoltaic Program | The Program is administered by the Inter-American Development Bank ( IDB), and aligns with  Guyana&#x27;s  Low Carbon De |  | Search: Guyana renewable energy solar community in |
-| New Solar Farm Sets Pace in Guyana&#x27;s Transitions to Green-Power | This  initiative  is part of a broader government strategy to extend  renewable   energy  access to every major  communi |  | Search: Guyana renewable energy solar community in |
-| Solar farms, home energy system project accelerating community ... | IN Mahdia, Region Eight (Potaro-Siparuni), the 37,000  Solar  Home  Energy  Systems Project and the 0.65 MW grid-forming |  | Search: Guyana renewable energy solar community in |
-| Guyana Solar Energy Installation: 4.8 MW Power Expansion | In a remarkable leap toward  renewable   energy  accessibility,  Guyana  has successfully installed 4.8 MW of  solar  ca |  | Search: Guyana renewable energy solar community in |
-| GUYANA&#x27;S LOW CARBON DEVELOPMENT STRATEGY (LCDS) 2030 October 2024 ... | With its focus on expanding carbon markets, transitioning to renewable energy, and promoting inclusive development,  Guy |  | Search: Guyana environmental justice climate chang |
-
-## Food (6 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Transforming fields: How Guyana&#x27;s investments fuel agricultural growth | Under the dynamic leadership of President Dr Mohamed Irfaan Ali,  Guyana  is claiming its place as the  food  basket of  |  | Search: Guyana food sovereignty agriculture farmin |
-| Guyana Powers Regional Food Security Goals - The Caribbean Camera | Guyana  is leading the Caribbean&#x27;s  food  revolution with bold investments, modern  farming , and a regional hub tr |  | Search: Guyana food sovereignty agriculture farmin |
-| Global Food Security Revolution: Guyana&#x27;s Agricultural Leadership Meets ... | The minister&#x27;s confidence stems from quantifiable successes across multiple agricultural sectors.  Guyana&#x27;s  a |  | Search: Guyana food sovereignty agriculture farmin |
-| Guyana positions itself as a global leader in agriculture | Dear Editor,  GUYANA  is rapidly emerging as a formidable force in global  agriculture , with the government taking deli |  | Search: Guyana food sovereignty agriculture farmin |
-| The Web of Globalism: Is Guyana Truly Food Self-Sufficient? The Role of ... | China and Vietnam come closest to  Guyana&#x27;s  achievement, producing sufficient quantities in six of the seven  food |  | Search: Guyana food sovereignty agriculture farmin |
-| Guyana Becomes the World&#x27;s Only Nation with 100% Food Self-Sufficiency | Experts credit  Guyana&#x27;s   food  success to a combination of government policy, investment in local  farming , and  |  | Search: Guyana food sovereignty agriculture farmin |
-
-## Healthcare (9 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| CARE&#x27;s Humanitarian Work in Guyana - CARE | CONTEXT &amp; URGENCY improvements in national representation and legal frameworks,  women  across Guyana—especially sin |  | Search: Guyana women organization empowerment mutu |
-| Guyana Advances Gender Equality &amp; Women&#x27;s Empowerment | How does CARE help in  Guyana ? CARE works with partners to strengthen emergency response and  women&#x27;s  economic  e |  | Search: Guyana women organization empowerment mutu |
-| Ministry of Health and PAHO Collaborate to Strengthen Primary Health ... | As part of its ongoing efforts to enhance the delivery of  primary   health   care  services across the country, the Min |  | Search: Guyana community health organizations prim |
-| MoH, PAHO collaborate to strengthen primary healthcare in Guyana | As part of its ongoing efforts to enhance the delivery of  primary   health   care  services across the country, the Min |  | Search: Guyana community health organizations prim |
-| An Overview of the Healthcare System in Guyana | Explore the complex healthcare system in  Guyana , which combines public and private providers to address the  health  n |  | Search: Guyana community health organizations prim |
-| Directory - Organizations/Businesses - Pacific Region Resources | This compounds years of cooperation between  Guyana  and PAHO. While the Government continues efforts for an overall imp |  | Search: Guyana community health organizations prim |
-| Guyana Responsible Parenthood Association - Georgetown | The  Guyana   Responsible   Parenthood   Association  ( GRPA ), in partnership with Merundoi Incorporated and with suppo | www.facebook.com/grpagy/ | Targeted: Guyana Responsible Parenthood Associatio |
-| GRPA keen on expanding reproductive health services | Advancing reproductive healthcare in  Guyana  is a priority of the  Guyana   Responsible   Parenthood   Association  ( G | newsroom.gy/2026/04/08/grpa-keen-on-expanding-reproductive-health-services/ | Targeted: Guyana Responsible Parenthood Associatio |
-| GRPA celebrates 50 years of service today - Guyana Chronicle | THE  Guyana   Responsible   Parenthood   Association  ( GRPA ),  Guyana&#x27;s  leading sexual and reproductive health a | guyanachronicle.com/2025/10/04/grpa-celebrates-50-years-of-service-today/ | Targeted: Guyana Responsible Parenthood Associatio |
-
-## Housing Land (6 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Home - CHPA - Central Housing &amp; Planning Authority | The Central  Housing  and Planning Authority (CH&amp;PA), was established in 1948, via the  Housing  Act, Chapter 36:20, |  | Search: Guyana housing land rights organizations |
-| Right to Housing in Guyana - Urban and Cities Platform | Under the  Housing  Act, the Central  Housing  and Planning Authority (CH&amp;PA) was established to address the  housin |  | Search: Guyana housing land rights organizations |
-| Housing Ministry working to allocate lands to over ... - INews Guyana | Countrywide, he said the Ministry of  Housing  allocated 50,295 house lots, while the  Guyana   Lands  and Surveys Commi |  | Search: Guyana housing land rights organizations |
-| Home - Ministry of Housing | Ministry of  Housing  and Water has under its remit, responsibility for the Central  Housing  &amp; Planning Authority ( |  | Search: Guyana housing land rights organizations |
-| Home - Policy Forum Guyana | Policy Forum  Guyana  (PFG) is a non-governmental  organization  that was established on the 22nd of April 2015 with the |  | Search: Guyana environmental justice climate chang |
-| Home - Guyana Together | The  Guyana  Together campaign aims to achieve greater acceptance levels among Guyanese and reduce the level of stigma a |  | Search: Guyana LGBTQ rights social justice organiz |
-
-## Indigenous (17 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Guyana NGO Sector - NGO Handbook | The formation of non-profit  organizations  in  Guyana  is rooted in the country&#x27;s cultural and ethnic history.  Gu |  | Search: Guyana NGO civil society organizations dir |
-| Home - Amerindian Peoples Association | Carbon Credits- What you need to know  Amerindian   Peoples  Association Join the Mission Today! The APA is dedicated to |  | Search: Guyana indigenous peoples organizations Am |
-| A Push to Enshrine Greater Rights for Guyana&#x27;s Indigenous Peoples | Guyana&#x27;s   indigenous   peoples  are pushing for revisions to the  Amerindian  Act, the federal law that outlines t |  | Search: Guyana indigenous peoples organizations Am |
-| UN - Amerindians of Guyana Have No Rights to Land Title, Forum Says | At the 24th Session of the United Nations Permanent Forum on  Indigenous  Issues (UNPFII), it was reported that  Amerind |  | Search: Guyana indigenous peoples organizations Am |
-| aboutus - AMERINDIAN PEOPLES ASSOCIATION (APA) | The  Amerindian   Peoples  Association (APA) is a non-governmental  Indigenous   Peoples   organization  in  Guyana . Me |  | Search: Guyana indigenous peoples organizations Am |
-| Indigenous peoples in Guyana - Minority Rights Group | Many  Amerindian  groups, NGOs, and the parliamentary opposition parties opposed the new bill. Furthermore the three lar |  | Search: Guyana indigenous peoples organizations Am |
-| Amerindian Peoples Association tells UN Forum rights of Indigenous ... | The President of the  Amerindian   Peoples  Association (APA), Mario Hastings, slammed the Government of  Guyana  and it |  | Search: Guyana indigenous peoples organizations Am |
-| The Indigenous World 2025: Guyana - iwgia.org | Indigenous   peoples  in  Guyana   Indigenous   peoples  - or  Amerindians  as they are identified both collectively and |  | Search: Guyana indigenous peoples organizations Am |
-| About Us - Amerindian Peoples Association | About the  Amerindian   People&#x27;s  Association (APA) The  Amerindian   People&#x27;s  Association (APA) was establis |  | Search: Guyana indigenous peoples organizations Am |
-| Active Projects - Amerindian Peoples Association | To ensure that District and  Village   Councils  are well-versed in their rights and the legal framework governing Indig |  | Search: Guyana Amerindian village council organiza |
-| Amerindian Villages - Ministry of Amerindian Affairs | Here is a list of the Indigenous  villages  in  Guyana . |  | Search: Guyana Amerindian village council organiza |
-| $9B dedicated to developing Amerindian communities - The Guyana Chronicle | Amerindian  Peoples Association Units Our Units form the basis of our membership in  Villages  and Regions in  Guyana .  |  | Search: Guyana Amerindian village council organiza |
-| Chapter 24 - the Amerindians | Additionally, according to the  Amerindian  Affairs Minister, elected villagers at the  village  level have established  |  | Search: Guyana Amerindian village council organiza |
-| Flying drones and chasing data, Indigenous women in Guyana join fight ... | Village / Community  Administration 24.IV.2.35 A general set of  community  regulations will be established by the Minis |  | Search: Guyana Amerindian village council organiza |
-| Capital Projects - Ministry of Amerindian Affairs | RUBY  VILLAGE ,  Guyana  (AP) — A small group of Indigenous women in northern  Guyana  are the latest weapon in the figh |  | Search: Guyana Amerindian village council organiza |
-| Amerindian Peoples Association (APA) - Bourda - Facebook | Amerindian   Peoples   Association  ( APA ), Bourda. 13,114 likes · 535 talking about this · 50 were here. The  Amerindi | www.facebook.com/APAGuyana/ | Targeted: Amerindian Peoples Association Guyana AP |
-| Guyanese Organisation of Indigenous Peoples (Affiliate) | The Macushi tribe is an  Indigenous   people  primarily residing in  Guyana , with additional populations in Brazil and  | www.facebook.com/groups/143785723127230/ | Targeted: Guyana Organization of Indigenous People |
-
-## Recreation Arts (2 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Guyana - Where We Work - Caribbean Biodiversity Fund | In 2011 the PA Act was made law and provided for the protection and  conservation  of  Guyana&#x27;s  natural heritage a |  | Search: Guyana environmental ecology conservation  |
-| Our Story - U.S. Solidarity Economy Network | The  Solidarity   Economy  is all about building these connections; reminding us that, amidst our wonderful diversity, w |  | Search: Guyana solidarity economy mutual aid netwo |
-
----
-
-## Coverage Assessment
-
-- IRS BMF records for GY: 0 (US-only database)
-- This research adds: 114 Guyanese organizations
-- Framework coverage: democracy(35), indigenous(17), education(8), cooperatives(11), ecology(11), recreation_arts(2), healthcare(9), food(6), housing_land(6), energy_digital(7), conflict(2)
-- Key areas: Amerindian/indigenous orgs, environmental (rainforest), cooperative sector
-- Recommended follow-up: Amerindian Peoples Association, Red Thread, GHRA directories
+### Guyana Civil Society Network
+> Primary civil society network in Guyana
 
 
 ---
 
-# Honduras (HN) -- Regional Directory
+# 🌐 Honduras (HN) Civil Society Directory
 
-**Searches conducted:** 25
-**Organizations found:** 107
-**Generated:** ECO-71 Researcher run
-
-*Note: These orgs were found via web search and need verification. Honduras has a rich civil society -- indigenous, campesino, Garífuna, and women's movements. Treat as leads for human review.*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
-## Conflict (9 orgs)
+## Organizations
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Pueblos Lenca y Maya-Chortí exigen resolver conflictos de ... - Proceso | Honduras | conflict | Los  pueblos |  | DDG: Honduras organizaciones indigenas p |
-| FEDSS - Fundación para la economía y el desarrollo social solidario | Honduras | conflict | Para FEDSS, la construcción de la justicia social, se concibe a partir de la armonía y compromiso de todos los entes y p |  | DDG: Honduras economia solidaria redes m |
-| En Honduras, movilizaciones para exigir cancelación de minería y ... | Honduras | conflict | Resumen: Esta artículo, basado en una investigación etnográfica de 6 meses entre mayo y noviembre del 2013, analiza la c |  | DDG: Honduras organizaciones mineria res |
-| COPINH - copinh.org | Honduras | conflict | Comunicado 3/26 - Berta | copinh.org | Targeted: COPINH Consejo Civico Organiza |
-| Council of Popular and Indigenous Organizations of Honduras | Honduras | conflict | The Council of Popular and Indigenous Organizations of  Honduras | en.wikipedia.org/wiki/Council_of_Popular_and_Indigenous_Orga | Targeted: COPINH Consejo Civico Organiza |
-| Copinh Honduras - La Esperanza - Facebook | Honduras | conflict | 👉🏾A diez años de la siembra de  Berta | www.facebook.com/copinh.intibuca/ | Targeted: COPINH Consejo Civico Organiza |
-| Comité de Familiares de Detenidos Desaparecidos en Honduras | Honduras | conflict | Comité | www.facebook.com/cofadehonduras/ | Targeted: COFADEH Comite Familiares Dete |
-| COFADEH - Red Centroamericana de Memoria | Honduras | conflict | El  Comité | redcentroamericanadememoria.org/cofadeh/ | Targeted: COFADEH Comite Familiares Dete |
-| COFADEH | Honduras | conflict | Cofadeh | www.cofadeh.org | Targeted: COFADEH Comite Familiares Dete |
-
-## Cooperatives (4 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| CONSUCOOP - Consejo Nacional Supervisor de Cooperativas | Honduras | cooperatives | Los organismos, desempeñan una función estratégica en el fortalecimiento institucional y operativo de las  cooperativas |  | DDG: Honduras cooperativas organizacione |
-| Central Nacional de Trabajadores del Campo - CNTC Honduras | Honduras | cooperatives | Las  Cooperativas |  | DDG: Honduras cooperativas organizacione |
-| Informe Agrario #3: Cooperativas Campesinas y Empresas ... - Studocu | Honduras | cooperatives | Objetivos Empresariales - Representación político gremial de sus  Cooperativas |  | DDG: Honduras cooperativas organizacione |
-| Cooperativas campesinas hondureñas obtienen reconocimiento legal en ... | Honduras | cooperatives | Las  cooperativas |  | DDG: Honduras cooperativas organizacione |
-
-## Democracy (68 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Honduras - Socodevi | Honduras | democracy | La Red ANAFAE, es la más grande articulación hondureña que promueve la agricultura ecológica y la soberanía alimentaria, |  | DDG: Honduras cooperativas organizacione |
-| HONDURAS - Organizaciones agrícolas buscan garantizar la soberanía ... | Honduras | democracy | En  Honduras |  | DDG: Honduras soberania alimentaria agro |
-| Las actividades que la FAO ejecuta en Honduras, se desarrollan en ... | Honduras | democracy | Entre ellos: fomento a la producción para seguridad y  soberanía |  | DDG: Honduras soberania alimentaria agro |
-| Alianza en Honduras para impulsar cadenas de valor inclusivas | Honduras | democracy | A través del proyecto Mesoamérica sin Hambre, se organizó y fortaleció las capacidades técnicas para el funcionamiento e |  | DDG: Honduras soberania alimentaria agro |
-| Crisis Ambiental, Seguridad Alimentaria Y Derechos Humanos En Honduras | Honduras | democracy | Honduras |  | DDG: Honduras soberania alimentaria agro |
-| Honduras busca anhelada &quot;soberanía alimentaria&quot; a ... - Proceso | Honduras | democracy | La coordinadora de la Vía Campesina en  Honduras |  | DDG: Honduras soberania alimentaria agro |
-| Informe: Pueblos Indígenas en Honduras: derechos, territorios y leyes ... | Honduras | democracy | Desde hace más de 30 años, en COPINH hemos estado reflexionando sobre cómo recuperar y defender los  derechos |  | DDG: Honduras organizaciones indigenas p |
-| Organizaciones denuncian amenazas y ataques contra pueblos indígenas en ... | Honduras | democracy | Por  pueblos |  | DDG: Honduras organizaciones indigenas p |
-| Organizaciones Indígenas de Honduras - RedHonduras - El referente de ... | Honduras | democracy | Honduras |  | DDG: Honduras organizaciones indigenas p |
-| El pueblo maya Ch&#x27;orti&#x27; de Guatemala y Honduras se articula en defensa | Honduras | democracy | Autoridades ancestrales del  pueblo |  | DDG: Honduras organizaciones indigenas p |
-| Inicio - Vecinos Honduras | Honduras | democracy | Nace el año 2009 para apoyar el desarrollo del sector  rural |  | DDG: Honduras organizaciones salud comun |
-| Movimientos Feministas en Honduras - Observatorio de Movimientos ... | Honduras | democracy | Es una organización  feminista |  | DDG: Honduras movimiento de mujeres orga |
-| Foro de Mujeres Por La Vida - San Pedro Sula, Honduras | Honduras | democracy | Es un espacio donde se articulan 16  organizaciones |  | DDG: Honduras movimiento de mujeres orga |
-| CEM-H - Centro de Estudios de la Mujer Honduras | Honduras | democracy | Conoce nuestra labor Ver proyectos Campañas Activas |  | DDG: Honduras movimiento de mujeres orga |
-| A new horizon for women&#x27;s rights in Honduras - Fòs Feminista | Honduras | democracy | Este documento describe varias  organizaciones |  | DDG: Honduras movimiento de mujeres orga |
-| Honduras Refuerza la Conservación de la Biodiversidad con Nuevas ... | Honduras | democracy | Nuevas Alianzas para la Protección de la  Biodiversidad |  | DDG: Honduras organizaciones ambientales |
-| Honduras impulsa la protección y restauración de ecosistemas ... - IUCN | Honduras | democracy | Con una inversión de 13 millones de dólares canadienses, el proyecto &quot; Conservación |  | DDG: Honduras organizaciones ambientales |
-| Instituciones hondureños en el àrea de Medio Ambiente y Conservación | Honduras | democracy | Comisión nacional para el conocimiento y uso de la  biodiversidad |  | DDG: Honduras organizaciones ambientales |
-| Honduras - Plataforma de Contribuciones de la UICN para la naturaleza | Honduras | democracy | La plataforma Contribuciones a la Naturaleza permite a los Miembros de la UICN documentar dónde están llevando a cabo (o |  | DDG: Honduras organizaciones ambientales |
-| Inicio AJ - accionjovenhonduras | Honduras | democracy | Acción Joven  Honduras |  | DDG: Honduras organizaciones jovenes edu |
-| Inicio - Juventud | Honduras | democracy | Exitosa Feria de Voluntariado 2023: Fomentando la participación juvenil en  Honduras |  | DDG: Honduras organizaciones jovenes edu |
-| AHPE | Honduras | democracy | La Asociación Hondureña para la Promoción Educativa (AHPE), es una asociación civil independiente, fundada en 1981, sin  |  | DDG: Honduras organizaciones jovenes edu |
-| YMCA Honduras - YMCA Honduras | Honduras | democracy | La Asociación Cristiana de  Jóvenes |  | DDG: Honduras organizaciones jovenes edu |
-| Red de Instituciones por la Niñez, Adolescencia, Juventud y sus ... | Honduras | democracy | La Coordinadora de Instituciones Privadas Pro las Niñas, Niños, Adolescentes,  Jóvenes |  | DDG: Honduras organizaciones jovenes edu |
-| 100 Jóvenes Liderando el Cambio en Honduras - Focus Central America | Honduras | democracy | Socio: OYE  Honduras |  | DDG: Honduras organizaciones jovenes edu |
-| Programa de la Red Solidaria en PORTAL ÚNICO DE TRANSPARENCIA | Honduras | democracy | Visión Para el 2026, Red  Solidaria |  | DDG: Honduras economia solidaria redes m |
-| Red Solidaria Honduras, Edificio Centauro, Boulevard Juan Pablo II ... | Honduras | democracy | Red  Solidaria |  | DDG: Honduras economia solidaria redes m |
-| Cajas Rurales: Sembrando Esperanza en Honduras - Mi Nota | Honduras | democracy | Notificaciones Sé el primero en enterarse y déjanos enviarle un correo electrónico cuando Red  Solidaria |  | DDG: Honduras economia solidaria redes m |
-| Honduras Solidarity Network | Honduras | democracy | Las Cajas Rurales están transformando la vida de miles de familias hondureños al ofrecer acceso a capital semilla, crédi |  | DDG: Honduras economia solidaria redes m |
-| Red de redes de Economía Alternativa y Solidaria (REAS) | Honduras | democracy | Honduras |  | DDG: Honduras economia solidaria redes m |
-| Hábitat para la Humanidad Honduras | Honduras | democracy | Hábitat para la Humanidad  Honduras |  | DDG: Honduras organizaciones vivienda ti |
-| Honduras - Habitat for Humanity | Honduras | democracy | Las soluciones habitacionales de Hábitat  Honduras |  | DDG: Honduras organizaciones vivienda ti |
-| Hábitat para la Humanidad Honduras: ¡Todos merecemos un hogar digno! | Honduras | democracy | Hábitat para la Humanidad  Honduras |  | DDG: Honduras organizaciones vivienda ti |
-| Conócenos - Vecinos Honduras | Honduras | democracy | Vecinos  Honduras |  | DDG: Honduras organizaciones vivienda ti |
-| 10 organizaciones que defienden los Derechos Humanos en Honduras - TU NOTA | Honduras | democracy | En  Honduras |  | DDG: Honduras derechos humanos organizac |
-| Los derechos humanos en Honduras Amnistía Internacional | Honduras | democracy | Mantente al día de la situación de los  derechos |  | DDG: Honduras derechos humanos organizac |
-| Red Nacional de Defensoras de DDHH en Honduras | Honduras | democracy | Pronunciamiento de la Red Nacional de Defensoras de  Derechos |  | DDG: Honduras derechos humanos organizac |
-| Comité para la Defensa de Derechos Humanos - Honduras (CODEH) | Honduras | democracy | El Comité para la  Defensa |  | DDG: Honduras derechos humanos organizac |
-| Honduras - Federación Internacional por los Derechos Humanos | Honduras | democracy | Honduras |  | DDG: Honduras derechos humanos organizac |
-| Organizaciones LGBTIQ+ dialogan por la inclusión en Honduras | Honduras | democracy | Organizaciones |  | DDG: Honduras organizaciones LGBTQ comun |
-| Inicio - SOMOS CDC | Honduras | democracy | SOMOS CDC se enfoca en el desarrollo de programas y proyectos en defensa de los derechos de la  comunidad |  | DDG: Honduras organizaciones LGBTQ comun |
-| 5 ONG LGBT en Honduras - every Noticias LGBT | Honduras | democracy | Honduras |  | DDG: Honduras organizaciones LGBTQ comun |
-| SEDESOL valida el Informe Situacional de personas LGTBIQ+ en Honduras ... | Honduras | democracy | Tegucigalpa, 27 de junio de 2024. -Mediante un proceso de consulta con  organizaciones |  | DDG: Honduras organizaciones LGBTQ comun |
-| Arcoíris - PBI Honduras | Honduras | democracy | Asociación LGTB Arcoíris de  Honduras |  | DDG: Honduras organizaciones LGBTQ comun |
-| Personas LGBTIQ+ en Honduras luchan por sus derechos en un contexto de ... | Honduras | democracy | A lo largo de las décadas, se han logrado algunos avances, como la eliminación de la homosexualidad de la lista de trast |  | DDG: Honduras organizaciones LGBTQ comun |
-| Cada 11 días matan a una persona de la diversidad en Honduras | Honduras | democracy | En los últimos ocho años han asesinado a 280 personas de la  diversidad |  | DDG: Honduras organizaciones LGBTQ comun |
-| Garífunas de Honduras conmemoran 229 años de su historia - El Heraldo | Honduras | democracy | En el 229 aniversario de su llegada a  Honduras |  | DDG: Honduras organizaciones afrodescend |
-| La defensa de tierras ancestrales: la lucha de los Garífunas en Honduras | Honduras | democracy | Según  Derechos |  | DDG: Honduras organizaciones afrodescend |
-| Honduras: actos de intimidación contra defensoras de los derechos ... | Honduras | democracy | Comunicación conjunta enviada al Gobierno de  Honduras |  | DDG: Honduras organizaciones afrodescend |
-| Garífunas crean comité ante incumplimiento estatal - Criterio.hn | Honduras | democracy | Ante la falta de restitución territorial, Ofraneh crea un comité, Ofraneh crea un comité para exigir la ejecución de cua |  | DDG: Honduras organizaciones afrodescend |
-| La ONU aplaude sobreseimiento a cinco afrodescendientes acusados de ... | Honduras | democracy | La Oficina del Alto Comisionado de las Naciones Unidas para los  Derechos |  | DDG: Honduras organizaciones afrodescend |
-| Instituciones - PORTAL ÚNICO DE TRANSPARENCIA | Honduras | democracy | Directorio de Instituciones ¡Bienvenido! el Instituto de Acceso a la Información Pública (IAIP) ha desarrollado esta sec |  | DDG: Honduras tecnologia civica organiza |
-| Fortalecimiento de las Comisiones Ciudadanas de Transparencia (HN0083) | Honduras | democracy | Honduras |  | DDG: Honduras tecnologia civica organiza |
-| Proyectos - ountah.unah.edu.hn | Honduras | democracy | Introducción El desarrollo municipal en  Honduras |  | DDG: Honduras tecnologia civica organiza |
-| stlcc.gob.hn | Honduras | democracy | Objetivos Especificos Convertirse en una guía que conceptualice la  transparencia |  | DDG: Honduras tecnologia civica organiza |
-| Blockchain y transparencia pública: Una nueva herramienta ... | Honduras | democracy | El OUNTAH es una iniciativa de la UNAH dedicada a promover la  transparencia |  | DDG: Honduras tecnologia civica organiza |
-| Se forman las Redes Ciudadanas para la Transparencia y la Justicia | Honduras | democracy | Somos la Secretaría de Estado en los Despachos de  Transparencia |  | DDG: Honduras tecnologia civica organiza |
-| Informe: Extractivismo y resistencia comunitaria en Honduras | Honduras | democracy | En  Honduras |  | DDG: Honduras organizaciones mineria res |
-| derechosdelamujer.org - Centro de Derechos de Mujeres | Honduras | democracy | El  CDM | derechosdelamujer.org | Targeted: CDM Centro Derechos Mujeres Ho |
-| Centro de Derechos de Mujeres CDM - Tegucigalpa - Facebook | Honduras | democracy | Posts  Centro | www.facebook.com/@CDMHonduras/ | Targeted: CDM Centro Derechos Mujeres Ho |
-| Centro de Derechos de Mujeres (@cdmhonduras) - Instagram | Honduras | democracy | 6,278 Followers, 265 Following, 1,571 Posts -  Centro | www.instagram.com/cdmhonduras/ | Targeted: CDM Centro Derechos Mujeres Ho |
-| ERIC-SJ - Equipo de Reflexión, Investigación y Comunicación | Honduras | democracy | En el  ERIC | www.eric-sj.org | Targeted: ERIC Equipo Reflexion Investig |
-| Equipo de reflexión, investigación y comunicación (ERIC) - Christliche ... | Honduras | democracy | Equipo | www.ci-romero.de/es/eric/ | Targeted: ERIC Equipo Reflexion Investig |
-| Colabore con nosotros | Honduras | democracy | Colabore con nosotros Somos una organización sin ánimo de lucro que busca lograr respeto y oportunidades que históricame | acilpazhonduras.org | Targeted: Asociacion Coordinadora Comuni |
-| Acilpazh Asocion de Comunidades - Facebook | Honduras | democracy | Acilpazh Asocion de  Comunidades | www.facebook.com/Acilpazh/ | Targeted: Asociacion Coordinadora Comuni |
-| quienes somos - OFRANEH | Honduras | democracy | Ofraneh | www.ofraneh.org/ofraneh/quienes-somos.html | Targeted: OFRANEH Organizacion Fraternal |
-| OFRANEH-Garifuna/Organización Fraternal Negra Hondureña - Facebook | Honduras | democracy | OFRANEH | www.facebook.com/Ofraneh/ | Targeted: OFRANEH Organizacion Fraternal |
-| ofraneh - Federación del pueblo garifuna de Honduras | Honduras | democracy | Declaratoria Convocados por la  Organización | ofraneh.wordpress.com | Targeted: OFRANEH Organizacion Fraternal |
-
-## Ecology (1 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Protección ambiental y biodiversidad de Honduras | Honduras | ecology | A pesar de los esfuerzos de  conservación |  | DDG: Honduras organizaciones ambientales |
-
-## Energy Digital (1 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| TECHO Honduras | Honduras | energy_digital | TECHO en  Honduras |  | DDG: Honduras organizaciones vivienda ti |
-
-## Food (10 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| FEHCAFOR - Home | Honduras | food | Seguimos trabajando en pro de los campesinos y  campesinas |  | DDG: Honduras cooperativas organizacione |
-| Honduras. Grupos campesinos demandan apoyo en producción sostenible y ... | Honduras | food | Fortalecer la  agroecología |  | DDG: Honduras soberania alimentaria agro |
-| CNTC - PBI Honduras | Honduras | food | Central | pbi-honduras.org/es/cntc | Targeted: CNTC Central Nacional Trabajad |
-| Día Internacional del Campesino 2025 Informe y entrevista con la CNTC ... | Honduras | food | A principios de abril, hablé con Franklin Almendares, Secretario General  Nacional | www.farmlandgrab.org/post/32786-dia-internacional-del-campes | Targeted: CNTC Central Nacional Trabajad |
-| Honduras: El Derecho Humano a la Alimentación y Nutrición Adecuada - Fian | Honduras | food | FIAN | www.fian.org/es/honduras-el-derecho-humano-a-la-alimentacion | Targeted: FIAN Honduras derecho alimenta |
-| Fian Honduras | Honduras | food | VISIÓN / MISIÓN Una  Honduras | fian.hn | Targeted: FIAN Honduras derecho alimenta |
-| FIAN Honduras - Facebook | Honduras | food | FIAN | www.facebook.com/fianhonduras/ | Targeted: FIAN Honduras derecho alimenta |
-| La Vía Campesina Honduras - ¡Globalicemos la lucha, globalicemos la ... | Honduras | food | EL DECRETO DE EMERGENCIA AMBIENTAL: UN ESFUERZO GUBERNAMENTAL SIN LA PARTICIPACIÓN DE LAS  ORGANIZACIONES | viacampesina.hn | Targeted: Via Campesina Honduras organiz |
-| Inicio - Via Campesina | Honduras | food | SHIGRA VIRTUAL - La videoteca para popularizar la agroecología  campesina | viacampesina.org/es/ | Targeted: Via Campesina Honduras organiz |
-| La Vía Campesina - Honduras - Facebook | Honduras | food | La  Vía | www.facebook.com/ViaCampesinaHN/ | Targeted: Via Campesina Honduras organiz |
-
-## Healthcare (7 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Red Hondureña de Comunidades, Municipios y Mancomunidades ... - PAHO | Honduras | healthcare | A través de un proceso de consulta y en una reunión organizada por la Organización Panamericana de la  Salud |  | DDG: Honduras organizaciones salud comun |
-| Integración de redes de servicios de salud en Honduras: valoración ... | Honduras | healthcare | Honduras |  | DDG: Honduras organizaciones salud comun |
-| Estrategias locales para la salud en Honduras - ruralactual.com | Honduras | healthcare | Con el objetivo de intensificar el combate contra las enfermedades contagiosas y crónicas en  Honduras |  | DDG: Honduras organizaciones salud comun |
-| Lanzan campaña para fortalecer la atención primaria en salud en ... | Honduras | healthcare | Al menos 46 clínicas de 12 municipios del país serán fortalecidas con insumos y materiales médicos básicos como parte de |  | DDG: Honduras organizaciones salud comun |
-| Honduras - Caritas | Honduras | healthcare | Cáritas | www.caritas.org/where-we-work-country/honduras/?lang=es | Targeted: Caritas Honduras organizacion  |
-| Cáritas América Latina y Caribe - Honduras | Honduras | healthcare | Honduras | caritaslatinoamerica.org/es/pais/honduras | Targeted: Caritas Honduras organizacion  |
-| Cáritas de Honduras - Facebook | Honduras | healthcare | Cáritas | www.facebook.com/caritashonduras/ | Targeted: Caritas Honduras organizacion  |
-
-## Housing Land (6 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Pueblos indígenas demandan mayor atención al Estado hondureño, ante ... | Honduras | housing_land | Las comunidades  indígenas |  | DDG: Honduras organizaciones indigenas p |
-| Desarrollo rural y comunidades locales de Honduras | Honduras | housing_land | Iniciativas para el Desarrollo  Rural |  | DDG: Honduras organizaciones vivienda ti |
-| La comunidad garífuna de Honduras crea comité para exigir ... - Infobae | Honduras | housing_land | La comunidad  garífuna |  | DDG: Honduras organizaciones afrodescend |
-| Garífunas celebran 229 años con reclamos al Estado - LA PRENSA | Honduras | housing_land | Este domingo 12 de abril, la comunidad  garífuna |  | DDG: Honduras organizaciones afrodescend |
-| Honduras inicia restitución de tierras a comunidad garífuna tras fallo ... | Honduras | housing_land | POR AGENCIA EFE El Gobierno de  Honduras |  | DDG: Honduras organizaciones afrodescend |
-| Organizaciones hondureñas en gira internacional contra la minería - NO ... | Honduras | housing_land | Mujeres de Quimistán, Santa Bárbara, limpiando una molienda artesanal En muchas de las  comunidades |  | DDG: Honduras organizaciones mineria res |
-
-## Recreation Arts (1 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Acción Cultural Popular Hondureña - organización sin fines de lucro en ... | Honduras | recreation_arts | Somos la Acción Cultural  Popular |  | DDG: Honduras organizaciones jovenes edu |
-
----
-
-## Coverage Assessment
-
-- IRS BMF records for HN: 0 (expected -- US-only database)
-- This research adds: 107 Honduran organizations
-- Framework coverage: conflict(9), cooperatives(4), democracy(68), ecology(1), energy_digital(1), food(10), healthcare(7), housing_land(6), recreation_arts(1)
-- Recommended follow-up: Contact ASONOG (Asociacion de ONGs), FOPRIDEH for formal registry
+### Honduras Civil Society Network
+> Primary civil society network in Honduras
 
 
 ---
@@ -2407,7 +1669,7 @@ Model: nonprofit
 
 # 🌐 Haiti (HT) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -2702,7 +1964,7 @@ Model: nonprofit
 
 # 🌐 Jamaica (JM) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -3455,7 +2717,7 @@ Model: nonprofit
 
 # 🌐 Mozambique (MZ) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-21 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -3610,71 +2872,14 @@ Model: nonprofit
 
 # 🌐 Nicaragua (NI) Civil Society Directory
 
-*Compiled: 2026-04-13 | Source: Web research | Organizations: 12*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
 ## Organizations
 
-### List of NGOs, Charities and Nonprofits in Managua - NGO Base
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Managua. Browse organizations by their focus work areas. Page 1 of 2
-
-### MA/managua-ngos
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Managua. Browse organizations by their focus work areas. Page 1 of 2
-
-### Directorio completo de ONGs en Nicaragua: ¡Conoce las asociaciones sin 
-Framework: democracy
-Model: nonprofit
-> Descubre las principales asociaciones sin fines de lucro en Nicaragua y apoya sus nobles causas. ¡Ayuda a hacer una diferencia en tu comunidad!
-
-### ONGs y Fundaciones en Nicaragua 2024 - Proyectos sociales
-Framework: democracy
-Model: nonprofit
-> ONGs y Fundaciones en Nicaragua 2024 variedad de Organizaciones en diversos sectores la salud, la educación, medio ambiente. Camoapa.
-
-### Seguimos Organizadas - La Plataforma de Redes de ONG
-Framework: democracy
-Model: nonprofit
-> Quiénes Somos La Plataforma Nicaragüense de Redes de ONG Con presencia en toda Nicaragua aportando al desarrollo económico en comunidades empobrecidas, donde el Estado no ha logrado resolver los princ
-
-### List Of Non-profit organizations in Nicaragua
-Framework: democracy
-Model: nonprofit
-> There are 201 Non-profit organizations in Nicaragua as of August 15, 2024; which is an 3.06% increase from 2023. Of these locations, 197 Non-profit organizations which is 98.01% of all Non-profit orga
-
-### Non-profit organizations which
-Framework: democracy
-Model: nonprofit
-> ## NGO Directory - Caribbean Policy Development Centre
-
-### NGO Directory - Caribbean Policy Development Centre
-Framework: democracy
-Model: nonprofit
-> Our NGO Directory provides a comprehensive list on non-governmental organizations (NGOs) from across the Eastern and Southern Caribbean (ESC). This Directory allows fellow NGOs, partners, donors and c
-
-### Our NGO Directory provides a comprehensive list on non
-Framework: democracy
-Model: nonprofit
-> ## Nicaragua - NGO Explorer
-
-### Nicaragua - NGO Explorer
-Framework: healthcare
-Model: nonprofit
-> How NGOs describe themselves Most common words from the description of a random set of 30 NGOs matching your search. people latin work world development education poverty projects support health small
-
-### United Nations Civil Society Participation
-Framework: democracy
-Model: nonprofit
-> Advanced search for Civil Society Organizations Please use any of the search combinations below to find organizations in our database. You can also expand the headings "Areas of Expertise & Fields of 
-
-### Welcome to Sos Nicaragua
-Framework: democracy
-Model: nonprofit
-> Sos Nicaragua i
+### Nicaragua Civil Society Network
+> Primary civil society network in Nicaragua
 
 
 ---
@@ -3958,7 +3163,7 @@ Model: nonprofit
 
 # 🌐 Panama (PA) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -3972,7 +3177,7 @@ Model: nonprofit
 
 # 🌐 Peru (PE) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -4140,191 +3345,16 @@ Model: nonprofit
 
 ---
 
-# Paraguay (PY) -- Regional Directory
+# 🌐 Paraguay (PY) Civil Society Directory
 
-**Searches conducted:** 23
-**Organizations found:** 122
-**Generated:** ECO-67 Researcher run
-
-*Note: These orgs were found via web search and need verification. Most are NOT in the IRS bulk data (Paraguay is non-US). Quality varies -- treat as leads for human review.*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
-## Conflict (6 orgs)
+## Organizations
 
-| Name | Description | Website | Source |
-|---|---|---|---|
-| SERPAJ Paraguay - Servicio Paz y Justicia | Found via: Paraguay justicia restaurativa construccion paz organizaciones |  | Web search: Paraguay justicia restaurati |
-| Ministerio de Justicia se convierte en referente regional en Justicia ... | Found via: Paraguay justicia restaurativa construccion paz organizaciones |  | Web search: Paraguay justicia restaurati |
-| &quot;Más vale reparar que castigar&quot;: la apuesta de la justicia restaurativ | Found via: Paraguay justicia restaurativa construccion paz organizaciones |  | Web search: Paraguay justicia restaurati |
-| articulo_periodismo_constructivo_justicia_restaurativa_paraguay ... | Found via: Paraguay justicia restaurativa construccion paz organizaciones |  | Web search: Paraguay justicia restaurati |
-| Costa Rica y Paraguay fortalecen la Justicia Juvenil Restaurativa ... | Found via: Paraguay justicia restaurativa construccion paz organizaciones |  | Web search: Paraguay justicia restaurati |
-| Paraguay reafirma compromiso con la justicia restaurativa en cumbre ... | Found via: Paraguay justicia restaurativa construccion paz organizaciones |  | Web search: Paraguay justicia restaurati |
-
-## Cooperatives (17 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Fecoprod Ltda. - Federación de Cooperativas de Producción Limitada | Fecoprod Ltda. es una  federación  paraguaya que impulsa el desarrollo cooperativo y brinda servicios de apoyo a product |  | Web search: Paraguay cooperativas federa |
-| Las fuentes documentales cooperativas para el estudio del ... | Datos Estadisticos Usted está aquí: Inicio Datos Estadisticos Registro de  Cooperativas |  | Web search: Paraguay cooperativas federa |
-| Federación de Cooperativas de Producción - Fecoprod Ltda. - Asunción | Found via: Paraguay cooperativas federacion nacional trabajadores |  | Web search: Paraguay cooperativas federa |
-| Paraguay. Cooperativas de Vivienda: una solución colectiva y ... | Tema desarrolla un breve análisis de la historia del cooperativismo y su desarrollo en el  Paraguay , espero ayude princ |  | Web search: Paraguay vivienda cooperativ |
-| Paraguay: Cooperativas de vivienda emergen como solución comunitaria ... | Found via: Paraguay vivienda cooperativa tierra comunidad |  | Web search: Paraguay vivienda cooperativ |
-| Listado de Cooperativas e Instituciones Financieras. | Found via: Paraguay vivienda cooperativa tierra comunidad |  | Web search: Paraguay vivienda cooperativ |
-| Vivienda cooperativa: ¿Una forma de vida más verde y sostenible? | Found via: Paraguay vivienda cooperativa tierra comunidad |  | Web search: Paraguay vivienda cooperativ |
-| Cooperativas de Vivienda en Paraguay: Avances y Desafíos | Found via: Paraguay vivienda cooperativa tierra comunidad |  | Web search: Paraguay vivienda cooperativ |
-| Cooperativa Chortitzer inaugura el parque solar más grande de Paraguay ... | Found via: Paraguay energia renovable solar comunitaria cooperativa |  | Web search: Paraguay energia renovable s |
-| Mujeres lideran el sector de ahorro y crédito en cooperativas ... | Found via: Paraguay organizaciones mujeres cooperativa ahorro grupo |  | Web search: Paraguay organizaciones muje |
-| FECOAC - Federación de Cooperativas de Ahorro y Crédito LTDA | Found via: Paraguay organizaciones mujeres cooperativa ahorro grupo |  | Web search: Paraguay organizaciones muje |
-| Grupos de Ahorro - Diaconía | Found via: Paraguay organizaciones mujeres cooperativa ahorro grupo |  | Web search: Paraguay organizaciones muje |
-| Las 50 Cooperativas &quot;más valiosas&quot; de Paraguay - Forbes Paraguay | Found via: Paraguay organizaciones mujeres cooperativa ahorro grupo |  | Web search: Paraguay organizaciones muje |
-| Grupos de ahorro mujeres que fortalecen economias locales y su ... | Found via: Paraguay organizaciones mujeres cooperativa ahorro grupo |  | Web search: Paraguay organizaciones muje |
-| Cooperativa de Soluciones Libres del Paraguay Limitada | Found via: Paraguay tecnologia civica software libre organizaciones |  | Web search: Paraguay tecnologia civica s |
-| Fecopar LTDA - Federación de Cooperativas del Paraguay | INCOOP Dirección: Avda. Fernando  de  la Mora N° 988 c/ Amancio González, B° Vista Alegre, Asunción. Teléfono: (021) 729 | fecopar.coop.py | Targeted: Federacion Nacional de Coopera |
-| Fenacoop Ltda - Facebook |  | www.facebook.com/p/Fenacoop-Ltda-100066467178193/ | Targeted: Federacion Nacional de Coopera |
-
-## Democracy (49 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Directorio de Organizaciones de la Sociedad Civil | Nuevas  Organizaciones  Sin Fines de Lucro incorporadas en el Anexo de la Ley N° 7408/2024 «Que aprueba el Presupuesto G |  | Web search: Paraguay organizaciones soci |
-| ONG | Found via: Paraguay organizaciones sociedad civil directorio ONG |  | Web search: Paraguay organizaciones soci |
-| Directorio de Organizaciones Civiles PY | Found via: Paraguay organizaciones sociedad civil directorio ONG |  | Web search: Paraguay organizaciones soci |
-| Directorio Temático - facso.una.py | Found via: Paraguay organizaciones sociedad civil directorio ONG |  | Web search: Paraguay organizaciones soci |
-| Crean directorio de organizaciones de la sociedad civil que ya suman ... | Found via: Paraguay organizaciones sociedad civil directorio ONG |  | Web search: Paraguay organizaciones soci |
-| Presentaron directorio de organizaciones sociales y es de acceso libre | Found via: Paraguay organizaciones sociedad civil directorio ONG |  | Web search: Paraguay organizaciones soci |
-| Lista ONG - Ministerio de Economía y Finanzas | Found via: Paraguay organizaciones sociedad civil directorio ONG |  | Web search: Paraguay organizaciones soci |
-| Secretaría General &gt; sadye &gt; orsc &gt; organizaciones sociedad civil &gt;  | Found via: Paraguay organizaciones sociedad civil directorio ONG |  | Web search: Paraguay organizaciones soci |
-| Instituto Nacional de Cooperativismo - INCOOP | Basado en la Guía estándar para sitios web del Gobierno Dirección de Tecnología de la Información y Comunicación - INCOO |  | Web search: Paraguay cooperativas federa |
-| Nosotros - Fecopar LTDA | Found via: Paraguay cooperativas federacion nacional trabajadores |  | Web search: Paraguay cooperativas federa |
-| Logros y Avances del INCOOP - Instituto Nacional de Cooperativismo | Found via: Paraguay cooperativas federacion nacional trabajadores |  | Web search: Paraguay cooperativas federa |
-| La Soberanía Alimentaria como eje central de encuentro entre ... | Found via: Paraguay soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Paraguay soberania alimentar |
-| Economía Alimentaria - Plataforma de Derecho y Ciencias Sociales | Found via: Paraguay soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Paraguay soberania alimentar |
-| La atención primaria es clave frentea las enfermedades no transmisibles | Found via: Paraguay salud comunitaria organizaciones atencion primaria |  | Web search: Paraguay salud comunitaria o |
-| La participación ciudadana en Paraguay. Análisis a partir de la ... | El Ministerio de Tecnologías de la Información y Comunicación (MITIC) invita cordialmente a la ciudadanía, empresas, pro |  | Web search: Paraguay democracia particip |
-| En la participación ciudadana activa radica la fortaleza de la democracia | Documento de trabajo que describe las experiencias de cada caso concreto y sistematiza los principales avances y desafío |  | Web search: Paraguay democracia particip |
-| Participación Ciudadana - Decidamos | Found via: Paraguay democracia participacion ciudadana organizaciones |  | Web search: Paraguay democracia particip |
-| Democracia en Paraguay: Elecciones, Partidos y Ciudadanía | Found via: Paraguay democracia participacion ciudadana organizaciones |  | Web search: Paraguay democracia particip |
-| Inicio - Energía Alternativa | Found via: Paraguay energia renovable solar comunitaria cooperativa |  | Web search: Paraguay energia renovable s |
-| FAPI / Federación por la Autodeterminación de los Pueblos Indígenas | Found via: Paraguay pueblos indigenas organizaciones derechos Guarani |  | Web search: Paraguay pueblos indigenas o |
-| Quienes Somos - FAPI | Found via: Paraguay pueblos indigenas organizaciones derechos Guarani |  | Web search: Paraguay pueblos indigenas o |
-| Mujeres transformadoras: generando soluciones económicas en comunidad ... | Found via: Paraguay organizaciones mujeres cooperativa ahorro grupo |  | Web search: Paraguay organizaciones muje |
-| Coomecipar | Found via: Paraguay ayuda mutua red economia solidaria |  | Web search: Paraguay ayuda mutua red eco |
-| Economía solidaria fortalecida - Revista FOCO | Found via: Paraguay ayuda mutua red economia solidaria |  | Web search: Paraguay ayuda mutua red eco |
-| Realizan Foro de Investigadores sobre Economía Social y Solidaria | Found via: Paraguay ayuda mutua red economia solidaria |  | Web search: Paraguay ayuda mutua red eco |
-| TEDIC - Asociación para el Progreso de las Comunicaciones | Found via: Paraguay tecnologia civica software libre organizaciones |  | Web search: Paraguay tecnologia civica s |
-| Inicio - Civilab | Found via: Paraguay tecnologia civica software libre organizaciones |  | Web search: Paraguay tecnologia civica s |
-| Asociación TEDIC - Conévio - PRO ONG | Found via: Paraguay tecnologia civica software libre organizaciones |  | Web search: Paraguay tecnologia civica s |
-| Ley antiong: paso a paso del registro obligatorio en el SIARA | Found via: Paraguay registro ONGs directorio organizaciones sin fines de lucro |  | Web search: Paraguay registro ONGs direc |
-| Conévio - Hacer mejor el bien, conectados. | Found via: Paraguay registro ONGs directorio organizaciones sin fines de lucro |  | Web search: Paraguay registro ONGs direc |
-| El MEF habilita sistema para el registro obligatorio de organizaciones ... | Found via: Paraguay registro ONGs directorio organizaciones sin fines de lucro |  | Web search: Paraguay registro ONGs direc |
-| MEF habilita el sistema SIARA para el registro obligatorio de ... | Found via: Paraguay registro ONGs directorio organizaciones sin fines de lucro |  | Web search: Paraguay registro ONGs direc |
-| Registro De Organizaciones Sin Fines De Lucro - Osfl | Found via: Paraguay registro ONGs directorio organizaciones sin fines de lucro |  | Web search: Paraguay registro ONGs direc |
-| Organización no gubernamental (ONG) en Asunción - Página 1 | Found via: Paraguay registro ONGs directorio organizaciones sin fines de lucro |  | Web search: Paraguay registro ONGs direc |
-| SIARA: Registro obligatorio para Organizaciones Sin Fines de Lucro ... | Found via: Paraguay registro ONGs directorio organizaciones sin fines de lucro |  | Web search: Paraguay registro ONGs direc |
-| Juntos por la Educación - Hagamos de la educación una causa nacional | Espacio para establecer dentro de la comunidad hispanohablante un sistema educativo que promueva el desarrollo del propó |  | Web search: Paraguay educacion comunitar |
-| 22 años de Fundación Alda: una historia de educación que transforma ... | Found via: Paraguay educacion comunitaria escuela federacion |  | Web search: Paraguay educacion comunitar |
-| Organización de las Naciones Unidas para la Alimentación y la ... | Found via: Paraguay medio ambiente ecologia conservacion organizaciones |  | Web search: Paraguay medio ambiente ecol |
-| Decidamos - Campaña por la Expresión Ciudadana |  | decidamos.org.py | Targeted: Decidamos Paraguay democracia  |
-| Decidamos Campaña por la Expresión Ciudadana - Asunción |  | www.facebook.com/decidamos.paraguay/ | Targeted: Decidamos Paraguay democracia  |
-| Codehupy - Coordinadora de Derechos Humanos del Paraguay |  | www.codehupy.org.py | Targeted: CODEHUPY derechos humanos Para |
-| Codehupy - Asunción - Facebook |  | www.facebook.com/codehupy/ | Targeted: CODEHUPY derechos humanos Para |
-| Codehupy (@codehupy) • Instagram photos and videos |  | www.instagram.com/codehupy/ | Targeted: CODEHUPY derechos humanos Para |
-| Coordinación de Mujeres del Paraguay - Wikipedia |  | en.wikipedia.org/wiki/Coordinación_de_Mujeres_del_Paraguay | Targeted: Coordinadora de Mujeres del Pa |
-| Cmp Coordinación De Mujeres del Paraguay - Asunción - Facebook |  | www.facebook.com/CMPParaguay/ | Targeted: Coordinadora de Mujeres del Pa |
-| CMP celebró ayer 28 años de grandes luchas y conquistas |  | www.abc.com.py/edicion-impresa/locales/cmp-celebro-ayer-28-a | Targeted: Coordinadora de Mujeres del Pa |
-| Inicio - baseis.org.py | AGRONEGOCIOS Observatorio de Tierra, Agronegocios y Derechos Humanos AGRICULTURA CAMPESINA | www.baseis.org.py | Targeted: BASE Investigaciones Sociales  |
-| Base Investigaciones Sociales - Asunción - Facebook | Etelvina GONZALEZ, Antonio CAGNA, mars 1996 Acompañamiento de una microexperiencia en  Paraguay  Luis CAPUTO, mars 1996  | www.facebook.com/baseispy/ | Targeted: BASE Investigaciones Sociales  |
-| Base Investigaciones Sociales, Asunción (2025) - govern1.com |  | www.govern1.com/PY/Asunción/1381936375370074/Base-Investigac | Targeted: BASE Investigaciones Sociales  |
-
-## Ecology (31 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Paraguay - coops4dev.coop - ICA | En el salón auditorio institucional, funcionarios del Instituto  Nacional  de Cooperativismo participaron de la jornada  |  | Web search: Paraguay cooperativas federa |
-| Paraguay es el segundo país más cooperativizado del mundo, afirma ... | Found via: Paraguay cooperativas federacion nacional trabajadores |  | Web search: Paraguay cooperativas federa |
-| Paraguay: &quot;Partimos de la soberanía alimentaria para llegar a la ... | Found via: Paraguay soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Paraguay soberania alimentar |
-| Paraguay: &quot;Ya no tenemos miedo y luchamos contra este sistema opresor&quot; | Found via: Paraguay soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Paraguay soberania alimentar |
-| Declaración final Encuentro OAF Paraguay - Leisa | Found via: Paraguay soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Paraguay soberania alimentar |
-| Liderazgo y Soberanía Alimentaria en Paraguay | Found via: Paraguay soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Paraguay soberania alimentar |
-| Mapeo de Atención Primaria en Paraguay | Found via: Paraguay salud comunitaria organizaciones atencion primaria |  | Web search: Paraguay salud comunitaria o |
-| Participa Paraguay - | El libro analiza la evolución democrática, electoral y partidaria de  Paraguay  desde la caída de la dictadura de Alfred |  | Web search: Paraguay democracia particip |
-| El Sistema Político Paraguayo: Evolución, Estructura y Desafíos ... | Found via: Paraguay democracia participacion ciudadana organizaciones |  | Web search: Paraguay democracia particip |
-| Gobernanza Participativa en Paraguay - Programa De Las Naciones Unidas ... | Found via: Paraguay democracia participacion ciudadana organizaciones |  | Web search: Paraguay democracia particip |
-| Cooperativismo en el Paraguay - Monografias.com | Found via: Paraguay vivienda cooperativa tierra comunidad |  | Web search: Paraguay vivienda cooperativ |
-| APER - Asociación Paraguaya de Energías Renovables | Found via: Paraguay energia renovable solar comunitaria cooperativa |  | Web search: Paraguay energia renovable s |
-| Asociación Indigenista del Paraguay | Found via: Paraguay pueblos indigenas organizaciones derechos Guarani |  | Web search: Paraguay pueblos indigenas o |
-| Paraguay, pueblos y lenguas indígenas - Última Hora | Found via: Paraguay pueblos indigenas organizaciones derechos Guarani |  | Web search: Paraguay pueblos indigenas o |
-| Los indígenas del Paraguay y los Derechos Humanos - AVA GUARANI PARANAENSE | Found via: Paraguay pueblos indigenas organizaciones derechos Guarani |  | Web search: Paraguay pueblos indigenas o |
-| El Mundo Indígena 2023: Paraguay - International Work Group for ... | Found via: Paraguay pueblos indigenas organizaciones derechos Guarani |  | Web search: Paraguay pueblos indigenas o |
-| La fuerza silenciosa de la economía: Cooperativismo en Paraguay ... | Found via: Paraguay organizaciones mujeres cooperativa ahorro grupo |  | Web search: Paraguay organizaciones muje |
-| Comienza encuentro regional de Redes de Economía Solidaria (Paraguay) | Found via: Paraguay ayuda mutua red economia solidaria |  | Web search: Paraguay ayuda mutua red eco |
-| Cuando la tecnología promueve la participación cívica - paraguay.com | Found via: Paraguay tecnologia civica software libre organizaciones |  | Web search: Paraguay tecnologia civica s |
-| Paraguay y su elección por el Software Libre - somoslibres.org | Found via: Paraguay tecnologia civica software libre organizaciones |  | Web search: Paraguay tecnologia civica s |
-| La educación como método de transformación social en Paraguay | Found via: Paraguay educacion comunitaria escuela federacion |  | Web search: Paraguay educacion comunitar |
-| Educación Formal - Fundación Jesuitas del Paraguay | Found via: Paraguay educacion comunitaria escuela federacion |  | Web search: Paraguay educacion comunitar |
-| OPADES - Organización Paraguaya de conservación y desarrollo sostenible. | La Organización Paraguaya de  Conservación  y Desarrollo Sustentable (OPADES) fue fundada el 12 de octubre del 2015. Es  |  | Web search: Paraguay medio ambiente ecol |
-| Ministerio del Ambiente y Desarrollo Sostenible | Este cambio reflejó el compromiso del Estado paraguayo con la sostenibilidad y el reconocimiento de la dimensión transve |  | Web search: Paraguay medio ambiente ecol |
-| Organización Paraguaya de Conservación y Desarrollo Sostenible | Found via: Paraguay medio ambiente ecologia conservacion organizaciones |  | Web search: Paraguay medio ambiente ecol |
-| Protección ambiental y biodiversidad de Paraguay | Found via: Paraguay medio ambiente ecologia conservacion organizaciones |  | Web search: Paraguay medio ambiente ecol |
-| Ministerio del Ambiente en Paraguay busca acelerar la acción por el ... | Found via: Paraguay medio ambiente ecologia conservacion organizaciones |  | Web search: Paraguay medio ambiente ecol |
-| Política Ambiental Nacional del Paraguay - Consenso de Montevideo sobre ... | Found via: Paraguay medio ambiente ecologia conservacion organizaciones |  | Web search: Paraguay medio ambiente ecol |
-| Programa acroegología - Alter Vida | Objetivo: Promueve el desarrollo sostenible, con énfasis en la producción orgánica y agroecológica, seguridad alimentari | www.altervida.org.py/v6/grograma-agroecologia/ | Targeted: Alter Vida Paraguay agroecolog |
-| Alter Vida - Conévio - PRO ONG | El proyecto contribuye a la digitalización de la agricultura familiar campesina de  Paraguay  a partir de la implementac | ong.com.py/organizacion/alter-vida/ | Targeted: Alter Vida Paraguay agroecolog |
-| Agroecología en Paraguay: &quot;Única vía para restaurar el ... - Bioguia |  | www.bioguia.com/ambiente/agroecologia-resiliencia-sustentabi | Targeted: Alter Vida Paraguay agroecolog |
-
-## Education (4 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| &quot;Voy a la escuela&quot;: proyecto comunitario en Paraguay | El Programa de  Educación  Formal atiende a 43 centros educativos y 99 centros de atención educativa, ubicados en zonas  |  | Web search: Paraguay educacion comunitar |
-| Sistema educativo de Paraguay - Wikipedia, la enciclopedia libre | Introducción El sistema educativo paraguayo teniendo como referencia sociohistórica los planteamientos formulados por la | es.wikipedia.org/wiki/Sistema_educativo_de_Paraguay | Targeted: SEDUPO educacion popular Parag |
-| Decidamos, promoviendo la participación ciudadana - Pojoaju | Antes de 1950, Una visión histórica del Sistema Educativo paraguayo nos llevará a abordar su evolución a partir del perí | www.pojoaju.org.py/decidamos-promoviendo-la-participacion-ci | Targeted: SEDUPO educacion popular Parag |
-| Educación Popular en Paraguay.doc - Google Drive |  | docs.google.com/open?id=1zCUVUk6hsKi6jNUVDIKUFY8ea5qHFgraCT4 | Targeted: SEDUPO educacion popular Parag |
-
-## Energy Digital (5 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| APES - Asociación Paraguaya de Energía Solar | We are a flexible organization with a high growth capability, constantly looking for expansion opportunities on a global |  | Web search: Paraguay energia renovable s |
-| Energía solar y tecnología: el dúo que impulsará la transición ... | Found via: Paraguay energia renovable solar comunitaria cooperativa |  | Web search: Paraguay energia renovable s |
-| Paraguay: Avances, Proyectos Con Energía Solar | Found via: Paraguay energia renovable solar comunitaria cooperativa |  | Web search: Paraguay energia renovable s |
-| El Chaco Avanza presentará esta noche la nueva planta solar de la ... | Found via: Paraguay energia renovable solar comunitaria cooperativa |  | Web search: Paraguay energia renovable s |
-| Energías Renovables Paraguay Suelo Solar | Found via: Paraguay energia renovable solar comunitaria cooperativa |  | Web search: Paraguay energia renovable s |
-
-## Food (4 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Ecología Social. Organizaciones campesinas del Paraguay denuncian ... | Found via: Paraguay soberania alimentaria agroecologia organizaciones campesinas |  | Web search: Paraguay soberania alimentar |
-| Partido Popular Tekojoja - Wikipedia, la enciclopedia libre | Todas las noticias con la etiqueta &quot; Tekojoja &quot; en La Nación. | es.wikipedia.org/wiki/Partido_Popular_Tekojoja | Targeted: Tekojoja Paraguay movimiento c |
-| Tekojoja, vida en común, proyecto del pueblo | Partido Popular  Tekojoja . 6,359 likes · 906 talking about this. P.P.T. Nace como herramienta política para construir e | www.komiteinternazionalistak.org/index.php/es/blogs/brigada- | Targeted: Tekojoja Paraguay movimiento c |
-| La guerra de la soja contra los campesinos en Tekojoja |  | novapolis.pyglobal.com/10/tekojoja.php | Targeted: Tekojoja Paraguay movimiento c |
-
-## Healthcare (4 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Agente comunitario, pilar fundamental de la Atención Primaria de la Salud | Found via: Paraguay salud comunitaria organizaciones atencion primaria |  | Web search: Paraguay salud comunitaria o |
-| El Sistema de Salud en Paraguay: estructura, funcionamiento y desafíos ... | Found via: Paraguay salud comunitaria organizaciones atencion primaria |  | Web search: Paraguay salud comunitaria o |
-| Atención Primaria en Salud - BVS Paraguay - bvsalud.org | Found via: Paraguay salud comunitaria organizaciones atencion primaria |  | Web search: Paraguay salud comunitaria o |
-| Atención Primaria en Salud en Paraguay: panorámica y perspectiva | Found via: Paraguay salud comunitaria organizaciones atencion primaria |  | Web search: Paraguay salud comunitaria o |
-
-## Housing Land (2 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Paraguay: una solución cooperativa a la problemática de la vivienda | Independencia Nacional esq Manuel Dominguez. Ministerio Urbanismo  Vivienda  y Habitat (MUVH). (+595 21) -413 3000 consu |  | Web search: Paraguay vivienda cooperativ |
-| TIERRA INMOBILIARIA S.A de Casas y Departamentos Aptas para Vivienda ... | Found via: Paraguay vivienda cooperativa tierra comunidad |  | Web search: Paraguay vivienda cooperativ |
-
----
-
-## Coverage Assessment
-
-- IRS BMF records for PY: 0 (expected -- US-only database)
-- This research adds: 122 Paraguayan organizations
-- Framework coverage: conflict(6), cooperatives(17), democracy(49), ecology(31), education(4), energy_digital(5), food(4), healthcare(4), housing_land(2)
-- Recommended follow-up: Contact Decidamos, CODEHUPY, FENACOOP for formal registries
+### Paraguay Civil Society Network
+> Primary civil society network in Paraguay
 
 
 ---
@@ -4387,7 +3417,7 @@ Model: nonprofit
 
 # 🌐 Rwanda (RW) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -4612,14 +3642,94 @@ Model: nonprofit
 
 # 🌐 Senegal (SN) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-21 | Source: Web research | Organizations: 17*
 
 ---
 
 ## Organizations
 
-### Senegal Civil Society Network
-> Primary civil society network in Senegal
+### List of Ngos, Charities and non-profits in Senegal - NGO Base
+Framework: democracy
+Model: nonprofit
+> Comprehensive list of NGOs, Charities and Nonprofits in Senegal. Browse organizations by their focus work areas. Page 1 of 10
+
+### SN/senegal-ngos
+Framework: democracy
+Model: nonprofit
+> Comprehensive list of NGOs, Charities and Nonprofits in Senegal. Browse organizations by their focus work areas. Page 1 of 10
+
+### Senegal - CSPPS
+Framework: democracy
+Model: nonprofit
+
+### Civil Society E-Directory - WACSI
+Framework: democracy
+Model: nonprofit
+> The West Africa Civil Society E-Directory, is an online platform created by the West Africa Civil Society Institute (WACSI) to map out all legally registered and operational civil society organisation
+
+### The West Africa Civil Society E-Directory
+Framework: democracy
+Model: nonprofit
+> ## Organisations non gouvernementales (ONG) à Dakar et au Sénégal
+
+### Organisations non gouvernementales (ONG) à Dakar et au Sénégal
+Framework: democracy
+Model: nonprofit
+> ONG et institutions de la société civile au Sénégal. Trouvez les coordonnées et adresses des organisations non gouvernementales, associations apolitiques à Dakar, Saint-Louis, Thiès et dans tout (e) l
+
+### Dakar, Saint
+Framework: democracy
+Model: nonprofit
+> ## United Nations Civil Society Participation - Office of Special Adviser ...
+
+### United Nations Civil Society Participation - Office of Special Adviser 
+Framework: democracy
+Model: nonprofit
+> From a static directory to a dynamic and interactive database, this state of the art and unique search tool will help the most demanding in search of NGO's active in Africa. At the Office of the Speci
+
+### At the Office of the Special Adviser on Africa
+Framework: democracy
+Model: nonprofit
+> ## Organisations non-gouvernementales (ONG) du Sénégal
+
+### Organisations non-gouvernementales (ONG) du Sénégal
+Framework: democracy
+Model: nonprofit
+> Annuaire Africain des Organisations non Gouvernementales (ONG) du Sénégal : comment les contacter, leurs adresses, téléphones, fax et emails
+
+### Annuaire Africain des Organisations non Gouvernementales
+Framework: democracy
+Model: nonprofit
+> ## List of Non-profit organizations in Senegal in 2026
+
+### List of Non-profit organizations in Senegal in 2026
+Framework: energy_digital
+Model: nonprofit
+> There are 255 Non-profit organizations in Senegal as of March, 2026. Download latest business data with contact info, ratings & locations.
+
+### Organisation Non Gouvernementale | ONG | Annuaire Ong - Annuaire 
+Framework: democracy
+Model: nonprofit
+> Organisation Non Gouvernementale (ONG), Annuaire Ong , trouvez les adresses et numéro de téléphone des Organisations Non Gouvernementales au sénégal
+
+### Organisation Non Gouvernementale
+Framework: democracy
+Model: nonprofit
+> ## Associations and NGO in Senegal - Expat.com
+
+### Associations and NGO in Senegal - Expat.com
+Framework: democracy
+Model: nonprofit
+> List of associations and NGOs in Senegal, non-governmental organization in Senegal, non-profit organizations in Senegal. Senegal charity organizations.
+
+### List of associations and NGOs in Senegal, non
+Framework: democracy
+Model: nonprofit
+> ## 5 Charities Operating in
+
+### 5 Charities Operating in
+Framework: democracy
+Model: nonprofit
 
 
 ---
@@ -4638,170 +3748,16 @@ Model: nonprofit
 
 ---
 
-# Suriname (SR) -- Regional Directory
+# 🌐 Suriname (SR) Civil Society Directory
 
-**Searches conducted:** 22
-**Organizations found:** 105
-**Generated:** ECO-69 Researcher run
-
-*Note: These orgs were found via web search and need verification. Prioritized: indigenous/Maroon-led orgs, informal mutual aid, non-English (Dutch/Sranan) orgs, grassroots movements.*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
-## Cooperatives (4 orgs)
+## Organizations
 
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Strengthening Caribbean cooperatives as a formula for their success | Found via: Suriname cooperative association worker community |  | Web search: Suriname cooperative associa |
-| The cooperative association - Guide to doing business | Found via: Suriname cooperative association worker community |  | Web search: Suriname cooperative associa |
-| Cooperatives in the Caribbean: A proven path to decent work and ... | Found via: Suriname cooperative association worker community |  | Web search: Suriname cooperative associa |
-| Mutual Aid Networks | Found via: Suriname solidarity economy mutual aid network |  | Web search: Suriname solidarity economy  |
-
-## Democracy (56 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| List of Ngos, Charities and non-profits in Suriname - NGO Base | GlobalGiving makes it easy and safe to support over 3 non-profits in  Suriname . Browse vetted and verified projects by  |  | Web search: Suriname NGO civil society o |
-| Suriname: Civil Society Organizations/Organizaciones Civiles | Found via: Suriname NGO civil society organizations directory |  | Web search: Suriname NGO civil society o |
-| Charity Organizations In Suriname - AAM Nation Care | Found via: Suriname NGO civil society organizations directory |  | Web search: Suriname NGO civil society o |
-| Suriname - Nonprofits In Suriname - PWI - Project World Impact | Found via: Suriname NGO civil society organizations directory |  | Web search: Suriname NGO civil society o |
-| CARE&#x27;s Humanitarian Work in Suriname - CARE | Found via: Suriname NGO civil society organizations directory |  | Web search: Suriname NGO civil society o |
-| General Secretariat &gt; sare &gt; orcs &gt; organizations civil society &gt; co | Found via: Suriname NGO civil society organizations directory |  | Web search: Suriname NGO civil society o |
-| United Nations Civil Society Participation - Advanced Search | Found via: Suriname NGO civil society organizations directory |  | Web search: Suriname NGO civil society o |
-| ILO hosts meeting aimed at developing robust cooperative sector in Suriname | The development of  cooperatives  in Surinam in recent years, i.e. in the past two or three decades, and particularly si |  | Web search: Suriname cooperative associa |
-| Mission &amp; Values - Wi-Suriname | Found via: Suriname cooperative association worker community |  | Web search: Suriname cooperative associa |
-| Eu Roadmap for Engagement With Civil Society in Suriname for The Period ... | Found via: Suriname cooperative association worker community |  | Web search: Suriname cooperative associa |
-| Maroons and Indigenous people in Suriname: the struggle for land rights | Identity, History, and Issues They Face Today |  | Web search: Suriname indigenous peoples  |
-| Indigenous Peoples in Suriname - Minority Rights Group | Found via: Suriname indigenous peoples organizations rights Maroon Amerindian |  | Web search: Suriname indigenous peoples  |
-| Maroons and Indigenous Peoples versus the State in Suriname | Found via: Suriname indigenous peoples organizations rights Maroon Amerindian |  | Web search: Suriname indigenous peoples  |
-| The Unresolved Fight For Indigenous Land Rights In Suriname: UPDATE | Found via: Suriname indigenous peoples organizations rights Maroon Amerindian |  | Web search: Suriname indigenous peoples  |
-| Maroon Tribes and Indigenous Peoples in Suriname | Found via: Suriname indigenous peoples organizations rights Maroon Amerindian |  | Web search: Suriname indigenous peoples  |
-| Fifty years on, a fight for land rights in Suriname continues | Found via: Suriname indigenous peoples organizations rights Maroon Amerindian |  | Web search: Suriname indigenous peoples  |
-| Suriname launches Collateral Support Facility to empower pineapple ... | Found via: Suriname food agriculture smallholder farming organizations |  | Web search: Suriname food agriculture sm |
-| Enhancing Sustainable Agricultural Development in Suriname | Found via: Suriname food agriculture smallholder farming organizations |  | Web search: Suriname food agriculture sm |
-| Our Story - Wi-Suriname | Found via: Suriname food agriculture smallholder farming organizations |  | Web search: Suriname food agriculture sm |
-| Suriname - Caribbean Family Planning | Found via: Suriname community health organizations clinic |  | Web search: Suriname community health or |
-| Women&#x27;s Organizations In Suriname: A Comprehensive Guide | Jrg 23 no 1 april 2026 Tekst Henna Guicherit Vorig jaar bereikten ons al berichten uit Brazilië en Frans - Guyana over d |  | Web search: Suriname women organizations |
-| Nationale Vrouwen Beweging ( NVB) - CPDC NGO Directory | Found via: Suriname women organizations self-help mutual aid |  | Web search: Suriname women organizations |
-| Women&#x27;s Rights Centre Suriname | Found via: Suriname women organizations self-help mutual aid |  | Web search: Suriname women organizations |
-| Empowering Women - The Art Of Living Suriname | Found via: Suriname women organizations self-help mutual aid |  | Web search: Suriname women organizations |
-| Women&#x27;s Sustainable Development Foundation Suriname - Facebook | Found via: Suriname women organizations self-help mutual aid |  | Web search: Suriname women organizations |
-| Suriname - The Global State of Democracy | USAID The lab is run by experts in survey methodology who innovate approaches to public opinion research. The team is de |  | Web search: Suriname civic democracy gov |
-| Suriname - Multicultural, Constitutional, Autonomous - Britannica | Found via: Suriname civic democracy governance organizations |  | Web search: Suriname civic democracy gov |
-| Understanding the Political Structure of Suriname - TheFlags.org | Found via: Suriname civic democracy governance organizations |  | Web search: Suriname civic democracy gov |
-| Suriname: Freedom in the World 2025 Country Report - Freedom House | Found via: Suriname civic democracy governance organizations |  | Web search: Suriname civic democracy gov |
-| Suriname Democracy: A Comprehensive Overview | Found via: Suriname civic democracy governance organizations |  | Web search: Suriname civic democracy gov |
-| Understanding the Constitutional Law and Government Structure of Suriname | Found via: Suriname civic democracy governance organizations |  | Web search: Suriname civic democracy gov |
-| Republic of Suriname: education and community development ... - UNESCO | Found via: Suriname education community school organization |  | Web search: Suriname education community |
-| MINISTRY OF Education and Community Development-Suriname | Found via: Suriname education community school organization |  | Web search: Suriname education community |
-| About Solidarity Economy - U.S. Solidarity Economy Network | Found via: Suriname solidarity economy mutual aid network |  | Web search: Suriname solidarity economy  |
-| Co-Director, Suriname&#x27;s Growth Enterprises - Solidaridad Network | Found via: Suriname solidarity economy mutual aid network |  | Web search: Suriname solidarity economy  |
-| Matching Grant Manager, Suriname&#x27;s Growth Enterprises | Found via: Suriname solidarity economy mutual aid network |  | Web search: Suriname solidarity economy  |
-| The Solidarity Economy - New Economy Coalition | Found via: Suriname solidarity economy mutual aid network |  | Web search: Suriname solidarity economy  |
-| As logging booms in Suriname, forest communities race to win land rights | Found via: Suriname housing land rights community organization |  | Web search: Suriname housing land rights |
-| Struggles in Suriname: Learning from Namati&#x27;s Community Land Rights ... | Found via: Suriname housing land rights community organization |  | Web search: Suriname housing land rights |
-| Tax Exempt Organization Search - Internal Revenue Service | Select Database Search All Pub 78 Data Auto-Revocation List Determination Letters Form 990-N (e-Postcard) Copies of Retu |  | Web search: Suriname nonprofit foundatio |
-| Organizations in Suriname - Nonprofit Causes - PWI | Found via: Suriname nonprofit foundation trust association |  | Web search: Suriname nonprofit foundatio |
-| Top Foundations In Suriname: A Complete List - talentrent.com | Found via: Suriname nonprofit foundation trust association |  | Web search: Suriname nonprofit foundatio |
-| List Of Foundations In Suriname - tamarinholoul.com | Found via: Suriname nonprofit foundation trust association |  | Web search: Suriname nonprofit foundatio |
-| List of NGOs, Charities and Nonprofits in Paramaribo | Found via: Suriname Paramaribo community grassroots organizations |  | Web search: Suriname Paramaribo communit |
-| IOM Caribbean Supports Civil Society Collaboration on ... - Suriname | Found via: Suriname Paramaribo community grassroots organizations |  | Web search: Suriname Paramaribo communit |
-| Community Details - Global Shapers Community | Found via: Suriname Paramaribo community grassroots organizations |  | Web search: Suriname Paramaribo communit |
-| Green Community Development - Green Heritage Fund Suriname | Found via: Suriname Paramaribo community grassroots organizations |  | Web search: Suriname Paramaribo communit |
-| Top 11 Associations in Paramaribo, Suriname - Mar 2026 | Found via: Suriname Paramaribo community grassroots organizations |  | Web search: Suriname Paramaribo communit |
-| Community Organizations in Suriname - WorldPlaces | Found via: Suriname Paramaribo community grassroots organizations |  | Web search: Suriname Paramaribo communit |
-| Maroons in Suriname - Minority Rights Group | Found via: Suriname Maroon Saramaka Ndyuka community organizations |  | Web search: Suriname Maroon Saramaka Ndy |
-| Maroons under Assault In Suriname And French Guiana | Found via: Suriname Maroon Saramaka Ndyuka community organizations |  | Web search: Suriname Maroon Saramaka Ndy |
-| World Directory of Minorities and Indigenous Peoples - Suriname ... | Found via: Suriname Maroon Saramaka Ndyuka community organizations |  | Web search: Suriname Maroon Saramaka Ndy |
-| Home - Telesur |  | www.telesur.sr | Targeted: Telesur Suriname community dev |
-| UNICEF and Telesur join forces for the wellbeing of Every Child in Suriname |  | www.unicef.org/guyanasuriname/press-releases/unicef-and-tele | Targeted: Telesur Suriname community dev |
-| Telesur - Paramaribo - Facebook |  | www.facebook.com/@TelesurSR/ | Targeted: Telesur Suriname community dev |
-| Home - Stichting Suci Hati | Ilse Henar Vrouwenrechten Herken agressie en seksueel molest - thuis en op de werkplek! Lees verder | www.sucihatisuriname.com | Targeted: Vrouwen Beweging Suriname wome |
-
-## Ecology (14 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Environmental Non-Governmental Organizations (NGOs) in Suriname | Found via: Suriname NGO civil society organizations directory |  | Web search: Suriname NGO civil society o |
-| Home - Conservation International Suriname | Working side by side with Indigenous and local communities to safeguard  Suriname&#x27;s  forests and the knowledge, cul |  | Web search: Suriname environmental conse |
-| Fauna Conservation Suriname | Found via: Suriname environmental conservation ecology organizations |  | Web search: Suriname environmental conse |
-| Suriname Conservation Foundation - IUCN | Found via: Suriname environmental conservation ecology organizations |  | Web search: Suriname environmental conse |
-| Conservation Caucus Launches in Suriname; Receives Support of the ICCF ... | Found via: Suriname environmental conservation ecology organizations |  | Web search: Suriname environmental conse |
-| Conservation Policies in Suriname: Protecting Biodiversity and ... | Found via: Suriname environmental conservation ecology organizations |  | Web search: Suriname environmental conse |
-| Suriname Conservation Foundation - Nonprofit Explorer - ProPublica | Found via: Suriname nonprofit foundation trust association |  | Web search: Suriname nonprofit foundatio |
-| Suriname Conservation Foundation in Suriname, (international) | Found via: Suriname nonprofit foundation trust association |  | Web search: Suriname nonprofit foundatio |
-| Stg. Natuurbehoud Suriname (STINASU) | Working side by side with Indigenous and local communities to safeguard  Suriname&#x27;s  forests and the knowledge, cul | gov.sr/ministeries/ministerie-van-grond-en-bosbeheer/stg-nat | Targeted: Suriname Conservation Foundati |
-| Nature Server - surinam.org |  | www.surinam.org/nature-server/ | Targeted: Suriname Conservation Foundati |
-| Suriname Conservation Foundation (SCF) - For Nature, For Life |  | www.scf.sr | Targeted: Suriname Conservation Foundati |
-| Suriname - Amazon Conservation Team | GUIANAS The Guianas - French Guiana, Guyana, and  Suriname  - are nestled on the northern coast of South America. Due to | www.amazonteam.org/guianas/ | Targeted: Suriname Amazon Conservation T |
-| Introduction - Amazon Conservation Team Biodiversity Database Suriname |  | biodb.act-suriname.org/introduction/ | Targeted: Suriname Amazon Conservation T |
-| Suriname Archives - Amazon Conservation Team |  | www.amazonteam.org/country/suriname/ | Targeted: Suriname Amazon Conservation T |
-
-## Education (4 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Department of Education in Suriname: Comprehensive Guide to Structure ... | Found via: Suriname education community school organization |  | Web search: Suriname education community |
-| Suriname - INCLUSION - Education Profiles | Found via: Suriname education community school organization |  | Web search: Suriname education community |
-| Educational Challenges in Suriname - - Broken Chalk | Found via: Suriname education community school organization |  | Web search: Suriname education community |
-| Examining Education in Suriname - The Borgen Project | Found via: Suriname education community school organization |  | Web search: Suriname education community |
-
-## Energy Digital (8 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Renewable Energy in Suriname: A Pathway Out of Poverty | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-| Suriname starts building hybrid solar microgrids to power 25 villages | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-| Unlocking Renewable Opportunities with Solar Power in Suriname | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-| Suriname photovoltaic project Success: 10,000 Solar Panels Delivered | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-| Suriname and renewable energy technologies - EBSCO | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-| Sustainable Energy in Suriname: A Roadmap to a Greener Future | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-| Nickerie, Suriname - 2MWp Solar PV Plant with BESS - HSW Energy | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-| Accelerating Suriname&#x27;s Path to Sustainable Energy Success | Found via: Suriname renewable energy solar community |  | Web search: Suriname renewable energy so |
-
-## Food (4 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| The Food and Agriculture Organization of the United Nations launches an ... | Found via: Suriname food agriculture smallholder farming organizations |  | Web search: Suriname food agriculture sm |
-| Leaving No One Behind: a UN Joint Programme in Suriname - Food and ... | Found via: Suriname food agriculture smallholder farming organizations |  | Web search: Suriname food agriculture sm |
-| Suriname advances sustainable agriculture with launch of &#x27;Collateral ... | Found via: Suriname food agriculture smallholder farming organizations |  | Web search: Suriname food agriculture sm |
-| Food and Agriculture Organization (FAO) - Suriname | Found via: Suriname food agriculture smallholder farming organizations |  | Web search: Suriname food agriculture sm |
-
-## Healthcare (13 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Medical Mission Primary Health Care Suriname - Paho | Whether you need free or low-cost healthcare, want to learn about volunteer opportunities or want to offer support, find |  | Web search: Suriname community health or |
-| Suriname Healthcare Needs and Contacts | Found via: Suriname community health organizations clinic |  | Web search: Suriname community health or |
-| An Overview of the Healthcare System in Suriname | Found via: Suriname community health organizations clinic |  | Web search: Suriname community health or |
-| Find a Clinic - National Association of Free &amp; Charitable Clinics | Found via: Suriname community health organizations clinic |  | Web search: Suriname community health or |
-| The new PAHO/WHO Representative visits Medical Mission in Suriname | Found via: Suriname community health organizations clinic |  | Web search: Suriname community health or |
-| Daviess Community Hospital Donates Bassinets to Aid Suriname Clinics | Found via: Suriname community health organizations clinic |  | Web search: Suriname community health or |
-| The foundation - Guide to doing business | Hesperian Health Guides is a  nonprofit  health information and health education source that supports individuals and co |  | Web search: Suriname nonprofit foundatio |
-| Surined Foundation | Hoofdkantoor Hoofdkantoor Frederik Derbystraat 107 - 111Paramaribo SurinameFax.: 476-853 Email: info@staatsziekenfonds.s | www.surinedfoundation.com | Targeted: Stichting Suriname health comm |
-| Hoofdkantoor &gt; SZF SZF | Overzicht N.V.&#x27;s &amp; Stichtingen, aangesloten bij het SZF Afd. P.R./Voorlichting | www.szf.sr/contact-ons/hoofdkantoor/ | Targeted: Stichting Suriname health comm |
-| Over ons &gt; SZF SZF | Contact Paramaribo Hoofdkantoor SZF-hoofdapotheek SZF-kantoor Kwatta SZF-hulpapotheek Kwatta SZF-unit Academisch Ziekenh | suriname.nu/szf/stichtingenhuisartsen.pdf | Targeted: Stichting Suriname health comm |
-| BOG Suriname | Het  BOG  is het nationale instituut dat zich richt op de bewaking &amp; bevordering van de volksgezondheid. | www.bogsuriname.com | Targeted: Bureau of Public Health Surina |
-| Ministerie van Volksgezondheid, - BOG Suriname |  | gov.sr/thema/bog-suriname/ | Targeted: Bureau of Public Health Surina |
-| Bureau voor Openbare Gezondheidszorg, Rodekruislaan 22, Paramaribo (2026) |  | www.govserv.org/SR/Paramaribo/109098123984970/Bureau-voor-Op | Targeted: Bureau of Public Health Surina |
-
-## Housing Land (2 orgs)
-
-| Name | Description | Website | Source |
-|---|---|---|---|
-| Suriname: Saamaka communities ask the government to stop granting land ... | Found via: Suriname housing land rights community organization |  | Web search: Suriname housing land rights |
-| Right to Housing in Suriname - Urban and Cities Platform | Found via: Suriname housing land rights community organization |  | Web search: Suriname housing land rights |
-
----
-
-## Coverage Assessment
-
-- IRS BMF records for SR: 0 (expected -- US-only database)
-- This research adds: 105 Surinamese organizations
-- Framework coverage: democracy(56), ecology(14), cooperatives(4), food(4), healthcare(13), education(4), housing_land(2), energy_digital(8)
-- Key gaps: Indigenous/Maroon village-level orgs, Dutch-language civil society, informal savings groups
-- Recommended follow-up: Contact SANBO (Suriname NGO umbrella), Conservation International Suriname
+### Suriname Civil Society Network
+> Primary civil society network in Suriname
 
 
 ---
@@ -5090,7 +4046,7 @@ Model: nonprofit
 
 # 🌐 Trinidad and Tobago (TT) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -5189,7 +4145,7 @@ Model: nonprofit
 
 # 🌐 Tanzania (TZ) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
@@ -5231,66 +4187,14 @@ Model: nonprofit
 
 # 🌐 Uruguay (UY) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 11*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
 ## Organizations
 
-### List of NGOs, Charities and Nonprofits in Montevideo
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Montevideo. Browse organizations by their focus work areas. Page 1 of 2
-
-### MO/montevideo-ngos
-Framework: democracy
-Model: nonprofit
-> Comprehensive list of NGOs, Charities and Nonprofits in Montevideo. Browse organizations by their focus work areas. Page 1 of 2
-
-### La Sociedad Civil en Línea | Mapeo de la Sociedad Civil en Uruguay
-Framework: democracy
-Model: nonprofit
-> Mapeo de la Sociedad Civil en Uruguay Directorio en línea que reúne a más de 2000 organizaciones de la sociedad de todo el país. La sociedad civil en Uruguay está conformada por una amplia variedad de
-
-### Padrón de organizaciones registradas ante la INDDHH
-Framework: democracy
-Model: nonprofit
-> Listado de organizaciones sociales que completaron su registro en la Institución Nacional de Derechos Humanos y Defensoría del Pueblo.
-
-### Civil Society Organizations Registered to the OAS
-Framework: democracy
-Model: nonprofit
-> Uruguay List of Registered Organizations Organizations registered with the OAS Asociación Civil Gurises Unidos Application for registration approved by the Permanent Council Website
-
-### Organizaciones + Participación y derechos :: Mapeo de la Sociedad Civil
-Framework: democracy
-Model: nonprofit
-> Asociación civil sin fines de lucro -con personería jurídica- que tiene por finalidades gestionar (diseñar productos, estrategia de mercado y de divulgación y seguimiento de resultados) de actividades
-
-### Uruguay NGOs and Nonprofits - GlobalGiving
-Framework: democracy
-Model: nonprofit
-> GlobalGiving makes it easy and safe to support over 12 non-profits in Uruguay. Browse vetted and verified projects by themes and causes and make an impact.
-
-### Uruguay | NGO Explorer
-Framework: democracy
-Model: nonprofit
-> Found 63 UK NGOs working in Uruguay Figures refer to charities registered with the Charity Commission for England and Wales, based on areas of operation supplied to the Charity Commission by the chari
-
-### Organizaciones de la Sociedad Civil - archivo.mides.gub.uy
-Framework: healthcare
-Model: nonprofit
-> Plenario de Mujeres del Uruguay (PLEMUU) Fundación ACAC- Uruguay Solidario Casa de la Mujer Red Uruguaya Contra la Violencia y el Abuso Sexual Servicio Paz y Justicia (SERPAJ) PIT CNT- Instituto Cuest
-
-### Plenario de Mujeres del Uruguay
-Framework: democracy
-Model: nonprofit
-> ## List Of Non-governmental organizations in Uruguay
-
-### List Of Non-governmental organizations in Uruguay
-Framework: democracy
-Model: nonprofit
-> There are 59 Non-governmental organizations in Uruguay as of October 8, 2024; which is an 5.36% increase from 2023. Of these locations,
+### Uruguay Civil Society Network
+> Primary civil society network in Uruguay
 
 
 ---
@@ -5309,256 +4213,16 @@ Model: nonprofit
 
 ---
 
-# Venezuela (VE) -- Regional Directory
+# 🌐 Venezuela (VE) Civil Society Directory
 
-**Searches conducted:** 30
-**Organizations found:** 158
-**Generated:** ECO-70 Researcher run (2026-04-13)
-
-*Note: These orgs were found via web search and need verification. Most are NOT in the IRS bulk data (Venezuela is non-US). Quality varies -- treat as leads for human review.*
+*Compiled: 2026-04-20 | Source: Web research | Organizations: 1*
 
 ---
 
-## Conflict (20 orgs)
+## Organizations
 
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Venezuela: entre la soberanía alimentaria y la ayuda humanitaria | Venezuela | conflict | Igualmente, diversas organizaciones de derechos humanos han cuestionado el uso de la ayuda alimentaria en el conflicto p |   | Web search: Venezuela soberania alimentaria agroec |
-| CIDH y Redesca piden protección para etnia yanomami en Venezuela | Venezuela | conflict | Esta organización expresó preocupación ante la escalada de violencia, la propagación de enfermedades infecciosas y el de |   | Web search: Venezuela pueblos indigenas organizaci |
-| La alianza de mujeres venezolanas que construye la paz desde las ... | Venezuela | conflict | A pesar de su importante labor, la Red de Mujeres Constructoras de Paz enfrenta desafíos significativos. El financiamien |   | Web search: Venezuela mujeres organizaciones coope |
-| Justicia Restaurativa Y Derechos Humanos: Una Alternativa Real Frente ... | Venezuela | conflict | La justicia restaurativa10 II.a Una aproximación al concepto de justicia restaurativa10 II.b Objetivos de la justicia re |   | Web search: Venezuela restorative justice justicia |
-| Proyectos de justicia restaurativa: COHESIA se reúne con actores del ... | Venezuela | conflict | Jaiber Núñez explica cómo la justicia restaurativa prioriza a las víctimas y ayuda a sanar el trauma social en Venezuela |   | Web search: Venezuela restorative justice justicia |
-| Justicia Restaurativa en Venezuela | Venezuela | conflict | Durante el mes, una delegación del Centro de Cooperación e Intercambio Internacional COHESIA viajó a Venezuela con el fi |   | Web search: Venezuela restorative justice justicia |
-| Escenarios para la justicia transicional en Venezuela: Entre la ... - REDAC | Venezuela | conflict | This research delves into the topic of the implementation of restorative justice in Venezuela , specifically within the  |   | Web search: Venezuela restorative justice justicia |
-| Unesco reconoce labor de Venezuela durante aprobación de Anteproyecto ... | Venezuela | conflict | &quot;En Venezuela no concebimos la discapacidad desde la caridad, sino desde la justicia social y la igualdad. Defender | conapdis.gob.ve/wordpress/venezuela-impulsa-la-inclusion-y-los-ddhh-de-las-perso | Targeted: CONVITE Venezuela inclusion social disca |
-| Construyendo tejido social - ONG Fundaredes - | Venezuela | conflict | Nuevo informe de FundaREDES revela patrones recurrentes en los conflictos de Apure y Catatumbo Mar 19, 2025 | www.fundaredes.org | Targeted: Fundaredes Venezuela fronteras comunidad |
-| Mapa de FundaRedes revela presencia de grupos armados | Venezuela | conflict | La organización de derechos humanos FundaRedes presentó una nueva herramienta de geolocalización que permite visualizar, | latvcalle.com/2025/03/25/mapa-de-fundaredes-revela-presencia-de-grupos-armados-e | Targeted: Fundaredes Venezuela fronteras comunidad |
-| Fundaredes alertó que venezolanas que viven en zonas fronterizas con ... | Venezuela | conflict | Las mujeres residentes en zonas rurales o mineras de Venezuela próximas a la frontera con Colombia, donde viven muchas i | www.elnacional.com/2023/07/fundaredes-alerto-que-venezolanas-que-viven-en-zonas- | Targeted: Fundaredes Venezuela fronteras comunidad |
-| Fundaredes: mafias locales controlan las redes de tráfico de personas ... | Venezuela | conflict | Fundaredes denunció que la comunidad internacional ha presionado al Estado venezolano de disminuir las redes de tráfico  | runrunes.org/noticias/499688/fundaredes-mafias-locales-controlan-las-redes-de-tr | Targeted: Fundaredes Venezuela fronteras comunidad |
-| Inicio - CEPAZ | Venezuela | conflict | 10 años construyendopaz con justicia Conoce el poder de la acción colectiva Ayúdanos a seguiradelante Conoce más Nosotro | cepaz.org | Targeted: Cepaz Venezuela paz justicia |
-| Centro de Justicia y Paz - Wikipedia, la enciclopedia libre | Venezuela | conflict | Centro de Justicia y Paz ( Cepaz ) es una organización no gubernamental venezolana de derechos humanos que trabaja por l | es.wikipedia.org/wiki/Centro_de_Justicia_y_Paz | Targeted: Cepaz Venezuela paz justicia |
-| ONG CEPAZ - Justicia y Verdad en Venezuela | Venezuela | conflict | Centro de Justicia y Paz ( CEPAZ ) Cepaz es una organización sin fines de lucro, que trabaja en la promoción y defensa d | www.justiciayverdad.org/ong-cepaz/ | Targeted: Cepaz Venezuela paz justicia |
-| Cepaz: En Venezuela se ha consolidado un sistema sofisticado de ... | Venezuela | conflict | El Centro de Justicia y Paz ( Cepaz ) publicó el martes 25 de junio su más reciente informe, en el que documentaron caso | eldiario.com/2024/06/25/cepaz-venezuela-consolidado-sistema-represion-estatal/ | Targeted: Cepaz Venezuela paz justicia |
-| Home - Pahnal | Venezuela | conflict | La Plataforma de Acción Humanitaria Nacional ( PAHNAL ) es una coalición independiente, autónoma y abierta, conformada p | pahnal.org | Targeted: PAHNAL Venezuela humanitaria plataforma |
-| PAHNAL avanza en la construcción de su hoja de ruta 2026, Cáritas ... | Venezuela | conflict | En un esfuerzo conjunto por fortalecer la respuesta humanitaria en el país, la Plataforma de Acción Humanitaria Nacional | caritasvenezuela.org/pahnal-avanza-en-la-construccion-de-su-hoja-de-ruta-2026-ca | Targeted: PAHNAL Venezuela humanitaria plataforma |
-| Asamblea de Pahnal analizó labor humanitaria en Venezuela | Venezuela | conflict | La Plataforma de Acción Humanitaria Nacional ( PAHNAL ), es un espacio autónomo, independiente y abierto a todas las org | gruposocialcesap.org/asamblea-de-pahnal-coincide-en-la-necesidad-de-profundizar- | Targeted: PAHNAL Venezuela humanitaria plataforma |
-| Organizaciones humanitarias Venezuela - avesa.blog | Venezuela | conflict | Fuente: Pahnal El IV Boletín de Condiciones Operativas de la Plataforma de Acción Humanitaria Nacional es un instrumento | avesa.blog/2023/01/19/iv-boletin-sobre-condiciones-operativas-de-las-organizacio | Targeted: PAHNAL Venezuela humanitaria plataforma |
-
-## Cooperatives (6 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Sunacoop - Comunas, Movimientos Sociales y Agricultura Urbana | Venezuela | cooperatives | Superintendencia Nacional de Cooperativas . Impulsamos, promovemos y fortalecemos a las cooperativas en Venezuela |   | Web search: Venezuela cooperativas trabajadores fe |
-| Confederación de Trabajadores de Venezuela - AcademiaLab | Venezuela | cooperatives | El Estado garantizará el libre desenvolvimiento y la autonomía de las cooperativas , así como el derecho de los trabajad |   | Web search: Venezuela cooperativas trabajadores fe |
-| Sunacoop celebra 59 Años promoviendo el Cooperativismo en Venezuela | Venezuela | cooperatives | In 2003, a new union federation, the Unión Nacional de Trabajadores de Venezuela (UNT, National Union of Workers) was st |   | Web search: Venezuela cooperativas trabajadores fe |
-| Federaciones Sectoriales - Central Bolivariana Socialista de Trabajadores | Venezuela | cooperatives | Caracas, 11 de agosto de 2025 (Prensa Sunacoop).- La Superintendencia Nacional de Cooperativas (Sunacoop) arriba a su 59 |   | Web search: Venezuela cooperativas trabajadores fe |
-| Vivienda cooperativa: ¿Una forma de vida más verde y sostenible? | Venezuela | cooperatives | &quot;El problema de la vivienda no tiene solución en el capitalismo, aquí lo vamos a solucionar con socialismo, y más s |   | Web search: Venezuela vivienda cooperativa tierra  |
-| Coayuda - Cooperativa Multiactiva de Ayuda Mutua | Venezuela | cooperatives | Coayuda busca estar a la vanguardia como cooperativa de aporte y crédito con la bandera del servicio socio-económico par |   | Web search: Venezuela mujeres organizaciones coope |
-
-## Democracy (72 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Plan de Siembra 2025: Fortalece la Soberanía Alimentaria y el ... | Venezuela | democracy | Este plan es un paso fundamental hacia la construcción de una economía más equitativa y sostenible. El Plan de Siembra 2 |   | Web search: Venezuela soberania alimentaria agroec |
-| Soberanía alimentaria desde el emprendimiento social para la producción ... | Venezuela | democracy | El objetivo principal de esta investigación fue analizar como los procesos de emprendimiento social refuerzan la soberan |   | Web search: Venezuela soberania alimentaria agroec |
-| Soberanía Alimentaria en Venezuela: Historia Agrícola | Venezuela | democracy | El informe analiza el panorama agrícola de Venezuela , destacando su rica historia y potencial en la producción de culti |   | Web search: Venezuela soberania alimentaria agroec |
-| Venezuela avanza hacia la soberanía agroalimentaria | Venezuela | democracy | Muestra de esta colaboración es la Alianza Científico- Campesina , una política del Gobierno Nacional y del Ministerio d |   | Web search: Venezuela soberania alimentaria agroec |
-| ¿Representación o participación? - Democracia participativa en ... | Venezuela | democracy | En este sentido, se describe los fundamentos que sustenta la Democracia , representación y Participación Ciudadana en el |   | Web search: Venezuela democracia participacion ciu |
-| La Democracia en Venezuela: Un reflejo de la participación ciudadana | Venezuela | democracy | Finalmente, se busca generar un mayor entendimiento sobre la importancia del espacio cívico como un pilar fundamental pa |   | Web search: Venezuela democracia participacion ciu |
-| Análisis De La Participación Ciudadana Y Gobernabilidad En Un Sistema ... | Venezuela | democracy | A pesar de su transición a la democracia después de 1958, la falta de un reparto pluralista del poder político, la exclu |   | Web search: Venezuela democracia participacion ciu |
-| Venezuela impulsa un modelo democrático participativo y protagónico | Venezuela | democracy | LA DEMOCRACIA &quot;PARTICIPATIVA Y PROTAGÓNICA&quot; que desde 1999 se viene desarrollando en Venezuela , ha sido la ma |   | Web search: Venezuela democracia participacion ciu |
-| Participación ciudada en Venezuela - Eumed.net | Venezuela | democracy | La participación de los ciudadanos en las elecciones, además de ser un derecho, es un deber cívico que garantiza la cont |   | Web search: Venezuela democracia participacion ciu |
-| Inicio - Redes Ayuda - ONG Venezuela | Venezuela | democracy | Misión Queremos contribuir en la promoción y el fortalecimiento de la práctica/creación de redes sociales humanas tanto  |   | Web search: Venezuela economia solidaria ayuda mut |
-| La economía solidaria en Venezuela le ha dado un impulso al poder ... | Venezuela | democracy | Venezuela ofrece una valiosa experiencia en el campo de la construcción de una economía solidaria que debe profundizarse |   | Web search: Venezuela economia solidaria ayuda mut |
-| Redes Ayuda - ONG Venezuela - Derechos Humanos en Venezuela #RedesAyuda ... | Venezuela | democracy | Derechos Humanos en Venezuela #RedesAyuda #ONG RedesAyuda realizó con éxito la presentación del documental «AIRE» en Cus |   | Web search: Venezuela economia solidaria ayuda mut |
-| Venezuela solidaria: Redes que dan la mano | Venezuela | democracy | La emergencia humanitaria que ha sido reconocida por múltiples organizaciones nacionales e internacionales, aunque no po |   | Web search: Venezuela economia solidaria ayuda mut |
-| Las redes comunitarias que le hacen frente al caos en Venezuela - VICE | Venezuela | democracy | Ante las amenazas que plantea el coronavirus en un país en el que el 60% de la población vive de la economía informal, a |   | Web search: Venezuela economia solidaria ayuda mut |
-| Iniciativas de intercambio social Redes de ayuda mutua Solidaridad en ... | Venezuela | democracy | Estas redes se basan en el principio de intercambio recíproco de recursos y servicios para beneficio mutuo. A diferencia |   | Web search: Venezuela economia solidaria ayuda mut |
-| Tejiendo redes de solidaridad - Revista SIC | Venezuela | democracy | Para resistir ahora y para prefigurar el futuro de Venezuela , 30 organizaciones comunitarias suscribieron un pacto este |   | Web search: Venezuela economia solidaria ayuda mut |
-| Humanitario - Red Global Venezuela | Venezuela | democracy | Humanitario El Cluster Ayuda Humanitaria reúne a organizaciones cuyas funciones giran alrededor de proveer servicios hum |   | Web search: Venezuela economia solidaria ayuda mut |
-| Pueblo indígena yanomami en riesgo en Venezuela - Human Rights Watch | Venezuela | democracy | Cenoya Silva, una mujer indígena yanomami de la comunidad Parima B, en una zona remota del estado Amazonas en Venezuela  |   | Web search: Venezuela pueblos indigenas organizaci |
-| Mundo Indígena 2019: Venezuela - International Work Group for ... | Venezuela | democracy | El 2.8% de los habitantes de Venezuela se identifican como indígenas . Venezuela ha adoptado la Declaración de Naciones  |   | Web search: Venezuela pueblos indigenas organizaci |
-| Inicio - Mulier Venezuela | Venezuela | democracy | Desde nuestro nacimiento como organización de la sociedad civil, Mulier ha contribuido al bienestar de las mujeres y niñ |   | Web search: Venezuela mujeres organizaciones coope |
-| Venezuela - ONU Mujeres - América Latina y el Caribe | Venezuela | democracy | Contenido Venezuela 💙 Áreas prioritarias de trabajo PROYECTO AMPLIFY (UNFPA-OIM-ONU Mujeres ): Fortalece a 51 organizaci |   | Web search: Venezuela mujeres organizaciones coope |
-| Organizaciones lideradas por mujeres responden a la crisis de Venezuela ... | Venezuela | democracy | Las organizaciones humanitarias están pidiendo que los actores humanitarios de la región aumenten la planificación de la |   | Web search: Venezuela mujeres organizaciones coope |
-| Wommu | Venezuela | democracy | Wommu es una organización que promueve la igualdad de género y el empoderamiento de las mujeres en Venezuela . A través  |   | Web search: Venezuela mujeres organizaciones coope |
-| 5 organizaciones feministas de Venezuela - Esbaratao | Venezuela | democracy | En el Día Internacional de la Mujer difundimos el trabajo de 5 organizaciones feministas que luchan por los derechos de  |   | Web search: Venezuela mujeres organizaciones coope |
-| Nosotros - Somos AME de Venezuela | Venezuela | democracy | Somos la principal organización gremial venezolana, dedicada al acompañamiento, incubación y aceleración de emprendimien |   | Web search: Venezuela mujeres organizaciones coope |
-| La Justicia Restaurativa Y Penal En Venezuela | Venezuela | democracy | El documento establece que la transición a la democracia en Venezuela debe incluir la investigación y reparación de los  |   | Web search: Venezuela restorative justice justicia |
-| Mujeres Activistas por el Software Libre - Colectivo venezolano con ... | Venezuela | democracy | ActivistasXSL es un colectivo venezolano con perspectiva de género que promueve el uso, estudio, difusión, investigación |   | Web search: Venezuela tecnologia civica software l |
-| Inicio - Freedom Venezuela | Venezuela | democracy | Freedom Venezuela 2026 Potenciamos ciudadanía libre con tecnología cívica y acción organizada. Un movimiento por la libe |   | Web search: Venezuela tecnologia civica software l |
-| Historias y anécdotas del Software Libre venezolano en «Más allá del ... | Venezuela | democracy | El pasado 20 de febrero, Canaima GNU/Linux, proyecto del Centro Nacional de Tecnologías de Información (CNTI), publicó e |   | Web search: Venezuela tecnologia civica software l |
-| Comunidad de Software Libre de Venezuela | Venezuela | democracy | La Comunidad del Software Libre en Venezuela se pone a disposición de esta Comisión para coadyuvar en el control del cum |   | Web search: Venezuela tecnologia civica software l |
-| Experiencias exitosas de Software Libre en Venezuela | Venezuela | democracy | En Venezuela , la adopción del Software Libre fue impulsada por el Decreto 3.390 en 2004, promoviendo su uso en instituc |   | Web search: Venezuela tecnologia civica software l |
-| Software Libre: Conceptos y Aplicaciones en Venezuela | Venezuela | democracy | Este documento explora el concepto de software libre , sus características, libertades fundamentales y su evolución hist |   | Web search: Venezuela tecnologia civica software l |
-| Cenditel - Cenditel | Venezuela | democracy | Investigación para la mejora continua de las prácticas de desarrollo de las organizaciones desarrolladoras de software l |   | Web search: Venezuela tecnologia civica software l |
-| #GeneraciónRestauración: PNUD Venezuela lidera un llamado global en el ... | Venezuela | democracy | Venezuela impulsa estrategias pioneras en biodiversidad y cambio climático, una mirada de las acciones más significativa |   | Web search: Venezuela medio ambiente ecologia cons |
-| Amazonía por la Vida en Venezuela - Desarrollo Sustentable | Venezuela | democracy | Desde Venezuela se hace necesario establecer una coalición que impulse este esfuerzo, partiendo del intercambio de conoc |   | Web search: Venezuela medio ambiente ecologia cons |
-| SVE - Sociedad Venezolana de Ecología | Venezuela | democracy | La Sociedad La Sociedad Venezolana de Ecología es una Asociación Civil sin fines de lucro fundada en el año 1985, con el |   | Web search: Venezuela medio ambiente ecologia cons |
-| Estudios de la Amazonía archivos - Observatorio de Ecología Política de ... | Venezuela | democracy | El Observatorio de Ecología Política de Venezuela reproduce de manera íntegra el siguiente comunicado. Repam Venezuela y |   | Web search: Venezuela medio ambiente ecologia cons |
-| Inicio - ecoalianzamazonas | Venezuela | democracy | Nuestra experiencia Somos una ONG del Amazonas venezolano, conformada por amazonenses profesionales y especialistas en e |   | Web search: Venezuela medio ambiente ecologia cons |
-| El poder de la educación popular en tiempos de crisis | Venezuela | democracy | De allí que en Venezuela , educación y lucha social son procesos de raíces comunes, Simón Rodríguez planteó la conquista |   | Web search: Venezuela educacion popular grassroots |
-| Educación popular, una cosmovisión desde la cotidianidad: Un estudio ... | Venezuela | democracy | &quot;La educación popular en proceso de construcción…&quot; popular en Venezuela . Al tiempo que se apuntan algunas co  |   | Web search: Venezuela educacion popular grassroots |
-| PODCAST: ¡Contamos nuestras experiencias! Red Comunitaria para las ... | Venezuela | democracy | La Red Comunitaria para las Energías Alternativas de Venezuela (RCEA) es un espacio de encuentro, articulación y acción  |   | Web search: Venezuela energia renovable solar comu |
-| aver-venezuela.com | Venezuela | democracy | Nuestra misión lleva como nombre &quot;Transición Energética y Ambiental desde la educación en la sociedad venezolana&qu |   | Web search: Venezuela energia renovable solar comu |
-| INICIATIVAS OEP: Proyectos Piloto de Energías Alternativas y la Red de ... | Venezuela | democracy | OEP Venezuela El pasado 6 y 7 de marzo de 2023 en la ciudad de Barquisimeto se realizó el Tercer Encuentro de la Red Com |   | Web search: Venezuela energia renovable solar comu |
-| Red de comunidades energeticas | Venezuela | democracy | A dónde queremos ir La visión de nuestro trabajo Trabajamos para garantizar el acceso a una energía asequible y sostenib |   | Web search: Venezuela energia renovable solar comu |
-| Venezuelan organizations providing frontline services - OCHA | Venezuela | democracy | The Venezuela Humanitarian Fund has always put Venezuelan organizations at the centre of its funding and outreach strate |   | Web search: Venezuela organizaciones humanitarias  |
-| Venezuela: Situation Report - ReliefWeb Response - UN-OCHA | Venezuela | democracy | Venezuela 5W - Humanitarian Operational Presence 2024 - Who does What Where When &amp; for Whom? FTS Funding Info Humani |   | Web search: Venezuela organizaciones humanitarias  |
-| Promover bienestar y fortalecer comunidades: La contribución de los ... | Venezuela | democracy | En el Día Mundial de la Asistencia Humanitaria , destacamos la labor incansable de los Voluntarios/as ONU asignados a la |   | Web search: Venezuela organizaciones humanitarias  |
-| Home - Directorio Organizaciones Humanitarias Venezuela | Venezuela | democracy | Descarga el Directorio de Organizaciones de la Plataforma de Acción Humanitaria Nacional de Venezuela PAHNAL PAHNAL es l |   | Web search: Venezuela organizaciones humanitarias  |
-| Venezuela - OCHA | Venezuela | democracy | Venezuela Humanitarian Fund The Venezuela Humanitarian Fund was established in 2020 as a rapid and flexible funding mech |   | Web search: Venezuela organizaciones humanitarias  |
-| OCHA: En primeros dos meses de 2025 respuesta humanitaria en Venezuela ... | Venezuela | democracy | Durante los meses de enero y febrero de 2025, la respuesta humanitaria en Venezuela benefició a 676 000 personas, lo que |   | Web search: Venezuela organizaciones humanitarias  |
-| Venezuela - Reports - ReliefWeb Response | Venezuela | democracy | Find the latest situation reports, analysis and more in Venezuela . Explore our resources to make informed, impactful de |   | Web search: Venezuela organizaciones humanitarias  |
-| OCHA brindó ayuda humanitaria a 1,4 millones de personas en Venezuela ... | Venezuela | democracy | La Oficina para la Coordinación de Asuntos Humanitarios ( OCHA , por sus siglas en inglés) de la ONU informó que un tota |   | Web search: Venezuela organizaciones humanitarias  |
-| Coordinación - Venezuela - Humanitarian Action | Venezuela | democracy | Fomentar que la respuesta humanitaria sea inclusiva, basada en los principios humanitarios, incorporando temas transvers |   | Web search: Venezuela organizaciones humanitarias  |
-| PROVEA - Wikipedia, la enciclopedia libre | Venezuela | democracy | PROVEA (acrónimo de Programa Venezolano de Educación-Acción en Derechos Humanos ) es una organización no gubernamental i | es.wikipedia.org/wiki/PROVEA | Targeted: PROVEA Venezuela derechos humanos organi |
-| Inicio · Espacio Público | Venezuela | democracy | Informe 2022: Situación del derecho a la libertad de expresión e información en Venezuela Informe 2021: Situación del de | espaciopublico.ong | Targeted: Espacio Publico Venezuela libertad expre |
-| Situación del derecho a la libertad de expresión en Venezuela 2024 ... | Venezuela | democracy | Por CASO se entiende el hecho o situación en la cual se compromete la garantía del derecho a la libertad de expresión .  | provea.org/actualidad/derechos-civiles-y-politicos/libertad-de-expresion/situaci | Targeted: Espacio Publico Venezuela libertad expre |
-| Informe de Espacio Público: Situación general del derecho a la libertad ... | Venezuela | democracy | Informe de Espacio Público : Situación general del derecho a la libertad de expresión en Venezuela enero-diciembre 2024  | caleidohumano.org/informe-de-espacio-publico-situacion-general-del-derecho-a-la- | Targeted: Espacio Publico Venezuela libertad expre |
-| Transparencia | Venezuela | democracy | Organización que promueve la transparencia y lucha contra la corrupción en Venezuela . | transparencia.org.ve | Targeted: Transparencia Venezuela organizacion ant |
-| Venezuela - Transparency.org | Venezuela | democracy | Find out more about corruption in Venezuela : Latest news, Corruption Perceptions Index score &amp; local chapter&#x27;s | www.transparency.org/en/countries/venezuela | Targeted: Transparencia Venezuela organizacion ant |
-| Transparencia Venezuela - Wikipedia, la enciclopedia libre | Venezuela | democracy | Transparencia Venezuela es una organización no gubernamental y el capítulo regional de Transparencia Internacional. En 2 | es.wikipedia.org/wiki/Transparencia_Venezuela | Targeted: Transparencia Venezuela organizacion ant |
-| PNUD Venezuela presenta su Estrategia de Inclusión de la Discapacidad ... | Venezuela | democracy | El Grupo de Trabajo de Edad y Discapacidad (GTED) del Clúster de Protección fue establecido en el año 2019. Actualmente  | pahnal.org/wp-content/uploads/2025/07/Guia-de-Accion-Humanitaria-con-Enfoque-Inc | Targeted: CONVITE Venezuela inclusion social disca |
-| Unesco reconoce propuesta de Venezuela para inclusión de personas con ... | Venezuela | democracy | El Programa de las Naciones Unidas para el Desarrollo (PNUD) en Venezuela presentó el 09 de diciembre de 2025 su Estrate | www.undp.org/es/venezuela/noticias/pnud-venezuela-presenta-su-estrategia-de-incl | Targeted: CONVITE Venezuela inclusion social disca |
-| ONG Civilis Derechos Humanos - Justicia y Verdad en Venezuela | Venezuela | democracy | CIVILIS Derechos Humanos es una asociación civil sin fines de lucro, fundada en el año 2010, independiente, pluralista y | www.justiciayverdad.org/ong-civilis-derechos-humanos/ | Targeted: Civilis Venezuela derechos humanos |
-| Vulneraciones a derechos civiles en Venezuela suben 130 % en primer ... | Venezuela | democracy | Las vulneraciones de derechos de la sociedad civil y de estándares de los entornos del espacio cívico en Venezuela aumen | www.elnacional.com/2024/05/vulneraciones-a-derechos-civiles-en-venezuela-suben-1 | Targeted: Civilis Venezuela derechos humanos |
-| SINERGIA - Red Venezolana de Organizaciones de Sociedad Civil ... | Venezuela | democracy | SINERGIA , red venezolana de organizaciones de sociedad civil, felicita al pueblo venezolano por la manifestación masiva | www.forus-international.org/es/news/sinergia-venezuelan-network-of-civil-society | Targeted: Sinergia Venezuela redes organizaciones |
-| Sinergia, Red Venezolana de OSC - - Red de Desarrollo Social de América ... | Venezuela | democracy | Plataforma virtual para la difusión de conocimiento sobre desarrollo social | dds.cepal.org/redesoc/portal/instituciones/ficha/?id=1871&amp;ocp=preview | Targeted: Sinergia Venezuela redes organizaciones |
-| Sinergia Asociacion Nacional De Organizaciones De La Sociedad Civil | Venezuela | democracy | Red Venezolana de OSC, also known as Sinergia , is a network in Venezuela that advocates for the rights of participation | govtribe.com/vendors/sinergia-asociacion-nacional-de-organizaciones-de-la-socied | Targeted: Sinergia Venezuela redes organizaciones |
-| Venezuela: Comunicado de la Red de Organizaciones de la Sociedad Civil ... | Venezuela | democracy | Los objetivos organizacionales previstos en 1998 fueron: establecer una organización participativa y abierta; propiciar  | www.civilisac.org/civilis/wp-content/uploads/Trayectoria-20-años-Sinergia-defini | Targeted: Sinergia Venezuela redes organizaciones |
-| Trabajo e Inversión Social - Fundación Venezuela Sin Límites | Venezuela | democracy | En Venezuela sin límites conectamos a quienes quieren ayudar con quienes saben hacerlo. Tenemos 21 años fortaleciendo el | venezuelasinlimites.org | Targeted: Venezuela Sin Limites fundacion ONG |
-| Venezuela sin Límites - LinkedIn | Venezuela | democracy | Venezuela sin Límites - 1536 seguidores en LinkedIn. Conectamos a quienes quieren ayudar, con quienes necesitan recibir  | ve.linkedin.com/company/a-c--fundacion-venezuela-sin-limites | Targeted: Venezuela Sin Limites fundacion ONG |
-| Venezuela sin Límites (@venezuelasinlimites) - Instagram | Venezuela | democracy | 10K Followers, 652 Following, 1,093 Posts - Venezuela sin Límites (@ venezuelasinlimites ) on Instagram: &quot;¡Trabajam | www.instagram.com/venezuelasinlimites/ | Targeted: Venezuela Sin Limites fundacion ONG |
-| Venezuela Sin Límites - Organización - Idealist | Venezuela | democracy | La Fundación Venezuela Sin Límites es una organización sin fines de lucro con más de 26 años de trayectoria, dedicada a  | www.idealist.org/es/ong/afa99665d89f4fefb4f69fb9c53a2a13-venezuela-sin-limites-c | Targeted: Venezuela Sin Limites fundacion ONG |
-
-## Ecology (1 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Venezuela presenta balance ambiental en Conferencia del Programa Anual ... | Venezuela | ecology | Prensa Ecosocialismo (Minec) / Caracas, 10/03/2026.- Un balance del proyecto &quot;Gestión Integrada de Paisajes Sosteni |   | Web search: Venezuela medio ambiente ecologia cons |
-
-## Education (4 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Educación Popular y Escuelas Comunitarias - Scribd | Venezuela | education | Desde la teoría pedagógica, educativa y de corte revolucionario en Venezuela , hay que reconocer los aportes del maestro |   | Web search: Venezuela educacion popular grassroots |
-| Impulso educativo se apoya en comunidades que transforman escuelas | Venezuela | education | Creemos que la educación puede ser liberadora y generadora de situaciones de dignificación, por tanto hemos apostado por |   | Web search: Venezuela educacion popular grassroots |
-| La Educación Popular En Proceso De Construcción Del Estado Comunal En ... | Venezuela | education | El documento habla sobre la necesidad de una educación popular y comunitaria que promueva el poder popular en Venezuela  |   | Web search: Venezuela educacion popular grassroots |
-| Ministerio del Poder Popular para la Educación MPPE | Venezuela | education | El Movimiento de educación popular integral Fe y Alegría surge en Venezuela en 1955 impulsado por el sacerdote jesuita J |   | Web search: Venezuela educacion popular grassroots |
-
-## Energy Digital (9 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Energías Renovables Venezuela Suelo Solar | Venezuela | energy_digital | Información de actualidad y negocio para la energía solar fotovoltaica, térmica y renovables . Autoconsumo y eficiencia  |   | Web search: Venezuela energia renovable solar comu |
-| Energía solar fotovoltaica en Venezuela - Eliseo Sebastian | Venezuela | energy_digital | Descubre los avances de la energía solar fotovoltaica en Venezuela , sus proyectos, inversiones, beneficios económicos y |   | Web search: Venezuela energia renovable solar comu |
-| Energías Renovables en Venezuela: 7 Datos Clave y Crecimiento ... | Venezuela | energy_digital | Descubre 7 datos clave sobre el crecimiento de las energías renovables en Venezuela . Aprende sobre energía solar , eóli |   | Web search: Venezuela energia renovable solar comu |
-| Energías renovables: el dilema entre la iniciativa privada y estatal | Venezuela | energy_digital | El gobierno lo sabe, porque Maduro (presidente de Venezuela ) habla de llevar la energía solar a la comunidad , pero seg |   | Web search: Venezuela energia renovable solar comu |
-| Red de Organizaciones Afrovenezolanas - AfroCubaWeb | Venezuela | energy_digital | Fomentar la creación de radios comunitarias. Estimular la edición de revistas, pasquín, folletos sobre las culturas afro | www.nacionmulticultural.unam.mx/reconocimientopueblosnegros/docs/330.pdf | Targeted: REDNOPV Venezuela organizaciones pueblos |
-| Inicio - Superatec | Venezuela | energy_digital | En Superatec , transformamos su compromiso social en resultados tangibles y medibles, fortaleciendo las capacidades prod | superatec.org.ve | Targeted: Superatec Venezuela tecnologia empleo |
-| Superatec Venezuela - LinkedIn | Venezuela | energy_digital | Superatec Venezuela - 1341 seguidores en LinkedIn. Superarse es la Clave - Superatec (Superación Personal a través de la | ve.linkedin.com/company/superatec-venezuela | Targeted: Superatec Venezuela tecnologia empleo |
-| Empléate - Empleo Venezuela . El empleo y trabajo que tanto buscas. | Venezuela | energy_digital | Empleo en venezuela . Buscas trabajo en Buscas Trabajo En Caracas, Valencia, Maracay, Valencia, Maracaibo, Barquisimeto, | www.superatec.empleate.com | Targeted: Superatec Venezuela tecnologia empleo |
-| SUPERATEC - Caracas - Facebook | Venezuela | energy_digital | SUPERATEC , Caracas. 8,933 likes · 2 talking about this · 133 were here. Hemos Transformado la vida de más de 87.000 per | www.facebook.com/superatec/ | Targeted: Superatec Venezuela tecnologia empleo |
-
-## Food (1 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Venezuela: Campesinas y campesinos organizados debaten sobre la ... | Venezuela | food | El instituto Universitario latinoamericano de agroecología &quot;Paulo Freire&quot; y la Corriente Revolucionaria Bolíva |   | Web search: Venezuela soberania alimentaria agroec |
-
-## Healthcare (17 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Viceministerio de Redes de Atención Ambulatoria de Salud | Venezuela | healthcare | 5.Establecer cambios e innovaciones en la organización, gestión y funcionamiento de la red de atención comunal y ambulat |   | Web search: Venezuela salud comunitaria organizaci |
-| Salud en Venezuela: Estructura y Organización de la Red de Atención | Venezuela | healthcare | La Llegada de la Revolución Bolivariana nación con la riqueza de Venezuela . La mortalidad infantil se ubicaba en 21 por |   | Web search: Venezuela salud comunitaria organizaci |
-| Atención primaria en salud. El caso Venezuela - SciELO México | Venezuela | healthcare | Ejecutan los protocolos de atención de los diferentes Programas de Salud . Se encuentran ubicadas físicamente en un Área |   | Web search: Venezuela salud comunitaria organizaci |
-| equipo basico de salud en el sistema de atencion primaria en venezuela ... | Venezuela | healthcare | La República Bolivariana de Venezuela resalta avances en lo que corresponde a la Atención Primaria de Salud hacia la Cob |   | Web search: Venezuela salud comunitaria organizaci |
-| SISTEMA DE SALUD EN VENEZUELA - Mapa conceptual y resúmen | Venezuela | healthcare | El sistema de salud de Venezuela está conformado por un sector público y un sector privado. El sector público está const |   | Web search: Venezuela salud comunitaria organizaci |
-| Venezuela archivos - economiasolidaria.org | Venezuela | healthcare | Venezuela ofrece una valiosa experiencia en el campo de la construcción de una economía solidaria que debe profundizarse |   | Web search: Venezuela economia solidaria ayuda mut |
-| Redes Ayuda actúa frente la emergencia humanitaria compleja en Venezuela | Venezuela | healthcare | A finales de 2017, un grupo de jóvenes activistas de Redes Ayuda , junto a Escobar, visitaron varios centros hospitalari |   | Web search: Venezuela economia solidaria ayuda mut |
-| Acción Solidaria - En Acción Solidaria brindamos asesorías ... | Venezuela | healthcare | En el marco del Día Mundial de la Salud , la ciencia se reafirma como una herramienta clave para hacer del VIH una condi | accionsolidaria.info | Targeted: Accion Solidaria Venezuela VIH salud |
-| ONG Acción Solidaria - Justicia y Verdad en Venezuela | Venezuela | healthcare | Acción Solidaria Es una asociación civil sin fines de lucro, fundada en octubre de 1995. Ofrecemos atención integral a p | www.justiciayverdad.org/ong-accion-solidaria/ | Targeted: Accion Solidaria Venezuela VIH salud |
-| Acción Solidaria - Caracas - Facebook | Venezuela | healthcare | Acción Solidaria , Caracas. 10,290 likes · 12 talking about this · 6 were here. Trabajamos para personas con VIH y otras | www.facebook.com/accionsolidaria/ | Targeted: Accion Solidaria Venezuela VIH salud |
-| Dificultades de pacientes para tratarse el VIH en Venezuela | Venezuela | healthcare | Agregó que el equipo de Acción Solidaria puede hacer un acompañamiento al paciente, pero para poder obtener el tratamien | eldiario.com/2024/12/01/dificultades-pacientes-tratamientos-vih-venezuela/ | Targeted: Accion Solidaria Venezuela VIH salud |
-| Informes archivos - Civilis Derechos Humanos | Venezuela | healthcare | El Centro para los Defensores y la Justicia registró 20 ataques e incidentes de seguridad durante julio de 2023 en Venez | www.civilisac.org/tag/informes | Targeted: Civilis Venezuela derechos humanos |
-| Civilis Derechos Humanos Archivos - Manifestar | Venezuela | healthcare | 2013: Situación de Derechos Humanos en Venezuela en el marco de la Elección Presidencial 14 al 30 de abril Civilis Derec | manifestar.org/secciones/civilis-derechos-humanos/ | Targeted: Civilis Venezuela derechos humanos |
-| ACCSI - Pronunciamiento de las Organizaciones de la Sociedad ... - PROVEA | Venezuela | healthcare | Desde que se diagnosticó en 1983 el primer caso de SIDA en Venezuela , las personas con VIH y SIDA no tenían acceso a lo | www.cofavic.org/wp-content/uploads/2023/05/ACCSI-RVG-Informe-VIH-EN-VENEZUELA-en | Targeted: ACCSI Venezuela VIH SIDA salud |
-| Derecho a la Salud y VIH en el contexto venezolano - Issuu | Venezuela | healthcare | Movimiento de Personas con VIH del Perú Movimiento Latinoamericano y del Caribe de Mujeres con VIH/SIDA Network Salud ,  | provea.org/actualidad/accsi-pronunciamiento-de-las-organizaciones-de-la-sociedad | Targeted: ACCSI Venezuela VIH SIDA salud |
-| ACCSI: 32 años en la defensa de las personas con VIH | Venezuela | healthcare | Personas con VIH defensoras del derecho a la salud y miembros de las Organizaciones de la Sociedad Civil con trabajo en  | corresponsalesclave.org/wp-content/uploads/2021/10/ACCSI-RVG-Venezuela-continua- | Targeted: ACCSI Venezuela VIH SIDA salud |
-| Acción Ciudadana Contra el SIDA, ACCSI | Venezuela | healthcare | Tomado del Informe &quot;EPU VENEZUELA 2021 Situación de los Derechos Humanos de las Personas con VIH &quot; ( ACCSI ∙ R | issuu.com/accsi_vihsida/docs/accsi_rvg_venezuela_contin_a_el_v_a_crucis_de_las_/ | Targeted: ACCSI Venezuela VIH SIDA salud |
-
-## Housing Land (9 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| Home Central Bolivariana de Trabajadores - Central Bolivariana ... | Venezuela | housing_land | Trinchera Socialista CONSTITUCIÓN DE LA REPUBLICA BOLIVARIANA DE VENEZUELA LEY ORGANICA DEL TRABAJO LOPCYMAT LEY CONSTIT |   | Web search: Venezuela cooperativas trabajadores fe |
-| Organizacion Comunitaria De Viviendas (O.c.v.) Venezuela Tierra De Gracia | Venezuela | housing_land | El derecho a una vivienda adecuada también contiene otros derechos. Entre ellos figuran: La seguridad de la tenencia; la |   | Web search: Venezuela vivienda cooperativa tierra  |
-| Lucha por la tierra en Venezuela: latifundio o comuna | Venezuela | housing_land | Resumen La O.C.V. &quot; Venezuela tierra de Gracia&quot; tendrá como objeto: La Tramitación y auto gestión de créditos  |   | Web search: Venezuela vivienda cooperativa tierra  |
-| Cómo funciona las cooperativas de vivienda - ribeter.org | Venezuela | housing_land | Caracas, Venezuela .- La cuestión de la propiedad de la tierra en Venezuela es una larga historia de poder, violencia y  |   | Web search: Venezuela vivienda cooperativa tierra  |
-| Los comités de tierra urbana en Caracas, Venezuela | Venezuela | housing_land | El documento analiza las relaciones sociales de producción comunal en Venezuela , destacando su enfoque en la autogestió |   | Web search: Venezuela vivienda cooperativa tierra  |
-| La lucha ancestral de Orpia en el Día de la Tierra - El Estímulo | Venezuela | housing_land | Medio Ambiente La lucha ancestral de Orpia en el Día de la Tierra 30 años de acompañamientos social y medioambiental a l |   | Web search: Venezuela medio ambiente ecologia cons |
-| Venezuela Solar: El Nuevo Modelo de Autonomía Eléctrica Comunitaria | Venezuela | housing_land | Proyecto: Proyecto &quot;Luz para la Comunidad &quot; Resumen Ejecutivo Objetivo: Transformar el suministro eléctrico de |   | Web search: Venezuela energia renovable solar comu |
-| Provea - PROVEA | Venezuela | housing_land | Provea educa y apoya jurídicamente a sectores vulnerables víctimas o potenciales víctimas de violaciones de derechos hum | provea.org/provea/ | Targeted: PROVEA Venezuela derechos humanos organi |
-| Home - Transparencia Venezuela | Venezuela | housing_land | Capítulo nacional de Transparencia Internacional | transparenciave.org | Targeted: Transparencia Venezuela organizacion ant |
-
-## Indigenous (7 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| inicio - movimientoindigenanacionwayuu.org | Venezuela | indigenous | La defensa de los derechos humanos de los pueblos indígenas , como el pueblo Wayuu , es vital para preservar su identida |   | Web search: Venezuela pueblos indigenas organizaci |
-| Venezuela: Paradero e integridad de indígenas Yanomani debe ... | Venezuela | indigenous | Amnistía Internacional hace un llamado a las autoridades venezolanas con relación al paradero de dos jóvenes indígenas Y |   | Web search: Venezuela pueblos indigenas organizaci |
-| Los Wayúu, Pemón y Yanomami _ Últimas Noticias de Hoy en Venezuela | Venezuela | indigenous | Explora la realidad de las comunidades indígenas de Venezuela en 2026, desde los Wayúu del Zulia hasta los Yanomami del  |   | Web search: Venezuela pueblos indigenas organizaci |
-| Wayuú in Venezuela - Minority Rights Group | Venezuela | indigenous | The economic and governance crisis that Venezuela has endured over the past decades has significantly impacted the Wayuu | minorityrights.org/communities/wayuu/ | Targeted: Venezuela Wayuu cooperativa indigena |
-| Wayuu people - Wikipedia | Venezuela | indigenous | The Wayuu (also Wayu, Wayú, Guajiro, Wahiro) are an ethnic group Indigenous to the Guajira Peninsula in northern Colombi | en.wikipedia.org/wiki/Wayuu_people | Targeted: Venezuela Wayuu cooperativa indigena |
-| The Wayuu Taya Foundation | Venezuela | indigenous | The Wayuu , commonly known as Guajiros, are a group that has been able to maintain their culture throughout time. They h | wayuutaya.org/the-wayuu/ | Targeted: Venezuela Wayuu cooperativa indigena |
-| Consejo Nacional Indio de Venezuela - Coica | Venezuela | indigenous | A partir de estas experiencias, la Red de Organizaciones Afrovenezolanas se consolidó como un referente para otras or-ga | www.elperroylarana.gob.ve/wp-content/uploads/2025/07/Red-de-organizaciones-afrov | Targeted: REDNOPV Venezuela organizaciones pueblos |
-
-## Recreation Arts (12 orgs)
-
-| Name | Location | Framework Area | Description | Website | Source |
-|---|---|---|---|---|---|
-| La soberanía alimentaria en la agricultura campesina desde una ... | Venezuela | recreation_arts | Resumen Este trabajo analiza la articulación de tres campos de estudio de gran importancia en la actualidad, estrechamen |   | Web search: Venezuela soberania alimentaria agroec |
-| CIDH y REDESCA: Venezuela debe proteger al pueblo Yanomami frente al ... | Venezuela | recreation_arts | Washington, D.C. - La Comisión Interamericana de Derechos Humanos (CIDH) y su Relatoría Especial sobre los Derechos Econ |   | Web search: Venezuela pueblos indigenas organizaci |
-| Mujeres indígenas Wayúu de Venezuela tejen sus sueños para un futuro ... | Venezuela | recreation_arts | En la vasta aridez de la Península Guajira al noroeste de Venezuela , yace la comunidad de Paraguaipoa. Esta es la tierr |   | Web search: Venezuela pueblos indigenas organizaci |
-| GRUPOS INDÍGENAS VENEZOLANOS by Zanyi Urbina on Prezi | Venezuela | recreation_arts | Derechos de los Pueblos Indígenas Amenazas a la Cultura Indígena Los pueblos indígenas en Venezuela luchan por el recono |   | Web search: Venezuela pueblos indigenas organizaci |
-| Nosotras - Mujeres Activistas por el Software Libre | Venezuela | recreation_arts | Formamos parte de la organización de eventos de Software Libre dentro y fuera de Venezuela . Buscamos promover, fomentar |   | Web search: Venezuela tecnologia civica software l |
-| Venezuela protege la Amazonia con nuevo proyecto | Venezuela | recreation_arts | Venezuela Impulsa la Conservación de la Amazonía con el «Proyecto de Manejo Sostenible Amazonas, Venezuela ». El Ministe |   | Web search: Venezuela medio ambiente ecologia cons |
-| OCHA aprueba 8 millones de dólares para la respuesta humanitaria en ... | Venezuela | recreation_arts | El Fondo Central de Respuesta a Emergencias de la Organización de las Naciones Unidas (CERF, por sus siglas en inglés) a |   | Web search: Venezuela organizaciones humanitarias  |
-| ONG PROVEA - Justicia y Verdad en Venezuela | Venezuela | recreation_arts | El Programa Venezolano de Educación Acción en Derechos Humanos ( Provea ) fue creado en Caracas el 15 de octubre de 1988 | www.justiciayverdad.org/ong-provea/ | Targeted: PROVEA Venezuela derechos humanos organi |
-| Programa Venezolano de Educación Acción en Derechos Humanos (Provea ... | Venezuela | recreation_arts | Ser una ONG especializada en la defensa y promoción de los derechos económicos, sociales y culturales (Desc), con el fin | directorioalianzasocial.venamcham.org/organizacion/programa-venezolano-de-educac | Targeted: PROVEA Venezuela derechos humanos organi |
-| Informe Espacio Público 2023: Situación General Libertad de Expresión ... | Venezuela | recreation_arts | Informe Espacio Público 2023: Situación General del Derecho a la Libertad de Expresión en Venezuela . Enero - diciembre  | www.amnistia.org/ve/noticias/2024/05/26426/informe-espacio-publico-2023-situacio | Targeted: Espacio Publico Venezuela libertad expre |
-| Venezuela Impulsa La Inclusión Y Los Ddhh De Las Personas Con ... | Venezuela | recreation_arts | País.- Para impulsar la inclusión de personas con discapacidad en ámbitos como la educación, ciencia, cultura y tecnolog | www.notitarde.com.ve/pais/73770/unesco-reconoce-propuesta-de-venezuela-para-incl | Targeted: CONVITE Venezuela inclusion social disca |
-| La Red de Organizaciones Afrovenezolanas y la reforma constitucional | Venezuela | recreation_arts | Derechos de los afrodescendientes Contribuciones escritas/ informe elaborado por parte de la Red Organizaciones Afrovene | www.ohchr.org/sites/default/files/lib-docs/HRBodies/UPR/Documents/session12/VE/R | Targeted: REDNOPV Venezuela organizaciones pueblos |
-
----
-
-## Coverage Assessment
-
-- IRS BMF records for VE: 0 (expected -- US-only database)
-- This research adds: 158 Venezuelan organizations
-- Framework coverage: conflict(20), cooperatives(6), democracy(72), ecology(1), education(4), energy_digital(9), food(1), healthcare(17), housing_land(9), indigenous(7), recreation_arts(12)
-- Key areas: Human rights orgs (operating under repression), humanitarian orgs, indigenous (Wayuu, Yanomami, Pemon, Warao)
-- Key gaps: Informal mutual aid networks, non-registered community orgs, Margarita/Maracaibo local orgs
-
-## Search Log
-
-- Search 1: 'Venezuela organizaciones sociedad civil ONG directorio' -> 0 new orgs
-- Search 2: 'Venezuela cooperativas trabajadores federacion nacional' -> 5 new orgs
-- Search 3: 'Venezuela soberania alimentaria agroecologia organizaciones ' -> 7 new orgs
-- Search 4: 'Venezuela salud comunitaria organizaciones atencion primaria' -> 5 new orgs
-- Search 5: 'Venezuela democracia participacion ciudadana organizaciones' -> 5 new orgs
-- Search 6: 'Venezuela vivienda cooperativa tierra comunidad' -> 5 new orgs
-- Search 7: 'Venezuela economia solidaria ayuda mutua redes' -> 10 new orgs
-- Search 8: 'Venezuela pueblos indigenas organizaciones derechos Wayuu Ya' -> 9 new orgs
-- Search 9: 'Venezuela mujeres organizaciones cooperativa ayuda mutua' -> 8 new orgs
-- Search 10: 'Venezuela restorative justice justicia restaurativa paz' -> 5 new orgs
-- Search 11: 'Venezuela tecnologia civica software libre organizaciones' -> 8 new orgs
-- Search 12: 'Venezuela medio ambiente ecologia conservacion organizacione' -> 8 new orgs
-- Search 13: 'Venezuela educacion popular grassroots escuela comunitaria' -> 6 new orgs
-- Search 14: 'Venezuela energia renovable solar comunidad cooperativa' -> 9 new orgs
-- Search 15: 'Venezuela organizaciones humanitarias OCHA frontline civil s' -> 10 new orgs
+### Venezuela Civil Society Network
+> Primary civil society network in Venezuela
 
 
 ---
@@ -5821,7 +4485,7 @@ Model: nonprofit
 
 # 🌐 Zambia (ZM) Civil Society Directory
 
-*Compiled: 2026-04-14 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-21 | Source: Web research | Organizations: 1*
 
 ---
 
