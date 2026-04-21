@@ -568,6 +568,44 @@ hr {
   }
 }
 
+/* ── Testimonial ──────────────────────────────────────────────── */
+.testimonial-quote {
+  border-left: 4px solid var(--prairie-rust);
+  padding: 1.25rem 1.5rem;
+  margin: 0;
+  background: var(--limestone);
+  border-radius: 0 6px 6px 0;
+}
+
+.testimonial-quote p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--cast-iron);
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.testimonial-quote cite {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--stone);
+  font-style: normal;
+}
+
+.cite-link {
+  margin-left: 0.4rem;
+}
+
+.cite-link a {
+  color: var(--horizon);
+  text-decoration: none;
+}
+
+.cite-link a:hover {
+  text-decoration: underline;
+}
+
 /* ── Reduced motion ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
