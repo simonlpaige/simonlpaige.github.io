@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Kansas horizon mark">
+  <title>Simon L. Paige — Horizon Mark</title>
+  <!-- Concept 2: Abstract KC horizon — sun rising over prairie line -->
+  <!-- Geometric, minimal, reads at 16px -->
+  <rect width="120" height="120" fill="#F4EEE2"/>
+
+  <!-- Sun / half-disc rising from horizon -->
+  <path d="M 40 72
+           A 20 20 0 0 1 80 72 Z"
+        fill="#B45B2E"/>
+
+  <!-- Horizon line (full width) -->
+  <rect x="16" y="72" width="88" height="2" fill="#1C1A17"/>
+
+  <!-- Three vertical strokes below: prairie grass / land depth -->
+  <rect x="30" y="80" width="2" height="12" fill="#1C1A17"/>
+  <rect x="46" y="84" width="2" height="8" fill="#1C1A17"/>
+  <rect x="60" y="82" width="2" height="10" fill="#1C1A17"/>
+  <rect x="74" y="84" width="2" height="8" fill="#1C1A17"/>
+  <rect x="88" y="80" width="2" height="12" fill="#1C1A17"/>
+
+  <!-- Small "slp" wordmark below -->
+  <text x="60" y="108"
+        font-family="Source Serif 4, Georgia, serif"
+        font-size="12"
+        font-weight="600"
+        fill="#1C1A17"
+        text-anchor="middle"
+        letter-spacing="0.1em">SLP</text>
+</svg>

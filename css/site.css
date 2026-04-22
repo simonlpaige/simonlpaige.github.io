@@ -882,3 +882,328 @@ a.contact-val:hover { color: var(--prairie-rust); }
 
   hr { border-top-color: #ccc; }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   Design system v3 (2026-04-22)
+   Personal/founder site additions: wordmark, projects grid,
+   about portrait, hero variant, ADA fixes (contrast, touch targets).
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Wordmark (the brand mark itself) ─────────────────────────── */
+.wordmark {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--cast-iron);
+  line-height: 1;
+}
+.wordmark-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.375rem;
+  letter-spacing: -0.01em;
+  color: var(--cast-iron);
+}
+.wordmark-dot {
+  color: var(--prairie-rust);
+}
+.wordmark-sm {
+  font-size: 1.125rem;
+}
+.wordmark:hover .wordmark-name {
+  color: var(--cast-iron);
+}
+.wordmark:focus-visible {
+  outline: 2px solid var(--horizon);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── Header rebuild (wordmark, no mark) ───────────────────────── */
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.site-header .site-nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.site-header .site-nav a {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--cast-iron);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  padding: 10px 4px;
+  display: inline-block;
+  min-height: 44px;
+  line-height: 1.5;
+}
+.site-header .site-nav a:hover {
+  color: var(--prairie-rust);
+}
+.site-header .site-nav a:focus-visible {
+  outline: 2px solid var(--horizon);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Personal hero variant ────────────────────────────────────── */
+.hero-personal {
+  padding: 80px 0 96px;
+}
+.hero-personal h1 {
+  max-width: 20ch;
+  margin-bottom: 28px;
+  font-size: 3.5rem;
+  letter-spacing: -0.015em;
+}
+.hero-personal .subhead {
+  font-size: 1.25rem;
+  max-width: 56ch;
+  margin-bottom: 36px;
+  color: var(--cast-iron);
+  line-height: 1.55;
+}
+.hero-personal .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--stone);
+  margin-bottom: 32px;
+  text-transform: none;
+}
+.hero-personal .eyebrow-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--prairie-rust);
+  border-radius: 50%;
+}
+@media (max-width: 900px) {
+  .hero-personal { padding: 48px 0 64px; }
+  .hero-personal h1 { font-size: 2.25rem; }
+  .hero-personal .subhead { font-size: 1.0625rem; }
+}
+@media (max-width: 640px) {
+  .hero-personal h1 { font-size: 1.875rem; }
+}
+
+/* ── Section intro paragraph (under a section heading) ────────── */
+.section-intro {
+  margin-bottom: 40px;
+  color: var(--cast-iron);
+  font-size: 1.0625rem;
+}
+
+.section-footer-link {
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+}
+.section-footer-link a {
+  color: var(--prairie-rust);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+}
+.section-footer-link a:hover {
+  border-bottom-color: var(--prairie-rust);
+}
+
+/* ── Projects grid (personal projects) ────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.project-card {
+  background: var(--chalk);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 28px 32px;
+  text-decoration: none;
+  color: var(--cast-iron);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  min-height: 160px;
+}
+.project-card:hover {
+  border-color: var(--prairie-rust);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: var(--cast-iron);
+}
+.project-card:focus-visible {
+  outline: 2px solid var(--horizon);
+  outline-offset: 2px;
+}
+.project-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+.project-desc {
+  color: var(--cast-iron);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  flex-grow: 1;
+}
+.project-link {
+  color: var(--prairie-rust);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-top: auto;
+}
+@media (max-width: 700px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+
+/* ── About with portrait ──────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.about-portrait {
+  position: relative;
+  width: 240px;
+  height: 240px;
+}
+.about-portrait img {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  display: block;
+}
+.portrait-placeholder {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: var(--wheat);
+  border: 1px solid var(--rule);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--cast-iron);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.about-text .section-heading {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.about-text .body-text + .body-text {
+  margin-top: 16px;
+}
+@media (max-width: 700px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .about-portrait,
+  .about-portrait img,
+  .portrait-placeholder {
+    width: 160px;
+    height: 160px;
+  }
+  .portrait-placeholder { font-size: 2rem; }
+}
+
+/* ── Collaborate section ──────────────────────────────────────── */
+.collaborate .body-text {
+  max-width: 62ch;
+}
+
+/* ── Contact: 4-row card (add CODE row) ───────────────────────── */
+.contact-card {
+  max-width: 640px;
+}
+.contact-line a.contact-val {
+  min-height: 32px;
+  line-height: 1.3;
+  padding: 4px 0;
+}
+
+/* ── Footer: cleaner, single-line on desktop ──────────────────── */
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.site-footer .footer-right a {
+  color: var(--stone);
+  font-size: 0.875rem;
+  padding: 4px 2px;
+  min-height: 24px;
+  display: inline-block;
+}
+.site-footer .footer-right a:hover {
+  color: var(--prairie-rust);
+}
+.footer-credit a {
+  color: var(--stone);
+}
+.footer-credit a:hover {
+  color: var(--prairie-rust);
+}
+
+/* ── ADA: touch targets, contrast fixes ───────────────────────── */
+a, button, .btn {
+  min-height: 24px;
+}
+.btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+}
+/* Body copy must NEVER use stone on limestone (fails AA). */
+p.body-text, main p { color: var(--cast-iron); }
+
+/* ── Responsive: mobile header collapse ───────────────────────── */
+@media (max-width: 720px) {
+  .site-header .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .site-header .site-nav {
+    width: 100%;
+    gap: 12px 20px;
+  }
+  .site-header .site-nav a {
+    padding: 8px 0;
+  }
+}
+
+/* ── Print: hide nav, keep content readable ───────────────────── */
+@media print {
+  .wordmark-dot { color: #000 !important; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .about-portrait { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+}

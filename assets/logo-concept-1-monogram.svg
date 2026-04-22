@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Simon L. Paige monogram">
+  <title>Simon L. Paige — SLP Monogram</title>
+  <!-- Concept 1: Interlocked SLP monogram with prairie-rust horizon bar -->
+  <!-- Cast Iron letterforms, serif-rooted, custom -->
+  <rect width="120" height="120" fill="#F4EEE2"/>
+
+  <!-- Horizon bar -->
+  <rect x="16" y="70" width="88" height="2" fill="#B45B2E"/>
+
+  <!-- S -->
+  <path d="M 28 36
+           C 28 30, 34 26, 42 26
+           L 50 26
+           C 56 26, 60 30, 60 34
+           L 56 34
+           C 56 32, 54 30, 50 30
+           L 42 30
+           C 36 30, 32 32, 32 36
+           C 32 42, 38 44, 44 46
+           C 52 48, 62 50, 62 60
+           C 62 66, 56 70, 48 70
+           L 40 70
+           C 32 70, 28 66, 28 62
+           L 32 62
+           C 32 64, 34 66, 40 66
+           L 48 66
+           C 54 66, 58 64, 58 60
+           C 58 54, 52 52, 46 50
+           C 38 48, 28 46, 28 36 Z"
+        fill="#1C1A17"/>
+
+  <!-- L (interlocks with S from below, extends down through horizon) -->
+  <path d="M 52 48
+           L 58 48
+           L 58 90
+           L 80 90
+           L 80 94
+           L 52 94 Z"
+        fill="#1C1A17"/>
+
+  <!-- P (right side, bowl sits on horizon) -->
+  <path d="M 72 50
+           L 78 50
+           L 78 90
+           L 72 90 Z
+           M 78 50
+           L 92 50
+           C 98 50, 102 54, 102 60
+           C 102 66, 98 70, 92 70
+           L 78 70
+           L 78 66
+           L 92 66
+           C 96 66, 98 64, 98 60
+           C 98 56, 96 54, 92 54
+           L 78 54 Z"
+        fill="#1C1A17"/>
+</svg>

@@ -1,0 +1,13 @@
+# robots.txt for simonlpaige.com
+# Public site. Crawlers and AI agents welcome.
+
+User-agent: *
+Allow: /
+Disallow: /logo-compare.html
+Disallow: /BUILD-NOTES.md
+
+# Sitemap
+Sitemap: https://simonlpaige.com/sitemap.xml
+
+# AI agents: structured summary available
+# See: https://simonlpaige.com/llms.txt

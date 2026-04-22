@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Concepts - Simon L. Paige</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --cast-iron: #1C1A17;
+      --limestone: #F4EEE2;
+      --chalk: #FBF8F1;
+      --prairie-rust: #B45B2E;
+      --stone: #6B665D;
+      --rule: #C9BEAB;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--limestone);
+      color: var(--cast-iron);
+      font-family: "Inter", sans-serif;
+      padding: 48px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: "Source Serif 4", serif;
+      font-size: 2.4rem;
+      margin-bottom: 8px;
+    }
+    .lede { color: var(--stone); margin-bottom: 48px; max-width: 62ch; }
+    .concept {
+      background: var(--chalk);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .concept h2 {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+    .concept .note {
+      color: var(--stone);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 24px 0;
+      border-top: 1px solid var(--rule);
+      flex-wrap: wrap;
+    }
+    .row-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--stone);
+      letter-spacing: 0.14em;
+      width: 120px;
+    }
+    .row-label small {
+      display: block;
+      color: var(--rule);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .display-box {
+      background: var(--limestone);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .on-dark {
+      background: var(--cast-iron);
+    }
+    .favicon-sim {
+      width: 32px; height: 32px;
+      background: var(--chalk);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+    .favicon-sim-tiny {
+      width: 16px; height: 16px;
+      background: var(--chalk);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .decision {
+      margin-top: 48px;
+      padding: 32px;
+      background: var(--cast-iron);
+      color: var(--chalk);
+      border-radius: 4px;
+    }
+    .decision h2 {
+      font-family: "Source Serif 4", serif;
+      color: var(--chalk);
+      margin-bottom: 16px;
+    }
+    .decision p { margin-bottom: 12px; }
+    .decision strong { color: #D9C48B; }
+  </style>
+</head>
+<body>
+  <h1>Logo Concepts</h1>
+  <p class="lede">Three directions, pick one (or a combination). Each shown at hero size, header size, and favicon size so you can see how it reads at 16px. Dark-background test too — a logo that only works on one color is a weak logo.</p>
+
+  <!-- CONCEPT 1 -->
+  <div class="concept">
+    <h2>Concept 1 &middot; SLP Monogram</h2>
+    <p class="note">Custom interlocked letterforms with a prairie-rust horizon bar. Square-safe, works as avatar. Most distinctive, most "branded" — risk: might feel too corporate if you're also Feynman-voiced.</p>
+
+    <div class="row">
+      <div class="row-label">HERO<small>240px</small></div>
+      <div class="display-box"><img src="/assets/logo-concept-1-monogram.svg" width="240" height="240" alt="SLP monogram hero size"></div>
+      <div class="display-box on-dark"><img src="/assets/logo-concept-1-monogram.svg" width="240" height="240" alt="SLP monogram on dark" style="filter: invert(1);"></div>
+    </div>
+
+    <div class="row">
+      <div class="row-label">HEADER<small>64px</small></div>
+      <div class="display-box"><img src="/assets/logo-concept-1-monogram.svg" width="64" height="64" alt="SLP monogram header"></div>
+      <div class="display-box"><img src="/assets/logo-concept-1-monogram.svg" width="40" height="40" alt="SLP monogram small"></div>
+    </div>
+
+    <div class="row">
+      <div class="row-label">FAVICON<small>32 / 16</small></div>
+      <div class="favicon-sim"><img src="/assets/logo-concept-1-monogram.svg" width="28" height="28" alt=""></div>
+      <div class="favicon-sim-tiny"><img src="/assets/logo-concept-1-monogram.svg" width="16" height="16" alt=""></div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 2 -->
+  <div class="concept">
+    <h2>Concept 2 &middot; Kansas Horizon</h2>
+    <p class="note">Abstract rising sun over horizon with prairie-grass strokes. Geometric, calm, regional without being a wheat-shock cliché. SLP initials tucked below for identity. Risk: could read too generic (lots of sun-rise logos exist).</p>
+
+    <div class="row">
+      <div class="row-label">HERO<small>240px</small></div>
+      <div class="display-box"><img src="/assets/logo-concept-2-horizon.svg" width="240" height="240" alt="Horizon mark hero size"></div>
+      <div class="display-box on-dark"><img src="/assets/logo-concept-2-horizon.svg" width="240" height="240" alt="Horizon mark on dark" style="filter: invert(1);"></div>
+    </div>
+
+    <div class="row">
+      <div class="row-label">HEADER<small>64px</small></div>
+      <div class="display-box"><img src="/assets/logo-concept-2-horizon.svg" width="64" height="64" alt="Horizon header"></div>
+      <div class="display-box"><img src="/assets/logo-concept-2-horizon.svg" width="40" height="40" alt="Horizon small"></div>
+    </div>
+
+    <div class="row">
+      <div class="row-label">FAVICON<small>32 / 16</small></div>
+      <div class="favicon-sim"><img src="/assets/logo-concept-2-horizon.svg" width="28" height="28" alt=""></div>
+      <div class="favicon-sim-tiny"><img src="/assets/logo-concept-2-horizon.svg" width="16" height="16" alt=""></div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 3 -->
+  <div class="concept">
+    <h2>Concept 3 &middot; Typographic Wordmark</h2>
+    <p class="note">Name as the logo. Source Serif 4 at 600 weight, tight tracking, prairie-rust period as the one small signature. Kansas City · Builder tagline in mono underneath. Most confident, most founder-led. Pair with a simple SLP monogram for favicon-size use.</p>
+
+    <div class="row">
+      <div class="row-label">HERO<small>full width</small></div>
+      <div class="display-box" style="flex: 1; padding: 32px 40px; flex-direction: column; align-items: flex-start;">
+        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 56px; color: #1C1A17; letter-spacing: -0.015em; line-height: 1;">Simon&nbsp;L<span style="color:#B45B2E;">.</span>&nbsp;Paige</div>
+        <div style="width: 100%; height: 1px; background: #C9BEAB; margin-top: 12px;"></div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 11px; color: #6B665D; letter-spacing: 0.14em; margin-top: 10px;">KANSAS CITY &middot; BUILDER</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-label">ON DARK</div>
+      <div class="display-box on-dark" style="flex: 1; padding: 32px 40px; flex-direction: column; align-items: flex-start;">
+        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 56px; color: #FBF8F1; letter-spacing: -0.015em; line-height: 1;">Simon&nbsp;L<span style="color:#D9C48B;">.</span>&nbsp;Paige</div>
+        <div style="width: 100%; height: 1px; background: #3E6A83; margin-top: 12px;"></div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 11px; color: #C9BEAB; letter-spacing: 0.14em; margin-top: 10px;">KANSAS CITY &middot; BUILDER</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-label">HEADER<small>compact</small></div>
+      <div class="display-box" style="padding: 12px 20px;">
+        <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 22px; color: #1C1A17; letter-spacing: -0.01em;">Simon&nbsp;L<span style="color:#B45B2E;">.</span>&nbsp;Paige</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-label">FAVICON<small>needs pair</small></div>
+      <div class="favicon-sim" style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 18px; color: #1C1A17;">S<span style="color:#B45B2E;">.</span></div>
+      <div class="favicon-sim-tiny" style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 11px; color: #1C1A17;">S</div>
+      <p style="color: var(--stone); font-size: 0.9rem;">Favicon would be a tiny "S." mark, using the rust period as signature.</p>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div class="decision">
+    <h2>Larry's pick</h2>
+    <p><strong>Concept 3</strong> as the primary wordmark (used in header, footer, social previews, email signatures). It's honest — the name IS the brand, you're a founder not an agency.</p>
+    <p>Paired with a <strong>minimal "S." favicon</strong> (serif S + rust period) for 16/32px spots. Clean, unique, no competing shape language.</p>
+    <p>This is what most respected solo builders do (Paul Graham, Patrick Collison, Jason Fried). Your name carries the brand, not a symbol.</p>
+    <p style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #3E6A83;">Other good pick: <strong>Concept 1</strong> if you want something that works as a square avatar (Twitter, Github) without needing the full name. Concept 2 is honestly the weakest — too many horizon logos already exist.</p>
+  </div>
+</body>
+</html>

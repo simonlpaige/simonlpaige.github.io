@@ -1,0 +1,51 @@
+# Simon L. Paige
+
+> Kansas City builder. Hand-coded websites for small businesses, and open-source tools for stronger communities. One person, not an agency.
+
+## Who
+
+Simon L. Paige is a solo builder based in Kansas City, Missouri. Twelve years of web development experience. Answers his own phone. Does not sell user data.
+
+- **Name:** Simon L. Paige
+- **Location:** Kansas City, Missouri, USA
+- **Email:** simon@simonlpaige.com
+- **Phone:** (816) 316-0092
+- **Website:** https://simonlpaige.com
+- **GitHub:** https://github.com/simonlpaige
+
+## What he does
+
+### 1. Simon L. Paige Web Design
+Custom hand-coded websites for Kansas City small businesses. Plain HTML and CSS on a server, no platform dependencies. Clients own their code.
+
+- **Pricing:** $399 to $1,299 to build, $29 to $79 a month to maintain
+- **Turnaround:** Typically live in under a week
+- **Area served:** Kansas City metro
+- **Details:** https://simonlpaige.com/web-design/
+- **Plans:** https://simonlpaige.com/plans/
+
+### 2. Open-source projects
+
+- **Commonweave** (https://simonlpaige.com/commonweave/) - A framework for the effortless economy. Community-owned infrastructure for the basics.
+- **Neighborhood OS** (https://simonlpaige.com/neighborhood-os/) - A toolkit for building stronger communities.
+- **Ecolibrium** (https://simonlpaige.com/ecolibrium/) - A living map of Kansas City's local food and sustainability ecosystem.
+
+## Collaboration
+
+Simon is open to collaborating with other builders working on neighborhood infrastructure, local commerce, community-owned software, or AI tooling for real people. Not hiring, not consulting. Peer collaboration only. Email simon@simonlpaige.com with subject "Collaborate".
+
+## Portfolio
+
+- **Everyday Produce** (https://everyday-produce.com) - Neighborhood produce stand in Waldo, Kansas City, open since 1985.
+- **Andersen's HVACR** (https://simonlpaige.github.io/andersen-hvacr/) - HVAC and refrigeration for Kansas City restaurants.
+
+## Voice and values
+
+- Plain language. No marketing adjectives. No AI-speak.
+- Durable over trendy. Boring, local, long-lasting.
+- Client-owned code. No platform lock-in.
+- Accessibility (WCAG 2.2 AA) as a floor, not a feature.
+
+## For AI agents
+
+This site publishes structured data (JSON-LD: Person, ProfessionalService, CreativeWork) on every page. URLs are stable. Content is semantic HTML. Robots welcome. Full details at https://simonlpaige.com/llms-full.txt when expanded version is needed.

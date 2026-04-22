@@ -3,37 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simon L. Paige Web Design - Kansas City</title>
-  <meta name="description" content="Custom websites for KC small businesses. $399 to build, $29 a month to keep running. You own the code.">
+  <title>Simon L. Paige - Kansas City builder. Websites for small businesses, tools for the commons.</title>
+  <meta name="description" content="I build durable hand-coded websites for Kansas City small businesses, and open-source tools for stronger communities. One person. Plain HTML. You own the code.">
+  <meta name="author" content="Simon L. Paige">
   <link rel="canonical" href="https://simonlpaige.com/">
-  <meta property="og:title" content="Simon L. Paige Web Design - Kansas City">
-  <meta property="og:description" content="Custom websites for KC small businesses. $399 to build, $29 a month to keep running. You own the code.">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Simon L. Paige - Kansas City builder">
+  <meta property="og:description" content="Hand-coded websites for KC small businesses, and open tools for stronger communities.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://simonlpaige.com/">
+  <meta property="og:image" content="https://simonlpaige.com/assets/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simon L. Paige - Kansas City builder">
+  <meta name="twitter:description" content="Hand-coded websites for KC small businesses, and open tools for stronger communities.">
 
-  <!-- Favicons: new Prairie-window mark -->
-  <link rel="icon" type="image/svg+xml" href="/assets/mark.svg">
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/favicon-192.png">
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="/css/site.css">
 
-  <!-- Structured data: local business -->
+  <!-- Feed -->
+  <link rel="alternate" type="application/rss+xml" title="Simon L. Paige - Projects" href="/feed.xml">
+  <link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt">
+
+  <!-- Structured data: Person + ProfessionalService -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Simon L. Paige Web Design",
-    "description": "Custom hand-coded websites for Kansas City small businesses.",
-    "url": "https://simonlpaige.com",
-    "telephone": "+1-816-316-0092",
-    "email": "simon@simonlpaige.com",
-    "priceRange": "$399-$1299",
-    "areaServed": { "@type": "City", "name": "Kansas City" },
-    "logo": "https://simonlpaige.com/assets/mark.svg",
-    "image": "https://simonlpaige.com/assets/mark.svg",
-    "parentOrganization": { "@type": "Organization", "name": "Groundlayer LLC" }
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://simonlpaige.com/#simon",
+        "name": "Simon L. Paige",
+        "url": "https://simonlpaige.com",
+        "jobTitle": "Builder",
+        "description": "Kansas City builder. Hand-coded websites for small businesses, open-source tools for stronger communities.",
+        "email": "simon@simonlpaige.com",
+        "telephone": "+1-816-316-0092",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kansas City",
+          "addressRegion": "MO",
+          "addressCountry": "US"
+        },
+        "sameAs": [
+          "https://github.com/simonlpaige"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://simonlpaige.com/#web-design",
+        "name": "Simon L. Paige Web Design",
+        "url": "https://simonlpaige.com/web-design/",
+        "description": "Custom hand-coded websites for Kansas City small businesses.",
+        "priceRange": "$399-$1299",
+        "areaServed": { "@type": "City", "name": "Kansas City" },
+        "provider": { "@id": "https://simonlpaige.com/#simon" },
+        "parentOrganization": { "@type": "Organization", "name": "Groundlayer LLC" }
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Commonweave",
+        "url": "https://simonlpaige.com/commonweave/",
+        "creator": { "@id": "https://simonlpaige.com/#simon" },
+        "description": "A framework for the effortless economy."
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Neighborhood OS",
+        "url": "https://simonlpaige.com/neighborhood-os/",
+        "creator": { "@id": "https://simonlpaige.com/#simon" },
+        "description": "A toolkit for building stronger communities."
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Ecolibrium",
+        "url": "https://simonlpaige.com/ecolibrium/",
+        "creator": { "@id": "https://simonlpaige.com/#simon" },
+        "description": "A living map of Kansas City's local food and sustainability ecosystem."
+      }
+    ]
   }
   </script>
 </head>
@@ -44,16 +101,15 @@
   <!-- Header -->
   <header class="site-header">
     <div class="wrap">
-      <a href="/" class="site-logo" aria-label="Simon L. Paige Web Design home">
-        <img src="/assets/mark.svg" alt="" class="header-mark" width="32" height="32">
-        <span class="header-wordmark">Simon&nbsp;L.&nbsp;Paige <em>Web Design</em></span>
+      <a href="/" class="wordmark" aria-label="Simon L. Paige, home">
+        <span class="wordmark-name">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
       </a>
-      <nav aria-label="Main navigation">
+      <nav aria-label="Main">
         <ul class="site-nav">
-          <li><a href="/">Home</a></li>
           <li><a href="#work">Work</a></li>
-          <li><a href="/plans/">Plans</a></li>
-          <li><a href="#how">How it works</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="/web-design/">Hire me</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -63,27 +119,22 @@
   <main id="main">
 
     <!-- Hero -->
-    <section class="hero">
-      <div class="wrap hero-wrap">
-        <div class="hero-text">
-          <p class="eyebrow"><span class="eyebrow-dot"></span> Kansas City &middot; Custom websites &middot; By appointment</p>
-          <h1>Hi, I'm Simon. I build websites by hand in Kansas City.</h1>
-          <p class="subhead">Custom sites for KC small businesses. <strong>$399 to build, $29 a month to keep running.</strong> You own the code. No contracts you can't leave.</p>
-          <div class="cta-row">
-            <a href="/plans/" class="btn btn-primary">See the plans</a>
-            <a href="tel:+18163160092" class="btn btn-secondary">Call (816) 316-0092</a>
-          </div>
-          <p class="hero-meta"><span class="mono">live in under a week &middot; you own the code &middot; no subscription traps</span></p>
+    <section class="hero hero-personal">
+      <div class="wrap">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Kansas City &middot; Builder &middot; One person, not an agency</p>
+        <h1>I build durable websites for Kansas&nbsp;City small businesses &mdash; and open tools for stronger communities.</h1>
+        <p class="subhead">Hand-coded sites that don't break when some platform updates. Open-source projects for the kind of software neighborhoods actually need. If that sounds like your thing, let's talk.</p>
+        <div class="cta-row">
+          <a href="/web-design/" class="btn btn-primary">Hire me to build your site</a>
+          <a href="#projects" class="btn btn-secondary">See the projects</a>
         </div>
-        <div class="hero-mark" aria-hidden="true">
-          <img src="/assets/mark.svg" alt="" width="220" height="220">
-        </div>
+        <p class="hero-meta"><span class="mono">live in under a week &middot; you own the code &middot; no subscription traps</span></p>
       </div>
     </section>
 
     <hr>
 
-    <!-- Work -->
+    <!-- Work (client sites) -->
     <section class="section" id="work">
       <div class="wrap">
         <p class="section-eyebrow">RECENT&nbsp;&nbsp;KC&nbsp;&nbsp;WORK</p>
@@ -94,7 +145,7 @@
             <div class="work-card-image">
               <picture>
                 <source srcset="/assets/portfolio/everyday-produce-home.webp" type="image/webp">
-                <img src="/assets/portfolio/everyday-produce-home.png" alt="Everyday Produce homepage" loading="lazy" width="1600" height="900">
+                <img src="/assets/portfolio/everyday-produce-home.png" alt="Everyday Produce homepage showing seasonal produce gallery" loading="lazy" width="1600" height="900">
               </picture>
             </div>
             <div class="work-card-body">
@@ -125,6 +176,7 @@
           </a>
 
         </div>
+        <p class="section-footer-link"><a href="/web-design/">See pricing and plans &rarr;</a></p>
       </div>
     </section>
 
@@ -133,34 +185,46 @@
     <!-- Feynman paragraph -->
     <section class="feynman">
       <div class="wrap">
-        <p class="body-text">A Wix or Squarespace site is software you're renting. You pay $20-30 a month, you do all the work of building it, and when you stop paying, it disappears. What I build is a file - plain HTML and CSS on a server. It doesn't need a subscription to exist. It doesn't break when a platform updates. It works exactly as well in five years as it does today, because it's not connected to anything that can change without your permission. You're paying $29 a month for me to keep it running. That's it.</p>
+        <p class="body-text">A Wix or Squarespace site is software you're renting. You pay $20 to $30 a month, you do all the work of building it, and when you stop paying, it disappears. What I build is a file &mdash; plain HTML and CSS on a server. It doesn't need a subscription to exist. It doesn't break when a platform updates. It works exactly as well in five years as it does today. You're paying $29 a month for me to keep it running. That's it.</p>
       </div>
     </section>
 
     <hr>
 
-    <!-- How it works -->
-    <section class="section" id="how">
+    <!-- Personal Projects -->
+    <section class="section" id="projects">
       <div class="wrap">
-        <p class="section-eyebrow">HOW&nbsp;&nbsp;IT&nbsp;&nbsp;WORKS</p>
-        <h2 class="section-heading">Three steps, about a week.</h2>
-        <ol class="how-steps">
-          <li>
-            <span class="how-num">01</span>
-            <h3>Fifteen-minute call</h3>
-            <p>You tell me what your business does and what you want the site to do. I tell you honestly which tier fits and what it'll cost. No sales pitch.</p>
-          </li>
-          <li>
-            <span class="how-num">02</span>
-            <h3>I build it by hand</h3>
-            <p>You pay the build fee. I write the site in plain HTML and CSS, point your domain, and send you a preview link within a few days. You approve changes as we go.</p>
-          </li>
-          <li>
-            <span class="how-num">03</span>
-            <h3>Live, and yours</h3>
-            <p>Site goes live. $29 to $79 a month covers hosting, uptime, backups, and small changes whenever you need them. Month-to-month. You own the code.</p>
-          </li>
-        </ol>
+        <p class="section-eyebrow">OPEN&nbsp;&nbsp;PROJECTS</p>
+        <h2 class="section-heading">Tools for the commons</h2>
+        <p class="body-text section-intro">Alongside client work, I build open-source things I think should exist. If any of this sounds like something you're working on too, come say hi.</p>
+
+        <div class="projects-grid">
+
+          <a href="/commonweave/" class="project-card">
+            <div class="project-name">Commonweave</div>
+            <p class="project-desc">A framework for the effortless economy. Community-owned infrastructure for the basics.</p>
+            <span class="project-link mono">Read the framework &rarr;</span>
+          </a>
+
+          <a href="/neighborhood-os/" class="project-card">
+            <div class="project-name">Neighborhood OS</div>
+            <p class="project-desc">A toolkit for building stronger communities. Neighborhoods run themselves better when they have the right tools.</p>
+            <span class="project-link mono">See the toolkit &rarr;</span>
+          </a>
+
+          <a href="/ecolibrium/" class="project-card">
+            <div class="project-name">Ecolibrium</div>
+            <p class="project-desc">A living map of Kansas City's local food and sustainability ecosystem. Auto-updates from open data.</p>
+            <span class="project-link mono">Open the map &rarr;</span>
+          </a>
+
+          <a href="https://github.com/simonlpaige" class="project-card" target="_blank" rel="noopener">
+            <div class="project-name">GitHub</div>
+            <p class="project-desc">All the code, in public. Smaller tools, experiments, and the source for everything above.</p>
+            <span class="project-link mono">github.com/simonlpaige &rarr;</span>
+          </a>
+
+        </div>
       </div>
     </section>
 
@@ -170,16 +234,43 @@
     <section class="section about" id="about">
       <div class="wrap">
         <p class="section-eyebrow">ABOUT</p>
-        <h2 class="section-heading">One person, not an agency.</h2>
-        <p class="body-text">I'm in Kansas City. I've been building websites for twelve years. I answer my own phone and I don't sell your data. No pitch deck, no account manager, no ten-person Zoom call to change a phone number. If you email me, I'll write back.</p>
-        <p class="body-text" style="margin-top: 16px;">Every site I build is hand-coded and lives as plain files on a server. That means it's fast, it doesn't break when some platform pushes an update, and you keep the code forever even if you stop working with me. Local, boring, durable.</p>
+        <div class="about-grid">
+          <div class="about-portrait">
+            <img src="/assets/simon.jpg" alt="Simon L. Paige, Kansas City builder" width="240" height="240" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+            <div class="portrait-placeholder" aria-hidden="true">
+              <span>Simon</span>
+            </div>
+          </div>
+          <div class="about-text">
+            <h2 class="section-heading">Hi, I'm Simon.</h2>
+            <p class="body-text">I'm in Kansas City. I've been building websites for twelve years, and lately I've been building tools that help communities run themselves better. I answer my own phone. I don't sell your data. If you email me, I write back.</p>
+            <p class="body-text">On the client side, every site I build is hand-coded and lives as plain files on a server. That means it's fast, it doesn't break when some platform pushes an update, and you keep the code forever even if you stop working with me. Local, boring, durable.</p>
+            <p class="body-text">On the open-source side, I'm building Commonweave and Neighborhood OS because I think the software neighborhoods actually need doesn't exist yet, and I'm tired of waiting for someone else to make it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Collaborate -->
+    <section class="section collaborate" id="collaborate">
+      <div class="wrap">
+        <p class="section-eyebrow">COLLABORATE</p>
+        <h2 class="section-heading">Looking for builders who ship.</h2>
+        <p class="body-text">If you're working on neighborhood infrastructure, local commerce, community-owned software, or AI tooling that actually helps real people &mdash; I'd like to talk. Not hiring, not a consulting pitch. Just looking for other people who make things.</p>
+        <p class="body-text" style="margin-top: 16px;">Open to: contributing to your project, having you contribute to mine, swapping notes, or just being in each other's corner.</p>
+        <div class="cta-row" style="margin-top: 32px;">
+          <a href="mailto:simon@simonlpaige.com?subject=Collaborate%20%2D%20%3Cyour%20project%3E" class="btn btn-primary">Email me about collaborating</a>
+          <a href="https://github.com/simonlpaige" class="btn btn-secondary" target="_blank" rel="noopener">See my GitHub</a>
+        </div>
       </div>
     </section>
 
     <!-- Code strip (built by hand) -->
     <section class="codestrip" aria-hidden="true">
       <div class="wrap">
-<pre class="codestrip-pre"><span class="c-com">&lt;!-- simonlpaige.com · built by hand in Kansas City --&gt;</span>
+<pre class="codestrip-pre"><span class="c-com">&lt;!-- simonlpaige.com &middot; built by hand in Kansas City --&gt;</span>
 <span class="c-tag">&lt;footer</span> <span class="c-attr">class</span>=<span class="c-str">"site-footer"</span><span class="c-tag">&gt;</span>
   <span class="c-tag">&lt;p&gt;</span>Your website. Your domain. Your code.<span class="c-tag">&lt;/p&gt;</span>
 <span class="c-tag">&lt;/footer&gt;</span></pre>
@@ -193,7 +284,7 @@
       <div class="wrap">
         <p class="section-eyebrow">GET&nbsp;&nbsp;IN&nbsp;&nbsp;TOUCH</p>
         <h2 class="section-heading">Let's talk.</h2>
-        <p class="body-text">I'm one person. Call, text, or email and I'll write back personally.</p>
+        <p class="body-text">One person. Call, text, or email and I'll write back personally.</p>
         <div class="contact-card">
           <div class="contact-line">
             <span class="contact-label mono">CALL</span>
@@ -201,16 +292,16 @@
           </div>
           <div class="contact-line">
             <span class="contact-label mono">EMAIL</span>
-            <a href="mailto:simon@simonlpaige.com?subject=Website%20for%20%3Cyour%20business%3E" class="contact-val">simon@simonlpaige.com</a>
+            <a href="mailto:simon@simonlpaige.com" class="contact-val">simon@simonlpaige.com</a>
           </div>
           <div class="contact-line">
             <span class="contact-label mono">WHERE</span>
-            <span class="contact-val">Kansas City metro &middot; by appointment</span>
+            <span class="contact-val">Kansas City metro</span>
           </div>
-        </div>
-        <div class="cta-row" style="margin-top: 32px;">
-          <a href="/plans/" class="btn btn-primary">See the plans</a>
-          <a href="mailto:simon@simonlpaige.com?subject=Website%20for%20%3Cyour%20business%3E" class="btn btn-secondary">Email me</a>
+          <div class="contact-line">
+            <span class="contact-label mono">CODE</span>
+            <a href="https://github.com/simonlpaige" class="contact-val" target="_blank" rel="noopener">github.com/simonlpaige</a>
+          </div>
         </div>
       </div>
     </section>
@@ -223,16 +314,18 @@
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-left">
-        <img src="/assets/mark.svg" alt="" width="24" height="24" class="footer-mark">
-        Simon L. Paige Web Design
+        <span class="wordmark-name wordmark-sm">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
       </div>
       <div class="footer-right">
-        A brand of <a href="https://groundlayer.co">Groundlayer LLC</a>. Also: <a href="https://rivaldrop.com">RivalDrop</a> · <a href="https://anvilshare.ai">Anvilshare</a>
-        · <a href="/privacy.html">Privacy</a> ·
+        <a href="/web-design/">Web design</a> &middot;
+        <a href="/commonweave/">Commonweave</a> &middot;
+        <a href="/neighborhood-os/">Neighborhood OS</a> &middot;
+        <a href="/ecolibrium/">Ecolibrium</a> &middot;
+        <a href="/privacy.html">Privacy</a> &middot;
         <a href="/terms.html">Terms</a>
       </div>
     </div>
-    <div class="footer-credit">Built in Kansas City by Simon L. Paige Web Design. Plain HTML, built by hand. &middot; (816) 316-0092</div>
+    <div class="footer-credit">Built in Kansas City. Plain HTML, by hand. &middot; <a href="tel:+18163160092">(816) 316-0092</a> &middot; <a href="mailto:simon@simonlpaige.com">simon@simonlpaige.com</a></div>
   </footer>
 
 </body>
