@@ -611,6 +611,258 @@ hr {
   html { scroll-behavior: auto; }
 }
 
+/* ════════════════════════════════════════════════════════════════
+   Design system v2 additions (2026-04-22)
+   Prairie Clarity - paired with Prairie-window brand mark.
+   New homepage components: header-wordmark, hero-mark, work-card-image,
+   how-steps, codestrip, contact-card, section-eyebrow.
+   ════════════════════════════════════════════════════════════════ */
+
+/* Header: mark + wordmark lockup */
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: auto;
+  text-decoration: none;
+  color: var(--cast-iron);
+}
+.header-mark {
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
+}
+.header-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.header-wordmark em {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  color: var(--stone);
+  text-transform: uppercase;
+  margin-left: 6px;
+  border-left: 1px solid var(--rule);
+  padding-left: 10px;
+}
+@media (max-width: 640px) {
+  .header-wordmark em { display: none; }
+}
+
+/* Section eyebrow (tiny tracked label above h2s) */
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--stone);
+  margin-bottom: 16px;
+}
+
+/* Hero: two-column with mark on the right */
+.hero-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 48px;
+  align-items: center;
+}
+.hero-text { min-width: 0; }
+.hero-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-mark img {
+  width: 220px;
+  height: 220px;
+  display: block;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--stone);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--prairie-rust);
+}
+.hero .subhead strong {
+  color: var(--cast-iron);
+  font-weight: 700;
+}
+.hero-meta {
+  margin-top: 24px;
+  color: var(--stone);
+}
+.hero-meta .mono {
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 900px) {
+  .hero-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .hero-mark { order: -1; }
+  .hero-mark img { width: 140px; height: 140px; }
+}
+
+/* Work cards: real screenshots */
+.work-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: 1fr; }
+}
+.work-card {
+  padding: 0;
+  overflow: hidden;
+}
+.work-card-image {
+  aspect-ratio: 16 / 9;
+  background: var(--limestone);
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+  position: relative;
+}
+.work-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.35s ease;
+}
+.work-card:hover .work-card-image img {
+  transform: scale(1.02);
+}
+.work-card-body {
+  padding: 24px 28px 28px;
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.card-link {
+  font-size: 0.875rem;
+  color: var(--prairie-rust);
+  font-weight: 500;
+}
+
+/* How it works - three-step list */
+.how-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.how-steps li {
+  border-top: 2px solid var(--cast-iron);
+  padding-top: 20px;
+}
+.how-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--prairie-rust);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.how-steps h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.how-steps p {
+  font-size: 1rem;
+  color: var(--cast-iron);
+  line-height: 1.55;
+}
+@media (max-width: 900px) {
+  .how-steps { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* Code strip (tasteful craft signal) */
+.codestrip {
+  background: #1C1A17;
+  color: #F4EEE2;
+  padding: 40px 0;
+  margin-top: 0;
+  overflow-x: auto;
+}
+.codestrip-pre {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #F4EEE2;
+  margin: 0;
+  white-space: pre;
+}
+.codestrip .c-com { color: #8B8375; font-style: italic; }
+.codestrip .c-tag { color: #D9C48B; }
+.codestrip .c-attr { color: #B45B2E; }
+.codestrip .c-str { color: #9AB28F; }
+@media (max-width: 640px) {
+  .codestrip { padding: 28px 0; }
+  .codestrip-pre { font-size: 0.8125rem; }
+}
+
+/* Contact card */
+.contact-card {
+  background: var(--chalk);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-top: 24px;
+  max-width: 560px;
+}
+.contact-line {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.contact-line:last-child { border-bottom: none; }
+.contact-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--stone);
+}
+.contact-val {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--cast-iron);
+  text-decoration: none;
+}
+a.contact-val:hover { color: var(--prairie-rust); }
+
+/* Footer: mark inline */
+.footer-mark {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
 /* ── Print ─────────────────────────────────────────────────────── */
 @media print {
   body {

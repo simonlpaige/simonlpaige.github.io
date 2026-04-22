@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Simon L. Paige Web Design - Brand Mark (the glyph)
+
+  Concept: a Prairie-window 3x3 grid. Hand-drawn rails, one square filled in
+  Prairie Rust in the lower-right (the "lit window"). Reads as:
+    - craft (geometric, Wright-derived)
+    - small business (a lit window = someone open)
+    - the letter "S" when you squint (the rust square plus the open rails)
+
+  Use:
+    - Standalone glyph (favicon, app icon, small social avatar)
+    - Paired with wordmark in square/cover lockups
+    - Monochrome-safe (drop the rust, the mark still works)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Simon L. Paige Web Design mark">
+  <style>
+    .ink   { stroke: #1C1A17; fill: none; stroke-linecap: square; }
+    .rust  { fill: #B45B2E; }
+    .cast  { fill: #1C1A17; }
+  </style>
+
+  <!-- outer square frame -->
+  <rect x="24" y="24" width="152" height="152" class="ink" stroke-width="6"/>
+
+  <!-- inner grid rails: 3x3 -->
+  <!-- verticals -->
+  <line x1="75.33" y1="24"  x2="75.33"  y2="176" class="ink" stroke-width="4"/>
+  <line x1="124.67" y1="24" x2="124.67" y2="176" class="ink" stroke-width="4"/>
+  <!-- horizontals -->
+  <line x1="24" y1="75.33"  x2="176" y2="75.33"  class="ink" stroke-width="4"/>
+  <line x1="24" y1="124.67" x2="176" y2="124.67" class="ink" stroke-width="4"/>
+
+  <!-- lit window: lower-right cell filled in prairie rust -->
+  <rect x="127.67" y="127.67" width="45.33" height="45.33" class="rust"/>
+
+  <!-- centre pip: tiny solid cast-iron square for hand-drawn character -->
+  <rect x="95.5" y="95.5" width="9" height="9" class="cast"/>
+</svg>
