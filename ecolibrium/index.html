@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ecolibrium -- A Framework for the Effortless Economy</title>
-<meta name="description" content="An open-source blueprint for the peaceful transition to a post-scarcity, ecologically sustainable, democratically governed society. 300+ organizations already building the pieces.">
-<meta property="og:title" content="Ecolibrium">
-<meta property="og:description" content="739,000+ organizations across 99 countries working unknowingly as part of the same movement.">
+<title>Commonweave -- A Framework for the Effortless Economy</title>
+<meta name="description" content="An open-source directory of 24,500+ aligned civil society organizations across 61 countries, mapped to a transition framework. Multilingual bot pipeline across ~30 languages. CC0.">
+<meta property="og:title" content="Commonweave">
+<meta property="og:description" content="An open-source directory of 24,500+ aligned civil society organizations across 61 countries, mapped to a transition framework. Multilingual bot pipeline across ~30 languages.">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -224,6 +224,18 @@ nav {
 .docs-card-title { font-size: 13px; font-weight: 700; color: #cce8b0; margin-bottom: 4px; }
 .docs-card-desc  { font-size: 11px; color: var(--muted); line-height: 1.55; }
 
+/* METHODOLOGY NOTE */
+.methodology-wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+.methodology-note {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--teal); border-radius: 10px;
+  padding: 16px 22px; font-size: 13px; color: var(--muted); line-height: 1.7;
+  margin-top: 0;
+}
+.methodology-note strong { color: var(--text); font-weight: 600; }
+.methodology-note a { color: var(--muted); text-decoration: underline; }
+.methodology-note a:hover { color: var(--teal); }
+
 /* WISEREARTH NOTE */
 .wiser-wrap { max-width: 660px; margin: 0 auto; padding: 48px 28px 0; }
 .wiser-card {
@@ -254,6 +266,7 @@ footer a:hover { color: var(--muted); }
 
 /* MOBILE */
 @media (max-width: 700px) {
+  .methodology-wrap { padding: 0 16px; }
   nav { padding: 0 14px; }
   .nav-links a { padding: 0 8px; font-size: 12px; }
   .nav-cta { display: none !important; }
@@ -284,12 +297,13 @@ footer a:hover { color: var(--muted); }
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <nav role="navigation" aria-label="Site navigation">
-  <a href="/ecolibrium/" class="nav-logo" aria-label="Ecolibrium home">ecolibrium</a>
+  <a href="/commonweave/" class="nav-logo" aria-label="Commonweave home">commonweave</a>
   <div class="nav-links" role="list">
     <a href="#map" role="listitem">Map</a>
     <a href="#sections" role="listitem">Sections</a>
     <a href="#docs" role="listitem">Docs</a>
     <a href="#about" role="listitem">About</a>
+    <a href="https://simonlpaige.com/neighborhood-os/" role="listitem" target="_blank" rel="noopener">NeighborhoodOS</a>
     <a href="directory.html" class="nav-cta" role="listitem">Directory &rarr;</a>
   </div>
 </nav>
@@ -298,23 +312,34 @@ footer a:hover { color: var(--muted); }
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="pill" aria-hidden="true">Open Source &middot; CC0 &middot; No leaders</div>
+  <div class="pill" aria-hidden="true">Open Source &middot; CC0 &middot; Transparent governance</div>
   <h1 id="hero-heading">The movement already exists.</h1>
   <p class="hero-lead">In 2007, Paul Hawken catalogued 114,994 organizations across 243 countries building alternatives to the systems that don't work. The website disappeared in 2014 when the funding ran out.</p>
-  <p class="hero-sub">This is the continuation -- 739,000+ organizations and counting -- with the infrastructure problem taken seriously this time.</p>
+  <p class="hero-sub">This is the continuation -- built on public registry data from 61 countries, filtered to organizations that actually embody the framework, with the infrastructure problem taken seriously this time.</p>
   <div class="btn-row">
     <a href="#map" class="btn btn-green">&#x1F30D; Explore the Map</a>
     <a href="directory.html" class="btn btn-ghost">Browse the Directory &rarr;</a>
-    <a href="https://github.com/simonlpaige/ecolibrium" target="_blank" rel="noopener" class="btn btn-ghost">Source on GitHub &rarr;</a>
+    <a href="https://github.com/simonlpaige/commonweave" target="_blank" rel="noopener" class="btn btn-ghost">Source on GitHub &rarr;</a>
   </div>
 </section>
 
 <!-- STATS -->
 <div class="stats" role="region" aria-label="Project statistics">
-  <div class="stat-item"><div class="stat-n" aria-label="739,000 plus">739K+</div><div class="stat-l">Organizations mapped</div></div>
-  <div class="stat-item"><div class="stat-n" aria-label="99">99</div><div class="stat-l">Countries represented</div></div>
-  <div class="stat-item"><div class="stat-n">12</div><div class="stat-l">Framework sections</div></div>
+  <div class="stat-item"><div class="stat-n" aria-label="24,500 plus">24.5K</div><div class="stat-l">Aligned organizations</div></div>
+  <div class="stat-item"><div class="stat-n" aria-label="61">61</div><div class="stat-l">Countries represented</div></div>
+  <div class="stat-item"><div class="stat-n" aria-label="around 30 languages">~30</div><div class="stat-l">Languages in scoring pipeline</div></div>
+  <div class="stat-item"><div class="stat-n">10</div><div class="stat-l">Framework sections</div></div>
   <div class="stat-item"><div class="stat-n">CC0</div><div class="stat-l">Fully open data</div></div>
+</div>
+
+<!-- METHODOLOGY NOTE -->
+<div class="methodology-wrap" role="note" aria-label="Data methodology">
+  <div class="methodology-note">
+    <strong>About this data.</strong> We started with three public registries - <strong>IRS Exempt Organizations BMF</strong>, <strong>UK Charity Commission</strong>, and <strong>Wikidata</strong> - pulled in ~760K nonprofits, then ran a multi-pass alignment filter against framework keywords. <strong>The 24,500 organizations shown here are what survived that filter</strong>: entries with real signal that they embody cooperatives, mutual aid, community land trusts, food sovereignty, participatory democracy, restorative justice, or the other framework mechanisms. The rejected 737K are not shown (they are things like country clubs, alumni associations, and corporate retirement trusts that happened to live in the same registries). Tier A entries are manually verified; Tier B/C come from automated scoring. <a href="DATA.md">Full methodology &rarr;</a>
+  </div>
+  <div class="methodology-note" style="margin-top:16px;">
+    <strong>Multilingual pipeline (April 2026).</strong> The scoring bots now recognise alignment terms in roughly 30 languages - Spanish <em>cooperativa</em>, Portuguese <em>economia solid&aacute;ria</em>, Japanese <em>&#21332;&#21516;&#32068;&#21512;</em>, Mandarin <em>&#21512;&#20316;&#31038;</em>, Arabic <em>&#1578;&#1593;&#1575;&#1608;&#1606;&#1610;&#1577;</em>, Yoruba <em>egbe ajose</em>, Quechua <em>ayni/minga</em>, Amharic <em>&#4840;&#4764;&#4672;&#4725;</em>, plus Indigenous land-commons concepts like <em>ejido</em>, <em>waqf</em>, <em>hima</em>, <em>gotong-royong</em>, <em>iriai-chi</em>, <em>usi civici</em>. Researcher bots build search queries in every language spoken in a country, not just English. Word-boundary matching prevents short non-English terms from false-matching inside English words. This improves <strong>recall</strong> outside the US and UK; <strong>precision</strong> still depends on downstream verification. Full term bank: <a href="MULTILINGUAL-TERMS.md">MULTILINGUAL-TERMS.md</a>.
+  </div>
 </div>
 
 <!-- MAP -->
@@ -325,9 +350,9 @@ footer a:hover { color: var(--muted); }
     <p>Filter by section &middot; hover any dot for details &middot; scroll to zoom &middot; drag to pan</p>
   </div>
   <div class="map-box">
-    <iframe src="map.html" title="Ecolibrium global directory -- interactive world map of 170+ organizations" loading="lazy" aria-label="Interactive world map"></iframe>
+    <iframe src="map.html" title="Commonweave global directory -- interactive network of 8,400+ organizations" loading="lazy" aria-label="Interactive directory network"></iframe>
     <div class="map-footer">
-      <span>~739K organizations across 99 countries &mdash; <a href="directory.html">full directory</a> (CC0)</span>
+      <span>24,500 aligned organizations across 61 countries &mdash; <a href="directory.html">full directory</a> (CC0)</span>
       <a href="map.html" target="_blank" rel="noopener" aria-label="Open map in full screen">Full screen &rarr;</a>
     </div>
   </div>
@@ -337,81 +362,69 @@ footer a:hover { color: var(--muted); }
 <div id="sections" class="sections-wrap" role="region" aria-label="Framework sections">
   <div class="section-label" aria-hidden="true">Directory</div>
   <div class="section-hed">
-    <h2>12 sections &mdash; 739K+ organizations</h2>
-    <p>Each section maps organizations already building that piece of the answer. <a href="directory.html">Browse the full directory &rarr;</a></p>
+    <h2>10 sections &mdash; 24,500 aligned organizations</h2>
+    <p>Each section covers organizations from public registries and curated sources. <a href="directory.html">Browse the full directory &rarr;</a></p>
   </div>
   <div class="sections-grid">
-    <div class="sec-card" style="--card-color:#60a5fa">
-      <div class="sec-pip" aria-hidden="true"></div>
-      <div class="sec-name">Democratic Infrastructure</div>
-      <div class="sec-desc">Verifiable voting, liquid democracy, sortition, participatory platforms, citizens' assemblies</div>
-      <div class="sec-meta">145.2K organizations</div>
-    </div>
-    <div class="sec-card" style="--card-color:#34d399">
-      <div class="sec-pip" aria-hidden="true"></div>
-      <div class="sec-name">Wealth &amp; Cooperatives</div>
-      <div class="sec-desc">UBI pilots worldwide, worker cooperatives, community wealth building, 1B+ co-op members</div>
-      <div class="sec-meta">36.6K organizations</div>
-    </div>
     <div class="sec-card" style="--card-color:#f472b6">
       <div class="sec-pip" aria-hidden="true"></div>
       <div class="sec-name">Healthcare</div>
       <div class="sec-desc">Open-source health IT, community health worker models, universal systems that demonstrably work</div>
-      <div class="sec-meta">101.3K organizations</div>
-    </div>
-    <div class="sec-card" style="--card-color:#fb923c">
-      <div class="sec-pip" aria-hidden="true"></div>
-      <div class="sec-name">Food Sovereignty</div>
-      <div class="sec-desc">Agroecology, seed sovereignty, open food networks, CSA movements, 200M peasant farmers</div>
-      <div class="sec-meta">20.5K organizations</div>
+      <div class="sec-meta">6,371 organizations</div>
     </div>
     <div class="sec-card" style="--card-color:#a78bfa">
       <div class="sec-pip" aria-hidden="true"></div>
       <div class="sec-name">Education</div>
       <div class="sec-desc">Open courseware, democratic schooling, offline-first platforms, 300M+ Moodle users</div>
-      <div class="sec-meta">195K organizations</div>
+      <div class="sec-meta">5,681 organizations</div>
+    </div>
+    <div class="sec-card" style="--card-color:#fb923c">
+      <div class="sec-pip" aria-hidden="true"></div>
+      <div class="sec-name">Food Sovereignty</div>
+      <div class="sec-desc">Agroecology, seed sovereignty, open food networks, CSA movements, 200M peasant farmers</div>
+      <div class="sec-meta">2,949 organizations</div>
+    </div>
+    <div class="sec-card" style="--card-color:#60a5fa">
+      <div class="sec-pip" aria-hidden="true"></div>
+      <div class="sec-name">Democratic Infrastructure</div>
+      <div class="sec-desc">Verifiable voting, liquid democracy, sortition, participatory platforms, citizens' assemblies</div>
+      <div class="sec-meta">2,894 organizations</div>
     </div>
     <div class="sec-card" style="--card-color:#fbbf24">
       <div class="sec-pip" aria-hidden="true"></div>
       <div class="sec-name">Land &amp; Housing</div>
       <div class="sec-desc">Community land trusts, Vienna social housing, stewardship over speculation</div>
-      <div class="sec-meta">30.8K organizations</div>
+      <div class="sec-meta">2,405 organizations</div>
+    </div>
+    <div class="sec-card" style="--card-color:#7ec88a">
+      <div class="sec-pip" aria-hidden="true"></div>
+      <div class="sec-name">Ecological Restoration</div>
+      <div class="sec-desc">Beyond-GDP governance, regenerative ecology, watershed stewardship, biodiversity recovery</div>
+      <div class="sec-meta">2,342 organizations</div>
     </div>
     <div class="sec-card" style="--card-color:#f87171">
       <div class="sec-pip" aria-hidden="true"></div>
       <div class="sec-name">Conflict Resolution</div>
       <div class="sec-desc">Restorative justice, transitional justice, community accountability. 41.5% recidivism reduction.</div>
-      <div class="sec-meta">20.1K organizations</div>
+      <div class="sec-meta">907 organizations</div>
     </div>
-    <div class="sec-card" style="--card-color:#22d3ee">
+    <div class="sec-card" style="--card-color:#34d399">
       <div class="sec-pip" aria-hidden="true"></div>
-      <div class="sec-name">Energy &amp; Digital Commons</div>
-      <div class="sec-desc">Community energy cooperatives, federated protocols, 900 US rural electric co-ops serving 42M</div>
-      <div class="sec-meta">246 organizations</div>
+      <div class="sec-name">Cooperatives &amp; Solidarity</div>
+      <div class="sec-desc">Worker cooperatives, mutual aid networks, community wealth building, credit unions</div>
+      <div class="sec-meta">662 organizations</div>
     </div>
     <div class="sec-card" style="--card-color:#e879f9">
       <div class="sec-pip" aria-hidden="true"></div>
       <div class="sec-name">Recreation &amp; Arts</div>
       <div class="sec-desc">Basic income for artists, open cultural heritage, 90M+ freely licensed media files</div>
-      <div class="sec-meta">117.2K organizations</div>
+      <div class="sec-meta">269 organizations</div>
     </div>
-    <div class="sec-card" style="--card-color:#7ec88a">
+    <div class="sec-card" style="--card-color:#22d3ee">
       <div class="sec-pip" aria-hidden="true"></div>
-      <div class="sec-name">Wellbeing Economics</div>
-      <div class="sec-desc">Beyond-GDP governance, Doughnut Economics, WEGo governments, Gross National Happiness</div>
-      <div class="sec-meta">71.7K organizations</div>
-    </div>
-    <div class="sec-card" style="--card-color:#94a3b8">
-      <div class="sec-pip" aria-hidden="true"></div>
-      <div class="sec-name">Allied Projects</div>
-      <div class="sec-desc">Open platforms, civic tech, humanitarian data tools, cooperative infrastructure</div>
-      <div class="sec-meta">10 organizations</div>
-    </div>
-    <div class="sec-card" style="--card-color:#c8e8b0">
-      <div class="sec-pip" aria-hidden="true"></div>
-      <div class="sec-name">Networks &amp; Federations</div>
-      <div class="sec-desc">Meta-organizations, 10,000+ ecovillages, solidarity economy federations, global assemblies</div>
-      <div class="sec-meta">8 organizations</div>
+      <div class="sec-name">Energy &amp; Digital Commons</div>
+      <div class="sec-desc">Community energy cooperatives, federated protocols, 900 US rural electric co-ops serving 42M</div>
+      <div class="sec-meta">48 organizations</div>
     </div>
   </div>
 </div>
@@ -422,8 +435,8 @@ footer a:hover { color: var(--muted); }
   <h2 id="about-heading">An engineering problem, not a manifesto</h2>
   <p>Here is a thing that is true and that almost no one talks about clearly: <strong>the machines are going to do most of the work.</strong> Not eventually -- now, and accelerating. The interesting question isn't whether that happens. It's who benefits when it does.</p>
   <p>Right now the answer is: whoever owns the machines. That's a design choice, not a law of nature. You could design it differently.</p>
-  <p>Ecolibrium is an attempt to think carefully about what "differently" actually means -- what systems would need to exist, how you'd build them, what's already being built, and how you get from here to there without everything going badly wrong in the middle.</p>
-  <p>The directory maps organizations already building pieces of the answer -- <strong>community land trusts, worker cooperatives, open-source health systems, participatory democracy tools, community energy grids</strong> -- most without knowing they're part of a larger pattern. That's what Hawken saw in 2007. That's what this continues.</p>
+  <p>Commonweave is an attempt to think carefully about what "differently" actually means -- what systems would need to exist, how you'd build them, what's already being built, and how you get from here to there without everything going badly wrong in the middle.</p>
+  <p>The directory indexes organizations from public registries across 61 countries - <strong>community land trusts, worker cooperatives, open-source health systems, participatory democracy tools, community energy grids</strong> - filtered to entries that actually embody pieces of the answer. That's what Hawken saw in 2007. That's what this continues.</p>
 </section>
 
 <!-- DOCS -->
@@ -436,13 +449,13 @@ footer a:hover { color: var(--muted); }
       <div class="docs-card-icon" aria-hidden="true">📄</div>
       <div>
         <div class="docs-card-title">README.md &mdash; Project Overview</div>
-        <div class="docs-card-desc">What Ecolibrium is, how it relates to WiserEarth, the three-phase blueprint, and how to contribute.</div>
+        <div class="docs-card-desc">What Commonweave is, how it relates to WiserEarth, the three-phase blueprint, and how to contribute.</div>
       </div>
     </a>
-    <a class="docs-card" href="directory.html" aria-label="DIRECTORY -- 300 plus organizations">
+    <a class="docs-card" href="directory.html" aria-label="DIRECTORY -- 400 plus curated organizations">
       <div class="docs-card-icon" aria-hidden="true">📋</div>
       <div>
-        <div class="docs-card-title">DIRECTORY.md &mdash; 300+ Organizations</div>
+        <div class="docs-card-title">DIRECTORY.md &mdash; 400+ Curated Organizations</div>
         <div class="docs-card-desc">Global directory across all 12 sections. Tables with descriptions, regions, and links.</div>
       </div>
     </a>
@@ -453,14 +466,7 @@ footer a:hover { color: var(--muted); }
         <div class="docs-card-desc">Historical evidence, empirical data, failure modes, 13 open questions, Ostrom's 8 design principles.</div>
       </div>
     </a>
-    <a class="docs-card" href="doc.html?file=CRITIQUE" aria-label="CRITIQUE -- Where the framework breaks">
-      <div class="docs-card-icon" aria-hidden="true">🔍</div>
-      <div>
-        <div class="docs-card-title">CRITIQUE.md &mdash; Where It Breaks</div>
-        <div class="docs-card-desc">Section-by-section audit of logic flaws, magical thinking, and blind spots. With concrete fixes.</div>
-      </div>
-    </a>
-    <a class="docs-card" href="doc.html?file=GOVERNANCE" aria-label="GOVERNANCE -- How decisions get made">
+<a class="docs-card" href="doc.html?file=GOVERNANCE" aria-label="GOVERNANCE -- How decisions get made">
       <div class="docs-card-icon" aria-hidden="true">&#x2696;&#xFE0F;</div>
       <div>
         <div class="docs-card-title">GOVERNANCE.md &mdash; How Decisions Get Made</div>
@@ -481,7 +487,7 @@ footer a:hover { color: var(--muted); }
         <div class="docs-card-desc">Full history of wiser.org (2007&ndash;2014): what it built, the 381-node taxonomy, why it failed, recovered data.</div>
       </div>
     </a>
-    <a class="docs-card" href="https://github.com/simonlpaige/ecolibrium/blob/master/data/taxonomy.yaml" target="_blank" rel="noopener" aria-label="taxonomy.yaml on GitHub (opens in new tab)">
+    <a class="docs-card" href="https://github.com/simonlpaige/commonweave/blob/master/data/taxonomy.yaml" target="_blank" rel="noopener" aria-label="taxonomy.yaml on GitHub (opens in new tab)">
       <div class="docs-card-icon" aria-hidden="true">&#x1F5C2;&#xFE0F;</div>
       <div>
         <div class="docs-card-title">taxonomy.yaml &mdash; Recovered Taxonomy</div>
@@ -498,12 +504,19 @@ footer a:hover { color: var(--muted); }
   </div>
 </div>
 
+<!-- TRUST LAYER NOTE -->
+<div class="wiser-wrap" role="note" aria-label="Note on the trust layer">
+  <div class="wiser-card">
+    <strong>On the horizon: a trust-based internet.</strong> A directory is only half the problem - the other half is how aligned organisations federate, verify each other, and coordinate without routing every relationship through a central platform. The <a href="https://open.coop/2026/03/20/relaunching-the-open-co-op-preparing-for-a-trust-based-internet/" target="_blank" rel="noopener">Open Co-op's PLANET</a> project and the <a href="https://www.firstperson.network/" target="_blank" rel="noopener">First Person Project</a> (under <a href="https://www.lfdecentralizedtrust.org/" target="_blank" rel="noopener">Linux Foundation Decentralized Trust</a>) are building verifiable-identity infrastructure that could let these organisations cooperate at scale without platform capture. Commonweave's next data-model change will add an <em>attestations</em> field so directory entries can eventually carry cryptographically-signed vouching from peers. Background: <a href="OPENCOOP-RESEARCH.md">OPENCOOP-RESEARCH.md</a>.
+  </div>
+</div>
+
 <!-- CTA -->
 <div class="cta" role="complementary" aria-label="Contribute">
   <h2>This belongs to everyone</h2>
-  <p>The data is CC0. Fork it, extend it, add organizations, correct errors. No center, no leaders, no inner circle. If you know something it doesn't, that's what pull requests are for.</p>
+  <p>The data is CC0. Fork it, extend it, add organizations, correct errors. Leadership is transparent and accountable - no personality cults, no inner circles. If you know something it doesn't, that's what pull requests are for.</p>
   <div class="btn-row">
-    <a href="https://github.com/simonlpaige/ecolibrium" target="_blank" rel="noopener" class="btn btn-green">Contribute on GitHub</a>
+    <a href="https://github.com/simonlpaige/commonweave" target="_blank" rel="noopener" class="btn btn-green">Contribute on GitHub</a>
     <a href="directory.html" class="btn btn-ghost">Browse the Directory &rarr;</a>
   </div>
 </div>
@@ -515,7 +528,7 @@ footer a:hover { color: var(--muted); }
     Framework: <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
     &middot; Data: <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>
     &middot; Inspired by <a href="https://web.archive.org/web/20140411042711/http://wiser.org/" target="_blank" rel="noopener">WiserEarth</a> (2007&ndash;2014)
-    &middot; <a href="https://github.com/simonlpaige/ecolibrium" target="_blank" rel="noopener">github.com/simonlpaige/ecolibrium</a>
+    &middot; <a href="https://github.com/simonlpaige/commonweave" target="_blank" rel="noopener">github.com/simonlpaige/commonweave</a>
   </p>
 </footer>
 
