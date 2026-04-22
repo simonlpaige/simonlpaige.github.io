@@ -1,793 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simon Paige | Agentic & Dark Factory</title>
-  <meta name="description" content="Simon Paige — building autonomous AI systems, multi-agent architectures, and lights-out automation in Kansas City, MO." />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #0a0a0a;
-      --white: #f5f2ee;
-      --steel: #1c2b3a;
-      --accent: #6ee7b7;
-      --accent-dim: #34d399;
-      --accent-glow: rgba(110, 231, 183, 0.12);
-      --gray: #8a9aaa;
-      --rule: rgba(255,255,255,0.08);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0.4;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-left {
-      background: var(--steel);
-      padding: 80px 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-left::after {
-      content: '';
-      position: absolute;
-      right: -1px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--accent);
-    }
-
-    .logo-mark {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-
-    .hero-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(72px, 9vw, 130px);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-      color: var(--white);
-    }
-
-    .hero-name span {
-      display: block;
-      color: var(--accent);
-    }
-
-    .hero-tagline {
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-      border-top: 1px solid var(--rule);
-      padding-top: 24px;
-    }
-
-    .hero-right {
-      background: var(--black);
-      padding: 80px 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-    }
-
-    .hero-intro {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      font-family: 'DM Mono', monospace;
-    }
-
-    .hero-pitch {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--white);
-      max-width: 460px;
-      margin-bottom: 48px;
-    }
-
-    .hero-pitch strong {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: var(--black);
-      padding: 14px 32px;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-    .btn-primary:hover { background: var(--accent-dim); }
-
-    .btn-secondary {
-      border: 1px solid var(--rule);
-      color: var(--gray);
-      padding: 14px 32px;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ── TICKER ── */
-    .ticker {
-      background: var(--accent);
-      color: var(--black);
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 12px 0;
-    }
-
-    .ticker-inner {
-      display: inline-flex;
-      animation: ticker 32s linear infinite;
-    }
-
-    .ticker-item {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 500;
-      padding: 0 40px;
-    }
-
-    .ticker-item::before {
-      content: '◆';
-      margin-right: 40px;
-    }
-
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      padding: 100px 80px;
-      border-top: 1px solid var(--rule);
-    }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 48px;
-    }
-
-    /* ── SERVICES ── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      background: var(--rule);
-    }
-
-    .service-card {
-      background: var(--black);
-      padding: 48px 40px;
-      transition: background 0.3s;
-    }
-
-    .service-card:hover {
-      background: #111;
-    }
-
-    .service-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      color: var(--rule);
-      line-height: 1;
-      margin-bottom: 24px;
-    }
-
-    .service-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 0.05em;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-
-    .service-desc {
-      font-size: 14px;
-      color: var(--gray);
-      line-height: 1.7;
-    }
-
-    /* ── PROJECTS ── */
-    .projects {
-      background: var(--steel);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-      background: var(--rule);
-    }
-
-    .project-card {
-      background: var(--steel);
-      padding: 48px 40px;
-      transition: background 0.3s;
-    }
-
-    .project-card:hover {
-      background: #1f3044;
-    }
-
-    .project-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
-    .project-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: 0.05em;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    .project-desc {
-      font-size: 14px;
-      color: var(--gray);
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tech-pill {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: 1px solid var(--rule);
-      padding: 4px 10px;
-      color: var(--gray);
-    }
-
-    /* ── STACK ── */
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-    }
-
-    .stack-group {
-      border-left: 2px solid var(--accent);
-      padding-left: 20px;
-    }
-
-    .stack-group-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 0.05em;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    .stack-group-items {
-      font-size: 13px;
-      color: var(--gray);
-      line-height: 1.9;
-    }
-
-    /* ── APPROACH ── */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: var(--rule);
-      margin-top: 48px;
-    }
-
-    .step {
-      background: var(--black);
-      padding: 40px 32px;
-    }
-
-    .step-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-
-    .step-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
-    }
-
-    .step-desc {
-      font-size: 13px;
-      color: var(--gray);
-    }
-
-    /* ── CONTACT ── */
-    .contact {
-      background: var(--steel);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .contact-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 6vw, 80px);
-      line-height: 0.95;
-      color: var(--white);
-    }
-
-    .contact-headline span {
-      color: var(--accent);
-    }
-
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .contact-item-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .contact-item-value {
-      font-size: 18px;
-      color: var(--white);
-    }
-
-    .contact-item-value a {
-      color: var(--white);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .contact-item-value a:hover { color: var(--accent); }
-
-    .social-links {
-      display: flex;
-      gap: 16px;
-      margin-top: 8px;
-    }
-
-    .social-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray);
-      text-decoration: none;
-      padding: 8px 16px;
-      border: 1px solid var(--rule);
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .social-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 32px 80px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    footer p {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--gray);
-      text-transform: uppercase;
-    }
-
-    /* ── ANIMATIONS ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 60px 32px; }
-      .hero-right { padding: 60px 32px; }
-      .hero-left::after { display: none; }
-      section { padding: 60px 32px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .stack-grid { grid-template-columns: 1fr 1fr; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .contact { grid-template-columns: 1fr; gap: 40px; }
-      .social-links { flex-wrap: wrap; }
-      footer { flex-direction: column; gap: 8px; text-align: center; padding: 32px; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simon L. Paige Web Design - Kansas City</title>
+  <meta name="description" content="Custom websites for KC small businesses. $399 to build, $29 a month to keep running. You own the code.">
+  <link rel="canonical" href="https://simonlpaige.com/">
+  <meta property="og:title" content="Simon L. Paige Web Design - Kansas City">
+  <meta property="og:description" content="Custom websites for KC small businesses. $399 to build, $29 a month to keep running. You own the code.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simonlpaige.com/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero" style="border:none; padding:0;">
-    <div class="hero-left">
-      <div class="logo-mark">Agentic · Dark Factory · Automation</div>
-      <div>
-        <div class="hero-name">Simon<span>Paige</span></div>
-      </div>
-      <div class="hero-tagline">Agentic &amp; Dark Factory · Kansas City, MO</div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-intro">Builder of autonomous systems</div>
-      <p class="hero-pitch">
-        I design and build <strong>agentic AI systems</strong> and dark factory automation — multi-agent architectures that run lights-out, from orchestration to deployment.<br/><br/>
-        Shipping real software that thinks, coordinates, and operates without human babysitting.
-      </p>
-      <div class="cta-row">
-        <a href="#contact" class="btn-primary">Get in Touch</a>
-        <a href="/plans/" class="btn-secondary">Web Design Plans</a>
-        <a href="#work" class="btn-secondary">See My Work</a>
-      </div>
-    </div>
-  </section>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- TICKER -->
-  <div class="ticker">
-    <div class="ticker-inner">
-      <span class="ticker-item">Agentic Systems</span>
-      <span class="ticker-item">Dark Factory Automation</span>
-      <span class="ticker-item">Multi-Agent Architectures</span>
-      <span class="ticker-item">LLM Orchestration</span>
-      <span class="ticker-item">Lights-Out Operations</span>
-      <span class="ticker-item">Autonomous Workflows</span>
-      <span class="ticker-item">Political Signal Analysis</span>
-      <span class="ticker-item">Community AI Infrastructure</span>
-      <span class="ticker-item">Agentic Systems</span>
-      <span class="ticker-item">Dark Factory Automation</span>
-      <span class="ticker-item">Multi-Agent Architectures</span>
-      <span class="ticker-item">LLM Orchestration</span>
-      <span class="ticker-item">Lights-Out Operations</span>
-      <span class="ticker-item">Autonomous Workflows</span>
-      <span class="ticker-item">Political Signal Analysis</span>
-      <span class="ticker-item">Community AI Infrastructure</span>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="site-logo" aria-label="Simon L. Paige Web Design home">
+        <img src="/assets/logo.svg" alt="Simon L. Paige Web Design wordmark" width="200" height="40">
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="site-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="/plans/">Plans</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <!-- WHAT I DO -->
-  <section id="services">
-    <div class="section-label">// What I Do</div>
-    <div class="services-grid fade-in">
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <div class="service-title">AI Product Development</div>
-        <p class="service-desc">End-to-end development of AI-powered SaaS products — from concept and architecture through to production deployment and monitoring.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <div class="service-title">Multi-Agent Systems</div>
-        <p class="service-desc">Designing autonomous agent architectures that coordinate, delegate, and execute complex workflows with minimal human oversight.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <div class="service-title">Full-Stack Web Development</div>
-        <p class="service-desc">Modern web applications built with React, Next.js, Node, Python, and PostgreSQL — responsive, fast, and production-ready from day one.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-num">04</div>
-        <div class="service-title">Dark Factory Design</div>
-        <p class="service-desc">Lights-out automation pipelines — systems that run 24/7 without human intervention. Self-monitoring, self-healing, and self-optimizing infrastructure.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-num">05</div>
-        <div class="service-title">LLM Integration</div>
-        <p class="service-desc">Integrating large language models into production systems — prompt engineering, RAG pipelines, fine-tuning strategies, and cost optimization.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-num">06</div>
-        <div class="service-title">UI/UX Design</div>
-        <p class="service-desc">Clean, purposeful interface design for complex technical products — making AI tools and dashboards that users actually want to use.</p>
-      </div>
-    </div>
-  </section>
+  <main id="main">
 
-  <!-- PROJECTS -->
-  <section class="projects" id="work">
-    <div class="section-label">// Selected Work</div>
-    <div class="projects-grid fade-in">
-      <a class="project-card" href="https://github.com/simonlpaige/rivaldrop" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-        <div class="project-tag">SaaS · AI</div>
-        <div class="project-name">RivalDrop</div>
-        <p class="project-desc">Competitive intelligence platform for Shopify brands. Multi-agent system that autonomously tracks competitors, analyzes pricing shifts, and delivers actionable reports.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Python</span>
-          <span class="tech-pill">React</span>
-          <span class="tech-pill">PostgreSQL</span>
-          <span class="tech-pill">Multi-Agent AI</span>
-          <span class="tech-pill">Stripe</span>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <h1>Hi, I'm Simon. I build websites by hand in Kansas City.</h1>
+        <p class="subhead">Custom sites for KC small businesses. $399 to build, $29 a month to keep running. You own the code. No contracts you can't leave.</p>
+        <div class="cta-row">
+          <a href="/plans/" class="btn btn-primary">See the plans</a>
+          <a href="#work" class="btn btn-secondary">See my work</a>
         </div>
-      </a>
-      <a class="project-card" href="https://github.com/simonlpaige/waldonet" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-        <div class="project-tag">Community · Infrastructure</div>
-        <div class="project-name">WaldoNet AI</div>
-        <p class="project-desc">Neighborhood-owned AI cooperative in Kansas City. RTX 4060 inference server running Gemma 4 26B through Ollama &amp; Open WebUI — AI homework tutoring, business tools, and scam detection for the community. Partnered with KC Digital Drive.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Ollama</span>
-          <span class="tech-pill">Gemma 4</span>
-          <span class="tech-pill">Open WebUI</span>
-          <span class="tech-pill">Cloudflare Tunnel</span>
-          <span class="tech-pill">GPU Compute</span>
-        </div>
-      </a>
-      <a class="project-card" href="https://github.com/simonlpaige/ecolibrium" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-        <div class="project-tag">Open Data · Civil Society</div>
-        <div class="project-name">Ecolibrium</div>
-        <p class="project-desc">Open-source framework mapping 667,000+ civil society organizations across 26 countries. Interactive spore map, searchable directory, and automated research pipeline ingesting data from IRS, ProPublica, and web sources. Continuing WiserEarth's mission with zero infrastructure dependency.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Python</span>
-          <span class="tech-pill">SQLite</span>
-          <span class="tech-pill">D3.js / Leaflet</span>
-          <span class="tech-pill">Multi-Agent Pipeline</span>
-          <span class="tech-pill">CC0 Data</span>
-        </div>
-      </a>
-      <a class="project-card" href="https://github.com/simonlpaige/aiverify" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-        <div class="project-tag">Web App · AI</div>
-        <div class="project-name">aiVerify</div>
-        <p class="project-desc">Suite of AI-powered verification tools — content authenticity, media analysis, and data validation — deployed on Railway with a microservices architecture.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Django</span>
-          <span class="tech-pill">React</span>
-          <span class="tech-pill">Railway</span>
-          <span class="tech-pill">Redis</span>
-          <span class="tech-pill">Celery</span>
-        </div>
-      </a>
-      <a class="project-card" href="https://github.com/simonlpaige/crypto-trading-bot" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-        <div class="project-tag">Finance · ML</div>
-        <div class="project-name">CryptoBot</div>
-        <p class="project-desc">Multi-strategy BTC paper trading bot with 8 strategies including congressional trade front-running, political signal analysis (Truth Social, FOMC, SEC 13F), tariff whiplash detection, and ML-powered meta-learner for strategy selection.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Python</span>
-          <span class="tech-pill">Kraken API</span>
-          <span class="tech-pill">SEC EDGAR</span>
-          <span class="tech-pill">FRED API</span>
-          <span class="tech-pill">ML</span>
-        </div>
-      </a>
-      <a class="project-card" href="https://everyday-produce.com" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-        <div class="project-tag">Web Design · Local Business</div>
-        <div class="project-name">Everyday Produce</div>
-        <p class="project-desc">Custom-built website for a neighborhood produce shop in Waldo, Kansas City. ADA-compliant (WCAG 2.1 AA), mobile-first design with seasonal menus, Google Maps integration, and optimized for local SEO. Hosted on GitHub Pages with Cloudflare DNS.</p>
-        <div class="project-tech">
-          <span class="tech-pill">HTML / CSS</span>
-          <span class="tech-pill">JavaScript</span>
-          <span class="tech-pill">GitHub Pages</span>
-          <span class="tech-pill">Cloudflare</span>
-          <span class="tech-pill">WCAG 2.1 AA</span>
-        </div>
-      </a>
-      <a class="project-card" href="https://github.com/simonlpaige/multi-agent-framework" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-        <div class="project-tag">Agent Framework</div>
-        <div class="project-name">Autonomous Agent Systems</div>
-        <p class="project-desc">Custom multi-agent orchestration framework coordinating specialized AI agents — CEO, marketing, engineering, and research roles working together on complex business operations.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Claude API</span>
-          <span class="tech-pill">Ollama</span>
-          <span class="tech-pill">Node.js</span>
-          <span class="tech-pill">Orchestration</span>
-        </div>
-      </a>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- STACK -->
-  <section>
-    <div class="section-label">// Tech Stack</div>
-    <div class="stack-grid fade-in">
-      <div class="stack-group">
-        <div class="stack-group-title">Languages</div>
-        <div class="stack-group-items">
-          Python<br/>
-          JavaScript / TypeScript<br/>
-          HTML / CSS<br/>
-          SQL<br/>
-          Lua
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="stack-group-title">Frameworks</div>
-        <div class="stack-group-items">
-          React / Next.js<br/>
-          Django / FastAPI<br/>
-          Node.js / Express<br/>
-          Tailwind CSS<br/>
-          Celery / Redis
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="stack-group-title">AI / ML</div>
-        <div class="stack-group-items">
-          Claude / OpenAI APIs<br/>
-          Ollama / Gemma 4 / Local LLMs<br/>
-          OpenClaw / Multi-Agent<br/>
-          RAG / Embeddings<br/>
-          Political Signal Analysis
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="stack-group-title">Infrastructure</div>
-        <div class="stack-group-items">
-          Railway / Netlify<br/>
-          Docker / Linux / Windows<br/>
-          PostgreSQL / SQLite<br/>
-          Cloudflare Tunnels<br/>
-          Git / GitHub Actions
-        </div>
-      </div>
-    </div>
-  </section>
+    <hr>
 
-  <!-- APPROACH -->
-  <section style="background: var(--steel);">
-    <div class="section-label">// How I Work</div>
-    <div class="steps fade-in">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-title">Understand the Problem</div>
-        <p class="step-desc">Deep-dive into your domain, users, and constraints before writing a single line of code.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-title">Architect the System</div>
-        <p class="step-desc">Design for scale, maintainability, and cost — choosing the right tools instead of the trendy ones.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-title">Build & Ship Fast</div>
-        <p class="step-desc">Iterative development with real deployments. Working software over polished slide decks.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-title">Measure & Iterate</div>
-        <p class="step-desc">Data-driven refinement. Monitor, learn, improve — the system gets smarter over time.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Work -->
+    <section class="section" id="work">
+      <div class="wrap">
+        <h2 class="section-heading">Recent KC work</h2>
+        <div class="work-grid">
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div>
-      <div class="section-label">// Let's Build Something</div>
-      <div class="contact-headline fade-in">
-        Got an<br/><span>idea?</span><br/>Let's ship it.
-      </div>
-    </div>
-    <div class="contact-details fade-in">
-      <div class="contact-item">
-        <div class="contact-item-label">Email</div>
-        <div class="contact-item-value"><a href="mailto:simonlpaige@gmail.com">simonlpaige@gmail.com</a></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Location</div>
-        <div class="contact-item-value">Kansas City, MO</div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Status</div>
-        <div class="contact-item-value">Available for projects &amp; collaborations</div>
-      </div>
-      <div class="social-links">
-        <a href="https://github.com/simonlpaige" class="social-link" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/simonlpaige" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-      <a href="mailto:simonlpaige@gmail.com" class="btn-primary" style="margin-top:8px; display:inline-block;">Start a Conversation</a>
-    </div>
-  </section>
+          <a href="https://everyday-produce.com" class="work-card" target="_blank" rel="noopener">
+            <div class="card-title">Everyday Produce</div>
+            <p class="card-tagline">Neighborhood produce stand, open since 1985.</p>
+            <div class="card-tag">Waldo, Kansas City</div>
+            <div class="card-preview">
+              <div class="preview-url">everyday-produce.com</div>
+              <div class="preview-note">Live site</div>
+            </div>
+          </a>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2026 Simon Paige</p>
-    <p>Kansas City, MO</p>
+          <a href="https://simonlpaige.github.io/andersen-hvacr/" class="work-card" target="_blank" rel="noopener">
+            <div class="card-title">Andersen's HVACR</div>
+            <p class="card-tagline">HVAC, refrigeration, and commercial cooking equipment for KC restaurants.</p>
+            <div class="card-tag">Kansas City metro</div>
+            <div class="card-preview">
+              <div class="preview-url">andersen-hvacr (preview)</div>
+              <div class="preview-note">In progress</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Testimonial -->
+    <section class="section testimonial" id="testimonial">
+      <div class="wrap">
+        <blockquote class="testimonial-quote">
+          <p>"We had a website before, but it was always broken or loading slow. Simon built us something that just works. It's been up since he launched it and I haven't had to touch it."</p>
+          <cite>— Everyday Produce, Waldo, Kansas City <span class="cite-link"><a href="https://everyday-produce.com" target="_blank" rel="noopener">everyday-produce.com</a></span></cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Feynman paragraph -->
+    <section class="feynman">
+      <div class="wrap">
+        <p class="body-text">A Wix or Squarespace site is software you're renting. You pay $20-30 a month, you do all the work of building it, and when you stop paying, it disappears. What I build is a file - plain HTML and CSS on a server. It doesn't need a subscription to exist. It doesn't break when a platform updates. It works exactly as well in five years as it does today, because it's not connected to anything that can change without your permission. You're paying $29 a month for me to keep it running. That's it.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+      <div class="wrap">
+        <h2 class="section-heading">About</h2>
+        <p>I'm in Kansas City. I've been building websites for twelve years. I answer my own email and I don't sell your data.</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <h2 class="section-heading">Get in touch</h2>
+        <p class="body-text">I'm one person, not an agency. Send me an email and I'll write back.</p>
+        <div class="cta-row" style="margin-top: 24px;">
+          <a href="mailto:simon@simonlpaige.com?subject=Website%20for%20%3Cyour%20business%3E" class="btn btn-primary">Email me</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-left">Simon L. Paige Web Design</div>
+      <div class="footer-right">
+        A brand of <a href="https://groundlayer.co">Groundlayer LLC</a>. Also: <a href="https://rivaldrop.com">RivalDrop</a> · <a href="https://anvilshare.ai">Anvilshare</a>
+        · <a href="/privacy.html">Privacy</a> ·
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-credit">Built in Kansas City by Simon L. Paige Web Design. Plain HTML, built by hand.</div>
   </footer>
-
-  <script>
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-  </script>
 
 </body>
 </html>
