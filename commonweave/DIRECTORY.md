@@ -1,6 +1,6 @@
-# 🌍 Ecolibrium Global Civil Society Directory
+# 🌍 Commonweave Global Civil Society Directory
 
-*Last updated: 2026-04-22 01:41 UTC*
+*Last updated: 2026-04-24 11:23 UTC*
 
 
 ## Coverage
@@ -18,14 +18,14 @@
 | 🌐 Australia (AU) | 268 | Field Research | ✅ |
 | 🌐 Bosnia and Herzegovina (BA) | 0 | Field Research | ✅ |
 | 🌐 Bangladesh (BD) | 0 | Field Research | ✅ |
-| 🌐 Belgium (BE) | 1 | Field Research | ✅ |
+| 🌐 Belgium (BE) | 203 | Field Research | ✅ |
 | 🌐 Burkina Faso (BF) | 0 | Field Research | ✅ |
 | 🌐 Bulgaria (BG) | 0 | Field Research | ✅ |
 | 🌐 Bahrain (BH) | 0 | Field Research | ✅ |
 | 🌐 Benin (BJ) | 0 | Field Research | ✅ |
 | 🌐 Brunei (BN) | 0 | Field Research | ✅ |
 | 🌐 Bolivia (BO) | 20 | Field Research | ✅ |
-| 🌐 Brazil (BR) | 86 | Field Research | ✅ |
+| 🌐 Brazil (BR) | 127 | Field Research | ✅ |
 | 🌐 Botswana (BW) | 0 | Field Research | ✅ |
 | 🌐 Belarus (BY) | 0 | Field Research | ✅ |
 | 🌐 Belize (BZ) | 0 | Field Research | ✅ |
@@ -34,7 +34,7 @@
 | 🌐 Republic of the Congo (CG) | 0 | Field Research | ✅ |
 | 🌐 Switzerland (CH) | 0 | Field Research | ✅ |
 | 🌐 Cote d'Ivoire (CI) | 0 | Field Research | ✅ |
-| 🌐 Chile (CL) | 14 | Field Research | ✅ |
+| 🌐 Chile (CL) | 55 | Field Research | ✅ |
 | 🌐 Cameroon (CM) | 0 | Field Research | ✅ |
 | 🌐 China (CN) | 0 | Field Research | ✅ |
 | 🌐 Colombia (CO) | 65 | Field Research | ✅ |
@@ -45,16 +45,16 @@
 | 🌐 Germany (DE) | 129 | Field Research | ✅ |
 | 🌐 Djibouti (DJ) | 0 | Field Research | ✅ |
 | 🌐 Denmark (DK) | 0 | Field Research | ✅ |
-| 🌐 Dominican Republic (DO) | 9 | Field Research | ✅ |
-| 🌐 Ecuador (EC) | 18 | Field Research | ✅ |
+| 🌐 Dominican Republic (DO) | 52 | Field Research | ✅ |
+| 🌐 Ecuador (EC) | 55 | Field Research | ✅ |
 | 🌐 Estonia (EE) | 0 | Field Research | ✅ |
 | 🌐 Egypt (EG) | 96 | Field Research | ✅ |
 | 🌐 Eritrea (ER) | 0 | Field Research | ✅ |
-| 🌐 Spain (ES) | 28 | Field Research | ✅ |
+| 🌐 Spain (ES) | 77 | Field Research | ✅ |
 | 🌐 Ethiopia (ET) | 21 | Field Research | ✅ |
 | 🌐 Finland (FI) | 0 | Field Research | ✅ |
 | 🌐 Fiji (FJ) | 1 | Field Research | ✅ |
-| 🌐 France (FR) | 4 | Field Research | ✅ |
+| 🌐 France (FR) | 69 | Field Research | ✅ |
 | 🌐 Gabon (GA) | 0 | Field Research | ✅ |
 | 🌐 United Kingdom (GB) | 11,433 | Field Research | ✅ |
 | 🌐 Georgia (GE) | 0 | Field Research | ✅ |
@@ -62,23 +62,23 @@
 | 🌐 Gambia (GM) | 0 | Field Research | ✅ |
 | 🌐 Guinea (GN) | 0 | Field Research | ✅ |
 | 🌐 Greece (GR) | 139 | Field Research | ✅ |
-| 🌐 Guatemala (GT) | 10 | Field Research | ✅ |
+| 🌐 Guatemala (GT) | 50 | Field Research | ✅ |
 | 🌐 Guinea-Bissau (GW) | 0 | Field Research | ✅ |
 | 🌐 Guyana (GY) | 3 | Field Research | ✅ |
-| 🌐 Honduras (HN) | 10 | Field Research | ✅ |
+| 🌐 Honduras (HN) | 51 | Field Research | ✅ |
 | 🌐 Croatia (HR) | 0 | Field Research | ✅ |
 | 🌐 Haiti (HT) | 3 | Field Research | ✅ |
-| 🌐 Hungary (HU) | 1 | Field Research | ✅ |
+| 🌐 Hungary (HU) | 119 | Field Research | ✅ |
 | 🌐 Indonesia (ID) | 21 | Field Research | ✅ |
 | 🌐 Ireland (IE) | 0 | Field Research | ✅ |
 | 🌐 India (IN) | 29 | Field Research | ✅ |
 | 🌐 Iraq (IQ) | 0 | Field Research | ✅ |
 | 🌐 Iran (IR) | 0 | Field Research | ✅ |
 | 🌐 Iceland (IS) | 0 | Field Research | ✅ |
-| 🌐 Italy (IT) | 83 | Field Research | ✅ |
-| 🌐 Jamaica (JM) | 8 | Field Research | ✅ |
+| 🌐 Italy (IT) | 111 | Field Research | ✅ |
+| 🌐 Jamaica (JM) | 50 | Field Research | ✅ |
 | 🌐 Jordan (JO) | 0 | Field Research | ✅ |
-| 🌐 Japan (JP) | 21 | Field Research | ✅ |
+| 🌐 Japan (JP) | 22 | Field Research | ✅ |
 | 🌐 Kenya (KE) | 190 | Field Research | ✅ |
 | 🌐 Kyrgyzstan (KG) | 0 | Field Research | ✅ |
 | 🌐 Cambodia (KH) | 0 | Field Research | ✅ |
@@ -104,20 +104,20 @@
 | 🌐 Mongolia (MN) | 0 | Field Research | ✅ |
 | 🌐 Malta (MT) | 0 | Field Research | ✅ |
 | 🌐 Malawi (MW) | 0 | Field Research | ✅ |
-| 🌐 Mexico (MX) | 108 | Field Research | ✅ |
+| 🌐 Mexico (MX) | 117 | Field Research | ✅ |
 | 🌐 Malaysia (MY) | 0 | Field Research | ✅ |
-| 🌐 Mozambique (MZ) | 6 | Field Research | ✅ |
+| 🌐 Mozambique (MZ) | 50 | Field Research | ✅ |
 | 🌐 Namibia (NA) | 0 | Field Research | ✅ |
 | 🌐 Niger (NE) | 0 | Field Research | ✅ |
 | 🌐 DIRECTORY_NG.md (NG) | 305 | Field Research | ✅ |
-| 🌐 Nicaragua (NI) | 10 | Field Research | ✅ |
+| 🌐 Nicaragua (NI) | 51 | Field Research | ✅ |
 | 🌐 Netherlands (NL) | 106 | Field Research | ✅ |
-| 🌐 Norway (NO) | 1 | Field Research | ✅ |
-| 🌐 Nepal (NP) | 2 | Field Research | ✅ |
+| 🌐 Norway (NO) | 179 | Field Research | ✅ |
+| 🌐 Nepal (NP) | 3 | Field Research | ✅ |
 | 🌐 New Zealand (NZ) | 334 | Field Research | ✅ |
 | 🌐 Oman (OM) | 0 | Field Research | ✅ |
 | 🌐 Phase 2: (??) | 0 | Field Research | ✅ |
-| 🌐 Panama (PA) | 5 | Field Research | ✅ |
+| 🌐 Panama (PA) | 50 | Field Research | ✅ |
 | 🌐 Peru (PE) | 43 | Field Research | ✅ |
 | 🌐 Papua New Guinea (PG) | 0 | Field Research | ✅ |
 | 🌐 Philippines (PH) | 36 | Field Research | ✅ |
@@ -130,16 +130,16 @@
 | 🌐 Romania (RO) | 0 | Field Research | ✅ |
 | 🌐 Serbia (RS) | 0 | Field Research | ✅ |
 | 🌐 Russia (RU) | 1 | Field Research | ✅ |
-| 🌐 Rwanda (RW) | 15 | Field Research | ✅ |
+| 🌐 Rwanda (RW) | 53 | Field Research | ✅ |
 | 🌐 Saudi Arabia (SA) | 0 | Field Research | ✅ |
 | 🌐 Sudan (SD) | 0 | Field Research | ✅ |
-| 🌐 Sweden (SE) | 26 | Field Research | ✅ |
+| 🌐 Sweden (SE) | 58 | Field Research | ✅ |
 | 🌐 Slovenia (SI) | 0 | Field Research | ✅ |
 | 🌐 Slovakia (SK) | 0 | Field Research | ✅ |
 | 🌐 Sierra Leone (SL) | 0 | Field Research | ✅ |
-| 🌐 Senegal (SN) | 6 | Field Research | ✅ |
+| 🌐 Senegal (SN) | 59 | Field Research | ✅ |
 | 🌐 Somalia (SO) | 0 | Field Research | ✅ |
-| 🌐 Suriname (SR) | 14 | Field Research | ✅ |
+| 🌐 Suriname (SR) | 16 | Field Research | ✅ |
 | 🌐 South Sudan (SS) | 0 | Field Research | ✅ |
 | 🌐 El Salvador (SV) | 0 | Field Research | ✅ |
 | 🌐 Syria (SY) | 0 | Field Research | ✅ |
@@ -151,7 +151,7 @@
 | 🌐 Timor-Leste (TL) | 0 | Field Research | ✅ |
 | 🌐 Turkmenistan (TM) | 1 | Field Research | ✅ |
 | 🌐 Tunisia (TN) | 0 | Field Research | ✅ |
-| 🌐 Turkey (TR) | 1 | Field Research | ✅ |
+| 🌐 Turkey (TR) | 95 | Field Research | ✅ |
 | 🌐 Trinidad and Tobago (TT) | 9 | Field Research | ✅ |
 | 🌐 Taiwan (TW) | 0 | Field Research | ✅ |
 | 🌐 Tanzania (TZ) | 36 | Field Research | ✅ |
@@ -160,14 +160,14 @@
 | 🌐 Uruguay (UY) | 0 | Field Research | ✅ |
 | 🌐 Uzbekistan (UZ) | 0 | Field Research | ✅ |
 | 🌐 Venezuela (VE) | 29 | Field Research | ✅ |
-| 🌐 Vietnam (VN) | 1 | Field Research | ✅ |
+| 🌐 Vietnam (VN) | 65 | Field Research | ✅ |
 | 🌐 Yemen (YE) | 0 | Field Research | ✅ |
 | 🌐 South Africa (ZA) | 109 | Field Research | ✅ |
-| 🌐 Zambia (ZM) | 7 | Field Research | ✅ |
+| 🌐 Zambia (ZM) | 53 | Field Research | ✅ |
 | 🌐 Zimbabwe (ZW) | 0 | Field Research | ✅ |
 | 🌐 Ecuador, Kenya, Bangladesh, Indonesia... | TBD | In progress | 🔄 |
 
-**Total: 24,528 organizations indexed** across 61 countries
+**Total: 25,923 organizations indexed** across 61 countries
 
 
 ---
@@ -1108,7 +1108,7 @@ Model: nonprofit
 
 # 🌐 China (CN) Civil Society Directory
 
-*Compiled: 2026-04-22 | Source: Web research | Organizations: 0*
+*Compiled: 2026-04-23 | Source: Web research | Organizations: 0*
 
 ---
 
@@ -1725,101 +1725,13 @@ Model: nonprofit
 
 # 🌐 India (IN) Civil Society Directory
 
-*Compiled: 2026-04-15 | Source: Web research | Organizations: 18*
+*Compiled: 2026-04-23 | Source: Web research | Organizations: 0*
 
 ---
 
 ## Organizations
 
-### List of non-governmental organisations in India - Wikipedia
-Framework: democracy
-Model: nonprofit
-> List of non-governmental organisations in India New delhgi This is a list of notable nonprofit organisations, charitable organisations and non-governmental organisations (NGOs) working in India or con
-
-### List of non
-Framework: democracy
-Model: nonprofit
-> ## GuideStarIndia
-
-### GuideStarIndia
-Framework: democracy
-Model: nonprofit
-> GuideStar India is an initiative of Civil Society Information Services India (CSISI), a public charitable trust registered in India with 12A, 80G, FCRA and Darpan registrations. ©2025 CSISI.
-
-### GuideStar India
-Framework: democracy
-Model: nonprofit
-> ## List of NGOs in India - NGO Base
-
-### List of NGOs in India - NGO Base
-Framework: democracy
-Model: nonprofit
-> List of NGOs, Charities and NPOs working in India. In this directory, you will find list of all Non governmental organizations, non profits and charities in India.Page 1 of 427
-
-### IN/india-ngos
-Framework: democracy
-Model: nonprofit
-> List of NGOs, Charities and NPOs working in India. In this directory, you will find list of all Non governmental organizations, non profits and charities in India.Page 1 of 427
-
-### The Largest Non-Profit Organisations of India
-Framework: energy_digital
-Model: nonprofit
-> What are the largest associations, federations and foundations in India? Based on Wikidata, here is the list of the largest organisations by revenue, total assets, employees and members.
-
-### Based on Wikidata, here
-Framework: energy_digital
-Model: nonprofit
-> ## Indian Ngos List Directory | Non-governmental organization - Non-profit ...
-
-### Indian Ngos List Directory | Non-governmental organization - Non-profit 
-Framework: cooperatives
-Model: nonprofit
-> India Ngos list Ngo's directory with all types Ngos, Societies, Trust, Co-operative society, Section 25 company That are with 80g Tax certificate and FRCA certificate in India.
-
-### Ngo's directory with all types Ngos, Societies, Trust, Co
-Framework: democracy
-Model: nonprofit
-> ## Top 10 NGOs in India | Best & Trusted Non-Profit Organizations
-
-### Top 10 NGOs in India | Best & Trusted Non-Profit Organizations
-Framework: healthcare
-Model: nonprofit
-> Explore the top 10 NGOs in India including PARD INDIA, Akshaya Patra Foundation, and CRY. These trusted non-profit organizations are driving change in education, healthcare, child rights, and rural de
-
-### These trusted non
-Framework: energy_digital
-Model: nonprofit
-> ## Welcome to DATA India
-
-### Welcome to DATA India
-Framework: energy_digital
-Model: nonprofit
-> Welcome to DATA India State-wise NGO Directory
-
-### Welcome to DATA India State
-Framework: energy_digital
-Model: nonprofit
-> ## Discover NGOs in India | NGOFeed - Find Nonprofits by Location, Sector ...
-
-### Discover NGOs in India | NGOFeed - Find Nonprofits by Location, Sector 
-Framework: democracy
-Model: nonprofit
-> Explore and discover NGOs across India by location, sector, and cause. Find verified nonprofit organizations, read their stories, and connect with them through NGOFeed's comprehensive discovery platfo
-
-### Civil Society Organizations in India - दृष्टि आईएएस
-Framework: democracy
-Model: nonprofit
-> During the 1965-67 droughts, many international NGOs entered India with foreign aid and later set up permanent offices, reshaping civil society funding. Contemporary Era: Civil society shifted from we
-
-### Civil society shifted from welfare delivery to a rights
-Framework: democracy
-Model: nonprofit
-> ## NGOs List in India - MOHAN Foundation
-
-### NGOs List in India - MOHAN Foundation
-Framework: recreation_arts
-Model: foundation
-> Search NGOs By City or State or Name City State NGO Name Search Show All Total Records - 52 Akhil Bhartiya Marwari Mahila Sammelan Plot No 303, The Heritage, Civil Lines, Civil Lines, Nagpur, Maharash
+_No evidence-backed organizations found in this pass._
 
 
 ---
@@ -2263,14 +2175,13 @@ Model: nonprofit
 
 # 🌐 South Korea (KR) Civil Society Directory
 
-*Compiled: 2026-04-15 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-24 | Source: Web research | Organizations: 0*
 
 ---
 
 ## Organizations
 
-### South Korea Civil Society Network
-> Primary civil society network in South Korea
+_No evidence-backed organizations found in this pass._
 
 
 ---
@@ -3403,14 +3314,13 @@ Model: nonprofit
 
 # 🌐 Russia (RU) Civil Society Directory
 
-*Compiled: 2026-04-15 | Source: Web research | Organizations: 1*
+*Compiled: 2026-04-23 | Source: Web research | Organizations: 0*
 
 ---
 
 ## Organizations
 
-### Russia Civil Society Network
-> Primary civil society network in Russia
+_No evidence-backed organizations found in this pass._
 
 
 ---
