@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everyday Produce &mdash; Build log &middot; Simon L. Paige</title>
+  <meta name="description" content="How I built (and keep running) everyday-produce.com for Konrad's neighborhood produce stand in Waldo, Kansas City. What the client asked for, what I actually built, what broke, and what I'd do differently.">
+  <meta name="author" content="Simon L. Paige">
+  <link rel="canonical" href="https://simonlpaige.com/work/everyday-produce.html">
+
+  <meta property="og:title" content="Everyday Produce &mdash; Build log">
+  <meta property="og:description" content="How I built a durable site for a Waldo produce stand. Plain HTML, honest story.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simonlpaige.com/work/everyday-produce.html">
+  <meta property="og:image" content="https://simonlpaige.com/assets/portfolio/everyday-produce-home.png">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/favicon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css">
+
+  <style>
+    /* Build log specific — scoped, doesn't pollute global */
+    .buildlog-wrap { max-width: 740px; }
+    .buildlog h2 { margin-top: 48px; }
+    .buildlog p { margin-bottom: 18px; }
+    .receipts {
+      margin-top: 56px;
+      padding: 24px 28px;
+      background: #faf8f4;
+      border-left: 3px solid #2d2d2d;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .receipts .receipts-heading {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 14px;
+    }
+    .receipts .r-key { color: #666; display: inline-block; min-width: 140px; }
+    .receipts .r-val { color: #2d2d2d; }
+    .receipts a { color: #2d2d2d; text-decoration: underline; }
+    .buildlog-back {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 13px;
+      color: #666;
+      text-decoration: none;
+    }
+    .buildlog-back:hover { color: #2d2d2d; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="wordmark" aria-label="Simon L. Paige, home">
+        <span class="wordmark-name">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
+      </a>
+      <nav aria-label="Main">
+        <ul class="site-nav">
+          <li><a href="/#work">Work</a></li>
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/process.html">Process</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero hero-personal">
+      <div class="wrap buildlog-wrap">
+        <a href="/#work" class="buildlog-back">&larr; back to the work</a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Build log &middot; Waldo, Kansas City &middot; Live since 2026</p>
+        <h1>Everyday Produce</h1>
+        <p class="subhead">A Waldo produce stand that's been part of south Kansas City since 1985. Konrad moved it to its current spot on Wornall in 2019. This is the first website they've ever had.</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <article class="section buildlog">
+      <div class="wrap buildlog-wrap">
+
+        <h2>What they asked for</h2>
+        <p>A site that shows the hours, the location, what's in season, and a couple of photos that make the place look like the place. Nothing fancy. Konrad isn't going to log into a CMS every week &mdash; he's out back sorting peaches. The site had to work whether he touched it or not.</p>
+        <p>Forty-plus years in the area and they'd never had a website of their own. Customers found them through a Facebook page, a Yelp listing somebody else made, and word of mouth. That's fine until someone's trying to figure out on a Tuesday evening whether the stand is open and whether the peaches are in yet. The site needed to answer those two questions without anyone having to pick up the phone.</p>
+
+        <h2>What I actually built</h2>
+        <p>A single-page site in plain HTML and CSS. Five sections: hero, a short "since 1985" story, what's in season right now, visit info with the address and phone number as a clickable link, and reviews pulled in as plain quotes. The whole thing is about 160 lines of HTML. No build step, no framework, no database.</p>
+        <p>The gallery sorts newest-first automatically, so whenever Konrad drops a new photo in the folder and I commit it, that photo is the first thing visitors see. He sends me photos from his phone. I add them. Done.</p>
+        <p>Hosted on GitHub Pages. DNS runs through Cloudflare. SSL is automatic. The whole stack costs about a dollar a month in domain registration and nothing else &mdash; the hosting is free. That's why the monthly rate is what it is: it's my time answering the phone when Konrad calls, not a server bill.</p>
+
+        <h2>What broke and how I fixed it</h2>
+        <p>The first Lighthouse accessibility audit came back with a contrast issue. Two little labels on the page were using a semi-transparent white that looked fine but didn't pass WCAG contrast ratios. Five minutes with a color picker and it was solved.</p>
+        <p>The Google Maps embed on the visit section didn't have an accessible fallback for screen readers. Added a text link under it so anyone not loading the iframe still gets the address. Small fix, real difference for the one customer a year who needs it.</p>
+        <p>In April I did a spring refresh. Konrad had new photos with 2018 prices still visible on the signs in them. I re-cropped the shots to hide the old prices and pulled in fresh Google reviews. That took maybe an afternoon. The site hadn't been touched in three months before that, and it didn't need to be.</p>
+
+        <h2>What I'd do differently</h2>
+        <p>Honestly, not much. The one thing I'm going to change for the next client is skipping Formspree entirely for contact forms. The free tier caps at 50 submissions a month and a site that works for five years is going to hit that cap eventually. Going straight to a Cloudflare Worker plus Resend costs nothing, has no cap, and takes about an hour to set up. Learned that on a different project and now it's the default.</p>
+        <p>I'd also get my own photos in earlier. Konrad's phone shots are great for the gallery and feel like the place &mdash; which is the whole point &mdash; but for the hero I want something with a little more intention behind it. Next spring refresh, I'll bring a camera.</p>
+
+        <h2>How Konrad actually uses it</h2>
+        <p>He doesn't log in. He never will. He sends me photos when he has them and I put them up the same day. If a price or an hour changes, he texts me and I update the line in the HTML. Total time per update: about two minutes. That's what the monthly buys.</p>
+        <p>When customers call asking if something is in season, he can just send them the link. That's the whole value. The site is an answering machine for the questions he'd rather not keep answering in person.</p>
+
+        <aside class="receipts">
+          <div class="receipts-heading">Receipts</div>
+          <div><span class="r-key">Live site</span><span class="r-val"><a href="https://everyday-produce.com" target="_blank" rel="noopener">everyday-produce.com</a></span></div>
+          <div><span class="r-key">Tier</span><span class="r-val">Custom / first-customer rate</span></div>
+          <div><span class="r-key">Build</span><span class="r-val">$150 one-time</span></div>
+          <div><span class="r-key">Monthly</span><span class="r-val">$29</span></div>
+          <div><span class="r-key">Pages</span><span class="r-val">1 (single-page design)</span></div>
+          <div><span class="r-key">Stack</span><span class="r-val">HTML + CSS, GitHub Pages, Cloudflare DNS</span></div>
+          <div><span class="r-key">Launched</span><span class="r-val">April 2026</span></div>
+          <div><span class="r-key">Last refresh</span><span class="r-val">April 2026 (spring gallery + reviews)</span></div>
+          <div><span class="r-key">Lighthouse</span><span class="r-val">96 performance &middot; 98+ accessibility &middot; 100 best practices</span></div>
+          <div><span class="r-key">Business since</span><span class="r-val">1985 in south KC &middot; moved to Wornall in 2019</span></div>
+          <div><span class="r-key">Neighborhood</span><span class="r-val">Waldo, KCMO &middot; walking distance from my place</span></div>
+        </aside>
+
+        <h2 style="margin-top: 64px;">Want one like this?</h2>
+        <p>If your business is roughly this shape &mdash; local, been around a while, needs a site that works without weekly babysitting &mdash; I'm probably your guy. Starter tier runs $399 and sites like this go live in about a week. <a href="/process.html">Here's how it works.</a></p>
+
+        <div class="cta-row" style="margin-top: 32px;">
+          <a href="tel:+18163160092" class="btn btn-primary">Call (816) 316-0092</a>
+          <a href="/process.html" class="btn btn-secondary">Read the process</a>
+        </div>
+
+      </div>
+    </article>
+
+  </main>
+
+  <hr>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-left">
+        <span class="wordmark-name wordmark-sm">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
+      </div>
+      <div class="footer-right">
+        <a href="/">Home</a> &middot;
+        <a href="/process.html">Process</a> &middot;
+        <a href="/not-your-guy.html">Not your guy?</a> &middot;
+        <a href="/web-design/">Web design</a> &middot;
+        <a href="/privacy.html">Privacy</a> &middot;
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-credit">Built in Kansas City. Plain HTML, by hand. &middot; <a href="tel:+18163160092">(816) 316-0092</a> &middot; <a href="mailto:simon@simonlpaige.com">simon@simonlpaige.com</a></div>
+  </footer>
+
+</body>
+</html>
