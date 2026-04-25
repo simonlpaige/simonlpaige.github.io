@@ -24,7 +24,15 @@ Custom hand-coded websites for Kansas City small businesses. Plain HTML and CSS 
 - **Details:** https://simonlpaige.com/web-design/
 - **Plans:** https://simonlpaige.com/plans/
 
-### 2. Open-source projects
+### 2. Single Brain
+A private chat-based assistant that remembers everything about a business. Reads existing tools (CRM, Gmail, Drive, QuickBooks, etc.), answers questions in plain English, runs a monthly audit, and drafts routine emails. Built on open tools. Clients own the memory and the infrastructure. No SaaS subscription, no vendor lock-in.
+
+- **Pricing:** Starter $4,500, Operator $9,500, Custom $15,000+. Optional care plans at $250 or $750 a month.
+- **First step:** Free 20-minute audit, or $500 pilot week (credited to a build).
+- **Area served:** Kansas City first; will travel for the right fit.
+- **Details:** https://simonlpaige.com/single-brain/
+
+### 3. Open-source projects
 
 - **Commonweave** (https://simonlpaige.com/commonweave/) - A framework for the effortless economy. Community-owned infrastructure for the basics.
 - **Neighborhood OS** (https://simonlpaige.com/neighborhood-os/) - A toolkit for building stronger communities.
