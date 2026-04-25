@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" role="img" aria-label="Simon L. Paige">
+  <title>Simon L. Paige</title>
+  <rect x="0" y="0" width="480" height="160" fill="#ebe4d0"/>
+  <!-- top eaves -->
+  <rect x="60" y="34" width="360" height="3" fill="#16110a"/>
+  <rect x="96" y="42" width="288" height="6" fill="#a8442a"/>
+  <rect x="60" y="53" width="360" height="1.5" fill="#16110a"/>
+  <!-- wordmark -->
+  <text x="240" y="93"
+        text-anchor="middle"
+        font-family="Fraunces, 'Iowan Old Style', Georgia, serif"
+        font-size="32"
+        font-weight="600"
+        fill="#16110a"
+        letter-spacing="6">SIMON  L  PAIGE</text>
+  <!-- bottom eaves -->
+  <rect x="60" y="106" width="360" height="1.5" fill="#16110a"/>
+  <rect x="150" y="111" width="180" height="3" fill="#16110a"/>
+  <rect x="60" y="117" width="360" height="6" fill="#16110a"/>
+  <!-- foot mono -->
+  <text x="240" y="142"
+        text-anchor="middle"
+        font-family="JetBrains Mono, ui-monospace, monospace"
+        font-size="10"
+        font-weight="600"
+        fill="#574730"
+        letter-spacing="4">KANSAS  CITY  -  MMXXVI</text>
+</svg>

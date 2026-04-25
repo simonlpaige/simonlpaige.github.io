@@ -27,7 +27,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=JetBrains+Mono:wght@500;600&display=swap">
   <link rel="stylesheet" href="/css/site.css">
 
   <!-- Feed -->
@@ -101,45 +101,55 @@
   <!-- Header -->
   <header class="site-header">
     <div class="wrap">
-      <a href="/" class="wordmark" aria-label="Simon L. Paige, home">
-        <span class="wordmark-name">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
+      <a href="/" class="brand" aria-label="Simon L. Paige, home">
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect x="2" y="2" width="36" height="36" fill="none" stroke="#16110a" stroke-width="1.4"/>
+          <rect x="6" y="6" width="28" height="28" fill="none" stroke="#16110a" stroke-width="0.6" opacity="0.7"/>
+          <rect x="12" y="11" width="16" height="3" fill="#16110a"/>
+          <rect x="12" y="14" width="3" height="6" fill="#16110a"/>
+          <rect x="12" y="20" width="16" height="3" fill="#16110a"/>
+          <rect x="25" y="23" width="3" height="6" fill="#16110a"/>
+          <rect x="12" y="29" width="16" height="3" fill="#a8442a"/>
+        </svg>
+        <span class="brand-name">Simon L<span class="dot">.</span> Paige</span>
       </a>
       <nav aria-label="Main">
         <ul class="site-nav">
           <li><a href="#work">Work</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
           <li><a href="/process.html">Process</a></li>
-          <li><a href="/web-design/">Hire me</a></li>
+          <li><a href="/plans/">Plans</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <span class="est-badge">Est . MMXXVI</span>
     </div>
   </header>
 
   <main id="main">
 
     <!-- Hero -->
-    <section class="hero hero-personal">
+    <section class="hero">
       <div class="wrap">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Kansas City &middot; Builder &middot; One person, not an agency</p>
-        <h1>I build durable websites for Kansas&nbsp;City small businesses &mdash; and open tools for stronger communities.</h1>
+        <p class="sheet-tag">Sheet . index</p>
+        <h1>I build durable websites for <em>Kansas City</em> small businesses, and open tools for stronger communities.</h1>
+        <div class="eaves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <p class="subhead">Hand-coded sites that don't break when some platform updates. Open-source projects for the kind of software neighborhoods actually need. If that sounds like your thing, let's talk.</p>
         <div class="cta-row">
           <a href="/web-design/" class="btn btn-primary">Hire me to build your site</a>
           <a href="#projects" class="btn btn-secondary">See the projects</a>
         </div>
-        <p class="hero-meta"><span class="mono">live in under a week &middot; you own the code &middot; no subscription traps</span></p>
+        <p class="hero-meta">live in under a week  .  you own the code  .  no subscription traps</p>
       </div>
     </section>
-
-    <hr>
 
     <!-- Work (client sites) -->
     <section class="section" id="work">
       <div class="wrap">
-        <p class="section-eyebrow">RECENT&nbsp;&nbsp;KC&nbsp;&nbsp;WORK</p>
-        <h2 class="section-heading">Sites I built and still run</h2>
+        <p class="section-eyebrow">Recent  .  KC  .  Work</p>
+        <h2 class="section-heading">Sites I built and still <em>run</em>.</h2>
+        <div class="eaves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div class="work-grid">
 
           <a href="https://everyday-produce.com" class="work-card" target="_blank" rel="noopener">
@@ -154,32 +164,29 @@
               <p class="card-tagline">Neighborhood produce stand, open since 1985.</p>
               <div class="card-meta">
                 <span class="card-tag">Waldo, Kansas City</span>
-                <span class="card-link mono">everyday-produce.com &rarr;</span>
+                <span class="card-link">everyday-produce.com  &rarr;</span>
               </div>
             </div>
           </a>
 
         </div>
-        <p class="section-footer-link"><a href="/web-design/">See pricing and plans &rarr;</a></p>
+        <p class="section-footer-link"><a href="/web-design/">See pricing and plans  &rarr;</a></p>
       </div>
     </section>
-
-    <hr>
 
     <!-- Feynman paragraph -->
     <section class="feynman">
       <div class="wrap">
-        <p class="body-text">A Wix or Squarespace site is software you're renting. You pay $20 to $30 a month, you do all the work of building it, and when you stop paying, it disappears. What I build is a file &mdash; plain HTML and CSS on a server. It doesn't need a subscription to exist. It doesn't break when a platform updates. It works exactly as well in five years as it does today. You're paying $29 a month for me to keep it running. That's it.</p>
+        <p class="body-text">A Wix or Squarespace site is software you're renting. You pay $20 to $30 a month, you do all the work of building it, and when you stop paying, it disappears. What I build is a file. Plain HTML and CSS on a server. It doesn't need a subscription to exist. It doesn't break when a platform updates. It works exactly as well in five years as it does today. You're paying $29 a month for me to keep it running. <strong>That's it.</strong></p>
       </div>
     </section>
-
-    <hr>
 
     <!-- Personal Projects -->
     <section class="section" id="projects">
       <div class="wrap">
-        <p class="section-eyebrow">OPEN&nbsp;&nbsp;PROJECTS</p>
-        <h2 class="section-heading">Tools for the commons</h2>
+        <p class="section-eyebrow">Open  .  Projects</p>
+        <h2 class="section-heading">Tools for the <em>commons</em>.</h2>
+        <div class="eaves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <p class="body-text section-intro">Alongside client work, I build open-source things I think should exist. If any of this sounds like something you're working on too, come say hi.</p>
 
         <div class="projects-grid">
@@ -187,40 +194,39 @@
           <a href="/commonweave/" class="project-card">
             <div class="project-name">Commonweave</div>
             <p class="project-desc">A framework for the effortless economy. Community-owned infrastructure for the basics.</p>
-            <span class="project-link mono">Read the framework &rarr;</span>
+            <span class="project-link">Read the framework  &rarr;</span>
           </a>
 
           <a href="https://neighborhoodos.org" class="project-card" target="_blank" rel="noopener">
             <div class="project-name">Neighborhood OS</div>
             <p class="project-desc">A toolkit for building stronger communities. Neighborhoods run themselves better when they have the right tools.</p>
-            <span class="project-link mono">neighborhoodos.org &rarr;</span>
+            <span class="project-link">neighborhoodos.org  &rarr;</span>
           </a>
 
           <a href="https://github.com/simonlpaige" class="project-card" target="_blank" rel="noopener">
             <div class="project-name">GitHub</div>
             <p class="project-desc">All the code, in public. Smaller tools, experiments, and the source for everything above.</p>
-            <span class="project-link mono">github.com/simonlpaige &rarr;</span>
+            <span class="project-link">github.com/simonlpaige  &rarr;</span>
           </a>
 
         </div>
       </div>
     </section>
 
-    <hr>
-
     <!-- About -->
     <section class="section about" id="about">
       <div class="wrap">
-        <p class="section-eyebrow">ABOUT</p>
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-heading">Hi, I'm <em>Simon</em>.</h2>
+        <div class="eaves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div class="about-grid">
           <div class="about-portrait">
-            <img src="/assets/simon.jpg" alt="Simon L. Paige, Kansas City builder" width="240" height="240" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+            <img src="/assets/simon.jpg" alt="Simon L. Paige, Kansas City builder" width="320" height="320" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
             <div class="portrait-placeholder" aria-hidden="true">
-              <span>Simon</span>
+              <span>S.L.P.</span>
             </div>
           </div>
           <div class="about-text">
-            <h2 class="section-heading">Hi, I'm Simon.</h2>
             <p class="body-text">I was 14 when I figured out I could write programs on the TI-83 Plus I was supposed to be doing math on. Choose-your-own-adventure games first, then crude cartoon jokes drawn with the graph functions. Nobody told me what to make, so I made what I thought was funny.</p>
             <p class="body-text">A year later I was drawing comic strips in MS Paint, frustrated I couldn't get the panels to sit right on a page. That frustration was my introduction to layout. The fix was HTML. GeoCities page by 16.</p>
             <p class="body-text">Through my twenties I did freelance web work in Drupal, CSS, and WordPress. Hosted media libraries from servers in my own house, ran them through DynamicDNS, learned everything about the internet you can only learn by breaking it at 2 a.m.</p>
@@ -235,15 +241,14 @@
       </div>
     </section>
 
-    <hr>
-
     <!-- Collaborate -->
     <section class="section collaborate" id="collaborate">
       <div class="wrap">
-        <p class="section-eyebrow">COLLABORATE</p>
-        <h2 class="section-heading">Looking for builders who ship.</h2>
-        <p class="body-text">If you're working on neighborhood infrastructure, local commerce, community-owned software, or AI tooling that actually helps real people &mdash; I'd like to talk. Not hiring, not a consulting pitch. Just looking for other people who make things.</p>
-        <p class="body-text" style="margin-top: 16px;">Open to: contributing to your project, having you contribute to mine, swapping notes, or just being in each other's corner.</p>
+        <p class="section-eyebrow">Collaborate</p>
+        <h2 class="section-heading">Looking for builders who <em>ship</em>.</h2>
+        <div class="eaves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <p class="body-text">If you're working on neighborhood infrastructure, local commerce, community-owned software, or AI tooling that actually helps real people, I'd like to talk. Not hiring, not a consulting pitch. Just looking for other people who make things.</p>
+        <p class="body-text">Open to: contributing to your project, having you contribute to mine, swapping notes, or just being in each other's corner.</p>
         <div class="cta-row" style="margin-top: 32px;">
           <a href="mailto:simon@simonlpaige.com?subject=Collaborate%20%2D%20%3Cyour%20project%3E" class="btn btn-primary">Email me about collaborating</a>
           <a href="https://github.com/simonlpaige" class="btn btn-secondary" target="_blank" rel="noopener">See my GitHub</a>
@@ -254,36 +259,35 @@
     <!-- Code strip (built by hand) -->
     <section class="codestrip" aria-hidden="true">
       <div class="wrap">
-<pre class="codestrip-pre"><span class="c-com">&lt;!-- simonlpaige.com &middot; built by hand in Kansas City --&gt;</span>
+<pre class="codestrip-pre"><span class="c-com">&lt;!-- simonlpaige.com . built by hand in Kansas City --&gt;</span>
 <span class="c-tag">&lt;footer</span> <span class="c-attr">class</span>=<span class="c-str">"site-footer"</span><span class="c-tag">&gt;</span>
   <span class="c-tag">&lt;p&gt;</span>Your website. Your domain. Your code.<span class="c-tag">&lt;/p&gt;</span>
 <span class="c-tag">&lt;/footer&gt;</span></pre>
       </div>
     </section>
 
-    <hr>
-
     <!-- Contact -->
     <section class="section contact" id="contact">
       <div class="wrap">
-        <p class="section-eyebrow">GET&nbsp;&nbsp;IN&nbsp;&nbsp;TOUCH</p>
-        <h2 class="section-heading">Let's talk.</h2>
+        <p class="section-eyebrow">Get  .  In  .  Touch</p>
+        <h2 class="section-heading">Let's <em>talk</em>.</h2>
+        <div class="eaves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <p class="body-text">One person. Call, text, or email and I'll write back personally.</p>
         <div class="contact-card">
           <div class="contact-line">
-            <span class="contact-label mono">CALL</span>
+            <span class="contact-label">Call</span>
             <a href="tel:+18163160092" class="contact-val">(816) 316-0092</a>
           </div>
           <div class="contact-line">
-            <span class="contact-label mono">EMAIL</span>
+            <span class="contact-label">Email</span>
             <a href="mailto:simon@simonlpaige.com" class="contact-val">simon@simonlpaige.com</a>
           </div>
           <div class="contact-line">
-            <span class="contact-label mono">WHERE</span>
+            <span class="contact-label">Where</span>
             <span class="contact-val">Kansas City metro</span>
           </div>
           <div class="contact-line">
-            <span class="contact-label mono">CODE</span>
+            <span class="contact-label">Code</span>
             <a href="https://github.com/simonlpaige" class="contact-val" target="_blank" rel="noopener">github.com/simonlpaige</a>
           </div>
         </div>
@@ -292,23 +296,20 @@
 
   </main>
 
-  <hr>
-
   <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-left">
-        <span class="wordmark-name wordmark-sm">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
-      </div>
+      <div class="footer-left">Simon L<span class="dot">.</span> Paige</div>
       <div class="footer-right">
-        <a href="/web-design/">Web design</a> &middot;
-        <a href="/commonweave/">Commonweave</a> &middot;
-        <a href="https://neighborhoodos.org">Neighborhood OS</a> &middot;
-        <a href="/privacy.html">Privacy</a> &middot;
+        <a href="/web-design/">Web design</a>
+        <a href="/process.html">Process</a>
+        <a href="/commonweave/">Commonweave</a>
+        <a href="https://neighborhoodos.org">Neighborhood OS</a>
+        <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
       </div>
     </div>
-    <div class="footer-credit">Built in Kansas City. Plain HTML, by hand. &middot; <a href="tel:+18163160092">(816) 316-0092</a> &middot; <a href="mailto:simon@simonlpaige.com">simon@simonlpaige.com</a></div>
+    <div class="footer-credit">Built in Kansas City  .  Plain HTML, by hand  .  <a href="tel:+18163160092">(816) 316-0092</a>  .  <a href="mailto:simon@simonlpaige.com">simon@simonlpaige.com</a>  .  MMXXVI</div>
   </footer>
 
 </body>

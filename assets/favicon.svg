@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Simon L. Paige">
   <title>Simon L. Paige</title>
-  <rect width="32" height="32" fill="#F4EEE2"/>
-  <text x="4" y="25"
-        font-family="Source Serif 4, Georgia, serif"
-        font-size="26"
-        font-weight="700"
-        fill="#1C1A17"
-        letter-spacing="-0.03em">S<tspan fill="#B45B2E" dx="-2">.</tspan></text>
+  <rect width="32" height="32" fill="#ebe4d0"/>
+  <rect x="2" y="2" width="28" height="28" fill="none" stroke="#16110a" stroke-width="1.4"/>
+  <rect x="9" y="8" width="14" height="3" fill="#16110a"/>
+  <rect x="9" y="11" width="3" height="5" fill="#16110a"/>
+  <rect x="9" y="16" width="14" height="3" fill="#16110a"/>
+  <rect x="20" y="19" width="3" height="5" fill="#16110a"/>
+  <rect x="9" y="24" width="14" height="3" fill="#a8442a"/>
 </svg>
