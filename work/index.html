@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The work, as it actually runs &mdash; Simon L. Paige</title>
+  <meta name="description" content="Every site I've built, with live uptime, speed, Lighthouse scores, and Google reviews pulled fresh every week. If one is down, this page says so. No screenshots pretending.">
+  <meta name="author" content="Simon L. Paige">
+  <link rel="canonical" href="https://simonlpaige.com/work/">
+
+  <meta property="og:title" content="The work, as it actually runs &mdash; Simon L. Paige">
+  <meta property="og:description" content="Live metrics on every site I've built. If it's down, the page tells you.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simonlpaige.com/work/">
+  <meta property="og:image" content="https://simonlpaige.com/assets/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/favicon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css">
+
+  <style>
+    /* Wall page specific - scoped, doesn't pollute global. */
+    .wall-meta {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--stone);
+      margin-bottom: 32px;
+    }
+    .wall-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .wall-grid { grid-template-columns: 1fr; }
+    }
+    .wall-card {
+      background: var(--chalk);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-rest);
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .wall-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+    .wall-card.is-down {
+      border-left: 4px solid #b23a2a;
+    }
+    .wall-thumb {
+      aspect-ratio: 16 / 9;
+      background: var(--limestone);
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .wall-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .wall-thumb-empty {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--stone);
+    }
+    .wall-body {
+      padding: 24px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .wall-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .wall-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.375rem;
+      line-height: 1.2;
+    }
+    .wall-loc {
+      font-size: 0.875rem;
+      color: var(--stone);
+      margin-top: 4px;
+    }
+    .tier-pill {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      border: 1px solid var(--rule);
+      padding: 3px 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+    }
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+    .status-dot::before {
+      content: "";
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #6b8f4a;
+    }
+    .status-dot.down {
+      color: #b23a2a;
+      font-weight: 700;
+    }
+    .status-dot.down::before {
+      background: #b23a2a;
+    }
+    .status-when {
+      color: var(--stone);
+    }
+    .metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--cast-iron);
+    }
+    .metric .k {
+      color: var(--stone);
+      margin-right: 4px;
+    }
+    .wall-age {
+      font-size: 0.8125rem;
+      color: var(--stone);
+    }
+    .wall-links {
+      display: flex;
+      gap: 16px;
+      margin-top: auto;
+      padding-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      flex-wrap: wrap;
+    }
+    .wall-links a {
+      color: var(--prairie-rust);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2px;
+      font-weight: 500;
+    }
+    .wall-links a:hover {
+      border-bottom-color: var(--prairie-rust);
+    }
+    .wall-empty, .wall-loading, .wall-error {
+      padding: 40px 0;
+      color: var(--stone);
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+    }
+    .wall-error { color: #b23a2a; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="wordmark" aria-label="Simon L. Paige, home">
+        <span class="wordmark-name">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
+      </a>
+      <nav aria-label="Main">
+        <ul class="site-nav">
+          <li><a href="/#work">Work</a></li>
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/process.html">Process</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero hero-personal">
+      <div class="wrap">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> LIVE &middot; always</p>
+        <h1>The work, as it actually runs.</h1>
+        <p class="subhead">Every card below pulls live data. Uptime, speed, Lighthouse scores, Google reviews. A red dot means that site is actually down right now, not a stale screenshot from a case study two years ago. If one of my sites breaks, this page tells on me. That's the point.</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="section-eyebrow">THE&nbsp;&nbsp;LIVE&nbsp;&nbsp;WALL</p>
+        <h2 class="section-heading">One card per site. All numbers are real.</h2>
+        <p class="body-text section-intro">The page fetches a small JSON file the cron writes every Sunday at 3am. If a field is missing I hide the row rather than make up a number. Screenshots are pulled from each site with a headless browser, not polished marketing shots.</p>
+
+        <div class="wall-meta mono" id="wall-meta">Loading the wall&hellip;</div>
+        <div class="wall-grid" id="wall-grid">
+          <div class="wall-loading mono">Checking the data file&hellip;</div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="section-eyebrow">HOW&nbsp;&nbsp;THIS&nbsp;&nbsp;PAGE&nbsp;&nbsp;WORKS</p>
+        <h2 class="section-heading">Nothing clever. A script and a cron.</h2>
+        <p class="body-text">Once a week, a small Node script walks down the list of sites I've shipped. For each one it does an HTTP check, a full page load, a headless Lighthouse run, and a screenshot. If the site has a Google Business Profile, it pulls the review count too. Results land in a JSON file that this page reads in the browser. No server, no dashboard, no subscription. Just a text file updated by a cron.</p>
+        <p class="body-text">If you're curious how I build sites that hold up this way, <a href="/process.html">here's the process</a>. Got an idea that isn't a normal website? <a href="mailto:simon@simonlpaige.com">Email me</a>. I'm up for trying things.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <hr>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-left">
+        <span class="wordmark-name wordmark-sm">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
+      </div>
+      <div class="footer-right">
+        <a href="/">Home</a> &middot;
+        <a href="/process.html">Process</a> &middot;
+        <a href="/web-design/">Web design</a> &middot;
+        <a href="/privacy.html">Privacy</a> &middot;
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-credit">Built in Kansas City. Plain HTML, by hand. &middot; <a href="tel:+18163160092">(816) 316-0092</a> &middot; <a href="mailto:simon@simonlpaige.com">simon@simonlpaige.com</a></div>
+  </footer>
+
+  <script>
+    (function () {
+      var metaEl = document.getElementById('wall-meta');
+      var gridEl = document.getElementById('wall-grid');
+
+      function escapeHtml(s) {
+        if (s == null) return '';
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function humanTimeSince(iso) {
+        if (!iso) return null;
+        var t = Date.parse(iso);
+        if (isNaN(t)) return null;
+        var secs = Math.max(0, Math.floor((Date.now() - t) / 1000));
+        if (secs < 60) return secs + ' seconds ago';
+        var mins = Math.floor(secs / 60);
+        if (mins < 60) return mins + (mins === 1 ? ' minute ago' : ' minutes ago');
+        var hrs = Math.floor(mins / 60);
+        if (hrs < 24) return hrs + (hrs === 1 ? ' hour ago' : ' hours ago');
+        var days = Math.floor(hrs / 24);
+        if (days < 30) return days + (days === 1 ? ' day ago' : ' days ago');
+        var months = Math.floor(days / 30);
+        if (months < 12) return months + (months === 1 ? ' month ago' : ' months ago');
+        var years = Math.floor(days / 365);
+        return years + (years === 1 ? ' year ago' : ' years ago');
+      }
+
+      function card(c) {
+        var down = c.up === false;
+        var klass = 'wall-card' + (down ? ' is-down' : '');
+        var parts = [];
+
+        parts.push('<article class="' + klass + '">');
+
+        if (c.thumbnail) {
+          parts.push('<div class="wall-thumb"><img src="' + escapeHtml(c.thumbnail) + '" alt="' + escapeHtml(c.name) + ' homepage screenshot" loading="lazy"></div>');
+        } else {
+          parts.push('<div class="wall-thumb"><div class="wall-thumb-empty">no screenshot yet</div></div>');
+        }
+
+        parts.push('<div class="wall-body">');
+
+        parts.push('<div class="wall-head"><div><div class="wall-name">' + escapeHtml(c.name) + '</div>');
+        if (c.location) parts.push('<div class="wall-loc">' + escapeHtml(c.location) + '</div>');
+        parts.push('</div>');
+        if (c.tier) parts.push('<span class="tier-pill">' + escapeHtml(c.tier) + '</span>');
+        parts.push('</div>');
+
+        var statusLabel = down ? 'DOWN' : 'UP';
+        var statusClass = down ? 'status-dot down' : 'status-dot';
+        var checked = humanTimeSince(c.lastCheckedAt);
+        parts.push('<div class="status-row">');
+        parts.push('<span class="' + statusClass + '">' + statusLabel + '</span>');
+        if (checked) parts.push('<span class="status-when">Last checked ' + escapeHtml(checked) + '</span>');
+        parts.push('</div>');
+
+        var metrics = [];
+        if (c.ttfbMs != null) metrics.push('<span class="metric"><span class="k">TTFB</span>' + c.ttfbMs + 'ms</span>');
+        if (c.loadMs != null) metrics.push('<span class="metric"><span class="k">LOAD</span>' + c.loadMs + 'ms</span>');
+        if (c.lighthouse && c.lighthouse.performance != null) {
+          var lh = c.lighthouse;
+          metrics.push('<span class="metric"><span class="k">LIGHTHOUSE</span>' + lh.performance + '/' + lh.accessibility + '/' + lh.bestPractices + '/' + lh.seo + '</span>');
+        }
+        if (c.reviews && c.reviews.count != null && c.reviews.avg != null) {
+          metrics.push('<span class="metric">★ ' + c.reviews.avg.toFixed(1) + ' (' + c.reviews.count + ')</span>');
+        }
+        if (metrics.length) parts.push('<div class="metrics">' + metrics.join('') + '</div>');
+
+        var filedAgo = humanTimeSince(c.filed);
+        var touchedAgo = humanTimeSince(c.lastTouched);
+        var ageBits = [];
+        if (filedAgo) ageBits.push('Built ' + escapeHtml(filedAgo));
+        if (touchedAgo) ageBits.push('last touched ' + escapeHtml(touchedAgo));
+        if (ageBits.length) {
+          parts.push('<div class="wall-age">' + ageBits.join(' &middot; ') + '</div>');
+        }
+
+        parts.push('<div class="wall-links">');
+        if (c.url) parts.push('<a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">View live site &rarr;</a>');
+        if (c.buildLogUrl) parts.push('<a href="' + escapeHtml(c.buildLogUrl) + '">Read the build log &rarr;</a>');
+        parts.push('</div>');
+
+        parts.push('</div></article>');
+        return parts.join('');
+      }
+
+      fetch('/work/data.json', { cache: 'no-cache' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function (data) {
+          var refreshed = humanTimeSince(data.updated);
+          metaEl.textContent = refreshed
+            ? 'Last refreshed ' + refreshed + '.'
+            : 'Refresh timestamp unavailable.';
+
+          if (!data.clients || data.clients.length === 0) {
+            gridEl.innerHTML = '<div class="wall-empty mono">No clients on the wall yet. First card lands when the next site ships.</div>';
+            return;
+          }
+
+          gridEl.innerHTML = data.clients.map(card).join('');
+        })
+        .catch(function (err) {
+          metaEl.textContent = '';
+          gridEl.innerHTML = '<div class="wall-error mono">Could not load the wall data (' + escapeHtml(err.message) + ').</div>';
+        });
+    })();
+  </script>
+
+</body>
+</html>
