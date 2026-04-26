@@ -137,8 +137,25 @@ select:focus{border-color:var(--teal)}
   .country-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
 }
 </style>
+  <link rel="canonical" href="https://commonweave.earth/directory.html">
+
+  <meta property="og:title" content="Commonweave - Global Directory">
+  <meta property="og:description" content="Searchable directory of 24,500+ aligned civil-society organizations.">
+  <meta property="og:url" content="https://commonweave.earth/directory.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DataCatalog",
+  "name": "Commonweave Global Directory",
+  "url": "https://commonweave.earth/directory.html",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+}
+</script>
 </head>
 <body>
+<h1 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">Commonweave Global Directory</h1>
 <nav>
   <a class="nav-logo" href="index.html">commonweave</a>
   <div class="nav-links">
@@ -172,7 +189,7 @@ select:focus{border-color:var(--teal)}
 
   <!-- Search & Filters -->
   <div class="search-row">
-    <input type="search" id="search-input" placeholder="Search by name, city, category…" autocomplete="off" spellcheck="false">
+    <input type="search" id="search-input" placeholder="Search by name, city, category…" autocomplete="off" spellcheck="false" aria-label="Search organizations">
     <button class="clear-btn" id="clear-btn" style="display:none">✕ Clear</button>
   </div>
   <div class="filter-row">
