@@ -1,0 +1,27 @@
+{
+  "updated": "2026-04-24T18:28:26.017Z",
+  "clients": [
+    {
+      "slug": "everyday-produce",
+      "name": "Everyday Produce",
+      "location": "Waldo, KCMO",
+      "url": "https://everyday-produce.com",
+      "up": true,
+      "lastCheckedAt": "2026-04-24T18:28:26.017Z",
+      "ttfbMs": 1144,
+      "loadMs": 142,
+      "lighthouse": {
+        "performance": 97,
+        "accessibility": 100,
+        "bestPractices": 96,
+        "seo": 100
+      },
+      "reviews": null,
+      "filed": "2026-04-15T20:25:27.000Z",
+      "lastTouched": "2026-04-23T13:19:33.000Z",
+      "tier": "Custom",
+      "thumbnail": "/work/thumbs/everyday-produce.png",
+      "buildLogUrl": "/work/everyday-produce.html"
+    }
+  ]
+}
