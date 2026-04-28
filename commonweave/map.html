@@ -3,34 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Commonweave — Mapping the Networks of Change</title>
-  <meta name="description" content="Geographic view of 27,000+ aligned civil-society organizations across 88 countries.">
+<title>Commonweave Map: networks of change</title>
+<meta property="og:title" content="Commonweave Map: networks of change">
+<meta property="og:description" content="An interactive map of aligned civil society organizations. Open data, CC0. Numbers reflect what is actually verified.">
+<meta property="og:url" content="https://commonweave.earth/map.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://commonweave.earth/map.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Commonweave Map",
+  "url": "https://commonweave.earth/map.html",
+  "description": "An interactive map of aligned civil society organizations. Counts and provenance pulled at runtime from the data build.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Commonweave",
+    "url": "https://commonweave.earth/"
+  },
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+}
+</script>
+<meta name="description" content="Commonweave map: an interactive map of aligned civil society organizations. Open data, CC0.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Preconnect to the basemap host: warms TLS + DNS while the JS loads, so
+     the first vector tile arrives faster on mobile. -->
+<link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- MapLibre GL: free vector basemap rendering. OpenFreeMap serves the
+     tiles. No token needed. Loaded eagerly because the cluster layer for the
+     org points lives on it; network/canvas mode still uses #viz-canvas. -->
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<!-- deck.gl is now lazy-loaded: it is only needed once the user selects an
+     org (then we draw arc/line edges). The bulk of the org points is rendered
+     by MapLibre's native cluster source, no GPU layer required. See
+     ensureDeckLoaded() below. -->
+<!-- (deck.gl script tag intentionally omitted; injected on first use.) -->
+<!-- Turf.js: viewport spatial joins, distance calculations, used by Phase 3
+     need-pathway scoring and Phase 4 system-health calculations. -->
+<script src="https://unpkg.com/@turf/turf@7/turf.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg-deep:    #060b06;
-  --bg-base:    #0d1a0d;
-  --bg-surface: #0f1e0f;
-  --bg-elevated:#132413;
-  --border:       #1a2e1a;
-  --border-bright:#2a4a2a;
-  --text-primary: #d4ecc0;
-  --text-secondary:#8aaa7a;
-  --text-dim:     #4a6a3a;
-  --text-muted:   #2d4a2d;
-  --accent:       #6abf6c;
-  --accent-glow:  rgba(106,191,108,0.35);
-  --earth:        #c4a55d;
-  --teal:         #4fc4b0;
+  /* Brand-aligned palette. The map is a tool, so we keep a dark UI but pull
+     the chrome into the brand: ink for surfaces, paper for primary text,
+     moss-pale for the accent, clay for the warm seed in the wordmark. */
+  --paper:       #F2EBDC;
+  --paper-dim:   #D9D1B8;
+  --moss:        #2F4A33;
+  --moss-deep:   #1E3322;
+  --moss-mid:    #4A6B4F;
+  --moss-pale:   #B8C4A8;
+  --clay:        #B4593A;
+  --clay-pale:   #D9A78F;
+  --thread:      #8E7B4E;
+  --thread-pale: #C9B98C;
+  --ink:         #16201A;
+  --ink-deep:    #0A100C;
+
+  --bg-deep:     var(--ink-deep);
+  --bg-base:     var(--ink);
+  --bg-surface:  #1B2920;
+  --bg-elevated: #213825;
+  --border:        rgba(184, 196, 168, 0.10);
+  --border-bright: rgba(184, 196, 168, 0.28);
+  --text-primary:  var(--paper);
+  --text-secondary: var(--moss-pale);
+  --text-dim:     var(--thread);
+  --text-muted:   #5A6A5C;
+  --accent:       var(--moss-pale);
+  --accent-glow:  rgba(184, 196, 168, 0.30);
+  --earth:        var(--clay);
+  --teal:         var(--thread-pale);
   --sidebar-w:    300px;
+
+  --f-display: 'Instrument Serif', Georgia, serif;
+  --f-body:    'Source Serif 4', Georgia, serif;
+  --f-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 }
 
 html, body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--f-body);
   background: var(--bg-deep);
   color: var(--text-primary);
   overflow: hidden;
@@ -52,7 +109,7 @@ html, body {
 .loading-mycelium { width: 140px; height: 140px; position: relative; margin-bottom: 28px; }
 .loading-mycelium svg { width: 100%; height: 100%; overflow: visible; }
 
-.hypha { fill: none; stroke: var(--accent); stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(106,191,108,0.5)); }
+.hypha { fill: none; stroke: var(--moss-pale); stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(184,196,168,0.45)); }
 .hp { animation: hypha-grow 3s ease-out infinite; }
 .hs { animation: hypha-grow 3s ease-out infinite; }
 .ht { animation: hypha-grow 3s ease-out infinite; }
@@ -66,9 +123,9 @@ html, body {
 }
 
 .spore {
-  fill: var(--accent);
+  fill: var(--clay);
   animation: spore-pulse 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 4px var(--accent));
+  filter: drop-shadow(0 0 4px var(--clay));
 }
 @keyframes spore-pulse {
   0%, 100% { opacity: 0; r: 1.2; }
@@ -77,19 +134,190 @@ html, body {
 }
 
 .loading-title {
-  font-size: 24px; font-weight: 900; letter-spacing: 6px;
-  color: var(--accent);
-  text-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(106,191,108,0.12);
-  margin-bottom: 8px;
+  font-family: var(--f-display); font-style: italic;
+  font-size: 40px; font-weight: 400; letter-spacing: -0.02em;
+  color: var(--paper);
+  text-shadow: 0 0 28px var(--accent-glow);
+  margin-bottom: 6px;
 }
-.loading-sub { font-size: 11px; font-weight: 400; color: var(--text-dim); letter-spacing: 3px; text-transform: uppercase; }
+.loading-title .seed { color: var(--clay); }
+.loading-sub {
+  font-family: var(--f-mono); font-size: 10px;
+  font-weight: 500; color: var(--text-dim);
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
 .loading-progress { margin-top: 24px; width: 160px; height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
 .loading-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--teal)); border-radius: 1px; transition: width 0.3s ease; box-shadow: 0 0 8px var(--accent-glow); }
+.loading-status {
+  margin-top: 14px; font-family: var(--f-mono); font-size: 10px;
+  font-weight: 500; color: var(--text-secondary);
+  letter-spacing: 0.10em; text-transform: uppercase;
+  max-width: 260px; text-align: center; line-height: 1.5;
+}
+
+/* On phones: keep the loading state minimal so a slow connection never sits
+   on a heavy SVG animation. The text + progress bar is enough feedback. */
+@media (max-width: 600px) {
+  .loading-mycelium { display: none; }
+  .loading-title { font-size: 30px; }
+}
 
 /* ═══════════ LAYOUT ═══════════ */
 #layout { position: relative; height: 100vh; width: 100vw; }
 #canvas-container { position: absolute; top: 0; bottom: 0; left: var(--sidebar-w); right: 0; background: var(--bg-deep); }
 #viz-canvas { display: block; width: 100%; height: 100%; cursor: default; }
+
+/* MapLibre container, lives behind the deck.gl overlay. Network mode hides
+   it (display:none) and shows #viz-canvas instead. */
+#ml-map {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  background: var(--bg-deep);
+}
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right { display: none !important; }
+.maplibregl-canvas { outline: none; }
+/* Tone the OpenFreeMap basemap toward the brand palette. The basemap canvas
+   is desaturated and tinted toward ink/moss so points read on top. */
+#ml-map .maplibregl-canvas-container > canvas {
+  filter: hue-rotate(80deg) saturate(0.55) brightness(0.45) contrast(0.95);
+}
+
+/* Edge popover: shown when hovering an edge or in the detail panel's
+   "Connections" section. Reads explanation, weight, type. */
+.edge-tooltip {
+  position: fixed; display: none;
+  background: rgba(13,25,13,0.97); backdrop-filter: blur(14px);
+  border: 1px solid var(--border-bright);
+  border-radius: 10px; padding: 10px 12px;
+  font-family: var(--f-body); pointer-events: none;
+  z-index: 110; max-width: 300px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  font-size: 11px; color: var(--text-secondary); line-height: 1.5;
+}
+.edge-tooltip .et-type {
+  font-family: var(--f-mono); font-size: 9px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--accent); margin-bottom: 4px;
+}
+.edge-tooltip .et-weight {
+  font-size: 9px; color: var(--text-dim); margin-top: 4px;
+}
+
+/* Connections list inside the detail panel. */
+.pop-connections {
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.pop-connections-label {
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.16em; color: var(--text-muted);
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.conn-row {
+  display: block; padding: 7px 9px; margin-bottom: 4px;
+  border-radius: 6px; background: var(--bg-surface);
+  border: 1px solid var(--border);
+  cursor: pointer; transition: background 0.15s, border-color 0.15s;
+  text-decoration: none; color: var(--text-secondary);
+}
+.conn-row:hover { background: var(--bg-elevated); border-color: var(--border-bright); color: var(--text-primary); }
+.conn-name { font-size: 11px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+.conn-type { font-family: var(--f-mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+.conn-type.tier-V { color: #7be38a; }
+.conn-type.tier-F { color: var(--accent); }
+.conn-type.tier-S { color: var(--text-dim); }
+.conn-type.tier-C { color: var(--clay-pale); }
+.conn-explain { font-size: 10px; color: var(--text-dim); margin-top: 3px; line-height: 1.4; }
+.conn-empty { font-size: 11px; color: var(--text-dim); font-style: italic; }
+
+/* Need-pathway panel */
+.sb-need { padding: 0 14px 14px; }
+.need-input {
+  width: 100%; padding: 8px 10px;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text-primary);
+  font-family: var(--f-body); font-size: 12px; line-height: 1.45;
+  outline: none; resize: vertical; min-height: 44px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.need-input::placeholder { color: var(--text-muted); }
+.need-input:focus { border-color: var(--border-bright); box-shadow: 0 0 0 3px rgba(106,191,108,0.07); }
+.need-row { display: flex; gap: 6px; margin-top: 6px; }
+.need-btn, .need-clear {
+  padding: 6px 10px; border-radius: 7px;
+  font-family: var(--f-body); font-size: 11px; font-weight: 600;
+  cursor: pointer; border: 1px solid var(--border-bright);
+  background: var(--bg-elevated); color: var(--accent);
+}
+.need-btn:hover, .need-clear:hover { background: #1a2e1a; }
+.need-clear { color: var(--text-dim); border-color: var(--border); background: var(--bg-surface); }
+.need-hint { margin-top: 5px; font-size: 9px; color: var(--text-muted); line-height: 1.5; }
+.need-result {
+  margin-top: 9px; padding: 8px 10px;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: 7px; font-size: 11px; color: var(--text-secondary);
+  line-height: 1.5;
+}
+.need-result h4 {
+  font-family: var(--f-mono); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-muted); margin: 8px 0 4px;
+}
+.need-result h4:first-child { margin-top: 0; }
+.need-result .nr-row {
+  display: block; padding: 5px 7px; margin-bottom: 3px;
+  background: var(--bg-base); border: 1px solid var(--border);
+  border-radius: 5px; cursor: pointer; text-decoration: none;
+  color: var(--text-secondary); transition: background 0.15s;
+}
+.need-result .nr-row:hover { background: var(--bg-elevated); color: var(--text-primary); }
+.need-result .nr-row .nr-name { font-weight: 600; font-size: 11px; }
+.need-result .nr-row .nr-meta { font-size: 9px; color: var(--text-dim); margin-top: 1px; }
+.need-result .nr-gaps { font-size: 10px; color: var(--clay-pale); }
+.need-result .nr-empty { font-style: italic; color: var(--text-dim); }
+.need-result .nr-summary { font-size: 10px; color: var(--text-dim); margin-bottom: 7px; }
+
+/* Phase 4: viewport System Health bar. Pinned to the bottom of the map area
+   in Geographic / System Health modes. Updates when the user pans/zooms. */
+.viewport-health {
+  position: fixed;
+  left: var(--sidebar-w); right: 0; bottom: 0;
+  background: rgba(13, 25, 13, 0.97); backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-bright);
+  z-index: 35; padding: 9px 16px;
+  font-family: var(--f-body); font-size: 11px; color: var(--text-secondary);
+}
+.viewport-health[hidden] { display: none; }
+.vh-row { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.vh-cell { display: flex; flex-direction: column; gap: 1px; min-width: 70px; }
+.vh-cell.vh-missing { flex: 1; min-width: 200px; }
+.vh-num {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 18px; font-weight: 400; color: var(--paper);
+  line-height: 1.05; font-variant-numeric: tabular-nums;
+}
+.vh-lab {
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-dim);
+}
+.vh-list {
+  font-size: 11px; color: var(--clay-pale); line-height: 1.4;
+  margin-top: 2px;
+}
+.vh-close {
+  margin-left: auto; padding: 4px 9px;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-dim); font-size: 14px; cursor: pointer;
+  border-radius: 6px; line-height: 1;
+}
+.vh-close:hover { color: var(--text-primary); border-color: var(--border-bright); }
+@media (max-width: 480px) {
+  .viewport-health { left: 0; }
+  .vh-row { gap: 10px; font-size: 10px; }
+  .vh-num { font-size: 15px; }
+}
 
 /* ═══════════ SIDEBAR ═══════════ */
 #sidebar {
@@ -109,9 +337,14 @@ html, body {
 .sb-scroll::-webkit-scrollbar { width: 4px; }
 .sb-scroll::-webkit-scrollbar-thumb { background: #253825; border-radius: 2px; }
 
-.sb-header { padding: 22px 20px 18px; border-bottom: 1px solid var(--border); }
-.sb-title { font-size: 17px; font-weight: 900; letter-spacing: 5px; color: var(--accent); text-shadow: 0 0 24px var(--accent-glow); }
-.sb-sub { font-size: 10px; color: var(--text-dim); letter-spacing: 2px; margin-top: 4px; text-transform: uppercase; font-weight: 500; }
+.sb-header { padding: 18px 20px 16px; border-bottom: 1px solid var(--border); }
+.sb-mark { display: block; line-height: 0; margin-bottom: 6px; }
+.sb-mark svg { display: block; width: 100%; max-width: 220px; height: auto; }
+.sb-sub {
+  font-family: var(--f-mono); font-size: 10px;
+  color: var(--text-dim); letter-spacing: 0.16em;
+  text-transform: uppercase; font-weight: 500;
+}
 
 .sb-stats {
   padding: 14px 16px; display: grid;
@@ -127,8 +360,17 @@ html, body {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.35;
 }
-.stat-value { font-size: 20px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.2; text-shadow: 0 0 18px var(--accent-glow); }
-.stat-label { font-size: 9px; font-weight: 600; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+.stat-value {
+  font-family: var(--f-display); font-style: italic;
+  font-size: 26px; font-weight: 400; color: var(--paper);
+  font-variant-numeric: tabular-nums; line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-family: var(--f-mono); font-size: 9px;
+  font-weight: 500; color: var(--text-dim);
+  letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px;
+}
 #stat-tiers { font-size: 10px !important; line-height: 1.7; color: var(--text-secondary) !important; text-shadow: none !important; font-weight: 700; }
 
 .sb-search { padding: 12px 14px; border-bottom: 1px solid var(--border); }
@@ -138,20 +380,20 @@ html, body {
   width: 100%; padding: 8px 10px 8px 32px;
   background: var(--bg-surface); border: 1px solid var(--border);
   border-radius: 8px; color: var(--text-primary);
-  font-family: 'Inter', sans-serif; font-size: 12px; outline: none;
+  font-family: var(--f-body); font-size: 12px; outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .search-input::placeholder { color: var(--text-muted); }
 .search-input:focus { border-color: var(--border-bright); box-shadow: 0 0 0 3px rgba(106,191,108,0.07); }
 
-.sb-label { padding: 13px 20px 7px; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; color: var(--text-muted); text-transform: uppercase; }
+.sb-label { padding: 13px 20px 7px; font-family: var(--f-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.16em; color: var(--text-muted); text-transform: uppercase; }
 
 #filters { padding: 0 12px 8px; display: flex; flex-direction: column; gap: 2px; }
 .filter-btn {
   display: flex; align-items: center; gap: 9px;
   padding: 7px 10px; border-radius: 8px; cursor: pointer;
   border: 1px solid transparent; background: transparent;
-  color: var(--text-secondary); font-family: 'Inter', sans-serif;
+  color: var(--text-secondary); font-family: var(--f-body);
   font-size: 12px; text-align: left; transition: all 0.18s ease;
   width: 100%; position: relative; overflow: hidden;
 }
@@ -166,7 +408,7 @@ html, body {
 .tier-btn {
   flex: 1; padding: 6px 4px; border-radius: 7px;
   border: 1px solid var(--border); background: var(--bg-surface);
-  color: var(--text-dim); font-family: 'Inter', sans-serif;
+  color: var(--text-dim); font-family: var(--f-body);
   font-size: 10px; font-weight: 700; cursor: pointer; text-align: center;
   transition: all 0.18s; letter-spacing: 0.3px;
 }
@@ -182,7 +424,7 @@ html, body {
 .view-btn {
   flex: 1; padding: 7px 6px; border-radius: 7px;
   border: 1px solid var(--border); background: var(--bg-surface);
-  color: var(--text-dim); font-family: 'Inter', sans-serif;
+  color: var(--text-dim); font-family: var(--f-body);
   font-size: 10px; font-weight: 600; cursor: pointer; text-align: center;
   transition: all 0.18s; letter-spacing: 0.3px;
 }
@@ -193,7 +435,7 @@ html, body {
 .region-btn {
   padding: 9px 12px; border-radius: 8px; cursor: pointer;
   border: 1px solid var(--border); background: var(--bg-surface);
-  color: var(--text-secondary); font-family: 'Inter', sans-serif;
+  color: var(--text-secondary); font-family: var(--f-body);
   font-size: 11px; font-weight: 500; text-align: left; transition: all 0.18s;
 }
 .region-btn:hover { background: var(--bg-elevated); border-color: var(--border-bright); color: var(--text-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
@@ -211,6 +453,80 @@ html, body {
 .sb-pdf { padding: 10px 20px 8px; font-size: 11px; border-top: 1px solid var(--border); flex-shrink: 0; background: var(--bg-base); }
 .sb-pdf a { color: var(--accent); text-decoration: none; font-weight: 500; }
 .sb-pdf a:hover { color: var(--earth); text-decoration: underline; }
+.sb-built { padding: 8px 20px 10px; font-size: 10px; color: var(--text-muted); border-top: 1px solid var(--border); flex-shrink: 0; background: var(--bg-base); display: flex; justify-content: space-between; gap: 8px; }
+.sb-built strong { color: var(--text-secondary); font-weight: 600; }
+
+/* High-confidence toggle (a single prominent switch) */
+.hc-toggle-wrap { padding: 8px 12px 10px; }
+.hc-toggle {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 8px 11px; border-radius: 8px;
+  border: 1px solid var(--border-bright); background: var(--bg-elevated);
+  color: var(--text-primary); font-family: var(--f-body);
+  font-size: 11px; cursor: pointer; text-align: left;
+}
+.hc-toggle:hover { background: #1a2e1a; }
+.hc-toggle .hc-track {
+  position: relative; width: 28px; height: 16px; border-radius: 9px;
+  background: var(--border); transition: background 0.18s; flex-shrink: 0;
+}
+.hc-toggle .hc-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--text-secondary); transition: left 0.18s, background 0.18s;
+}
+.hc-toggle.on .hc-track { background: var(--accent-glow); }
+.hc-toggle.on .hc-thumb { left: 14px; background: var(--accent); }
+.hc-toggle .hc-label { flex: 1; font-weight: 600; }
+.hc-toggle .hc-help {
+  font-size: 9px; color: var(--text-dim); margin-top: 2px; line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Tier legend block (visible explanation, distinct from filter buttons) */
+.tier-legend { padding: 4px 14px 12px; }
+.tier-legend-row {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 4px 0; font-size: 11px; color: var(--text-secondary);
+}
+.tier-legend-row .tlr-tag {
+  display: inline-block; min-width: 14px; padding: 1px 5px;
+  border-radius: 3px; font-size: 9px; font-weight: 700;
+  text-align: center; flex-shrink: 0;
+}
+.tier-legend-row.tier-row-A .tlr-tag { color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
+.tier-legend-row.tier-row-B .tlr-tag { color: var(--accent); border: 1px solid rgba(106,191,108,0.4); }
+.tier-legend-row.tier-row-C .tlr-tag { color: #7c9e6a; border: 1px solid rgba(124,158,106,0.4); }
+.tier-legend-row.tier-row-D .tlr-tag { color: var(--text-dim); border: 1px solid var(--border); }
+.tier-legend-row.tier-row-D { opacity: 0.6; }
+.tlr-name { font-weight: 600; }
+.tlr-desc { color: var(--text-dim); font-size: 10px; }
+.tlr-count { margin-left: auto; color: var(--text-dim); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 10px; }
+
+/* Detail panel additions: secondary sections, share/correction button row */
+.pop-row { font-size: 11px; color: var(--text-secondary); margin: 4px 0; line-height: 1.55; }
+.pop-row strong { color: var(--text-primary); font-weight: 600; }
+.pop-row a { color: var(--accent); text-decoration: none; }
+.pop-row a:hover { text-decoration: underline; }
+.pop-actions {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;
+  padding-top: 12px; border-top: 1px solid var(--border);
+}
+.pop-action-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 10px; border-radius: 6px;
+  border: 1px solid var(--border-bright); background: var(--bg-elevated);
+  color: var(--text-secondary); font-family: var(--f-body);
+  font-size: 11px; cursor: pointer; text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.pop-action-btn:hover { background: #1a2e1a; color: var(--accent); border-color: var(--accent); text-decoration: none; }
+.pop-action-btn.copied { color: var(--accent); border-color: var(--accent); }
+.pop-tier-explainer {
+  font-size: 10px; color: var(--text-dim); margin: 6px 0 10px;
+  padding: 6px 9px; background: var(--bg-surface);
+  border-left: 2px solid var(--border-bright); border-radius: 0 6px 6px 0;
+}
 
 /* ═══════════ TOOLTIP ═══════════ */
 #tooltip {
@@ -218,13 +534,13 @@ html, body {
   background: rgba(13,25,13,0.96); backdrop-filter: blur(14px);
   border: 1px solid var(--border-bright);
   border-radius: 10px; padding: 9px 12px;
-  font-family: 'Inter', sans-serif; pointer-events: none;
+  font-family: var(--f-body); pointer-events: none;
   z-index: 100; max-width: 220px; min-width: 140px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
 }
-.tt-name { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; line-height: 1.3; }
-.tt-meta { font-size: 10px; font-weight: 600; margin-bottom: 2px; }
-.tt-country { font-size: 10px; color: var(--text-dim); }
+.tt-name { font-family: var(--f-display); font-style: italic; font-size: 16px; font-weight: 400; color: var(--text-primary); margin-bottom: 4px; line-height: 1.25; }
+.tt-meta { font-family: var(--f-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 2px; }
+.tt-country { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--text-dim); }
 
 /* ═══════════ DETAIL PANEL ═══════════ */
 #detail-panel {
@@ -264,7 +580,7 @@ html, body {
 .tier-A { background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; }
 .tier-B { background: rgba(106,191,108,0.1); border: 1px solid rgba(106,191,108,0.25); color: var(--accent); }
 .tier-C { background: rgba(124,158,106,0.1); border: 1px solid rgba(124,158,106,0.2); color: #7c9e6a; }
-.pop-name { font-weight: 700; font-size: 15px; margin-bottom: 5px; line-height: 1.3; }
+.pop-name { font-family: var(--f-display); font-style: italic; font-weight: 400; font-size: 26px; letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.2; color: var(--paper); }
 .pop-meta { font-size: 11px; color: var(--text-dim); margin-bottom: 9px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
 .pop-meta-sep { opacity: 0.3; }
 .pop-source { font-size: 10px; color: var(--text-muted); margin-bottom: 8px; font-style: italic; }
@@ -283,11 +599,22 @@ html, body {
 }
 .pop-correct:hover { color: var(--text-dim); }
 
-/* ═══════════ MOBILE ═══════════ */
-@media (max-width: 768px) {
+/* ═══════════ MOBILE / NARROW ═══════════
+   Below 480px (which includes the iframe-on-homepage embed) the
+   sidebar collapses entirely. The canvas takes the whole viewport,
+   the FAB opens a bottom sheet with section filters. Everything
+   else (HC toggle, tier filter, presets) is still reachable via
+   the sidebar on wider screens; the sheet only carries the most
+   common quick filters because narrow screens cannot hold all of
+   it without becoming a dialog. */
+/* Phase 5 mobile: under 600px the sidebar collapses entirely and a draggable
+   bottom sheet takes over. The map fills the full viewport. The sheet holds
+   the same filters and search the sidebar would, just stacked. */
+@media (max-width: 600px) {
   :root { --sidebar-w: 0px; }
   #sidebar { display: none; }
   #canvas-container { left: 0; }
+  .viewport-health { left: 0; }
 
   #mobile-fab {
     display: flex; position: fixed; bottom: 24px; right: 20px; z-index: 30;
@@ -303,35 +630,59 @@ html, body {
   #mobile-sheet {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 25;
     background: var(--bg-base); border-top: 1px solid var(--border-bright);
-    border-radius: 20px 20px 0 0; max-height: 75vh;
+    border-radius: 20px 20px 0 0; max-height: 80vh;
     transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
     display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 -8px 30px rgba(0,0,0,0.45);
   }
   #mobile-sheet.open { transform: translateY(0); }
-  .sheet-handle { width: 36px; height: 4px; background: var(--border-bright); border-radius: 2px; margin: 10px auto; flex-shrink: 0; }
-  .sheet-content { padding: 6px 16px 28px; overflow-y: auto; flex: 1; }
+  .sheet-handle {
+    width: 42px; height: 4px; background: var(--border-bright);
+    border-radius: 2px; margin: 9px auto 4px; flex-shrink: 0;
+    cursor: grab;
+  }
+  .sheet-content { padding: 8px 16px 24px; overflow-y: auto; flex: 1; }
+  .sheet-section-label {
+    font-family: var(--f-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted); margin: 14px 0 6px;
+  }
+  .sheet-section-label:first-child { margin-top: 4px; }
+  .sheet-need-input {
+    width: 100%; padding: 8px 10px;
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text-primary);
+    font-family: var(--f-body); font-size: 13px; line-height: 1.45;
+    outline: none; resize: vertical; min-height: 50px;
+  }
+  .sheet-need-row { display: flex; gap: 8px; margin-top: 6px; }
+  .sheet-need-btn {
+    padding: 7px 12px; border-radius: 8px;
+    border: 1px solid var(--border-bright); background: var(--bg-elevated);
+    color: var(--accent); font-family: var(--f-body);
+    font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .sheet-tier-row { display: flex; gap: 5px; margin-top: 4px; }
+  .sheet-tier-btn {
+    flex: 1; padding: 7px 6px; border-radius: 7px;
+    border: 1px solid var(--border); background: var(--bg-surface);
+    color: var(--text-dim); font-family: var(--f-body);
+    font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;
+  }
+  .sheet-tier-btn.active { background: var(--bg-elevated); }
+  .sheet-tier-btn[data-tier="A"].active { border-color: #4ade80; color: #4ade80; }
+  .sheet-tier-btn[data-tier="B"].active { border-color: var(--accent); color: var(--accent); }
+  .sheet-tier-btn[data-tier="C"].active { border-color: #7c9e6a; color: #7c9e6a; }
 }
-@media (min-width: 769px) { #mobile-fab, #mobile-sheet { display: none !important; } }
+@media (max-width: 480px) {
+  /* Tighter spacing on the smallest screens. */
+  .vh-row { gap: 8px; font-size: 10px; }
+}
+@media (min-width: 481px) { #mobile-fab, #mobile-sheet { display: none !important; } }
 
 @keyframes counter-up { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 .stat-animate { animation: counter-up 0.5s cubic-bezier(0.4,0,0.2,1) forwards; }
 </style>
-  <link rel="canonical" href="https://commonweave.earth/map.html">
-
-  <meta property="og:title" content="Commonweave - Mapping the Networks of Change">
-  <meta property="og:description" content="Geographic view of 27,000+ aligned civil-society organizations.">
-  <meta property="og:url" content="https://commonweave.earth/map.html">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Commonweave Map",
-  "url": "https://commonweave.earth/map.html",
-  "license": "https://creativecommons.org/publicdomain/zero/1.0/"
-}
-</script>
 </head>
 <body>
 <h1 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">Commonweave Map</h1>
@@ -369,20 +720,32 @@ html, body {
       <circle class="spore" cx="35" cy="56" r="1.6" style="animation-delay:0.38s"/>
       <circle class="spore" cx="18" cy="31" r="1.4" style="animation-delay:0.68s"/>
       <circle class="spore" cx="88" cy="16" r="1.4" style="animation-delay:0.73s"/>
-      <circle cx="60" cy="60" r="5" fill="var(--accent)" opacity="0.85" filter="url(#glow-c)"/>
-      <circle cx="60" cy="60" r="2" fill="#fff" opacity="0.95"/>
+      <circle cx="60" cy="60" r="5" fill="var(--clay)" opacity="0.95" filter="url(#glow-c)"/>
+      <circle cx="60" cy="60" r="2" fill="#F2EBDC" opacity="0.95"/>
     </svg>
   </div>
-  <div class="loading-title">COMMONWEAVE</div>
+  <div class="loading-title">commonweave<span class="seed">.</span></div>
   <div class="loading-sub">mapping the networks of change</div>
   <div class="loading-progress"><div class="loading-progress-bar" id="progress-bar"></div></div>
+  <div class="loading-status" id="loading-status">Loading organisations…</div>
 </div>
 
 <!-- ═══════════ MAIN LAYOUT ═══════════ -->
 <div id="layout">
   <div id="sidebar">
     <div class="sb-header">
-      <div class="sb-title">COMMONWEAVE</div>
+      <a href="/" class="sb-mark" aria-label="Commonweave home">
+        <svg viewBox="0 0 520 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="commonweave">
+          <g transform="translate(0,5)">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#F2EBDC" stroke-width="1.6"/>
+            <line x1="6" y1="60" x2="114" y2="60" stroke="#F2EBDC" stroke-width="0.8" opacity="0.4"/>
+            <path d="M 30 30 C 50 60, 70 60, 90 90" stroke="#B8C4A8" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <path d="M 90 30 C 70 60, 50 60, 30 90" stroke="#B8C4A8" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <circle cx="60" cy="60" r="3" fill="#B4593A"/>
+          </g>
+          <text x="140" y="80" font-family="Instrument Serif, Source Serif 4, Georgia, serif" font-style="italic" font-size="64" fill="#F2EBDC" letter-spacing="-1.5">commonweave</text>
+        </svg>
+      </a>
       <div class="sb-sub">mapping the networks of change</div>
     </div>
     <div class="sb-scroll">
@@ -398,18 +761,44 @@ html, body {
           <input type="text" class="search-input" id="search-input" placeholder="Search organizations…" autocomplete="off" spellcheck="false">
         </div>
       </div>
+
+      <!-- Phase 3: Need-pathway panel. Plain language box that parses out a
+           location, sections, and offers/needs words. Returns ranked matches
+           plus complementary nearby orgs and local gaps. -->
+      <div class="sb-label">What are you trying to do?</div>
+      <div class="sb-need">
+        <textarea class="need-input" id="need-input"
+          placeholder="e.g. housing co-ops near Kansas City that need volunteers"
+          rows="2" autocomplete="off" spellcheck="false"></textarea>
+        <div class="need-row">
+          <button class="need-btn" id="need-go" type="button">Find</button>
+          <button class="need-clear" id="need-clear" type="button" hidden>Clear</button>
+        </div>
+        <div class="need-hint">Looks up city centroids, framework sections, and offers/needs words. No external geocoder.</div>
+        <div class="need-result" id="need-result" hidden></div>
+      </div>
       <div class="sb-label">Networks</div>
       <div id="filters"></div>
       <div class="sb-label">Data Quality</div>
-      <div id="tier-filter">
-        <button class="tier-btn active" data-tier="A" title="Curated: manually verified">A Curated</button>
-        <button class="tier-btn active" data-tier="B" title="Verified: registry-backed">B Verified</button>
-        <button class="tier-btn inactive" data-tier="C" title="Inferred: algorithmically derived — lower confidence">C Inferred</button>
+      <div class="hc-toggle-wrap">
+        <button class="hc-toggle on" id="hc-toggle" type="button"
+                aria-pressed="true"
+                title="When on, only high-confidence rows (Tier A and B) appear on the map. Switch off to also include Tier C inferred candidates.">
+          <span class="hc-track" aria-hidden="true"><span class="hc-thumb"></span></span>
+          <span class="hc-label">High-confidence only<div class="hc-help">Hides Tier C inferred candidates. On by default.</div></span>
+        </button>
       </div>
+      <div id="tier-filter">
+        <button class="tier-btn active" data-tier="A" title="Curated: manually reviewed, has description and website">A Curated</button>
+        <button class="tier-btn active" data-tier="B" title="Verified (from registry): sourced from an official charity registry or manual curation">B Verified</button>
+        <button class="tier-btn inactive" data-tier="C" title="Inferred: passed keyword scoring, not yet reviewed">C Inferred</button>
+      </div>
+      <div class="tier-legend" id="tier-legend"></div>
       <div class="sb-label">View Mode</div>
       <div class="view-mode-wrap">
         <button class="view-btn active" id="btn-network">🕸 Network</button>
         <button class="view-btn" id="btn-geo">🌍 Geographic</button>
+        <button class="view-btn" id="btn-health">⚖️ System Health</button>
       </div>
       <div class="sb-label">Guided Views</div>
       <div id="presets"></div>
@@ -417,15 +806,23 @@ html, body {
       <div id="regions"></div>
     </div>
     <div class="sb-health">
-      <div class="health-label">System Health — Section Coverage</div>
+      <div class="health-label">System Health: Section Coverage</div>
       <div class="health-dots" id="health-dots"></div>
       <div class="health-text" id="health-text">— of 10 sections in dataset</div>
     </div>
     <div class="sb-pdf"><a href="pipeline.pdf" title="How the directory gets built">📄 How we find these organizations (PDF)</a></div>
     <div class="sb-hint">scroll to zoom · drag to pan · click nodes for details</div>
+    <div class="sb-built" id="sb-built">
+      <span>Data last built: <strong id="built-date">—</strong></span>
+      <span title="Number of organizations on the map / total candidates in the directory" id="built-counts">—</span>
+    </div>
   </div>
 
   <div id="canvas-container">
+    <!-- Geographic mode: MapLibre vector basemap + deck.gl overlay. Hidden in
+         Network mode. Toggling viewMode swaps display:none between the two. -->
+    <div id="ml-map" style="display:none"></div>
+    <!-- Network mode: existing D3 force canvas. Hidden in Geographic mode. -->
     <canvas id="viz-canvas"></canvas>
   </div>
 </div>
@@ -445,9 +842,39 @@ html, body {
   <div class="tt-country" id="tt-country"></div>
 </div>
 <div id="detail-panel"></div>
+<div id="edge-tooltip" class="edge-tooltip"></div>
+
+<!-- Phase 4: viewport System Health bar. Updates on moveend with the
+     visible-bbox section composition, verified ratio, and a few suggested
+     bridge orgs. Only shown in geo / system-health modes. -->
+<div id="viewport-health" class="viewport-health" hidden>
+  <div class="vh-row">
+    <div class="vh-cell vh-count">
+      <span class="vh-num" id="vh-count">—</span>
+      <span class="vh-lab">orgs in view</span>
+    </div>
+    <div class="vh-cell vh-sections">
+      <span class="vh-num" id="vh-sections">—</span>
+      <span class="vh-lab">/ 10 sections</span>
+    </div>
+    <div class="vh-cell vh-verified">
+      <span class="vh-num" id="vh-verified">—</span>
+      <span class="vh-lab">verified ratio</span>
+    </div>
+    <div class="vh-cell vh-missing" id="vh-missing-cell">
+      <span class="vh-lab">missing</span>
+      <span class="vh-list" id="vh-missing">—</span>
+    </div>
+    <button class="vh-close" id="vh-close" type="button" title="Hide">×</button>
+  </div>
+</div>
 
 <script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<!-- Phase 3: need-pathway scoring + search panel. Pure functions; no DOM
+     work happens until init() is called from the main script. -->
+<script src="assets/js/map/scoring.js"></script>
+<script src="assets/js/map/search.js"></script>
 <script>
 'use strict';
 
@@ -488,14 +915,29 @@ const AREA_SHORT = {
 };
 
 const AREAS_ORDERED = Object.keys(AREA_COLORS);
-const TIER_LABELS = { A: 'Curated', B: 'Verified', C: 'Inferred' };
+// Phase 1: pick "Verified (from registry)" for Tier B and use it everywhere.
+const TIER_LABELS = {
+  A: 'Curated',
+  B: 'Verified (from registry)',
+  C: 'Inferred',
+  D: 'Unverified, not on map'
+};
+const TIER_DESCRIPTIONS = {
+  A: 'Manually reviewed. Has description and website.',
+  B: 'Sourced from a public charity registry or manual curation.',
+  C: 'Passed keyword scoring, not yet reviewed.',
+  D: 'Did not pass scoring or registry match. Excluded from the map.'
+};
 const SRC_LABELS = {
   'manual_curation': 'Manual curation',
   'IRS_EO_BMF': 'IRS EO Business Master File',
   'web_research': 'Web research',
   'opencorporates': 'OpenCorporates',
-  'wikidata': 'Wikidata'
+  'wikidata': 'Wikidata',
+  'ProPublica': 'ProPublica Nonprofit Explorer',
+  'uk_charity': 'UK Charity Commission'
 };
+const REPO_ISSUE_BASE = 'https://github.com/simonlpaige/commonweave/issues/new';
 
 const SIM_W = 1600, SIM_H = 900;
 
@@ -521,6 +963,7 @@ const TAU = Math.PI * 2;
 let allPoints = [], allEdges = [];
 let simNodes = [], simLinks = [];
 let coordHash = new Map();       // "lon,lat" → node index
+let pointsById = new Map();      // stable id (org_X) → node index, for URL state
 let nodeEdgesMap = new Map();    // nodeIndex → [edgeIndices]
 let quadtree = null;
 let zoomBehavior = null;
@@ -538,6 +981,8 @@ let dashOffset = 0;
 let frameId = null;
 let worldFeatures = null;
 let sectionCounts = {};
+let mapStats = null;             // data/map/stats.json contents
+let isRestoringUrl = false;      // suppress URL writes while we apply hash on load
 
 // Canvas
 let canvas, ctx;
@@ -554,6 +999,43 @@ function setProgress(pct) {
   if (bar) bar.style.width = pct + '%';
 }
 
+function setLoadingStatus(msg) {
+  const el = document.getElementById('loading-status');
+  if (el) el.textContent = msg;
+}
+
+const IS_MOBILE = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+
+// deck.gl is only needed once the user selects an org (we render arcs/lines
+// for the connections). Bulk org points go through MapLibre's native cluster
+// source, so we can skip the ~500KB deck.gl bundle on first paint and only
+// pull it in on first interaction.
+let deckLoaded = false;
+let deckLoading = null;
+function ensureDeckLoaded() {
+  if (deckLoaded) return Promise.resolve();
+  if (deckLoading) return deckLoading;
+  deckLoading = new Promise((resolve) => {
+    if (typeof window.deck !== 'undefined' && window.deck.MapboxOverlay) {
+      deckLoaded = true;
+      resolve();
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = 'https://unpkg.com/deck.gl@9.0.27/dist.min.js';
+    s.async = true;
+    s.onload = () => { deckLoaded = true; resolve(); };
+    s.onerror = () => {
+      console.warn('deck.gl failed to load; edge layers disabled.');
+      // Resolve anyway so callers don't hang. Edge rendering will silently
+      // skip when window.deck is undefined.
+      resolve();
+    };
+    document.head.appendChild(s);
+  });
+  return deckLoading;
+}
+
 function formatNum(n) {
   if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
   if (n >= 1e3) return (n / 1e3).toFixed(0) + 'K';
@@ -563,6 +1045,118 @@ function formatNum(n) {
 function debounce(fn, ms) {
   let t;
   return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
+// Shim around the optional Phase 3 search module. If assets/js/map/search.js
+// did not load (offline / 404), we just skip; the rest of the map still works.
+function global_init_search() {
+  if (typeof window.CommonweaveSearch === 'object' && typeof window.CommonweaveSearch.init === 'function') {
+    window.CommonweaveSearch.init();
+    return true;
+  }
+  return false;
+}
+
+// ══════════════════════════════════════════════════════════════
+// URL STATE
+// ══════════════════════════════════════════════════════════════
+// Serialize {section, tiers, country, search, selectedId, zoom, view} to
+// location.hash on every state change. On load, parse the hash and restore
+// state before the first render. The hash uses URLSearchParams so it is
+// human-readable: #section=food&tiers=AB&selectedId=org_12345.
+const writeUrlState = debounce(_writeUrlState, 220);
+
+function _writeUrlState() {
+  if (isRestoringUrl) return;
+  const params = new URLSearchParams();
+  if (activeSection) params.set('section', activeSection);
+  // Tier set as a single concatenated string: "AB", "ABC", "B", etc.
+  const tierStr = ['A', 'B', 'C'].filter(t => activeTiers.has(t)).join('');
+  // Only write if it differs from the default A+B; keeps URLs short.
+  if (tierStr !== 'AB') params.set('tiers', tierStr || '-');
+  if (searchTerm) params.set('q', searchTerm);
+  if (viewMode && viewMode !== 'network') params.set('view', viewMode);
+  if (selectedNode && selectedNode.id) params.set('selectedId', selectedNode.id);
+  if (transform && transform.k && Math.abs(transform.k - 1) > 0.001) {
+    // Round zoom and pan so the hash is short. Pan in canvas pixels.
+    params.set('z', transform.k.toFixed(3));
+    params.set('tx', Math.round(transform.x));
+    params.set('ty', Math.round(transform.y));
+  }
+  const str = params.toString();
+  const next = str ? '#' + str : '';
+  if (next !== location.hash) {
+    history.replaceState(null, '', location.pathname + location.search + next);
+  }
+}
+
+function readUrlState() {
+  const hash = (location.hash || '').replace(/^#/, '');
+  if (!hash) return null;
+  return new URLSearchParams(hash);
+}
+
+function applyUrlState() {
+  const params = readUrlState();
+  if (!params) return;
+  isRestoringUrl = true;
+  try {
+    const sec = params.get('section');
+    if (sec) activeSection = sec;
+
+    const tiers = params.get('tiers');
+    if (tiers !== null) {
+      activeTiers = new Set();
+      if (tiers && tiers !== '-') {
+        tiers.split('').forEach(c => {
+          if (['A', 'B', 'C'].includes(c)) activeTiers.add(c);
+        });
+      }
+    }
+
+    const q = params.get('q');
+    if (q) searchTerm = q;
+
+    const view = params.get('view');
+    if (view === 'geo' || view === 'network' || view === 'health') viewMode = view;
+  } finally {
+    isRestoringUrl = false;
+  }
+}
+
+function applyUrlStateAfterRender() {
+  // Things that need the canvas/quadtree/sim to exist: zoom, selected node.
+  const params = readUrlState();
+  if (!params) return;
+  isRestoringUrl = true;
+  try {
+    const z = parseFloat(params.get('z'));
+    const tx = parseFloat(params.get('tx'));
+    const ty = parseFloat(params.get('ty'));
+    if (!isNaN(z) && !isNaN(tx) && !isNaN(ty) && zoomBehavior && canvas) {
+      const t = d3.zoomIdentity.translate(tx, ty).scale(z);
+      d3.select(canvas).call(zoomBehavior.transform, t);
+    }
+    const sid = params.get('selectedId');
+    if (sid && pointsById.has(sid)) {
+      const idx = pointsById.get(sid);
+      const node = simNodes[idx];
+      if (node) {
+        selectedNode = node;
+        showDetailPanel(node);
+        // Edges weren't loaded at boot (Phase 5 lazy). Pull them now and
+        // re-render the panel + the deck.gl edges once they arrive.
+        ensureEdgesLoaded().then(() => {
+          if (selectedNode && selectedNode.id === sid) {
+            showDetailPanel(node);
+            if (typeof updateDeckLayers === 'function') updateDeckLayers();
+          }
+        });
+      }
+    }
+  } finally {
+    isRestoringUrl = false;
+  }
 }
 
 function animateCounter(el, target, duration = 700) {
@@ -580,40 +1174,67 @@ function animateCounter(el, target, duration = 700) {
 // ══════════════════════════════════════════════════════════════
 // DATA LOADING
 // ══════════════════════════════════════════════════════════════
+// Parsed orgs.geojson FeatureCollection — kept around so the MapLibre cluster
+// source can ingest it directly (no second fetch). Set by loadData().
+let orgsFeatureCollection = null;
+
 async function loadData() {
   setProgress(5);
+  setLoadingStatus('Loading organisations…');
 
-  const [pointsData, edgesData] = await Promise.all([
-    fetch('data/search/map_points_v2.json').then(r => r.json()),
-    fetch('data/search/map_edges.json').then(r => r.json())
+  // Phase 5: edges are lazy-loaded. Only points + stats + coverage hit the
+  // network at startup. Edges fetch on first selection. This is the biggest
+  // mobile win: ~8MB of edge JSON deferred until the user actually needs it.
+  //
+  // Org points come from data/map/orgs.geojson (the canonical FeatureCollection
+  // built by build_map_v2.py). MapLibre's native cluster source ingests the
+  // same parsed object, so we pay the fetch + parse cost exactly once.
+  const [orgsFC, statsData, coverageData] = await Promise.all([
+    fetch('data/map/orgs.geojson').then(r => r.json()),
+    fetch('data/map/stats.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('audit/coverage-summary.json').then(r => r.ok ? r.json() : null).catch(() => null)
   ]);
+
+  // Build fast-lookup sets for the renderer. Country = 'US', state = 'US/MO',
+  // city = 'US/MO/St. Louis'. Same shape as the summary's verified_*.
+  if (coverageData && typeof coverageData === 'object') {
+    window.coverageVerified = {
+      countries: new Set(coverageData.verified_countries || []),
+      states: new Set(coverageData.verified_states || []),
+      cities: new Set(coverageData.verified_cities || []),
+      generated_at: coverageData.generated_at || null
+    };
+  } else {
+    window.coverageVerified = { countries: new Set(), states: new Set(), cities: new Set() };
+  }
 
   setProgress(18);
 
-  allPoints = pointsData;
-  allEdges = Array.isArray(edgesData) ? edgesData : (edgesData.edges || []);
+  // Cache the FC for MapLibre's cluster source; flatten to the compact
+  // {id, lo, la, n, f, m, t, cc, st, ci, src, rc, ...} shape the rest of the
+  // renderer / search / detail panel already expects.
+  orgsFeatureCollection = orgsFC;
+  const features = (orgsFC && orgsFC.features) || [];
+  allPoints = features.map(f => {
+    const props = f.properties || {};
+    const coords = (f.geometry && f.geometry.coordinates) || [0, 0];
+    return Object.assign({}, props, {
+      id: props.id || f.id,
+      lo: coords[0],
+      la: coords[1],
+    });
+  });
+  allEdges = [];  // populated lazily by ensureEdgesLoaded()
+  mapStats = statsData;
 
-  // Build coordHash
+  // Build coordHash and id index. The id index lets the URL hash and the
+  // detail panel's share link target a specific org by stable id.
   allPoints.forEach((p, i) => {
     coordHash.set(coordKey(p.lo, p.la), i);
+    if (p.id) pointsById.set(p.id, i);
   });
 
-  // Resolve edge endpoints + build nodeEdgesMap
-  allEdges.forEach((edge, ei) => {
-    const sk = coordKey(edge.s[0], edge.s[1]);
-    const tk = coordKey(edge.t[0], edge.t[1]);
-    edge._si = coordHash.get(sk);
-    edge._ti = coordHash.get(tk);
-
-    if (edge._si !== undefined) {
-      if (!nodeEdgesMap.has(edge._si)) nodeEdgesMap.set(edge._si, []);
-      nodeEdgesMap.get(edge._si).push(ei);
-    }
-    if (edge._ti !== undefined) {
-      if (!nodeEdgesMap.has(edge._ti)) nodeEdgesMap.set(edge._ti, []);
-      nodeEdgesMap.get(edge._ti).push(ei);
-    }
-  });
+  // No edge resolution here: edges are lazy-loaded on demand.
 
   // Compute section counts
   allPoints.forEach(p => {
@@ -674,12 +1295,14 @@ function mulberry32(a) {
 }
 
 function runSimulation(sim, onDone) {
+  // The d3 force layout runs in the background after the loading overlay
+  // is gone, so we no longer drive the progress bar from in here. Settling
+  // 250 ticks chunked across rAF keeps the main thread responsive.
   const TOTAL = 250;
   let tick = 0;
 
   function chunk() {
     for (let i = 0; i < 20 && tick < TOTAL; i++, tick++) sim.tick();
-    setProgress(18 + (tick / TOTAL) * 67);
     if (tick < TOTAL) requestAnimationFrame(chunk);
     else { sim.stop(); onDone(); }
   }
@@ -702,6 +1325,10 @@ function rebuildQuadtree() {
     .x(d => viewMode === 'geo' ? d.geoX : d.x)
     .y(d => viewMode === 'geo' ? d.geoY : d.y)
     .addAll(simNodes.filter(n => isNodeVisible(n)));
+  // Filter changes also need to repaint deck.gl in geo mode. Cheap enough
+  // to call here since rebuildQuadtree runs only on state change, not per
+  // frame.
+  if (typeof refreshGeoIfActive === 'function') refreshGeoIfActive();
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -712,7 +1339,10 @@ function setupCanvas() {
   ctx = canvas.getContext('2d');
 
   function doResize() {
-    const sidebarW = window.innerWidth > 768 ? 300 : 0;
+    // Below 600px the sidebar is hidden (mobile sheet takes over) so the
+    // canvas reclaims the full viewport. Keep this in sync with the
+    // @media (max-width: 600px) block above.
+    const sidebarW = window.innerWidth > 600 ? 300 : 0;
     canvas.width = window.innerWidth - sidebarW;
     canvas.height = window.innerHeight;
     fitView(false);
@@ -725,6 +1355,7 @@ function setupCanvas() {
       transform = event.transform;
       updateVisibleCount();
       render();
+      writeUrlState();
     });
 
   d3.select(canvas).call(zoomBehavior);
@@ -822,12 +1453,21 @@ function handleCanvasClick(e) {
 
   if (found) {
     selectedNode = found;
+    // Lazy edge load on first click; once edges arrive, refresh the panel
+    // so the connections list populates.
+    ensureEdgesLoaded().then(() => {
+      if (selectedNode === found) {
+        showDetailPanel(found);
+        render();
+      }
+    });
     showDetailPanel(found);
   } else {
     selectedNode = null;
     hideDetailPanel();
   }
   render();
+  writeUrlState();
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -863,8 +1503,10 @@ function showDetailPanel(node) {
   const panel = document.getElementById('detail-panel');
   const color = AREA_COLORS[node.f] || '#888';
   const areaShort = AREA_SHORT[node.f] || node.f || '';
+  const areaFull = AREA_NAMES[node.f] || node.f || '';
   const tier = node.t || 'C';
-  const corrUrl = `https://github.com/simonlpaige/commonweave/issues/new?title=Data+correction:+${encodeURIComponent(node.n || '')}&labels=data-correction`;
+  const tierLabel = TIER_LABELS[tier] || tier;
+  const tierDesc = TIER_DESCRIPTIONS[tier] || '';
   const website = node.w ? (node.w.startsWith('http') ? node.w : 'https://' + node.w) : '';
   const websiteDomain = node.w ? node.w.replace(/^https?:\/\//, '').split('/')[0] : '';
   const badgeBg = color + '1a';
@@ -872,32 +1514,433 @@ function showDetailPanel(node) {
   const srcLabel = SRC_LABELS[node.src] || (node.src || '').replace(/_/g, ' ');
   const desc = (node.d || '').slice(0, 240) + ((node.d || '').length > 240 ? '\u2026' : '');
 
+  // Prefilled GitHub issue. The Phase 1 brief asks for a Suggest correction
+  // link that opens with the org name and id in the body so a maintainer can
+  // route it without a second round-trip.
+  const corrTitle = `Data correction: ${node.n || node.id || 'organization'}`;
+  const corrBody = [
+    `**Org id:** ${node.id || '(unknown)'}`,
+    `**Name:** ${node.n || ''}`,
+    `**Country:** ${node.cc || ''}`,
+    `**Section:** ${node.f || ''}`,
+    '',
+    '**What is wrong / what should change:**',
+    '',
+    '(describe the correction here)'
+  ].join('\n');
+  const corrUrl = `${REPO_ISSUE_BASE}?title=${encodeURIComponent(corrTitle)}&labels=data-correction&body=${encodeURIComponent(corrBody)}`;
+
+  // Location string: city + state + country, drop the empties.
+  const locParts = [node.ci, node.st, node.cc].filter(Boolean);
+  const loc = locParts.join(', ');
+
+  // Phase 1 doesn't yet emit secondary_sections (the v2 pipeline only stores
+  // a single framework_area per row). The slot is here so when the v3 build
+  // adds them they show up without another DOM change.
+  const secondary = Array.isArray(node.sec) && node.sec.length
+    ? node.sec.map(s => AREA_SHORT[s] || s).join(', ')
+    : null;
+
+  // Stable share link that targets this exact org via URL hash.
+  const shareUrl = buildShareUrl(node);
+
   panel.innerHTML = `
     <button class="detail-close" onclick="window._closeDetail()">&#215;</button>
     <div class="pop-inner">
       <div class="pop-header">
-        <div class="pop-badge" style="background:${badgeBg};border:1px solid ${badgeBorder};color:${color}">
-          <span class="pop-badge-dot" style="background:${color}"></span>${areaShort}
+        <div class="pop-badge" style="background:${badgeBg};border:1px solid ${badgeBorder};color:${color}" title="${escHtml(areaFull)}">
+          <span class="pop-badge-dot" style="background:${color}"></span>${escHtml(areaShort)}
         </div>
-        <div class="pop-tier-badge tier-${tier}">${TIER_LABELS[tier] || tier}</div>
+        <div class="pop-tier-badge tier-${tier}" title="${escHtml(tierDesc)}">${escHtml(tierLabel)}</div>
       </div>
       <div class="pop-name">${escHtml(node.n || 'Organization')}</div>
+      <div class="pop-tier-explainer" title="${escHtml(tierDesc)}">
+        <strong>Tier ${tier}.</strong> ${escHtml(tierDesc)}
+      </div>
       <div class="pop-meta">
-        ${node.cc ? `<span>${escHtml(node.cc)}</span>` : ''}
-        ${node.m ? `<span class="pop-meta-sep">&middot;</span><span style="text-transform:capitalize">${escHtml(node.m.replace(/_/g,' '))}</span>` : ''}
+        ${node.m ? `<span style="text-transform:capitalize">${escHtml(node.m.replace(/_/g,' '))}</span>` : ''}
+        ${node.r ? `<span class="pop-meta-sep">&middot;</span><span>$${(node.r/1e6).toFixed(1)}M revenue</span>` : ''}
       </div>
       ${desc ? `<div class="pop-desc">${escHtml(desc)}</div>` : ''}
-      ${srcLabel ? `<div class="pop-source">Source: ${escHtml(srcLabel)}</div>` : ''}
-      <div class="pop-links">
-        ${website ? `<a class="pop-link" href="${escHtml(website)}" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          ${escHtml(websiteDomain)}</a>` : ''}
-        <a class="pop-correct" href="${corrUrl}" target="_blank" rel="noopener">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-          Suggest correction</a>
+      <div class="pop-row"><strong>Section.</strong> ${escHtml(areaFull)}${secondary ? ` <span style="color:var(--text-dim)">(also: ${escHtml(secondary)})</span>` : ''}</div>
+      ${loc ? `<div class="pop-row"><strong>Location.</strong> ${escHtml(loc)}</div>` : ''}
+      ${website ? `<div class="pop-row"><strong>Website.</strong> <a href="${escHtml(website)}" target="_blank" rel="noopener">${escHtml(websiteDomain)} &#8599;</a></div>` : ''}
+      ${node.cu ? `<div class="pop-row"><strong>Contact.</strong> <a href="${escHtml(node.cu)}" target="_blank" rel="noopener">${escHtml(node.cu.replace(/^https?:\/\//, '').split('/')[0])} &#8599;</a></div>` : ''}
+      ${srcLabel ? `<div class="pop-row"><strong>Source.</strong> ${escHtml(srcLabel)}</div>` : ''}
+      ${node.lv ? `<div class="pop-row"><strong>Last verified.</strong> ${escHtml(String(node.lv).slice(0, 10))}</div>` : ''}
+      ${node.id ? `<div class="pop-row" style="color:var(--text-dim);font-size:10px"><strong>Id.</strong> ${escHtml(node.id)}</div>` : ''}
+      <div class="pop-actions">
+        <button type="button" class="pop-action-btn" id="copy-share-btn" data-share="${escHtml(shareUrl)}" title="Copy a link to this exact view">
+          &#128279; Copy share link
+        </button>
+        <a class="pop-action-btn" href="${corrUrl}" target="_blank" rel="noopener" title="Open a prefilled GitHub issue">
+          &#9998; Suggest correction
+        </a>
       </div>
+      ${renderConnections(node)}
     </div>`;
   panel.classList.add('open');
+
+  // Wire the copy button. Using a real handler (rather than inline onclick)
+  // because we mutate the button text on success.
+  const cb = document.getElementById('copy-share-btn');
+  if (cb) cb.addEventListener('click', () => copyShareLink(cb));
+
+  // Connection rows are clickable: clicking jumps to the other org.
+  panel.querySelectorAll('.conn-row').forEach(row => {
+    row.addEventListener('click', (e) => {
+      e.preventDefault();
+      const otherId = row.getAttribute('data-other-id');
+      if (otherId && pointsById.has(otherId)) {
+        const idx = pointsById.get(otherId);
+        const next = simNodes[idx];
+        if (next) {
+          selectedNode = next;
+          showDetailPanel(next);
+          if (mlMap && viewMode === 'geo') {
+            mlMap.flyTo({ center: [next.lo, next.la], zoom: Math.max(mlMap.getZoom(), 7) });
+            updateDeckLayers();
+          }
+          render();
+          writeUrlState();
+        }
+      }
+    });
+  });
+}
+
+// When filters change, refresh the geo-mode rendering. The MapLibre points
+// layer reads expressions over feature props (tier + section) so we just
+// rewrite its filter; the deck.gl edge overlay only needs to refresh if it's
+// already attached. The canvas renderer handles its own redraw separately.
+function refreshGeoIfActive() {
+  applyMaplibreFilters();
+  if ((viewMode === 'geo' || viewMode === 'health') && deckOverlay) updateDeckLayers();
+}
+
+// ══════════════════════════════════════════════════════════════
+// PHASE 4: SYSTEM HEALTH CHOROPLETH + VIEWPORT BAR
+// ══════════════════════════════════════════════════════════════
+let regionsLoaded = false;
+let choroplethShown = false;
+
+async function ensureRegionsSource() {
+  if (!mlMap) return;
+  if (regionsLoaded) return;
+  try {
+    const r = await fetch('data/map/regions.geojson');
+    if (!r.ok) throw new Error('regions.geojson missing');
+    const fc = await r.json();
+    if (!mlMap.getSource('regions')) {
+      mlMap.addSource('regions', { type: 'geojson', data: fc });
+    }
+    // Choropleth fill: green ramp on completeness (0..100).
+    if (!mlMap.getLayer('regions-fill')) {
+      mlMap.addLayer({
+        id: 'regions-fill',
+        type: 'fill',
+        source: 'regions',
+        layout: { visibility: 'none' },
+        paint: {
+          'fill-color': [
+            'interpolate', ['linear'], ['get', 'completeness'],
+            0,   'rgba(15, 25, 15, 0.10)',
+            10,  'rgba(74, 107, 79, 0.32)',
+            30,  'rgba(106, 191, 108, 0.42)',
+            60,  'rgba(184, 196, 168, 0.55)',
+            90,  'rgba(123, 227, 138, 0.70)',
+          ],
+          'fill-outline-color': 'rgba(184, 196, 168, 0.35)',
+        },
+      }, mlMap.getLayer('orgs-clusters') ? 'orgs-clusters' : undefined);
+      // ^ insert below the cluster bubbles so points stay readable.
+    }
+    if (!mlMap.getLayer('regions-line')) {
+      mlMap.addLayer({
+        id: 'regions-line',
+        type: 'line',
+        source: 'regions',
+        layout: { visibility: 'none' },
+        paint: {
+          'line-color': 'rgba(184, 196, 168, 0.35)',
+          'line-width': 0.5,
+        },
+      }, mlMap.getLayer('orgs-clusters') ? 'orgs-clusters' : undefined);
+    }
+    regionsLoaded = true;
+  } catch (e) {
+    console.warn('regions.geojson unavailable:', e);
+  }
+}
+
+function applyChoropleth(show) {
+  if (!mlMap) return;
+  // If we're hiding the choropleth and the regions source has never been
+  // requested, skip the fetch entirely. regions.geojson is ~4MB and would
+  // otherwise pull on every geo-mode entry — a no-op cost on mobile.
+  if (!show && !regionsLoaded && !mlMap.getSource('regions')) {
+    choroplethShown = false;
+    return;
+  }
+  ensureRegionsSource().then(() => {
+    if (!mlMap.getLayer('regions-fill')) return;
+    mlMap.setLayoutProperty('regions-fill', 'visibility', show ? 'visible' : 'none');
+    mlMap.setLayoutProperty('regions-line', 'visibility', show ? 'visible' : 'none');
+    choroplethShown = !!show;
+  });
+}
+
+// Compute and render the bottom System Health bar from the current MapLibre
+// viewport. Cheap to call on every moveend; uses scoring.js's pure helper.
+function updateViewportHealth() {
+  if (!mlMap || !window.CommonweaveScoring) return;
+  const vh = document.getElementById('viewport-health');
+  if (!vh || vh.hidden) return;
+  const b = mlMap.getBounds();
+  const bbox = {
+    west: b.getWest(), south: b.getSouth(),
+    east: b.getEast(), north: b.getNorth(),
+  };
+  const visiblePoints = simNodes.filter(n => isNodeVisible(n));
+  const health = window.CommonweaveScoring.computeViewportHealth(bbox, visiblePoints, allEdges);
+  setText('vh-count', health.viewport_org_count.toLocaleString());
+  setText('vh-sections', health.sections_present);
+  setText('vh-verified', (health.viewport_org_count
+    ? Math.round(health.verified_ratio * 100) + '%'
+    : '—'));
+  const missingEl = document.getElementById('vh-missing');
+  if (missingEl) {
+    if (health.sections_missing.length === 0) {
+      missingEl.textContent = 'all 10 sections represented';
+      missingEl.style.color = 'var(--accent)';
+    } else {
+      missingEl.textContent = health.sections_missing.map(s => s.replace(/_/g, ' ')).join(', ');
+      missingEl.style.color = '';
+    }
+  }
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function initViewportHealth() {
+  const close = document.getElementById('vh-close');
+  if (close) close.addEventListener('click', () => {
+    const vh = document.getElementById('viewport-health');
+    if (vh) vh.hidden = true;
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+// PHASE 3: NEED-PATHWAY HIGHLIGHTS
+// ══════════════════════════════════════════════════════════════
+// State for the transient user_need_match layer. Set by the search module via
+// window._setNeedHighlight; cleared when the user clears the search box.
+let needHighlight = null;
+
+window._setNeedHighlight = function (h) {
+  needHighlight = h;
+  if (viewMode === 'geo') updateDeckLayers();
+  // The canvas renderer in network mode does not draw need edges; we only
+  // highlight matches by selecting them via the result list.
+};
+
+// Search-result row click handler used by search.js. Selects the org as if
+// the user had clicked the dot, restoring the same detail panel and edges.
+window._selectOrgById = function (orgId) {
+  if (!orgId || !pointsById.has(orgId)) return;
+  const idx = pointsById.get(orgId);
+  const node = simNodes[idx];
+  if (!node) return;
+  selectedNode = node;
+  showDetailPanel(node);
+  if (mlMap && viewMode === 'geo') {
+    mlMap.flyTo({ center: [node.lo, node.la], zoom: Math.max(mlMap.getZoom(), 7) });
+    updateDeckLayers();
+  }
+  render();
+  writeUrlState();
+};
+
+// Top-25 connections list. Phase 2 acceptance: clicking an org shows no more
+// than 25 most relevant connections, each with an explanation. We rank by
+// edge weight (already a normalised score) with verified > federation >
+// proximity used as a tiebreaker.
+const EDGE_TYPE_RANK = {
+  verified_relationship: 0,
+  federation_membership: 1,
+  attestation: 2,
+  cross_section_complementarity: 3,
+  same_section_proximity: 4,
+  shared_resource: 5,
+  user_need_match: 6,
+};
+const EDGE_TYPE_LABEL = {
+  verified_relationship: 'Verified',
+  federation_membership: 'Federation',
+  attestation: 'Attestation',
+  cross_section_complementarity: 'Complementary',
+  same_section_proximity: 'Same-area',
+  shared_resource: 'Shared resource',
+  user_need_match: 'Need match',
+};
+const EDGE_TYPE_TIER = {
+  verified_relationship: 'V',
+  federation_membership: 'F',
+  attestation: 'V',
+  cross_section_complementarity: 'C',
+  same_section_proximity: 'S',
+  shared_resource: 'C',
+  user_need_match: 'V',
+};
+
+// Phase 5: lazy edge loader. Fetched once on first need (a node selection,
+// or a System Health bridge query). Cached for the rest of the session.
+let edgesLoaded = false;
+let edgesLoading = null;
+
+async function ensureEdgesLoaded() {
+  if (edgesLoaded) return;
+  if (edgesLoading) return edgesLoading;
+  edgesLoading = (async () => {
+    try {
+      let r = await fetch('data/map/edges.json');
+      if (!r.ok) r = await fetch('data/search/map_edges.json');
+      if (!r.ok) throw new Error('no edges file available');
+      const raw = await r.json();
+      allEdges = Array.isArray(raw) ? raw : (raw && raw.edges) || [];
+      // Resolve to simNode indices the same way loadData used to do at boot.
+      allEdges.forEach((edge, ei) => {
+        if (edge.source_id !== undefined && edge.target_id !== undefined) {
+          edge._si = pointsById.get(edge.source_id);
+          edge._ti = pointsById.get(edge.target_id);
+        } else if (Array.isArray(edge.s) && Array.isArray(edge.t)) {
+          edge._si = coordHash.get(coordKey(edge.s[0], edge.s[1]));
+          edge._ti = coordHash.get(coordKey(edge.t[0], edge.t[1]));
+        }
+        if (edge._si !== undefined) {
+          if (!nodeEdgesMap.has(edge._si)) nodeEdgesMap.set(edge._si, []);
+          nodeEdgesMap.get(edge._si).push(ei);
+        }
+        if (edge._ti !== undefined) {
+          if (!nodeEdgesMap.has(edge._ti)) nodeEdgesMap.set(edge._ti, []);
+          nodeEdgesMap.get(edge._ti).push(ei);
+        }
+      });
+      window.allEdges = allEdges;
+      edgesLoaded = true;
+    } catch (e) {
+      console.warn('lazy edge load failed:', e);
+      edgesLoaded = true;  // do not retry forever
+    } finally {
+      edgesLoading = null;
+    }
+  })();
+  return edgesLoading;
+}
+
+function getTopConnectionsForNode(node, max = 25) {
+  if (!node || node.index === undefined) return [];
+  const edgeIdx = nodeEdgesMap.get(node.index) || [];
+  const rows = [];
+  edgeIdx.forEach(ei => {
+    const e = allEdges[ei];
+    if (!e) return;
+    const otherIdx = e._si === node.index ? e._ti : e._si;
+    if (otherIdx === undefined) return;
+    const other = simNodes[otherIdx];
+    if (!other) return;
+    rows.push({
+      edge: e,
+      other,
+      type: e.edge_type || (e.e === 's' ? 'same_section_proximity' : 'cross_section_complementarity'),
+      weight: typeof e.weight === 'number' ? e.weight : (e.w || 0),
+    });
+  });
+  // Rank: verified/federation first, then by weight descending.
+  rows.sort((a, b) => {
+    const ra = EDGE_TYPE_RANK[a.type] ?? 99;
+    const rb = EDGE_TYPE_RANK[b.type] ?? 99;
+    if (ra !== rb) return ra - rb;
+    return b.weight - a.weight;
+  });
+  return rows.slice(0, max);
+}
+
+function renderConnections(node) {
+  const rows = getTopConnectionsForNode(node, 25);
+  if (!rows.length) {
+    return `
+      <div class="pop-connections">
+        <div class="pop-connections-label">Connections</div>
+        <div class="conn-empty">No edges found for this org. Phase 2 only renders edges between Tier A/B/C orgs in the same proximity grid or curated federations.</div>
+      </div>`;
+  }
+  const items = rows.map(r => {
+    const tier = EDGE_TYPE_TIER[r.type] || 'S';
+    const label = EDGE_TYPE_LABEL[r.type] || r.type;
+    const explain = r.edge.explanation || '';
+    const otherName = r.other.n || r.other.id;
+    const wPct = Math.round((r.weight || 0) * 100);
+    return `
+      <a class="conn-row" data-other-id="${escHtml(r.other.id)}" href="#${escHtml(r.other.id)}">
+        <span class="conn-type tier-${tier}">${escHtml(label)} &middot; ${wPct}%</span>
+        <div class="conn-name">${escHtml(otherName)}</div>
+        ${explain ? `<div class="conn-explain">${escHtml(explain)}</div>` : ''}
+      </a>`;
+  }).join('');
+  return `
+    <div class="pop-connections">
+      <div class="pop-connections-label">Top ${rows.length} connection${rows.length === 1 ? '' : 's'}</div>
+      ${items}
+    </div>`;
+}
+
+function buildShareUrl(node) {
+  // Construct a hash that recreates the current view but keys onto this org.
+  const params = new URLSearchParams();
+  if (activeSection) params.set('section', activeSection);
+  const tierStr = ['A', 'B', 'C'].filter(t => activeTiers.has(t)).join('');
+  if (tierStr !== 'AB') params.set('tiers', tierStr || '-');
+  if (searchTerm) params.set('q', searchTerm);
+  if (viewMode && viewMode !== 'network') params.set('view', viewMode);
+  if (node && node.id) params.set('selectedId', node.id);
+  if (transform && transform.k) {
+    params.set('z', transform.k.toFixed(3));
+    params.set('tx', Math.round(transform.x));
+    params.set('ty', Math.round(transform.y));
+  }
+  return location.origin + location.pathname + (params.toString() ? '#' + params.toString() : '');
+}
+
+function copyShareLink(btn) {
+  const url = btn.getAttribute('data-share') || location.href;
+  const original = btn.innerHTML;
+  const done = () => {
+    btn.classList.add('copied');
+    btn.innerHTML = '&#10003; Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = original; }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done, () => fallbackCopy(url, done));
+  } else {
+    fallbackCopy(url, done);
+  }
+}
+
+function fallbackCopy(text, done) {
+  // Older browsers, or pages where the iframe context blocks clipboard API.
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); done(); }
+  catch (_) { /* give up silently */ }
+  finally { document.body.removeChild(ta); }
 }
 
 function hideDetailPanel() {
@@ -908,6 +1951,7 @@ window._closeDetail = function() {
   selectedNode = null;
   hideDetailPanel();
   render();
+  writeUrlState();
 };
 
 function escHtml(s) {
@@ -964,14 +2008,15 @@ function drawGeoBackground() {
 // ══════════════════════════════════════════════════════════════
 function render() {
   if (!ctx) return;
+  // In geo mode the MapLibre + deck.gl overlay does the painting; the canvas
+  // is hidden. Skip the work to save CPU and battery.
+  if (viewMode === 'geo') return;
   const w = canvas.width, h = canvas.height;
   ctx.clearRect(0, 0, w, h);
 
   ctx.save();
   ctx.translate(transform.x, transform.y);
   ctx.scale(transform.k, transform.k);
-
-  if (viewMode === 'geo') drawGeoBackground();
 
   drawEdges();
   drawNodes();
@@ -1033,8 +2078,29 @@ function drawEdges() {
   ctx.globalAlpha = 1;
 }
 
+// Coverage helper. A pin is "verified" when its country (or finer scope)
+// shows up in window.coverageVerified. Pins outside any verified scope
+// render at 60% opacity to make audit progress visible at a glance.
+function nodeIsVerified(node) {
+  const cov = window.coverageVerified;
+  if (!cov) return false;
+  const cc = node.cc || '';
+  const st = node.st || '';
+  const ci = node.ci || '';
+  if (ci && cov.cities && cov.cities.has(`${cc}/${st}/${ci}`)) return true;
+  if (st && cov.states && cov.states.has(`${cc}/${st}`)) return true;
+  if (cc && cov.countries && cov.countries.has(cc)) return true;
+  return false;
+}
+
 function drawNodes() {
   const hasHover = hoveredNode !== null;
+  const cov = window.coverageVerified;
+  const haveCoverage = !!(cov && (
+    (cov.countries && cov.countries.size) ||
+    (cov.states && cov.states.size) ||
+    (cov.cities && cov.cities.size)
+  ));
 
   for (let i = 0; i < simNodes.length; i++) {
     const node = simNodes[i];
@@ -1048,8 +2114,11 @@ function drawNodes() {
     const isSelected = selectedNode === node;
     const isNeighbor = hasHover && hoveredNeighborIndices.has(i);
     const dimmed = hasHover && !isHovered && !isNeighbor;
+    // Coverage opacity: only applied when at least one scope is verified.
+    // No coverage data published yet -> every pin renders solid.
+    const coverageAlpha = haveCoverage && !nodeIsVerified(node) ? 0.6 : 1;
 
-    ctx.globalAlpha = dimmed ? 0.12 : 1;
+    ctx.globalAlpha = dimmed ? 0.12 : coverageAlpha;
 
     if (isHovered || isSelected) {
       ctx.shadowBlur = 20;
@@ -1089,7 +2158,7 @@ function drawSectionLabels() {
 
     ctx.globalAlpha = 0.5;
     ctx.fillStyle = color;
-    ctx.font = `bold ${Math.floor(18 / transform.k)}px Inter, sans-serif`;
+    ctx.font = `italic ${Math.floor(20 / transform.k)}px 'Instrument Serif', Georgia, serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(AREA_SHORT[area], cx, cy - 30 / transform.k);
@@ -1158,22 +2227,51 @@ function setupSidebar(tierCounts) {
       rebuildQuadtree();
       updateVisibleCount();
       render();
+      writeUrlState();
     });
     filtersEl.appendChild(btn);
   });
 
-  // Tier buttons
+  // Tier buttons. Manual toggling keeps the HC switch in sync: if a user
+  // hand-flips to A+B, the switch turns on; if they re-add C, it turns off.
   document.querySelectorAll('.tier-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tier = btn.dataset.tier;
       activePresetFilterFn = null; // manual override clears preset filter
       if (activeTiers.has(tier)) { activeTiers.delete(tier); btn.classList.remove('active'); btn.classList.add('inactive'); }
       else { activeTiers.add(tier); btn.classList.add('active'); btn.classList.remove('inactive'); }
+      syncHighConfidenceToggle();
       rebuildQuadtree();
       updateVisibleCount();
       render();
+      writeUrlState();
     });
   });
+
+  // High-confidence toggle: the brief's promoted single switch. On = A+B only.
+  // Off = include Tier C inferred candidates too. The state mirrors activeTiers.
+  const hcBtn = document.getElementById('hc-toggle');
+  if (hcBtn) {
+    hcBtn.addEventListener('click', () => {
+      activePresetFilterFn = null;
+      const isOn = hcBtn.classList.contains('on');
+      if (isOn) {
+        // Switch off: allow Tier C
+        activeTiers = new Set(['A', 'B', 'C']);
+      } else {
+        // Switch on: hide Tier C
+        activeTiers.delete('C');
+        activeTiers.add('A');
+        activeTiers.add('B');
+      }
+      syncTierButtons();
+      syncHighConfidenceToggle();
+      rebuildQuadtree();
+      updateVisibleCount();
+      render();
+      writeUrlState();
+    });
+  }
 
   // Search
   const si = document.getElementById('search-input');
@@ -1182,11 +2280,14 @@ function setupSidebar(tierCounts) {
     rebuildQuadtree();
     updateVisibleCount();
     render();
+    writeUrlState();
   }, 250));
 
   // View mode
   document.getElementById('btn-network').addEventListener('click', () => setViewMode('network'));
   document.getElementById('btn-geo').addEventListener('click', () => setViewMode('geo'));
+  const btnHealth = document.getElementById('btn-health');
+  if (btnHealth) btnHealth.addEventListener('click', () => setViewMode('health'));
 
   // Narrative presets
   setupPresets();
@@ -1196,19 +2297,623 @@ function setupSidebar(tierCounts) {
 
   // Health dots
   setupHealthDots();
+
+  // Tier legend block (from stats.json), high-confidence toggle, footer.
+  renderTierLegend();
+  // Sync buttons against the (possibly URL-restored) activeTiers / activeSection.
+  syncTierButtons();
+  syncHighConfidenceToggle();
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', !activeSection || b.dataset.area === activeSection);
+  });
+  // Same for view-mode buttons.
+  document.getElementById('btn-network').classList.toggle('active', viewMode === 'network');
+  document.getElementById('btn-geo').classList.toggle('active', viewMode === 'geo');
+  const _btnH = document.getElementById('btn-health');
+  if (_btnH) _btnH.classList.toggle('active', viewMode === 'health');
+  // Restore search input value if the URL hash specified one.
+  const si2 = document.getElementById('search-input');
+  if (si2 && searchTerm) si2.value = searchTerm;
+  renderBuiltFooter();
+}
+
+function syncTierButtons() {
+  document.querySelectorAll('.tier-btn').forEach(btn => {
+    const t = btn.dataset.tier;
+    const on = activeTiers.has(t);
+    btn.classList.toggle('active', on);
+    btn.classList.toggle('inactive', !on);
+  });
+}
+
+function syncHighConfidenceToggle() {
+  const hcBtn = document.getElementById('hc-toggle');
+  if (!hcBtn) return;
+  // Switch is "on" when Tier C is hidden. The user can still drop A or B
+  // individually; the switch only tracks whether C is excluded.
+  const cHidden = !activeTiers.has('C');
+  hcBtn.classList.toggle('on', cHidden);
+  hcBtn.setAttribute('aria-pressed', cHidden ? 'true' : 'false');
+}
+
+function renderTierLegend() {
+  const el = document.getElementById('tier-legend');
+  if (!el) return;
+  // Counts come from stats.json so the legend never lies. Fall back to live
+  // tier counts if stats fetch failed.
+  const counts = (mapStats && mapStats.by_tier) ? {
+    A: mapStats.by_tier.A_curated,
+    B: mapStats.by_tier.B_verified,
+    C: mapStats.by_tier.C_inferred,
+    D: mapStats.by_tier.D_unverified_off_map,
+  } : {};
+  if (!Object.keys(counts).length) {
+    const live = { A: 0, B: 0, C: 0 };
+    allPoints.forEach(p => { if (live[p.t] !== undefined) live[p.t]++; });
+    counts.A = live.A; counts.B = live.B; counts.C = live.C; counts.D = '—';
+  }
+  const rows = ['A', 'B', 'C', 'D'].map(tier => {
+    const c = counts[tier];
+    const cStr = (typeof c === 'number') ? c.toLocaleString() : (c || '—');
+    return `
+      <div class="tier-legend-row tier-row-${tier}">
+        <span class="tlr-tag">${tier}</span>
+        <span>
+          <span class="tlr-name">${TIER_LABELS[tier]}.</span>
+          <span class="tlr-desc">${TIER_DESCRIPTIONS[tier]}</span>
+        </span>
+        <span class="tlr-count">${cStr}</span>
+      </div>`;
+  }).join('');
+  el.innerHTML = rows;
+}
+
+function renderBuiltFooter() {
+  const dateEl = document.getElementById('built-date');
+  const cntEl = document.getElementById('built-counts');
+  if (!mapStats) return;
+  if (dateEl) dateEl.textContent = mapStats.last_built_date || (mapStats.last_built || '').slice(0, 10) || '—';
+  if (cntEl && mapStats.orgs_on_map !== undefined) {
+    const onMap = mapStats.orgs_on_map.toLocaleString();
+    const dir = (mapStats.orgs_in_directory || 0).toLocaleString();
+    cntEl.textContent = `${onMap} / ${dir} on map`;
+    cntEl.title = `${onMap} mapped, ${dir} candidates total`;
+  }
 }
 
 function setViewMode(mode) {
   viewMode = mode;
   document.getElementById('btn-network').classList.toggle('active', mode === 'network');
   document.getElementById('btn-geo').classList.toggle('active', mode === 'geo');
+  const healthBtn = document.getElementById('btn-health');
+  if (healthBtn) healthBtn.classList.toggle('active', mode === 'health');
   setHoveredNode(null);
   hideTooltip();
-  rebuildQuadtree();
   setupRegions();
-  if (mode === 'geo') loadWorldData();
-  fitView(true);
-  render();
+
+  // Toggle visibility between the canvas (network) and MapLibre (geo / health).
+  const cnv = document.getElementById('viz-canvas');
+  const ml = document.getElementById('ml-map');
+  const vh = document.getElementById('viewport-health');
+  const mapBased = (mode === 'geo' || mode === 'health');
+  if (mapBased) {
+    if (cnv) cnv.style.display = 'none';
+    if (ml) ml.style.display = 'block';
+    initGeoMapIfNeeded();
+    // System Health mode toggles the choropleth on; Geographic mode toggles
+    // it back off. Both modes show the viewport health bar.
+    if (mlMap) {
+      const showChoropleth = mode === 'health';
+      requestAnimationFrame(() => {
+        mlMap.resize();
+        applyChoropleth(showChoropleth);
+        updateDeckLayers();
+        updateViewportHealth();
+      });
+    }
+    if (vh) vh.hidden = false;
+  } else {
+    if (cnv) cnv.style.display = 'block';
+    if (ml) ml.style.display = 'none';
+    if (vh) vh.hidden = true;
+    rebuildQuadtree();
+    fitView(true);
+    render();
+  }
+  writeUrlState();
+}
+
+// ══════════════════════════════════════════════════════════════
+// MAPLIBRE + DECK.GL (Geographic mode)
+// ══════════════════════════════════════════════════════════════
+let mlMap = null;
+let deckOverlay = null;
+let geoInited = false;
+
+function initGeoMapIfNeeded() {
+  if (geoInited) return;
+  geoInited = true;
+  if (typeof maplibregl === 'undefined') {
+    console.warn('MapLibre GL not loaded; geographic mode unavailable.');
+    return;
+  }
+  // Mobile gets a slightly more zoomed-out start and a fatter cluster radius
+  // so the first paint is dominated by ~10 big bubbles rather than thousands
+  // of overlapping pins.
+  const initialZoom = IS_MOBILE ? 1.0 : 1.6;
+  mlMap = new maplibregl.Map({
+    container: 'ml-map',
+    style: 'https://tiles.openfreemap.org/styles/liberty',
+    center: [10, 30],
+    zoom: initialZoom,
+    minZoom: 0,
+    maxZoom: 18,
+    attributionControl: { compact: true },
+    hash: false,
+  });
+  mlMap.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+  // deck.gl overlay (for edges) is created lazily — only when we actually
+  // need to draw arcs/lines. The bulk org points go through MapLibre's
+  // native cluster source, so a fresh load can render the map without
+  // pulling in the deck.gl bundle.
+
+  mlMap.on('load', () => {
+    addOrgClusterSource();
+    if (selectedNode && selectedNode.lo !== undefined) {
+      mlMap.flyTo({ center: [selectedNode.lo, selectedNode.la], zoom: 6 });
+    }
+    if (typeof updateViewportHealth === 'function') updateViewportHealth();
+    notifyMapReady();
+  });
+  mlMap.on('moveend', () => {
+    if (typeof updateViewportHealth === 'function') updateViewportHealth();
+    updateDeckLayers();
+    writeUrlState();
+  });
+}
+
+// MapLibre's native cluster source. Handles viewport culling, zoom-driven
+// clustering, and worker-thread parsing. We feed it the FeatureCollection we
+// already parsed in loadData(); no second fetch.
+function addOrgClusterSource() {
+  if (!mlMap || !orgsFeatureCollection) return;
+  if (mlMap.getSource('orgs-src')) return;
+  mlMap.addSource('orgs-src', {
+    type: 'geojson',
+    data: orgsFeatureCollection,
+    cluster: true,
+    clusterMaxZoom: 10,
+    clusterRadius: IS_MOBILE ? 70 : 50,
+    promoteId: 'id',
+  });
+
+  // Cluster bubbles: opacity + radius scale with point_count. Colour matches
+  // the moss/teal/clay ramp so the dark basemap doesn't drown them out.
+  mlMap.addLayer({
+    id: 'orgs-clusters',
+    type: 'circle',
+    source: 'orgs-src',
+    filter: ['has', 'point_count'],
+    paint: {
+      'circle-color': [
+        'step', ['get', 'point_count'],
+        '#6abf6c', 50,
+        '#4fc4b0', 200,
+        '#5ba5f0', 1000,
+        '#9b8cdf'
+      ],
+      'circle-radius': [
+        'step', ['get', 'point_count'],
+        14, 50, 18, 200, 24, 1000, 32
+      ],
+      'circle-opacity': 0.85,
+      'circle-stroke-width': 1.2,
+      'circle-stroke-color': 'rgba(184,196,168,0.9)',
+    },
+  });
+
+  mlMap.addLayer({
+    id: 'orgs-cluster-count',
+    type: 'symbol',
+    source: 'orgs-src',
+    filter: ['has', 'point_count'],
+    layout: {
+      'text-field': ['get', 'point_count_abbreviated'],
+      'text-font': ['Noto Sans Bold'],
+      'text-size': 11,
+      'text-allow-overlap': true,
+    },
+    paint: {
+      'text-color': '#0A100C',
+      'text-halo-color': 'rgba(255,255,255,0.55)',
+      'text-halo-width': 0.6,
+    },
+  });
+
+  // Unclustered points: same colour-by-section + tier-driven radius the
+  // canvas/deck.gl renderer used to apply manually. MapLibre paints them
+  // natively now, so the GPU layer can stay idle until edges arrive.
+  mlMap.addLayer({
+    id: 'orgs-points',
+    type: 'circle',
+    source: 'orgs-src',
+    filter: ['!', ['has', 'point_count']],
+    paint: {
+      'circle-color': [
+        'match', ['get', 'f'],
+        'democracy', '#5ba5f0',
+        'cooperatives', '#6abf6c',
+        'healthcare', '#e87b9a',
+        'food', '#e8a05a',
+        'education', '#9b8cdf',
+        'housing_land', '#c4a55d',
+        'conflict', '#e05858',
+        'energy_digital', '#4fc4b0',
+        'recreation_arts', '#c47abf',
+        'ecology', '#7bc47a',
+        '#888888'
+      ],
+      'circle-radius': [
+        'match', ['get', 't'],
+        'A', 6,
+        'B', 4.5,
+        3.2
+      ],
+      'circle-opacity': [
+        'match', ['get', 't'],
+        'C', 0.55,
+        0.88
+      ],
+      'circle-stroke-width': 0,
+    },
+  });
+
+  applyMaplibreFilters();
+
+  mlMap.on('click', 'orgs-clusters', (e) => {
+    const f = mlMap.queryRenderedFeatures(e.point, { layers: ['orgs-clusters'] })[0];
+    if (!f) return;
+    const cid = f.properties.cluster_id;
+    mlMap.getSource('orgs-src').getClusterExpansionZoom(cid, (err, zoom) => {
+      if (err) return;
+      mlMap.easeTo({ center: f.geometry.coordinates, zoom });
+    });
+  });
+  mlMap.on('click', 'orgs-points', (e) => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const orgId = f.properties.id;
+    if (!orgId || !pointsById.has(orgId)) return;
+    const node = simNodes[pointsById.get(orgId)];
+    if (!node) return;
+    selectedNode = node;
+    showDetailPanel(node);
+    writeUrlState();
+    // Edges are lazy + need deck.gl. Pull both, then refresh the panel + arcs.
+    Promise.all([ensureEdgesLoaded(), ensureDeckLoaded()]).then(() => {
+      ensureDeckOverlayAttached();
+      if (selectedNode && selectedNode.id === orgId) {
+        showDetailPanel(node);
+        updateDeckLayers();
+      }
+    });
+  });
+  mlMap.on('mouseenter', 'orgs-points', (e) => {
+    if (mlMap.getCanvas()) mlMap.getCanvas().style.cursor = 'pointer';
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const orgId = f.properties.id;
+    const node = orgId && pointsById.has(orgId) ? simNodes[pointsById.get(orgId)] : null;
+    if (node) updateTooltip(node, e.point.x, e.point.y);
+  });
+  mlMap.on('mousemove', 'orgs-points', (e) => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const orgId = f.properties.id;
+    const node = orgId && pointsById.has(orgId) ? simNodes[pointsById.get(orgId)] : null;
+    if (node) updateTooltip(node, e.point.x, e.point.y);
+  });
+  mlMap.on('mouseleave', 'orgs-points', () => {
+    if (mlMap.getCanvas()) mlMap.getCanvas().style.cursor = '';
+    hideTooltip();
+  });
+  mlMap.on('mouseenter', 'orgs-clusters', () => {
+    if (mlMap.getCanvas()) mlMap.getCanvas().style.cursor = 'pointer';
+  });
+  mlMap.on('mouseleave', 'orgs-clusters', () => {
+    if (mlMap.getCanvas()) mlMap.getCanvas().style.cursor = '';
+  });
+}
+
+// Apply the active section + tier filters to the unclustered points layer.
+// Cluster aggregation stays at source level (we don't repartition clusters
+// per filter — the cluster bubbles always reflect the full dataset, which
+// matches the existing UX where cluster counts are a "where are the orgs"
+// answer rather than a filtered subset).
+function applyMaplibreFilters() {
+  if (!mlMap || !mlMap.getLayer('orgs-points')) return;
+  const tierList = [...activeTiers];
+  const f = ['all', ['!', ['has', 'point_count']]];
+  if (tierList.length) f.push(['in', ['get', 't'], ['literal', tierList]]);
+  if (activeSection) f.push(['==', ['get', 'f'], activeSection]);
+  mlMap.setFilter('orgs-points', f);
+}
+
+// Attach the deck.gl overlay to MapLibre once deck.gl is loaded. Idempotent.
+function ensureDeckOverlayAttached() {
+  if (!mlMap) return;
+  if (deckOverlay) return;
+  if (typeof window.deck === 'undefined' || !window.deck.MapboxOverlay) return;
+  deckOverlay = new window.deck.MapboxOverlay({
+    interleaved: false,
+    layers: [],
+    onClick: handleDeckClick,
+    onHover: handleDeckHover,
+  });
+  mlMap.addControl(deckOverlay);
+}
+
+function visiblePointsForGeo() {
+  return simNodes.filter(n => isNodeVisible(n));
+}
+
+function colourForNode(n) {
+  const hex = AREA_COLORS[n.f] || '#888888';
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const a = n.t === 'C' ? 140 : 230;
+  return [r, g, b, a];
+}
+
+function radiusForNode(n) {
+  const base = n.t === 'A' ? 6 : n.t === 'B' ? 4.5 : 3.5;
+  const deg = (nodeEdgesMap.get(n.index) || []).length;
+  return base + Math.min(deg * 0.25, 3);
+}
+
+function edgesForGeoRender() {
+  // Default rule from the brief: only edges connected to the selected node.
+  // Phase 2 acceptance: top 25 edges with explanations on click.
+  if (!selectedNode) return { arcs: [], lines: [] };
+  const top = getTopConnectionsForNode(selectedNode, 25);
+  const arcs = [];
+  const lines = [];
+  top.forEach(r => {
+    const a = selectedNode;
+    const b = r.other;
+    if (!a || !b || a.lo === undefined || b.lo === undefined) return;
+    const colour = colourForNode(a);
+    const e = r.edge;
+    const isCurated = e && (e.edge_type === 'verified_relationship' ||
+                            e.edge_type === 'federation_membership' ||
+                            e.edge_type === 'attestation');
+    if (isCurated) {
+      arcs.push({
+        from: [a.lo, a.la],
+        to: [b.lo, b.la],
+        colour: e.edge_type === 'verified_relationship' ? [123, 227, 138, 220] : [184, 196, 168, 200],
+        weight: r.weight,
+        edge: e,
+        otherId: b.id,
+      });
+    } else {
+      lines.push({
+        from: [a.lo, a.la],
+        to: [b.lo, b.la],
+        colour: [...colour.slice(0, 3), 130],
+        weight: r.weight,
+        edge: e,
+        otherId: b.id,
+      });
+    }
+  });
+  return { arcs, lines };
+}
+
+// Phase 5 hexbin density layer was used by the old deck.gl ScatterplotLayer
+// to swap in 600 cells at world zoom. MapLibre's cluster source now does the
+// equivalent culling/aggregation for free, so the hexbin path is retired.
+
+function updateDeckLayers() {
+  // Bulk org points are rendered by MapLibre's native cluster source — this
+  // function only paints the GPU edge layers + the need-match highlight,
+  // which both require deck.gl. We only pull in the deck.gl bundle when we
+  // actually have something to draw (selectedNode arcs/lines or a
+  // need-pathway highlight); otherwise we keep the overlay un-attached and
+  // skip the work entirely.
+  const haveSelection = !!selectedNode;
+  const haveNeedHighlight = !!(needHighlight && needHighlight.location && needHighlight.matches && needHighlight.matches.length);
+  const wantOverlay = haveSelection || haveNeedHighlight;
+
+  if (!deckOverlay) {
+    if (typeof window.deck !== 'undefined' && window.deck.MapboxOverlay) {
+      ensureDeckOverlayAttached();
+    } else if (wantOverlay) {
+      ensureDeckLoaded().then(() => {
+        ensureDeckOverlayAttached();
+        if (deckOverlay) updateDeckLayers();
+      });
+      // Even without deck.gl, keep the MapLibre selection ring in sync so a
+      // clicked org gets the white outline immediately.
+      updateSelectedOutline();
+      return;
+    } else {
+      updateSelectedOutline();
+      return;
+    }
+  }
+  if (!deckOverlay) { updateSelectedOutline(); return; }
+
+  const { arcs, lines } = edgesForGeoRender();
+
+  const layers = [];
+  if (lines.length) {
+    layers.push(new deck.LineLayer({
+      id: 'edges-line',
+      data: lines,
+      pickable: true,
+      getSourcePosition: d => d.from,
+      getTargetPosition: d => d.to,
+      getColor: d => d.colour,
+      getWidth: d => 1.2 + (d.weight || 0) * 1.5,
+      widthUnits: 'pixels',
+    }));
+  }
+  if (arcs.length) {
+    layers.push(new deck.ArcLayer({
+      id: 'edges-arc',
+      data: arcs,
+      pickable: true,
+      getSourcePosition: d => d.from,
+      getTargetPosition: d => d.to,
+      getSourceColor: d => d.colour,
+      getTargetColor: d => d.colour,
+      getWidth: d => 1.5 + (d.weight || 0) * 2,
+      widthUnits: 'pixels',
+      greatCircle: false,
+    }));
+  }
+
+  // Phase 3: user_need_match highlight. A transient deck.gl layer that draws
+  // a bright arc from the parsed query location to each top match. Cleared
+  // when the user empties the search box.
+  if (needHighlight && needHighlight.location && needHighlight.matches) {
+    const loc = needHighlight.location;
+    const needArcs = needHighlight.matches.map(m => ({
+      from: [loc.lon, loc.lat],
+      to: [m.org.lo, m.org.la],
+      score: m.score || 0,
+    })).filter(a => a.to[0] !== undefined && a.to[1] !== undefined);
+    if (needArcs.length) {
+      layers.push(new deck.ArcLayer({
+        id: 'need-match-arcs',
+        data: needArcs,
+        pickable: false,
+        getSourcePosition: d => d.from,
+        getTargetPosition: d => d.to,
+        // Bright clay (warm) colour for the user-facing highlight.
+        getSourceColor: () => [180, 89, 58, 220],
+        getTargetColor: () => [217, 167, 143, 240],
+        getWidth: d => 1.5 + (d.score || 0) * 2.5,
+        widthUnits: 'pixels',
+        greatCircle: false,
+      }));
+      // Pin marker at the query location.
+      layers.push(new deck.ScatterplotLayer({
+        id: 'need-match-pin',
+        data: [{ lo: loc.lon, la: loc.lat }],
+        pickable: false,
+        stroked: true,
+        filled: true,
+        getPosition: d => [d.lo, d.la],
+        getRadius: 9,
+        radiusUnits: 'pixels',
+        getFillColor: [180, 89, 58, 230],
+        getLineColor: [242, 235, 220, 255],
+        lineWidthMinPixels: 2,
+      }));
+    }
+  }
+
+  deckOverlay.setProps({ layers });
+  // Selected-org outline: drawn by MapLibre, not deck.gl, so it stays cheap.
+  updateSelectedOutline();
+}
+
+// Highlight the currently selected org with a small white-stroke ring on the
+// MapLibre points layer. Uses a feature-id-targeted second layer rather than
+// rebuilding the source so it's free to toggle.
+function updateSelectedOutline() {
+  if (!mlMap || !mlMap.getLayer('orgs-points')) return;
+  if (!mlMap.getLayer('orgs-points-selected')) {
+    mlMap.addLayer({
+      id: 'orgs-points-selected',
+      type: 'circle',
+      source: 'orgs-src',
+      filter: ['==', ['get', 'id'], '__none__'],
+      paint: {
+        'circle-radius': 8,
+        'circle-color': 'rgba(0,0,0,0)',
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#ffffff',
+      },
+    });
+  }
+  const sid = (selectedNode && selectedNode.id) || '__none__';
+  mlMap.setFilter('orgs-points-selected', ['==', ['get', 'id'], sid]);
+}
+
+function handleDeckClick(info) {
+  // The bulk org layer now lives on MapLibre, so deck.gl only owns edge
+  // arcs/lines. A click on empty space (no layer) clears the selection;
+  // a click on an edge jumps to the other endpoint.
+  if (!info || !info.layer) {
+    selectedNode = null;
+    hideDetailPanel();
+    updateDeckLayers();
+    writeUrlState();
+    return;
+  }
+  if ((info.layer.id === 'edges-line' || info.layer.id === 'edges-arc') && info.object) {
+    const otherId = info.object.otherId;
+    if (otherId && pointsById.has(otherId)) {
+      const next = simNodes[pointsById.get(otherId)];
+      if (next) {
+        selectedNode = next;
+        showDetailPanel(next);
+        updateDeckLayers();
+        writeUrlState();
+      }
+    }
+  }
+}
+
+function handleDeckHover(info) {
+  const tt = document.getElementById('tooltip');
+  const et = document.getElementById('edge-tooltip');
+  if (!info || !info.object) {
+    if (et) et.style.display = 'none';
+    return;
+  }
+  if (info.layer && (info.layer.id === 'edges-line' || info.layer.id === 'edges-arc')) {
+    if (tt) tt.style.display = 'none';
+    showEdgeTooltip(info.object.edge, info.x, info.y);
+    if (mlMap && mlMap.getCanvas()) mlMap.getCanvas().style.cursor = 'pointer';
+  }
+}
+
+function showEdgeTooltip(edge, x, y) {
+  const et = document.getElementById('edge-tooltip');
+  if (!et || !edge) return;
+  const type = edge.edge_type || 'edge';
+  const label = EDGE_TYPE_LABEL[type] || type;
+  const weight = typeof edge.weight === 'number' ? Math.round(edge.weight * 100) : '';
+  // Build tooltip via DOM nodes (no innerHTML) so user-supplied explanation
+  // text never gets parsed as HTML.
+  while (et.firstChild) et.removeChild(et.firstChild);
+  const t = document.createElement('div');
+  t.className = 'et-type';
+  t.textContent = label + (weight !== '' ? ' · ' + weight + '%' : '');
+  et.appendChild(t);
+  if (edge.explanation) {
+    const d = document.createElement('div');
+    d.textContent = edge.explanation;
+    et.appendChild(d);
+  }
+  if (edge.confidence) {
+    const w = document.createElement('div');
+    w.className = 'et-weight';
+    w.textContent = 'confidence: ' + edge.confidence;
+    et.appendChild(w);
+  }
+  et.style.display = 'block';
+  let tx = x + 16, ty = y - 12;
+  if (tx + 320 > window.innerWidth) tx = x - 320 - 16;
+  if (ty < 10) ty = y + 12;
+  et.style.left = tx + 'px';
+  et.style.top = ty + 'px';
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -1275,16 +2980,8 @@ function applyPreset(preset) {
   activePresetFilterFn = preset.filterFn || null;
 
   // Update tier buttons
-  document.querySelectorAll('.tier-btn').forEach(btn => {
-    const tier = btn.dataset.tier;
-    if (activeTiers.has(tier)) {
-      btn.classList.add('active');
-      btn.classList.remove('inactive');
-    } else {
-      btn.classList.remove('active');
-      btn.classList.add('inactive');
-    }
-  });
+  syncTierButtons();
+  syncHighConfidenceToggle();
 
   // Update section filter buttons
   document.querySelectorAll('.filter-btn').forEach(b => {
@@ -1294,6 +2991,7 @@ function applyPreset(preset) {
   rebuildQuadtree();
   updateVisibleCount();
   render();
+  writeUrlState();
 }
 
 function setupPresets() {
@@ -1360,7 +3058,9 @@ function setupHealthDots() {
   if (textEl) textEl.textContent = `${count} of ${AREAS_ORDERED.length} sections in dataset`;
 }
 
-// Mobile FAB
+// Phase 5 mobile bottom sheet. Holds the need-pathway box, tier filters, and
+// section filters so a phone user can do everything the desktop sidebar
+// offers without unfolding a whole panel.
 function setupMobile() {
   const fab = document.getElementById('mobile-fab');
   const sheet = document.getElementById('mobile-sheet');
@@ -1369,50 +3069,232 @@ function setupMobile() {
     fab.classList.toggle('open');
     sheet.classList.toggle('open');
   });
-  // Build sheet content
   const content = document.getElementById('sheet-content');
-  if (content) {
-    content.innerHTML = '<div class="sheet-section-label">Tap section to filter</div>';
-    AREAS_ORDERED.forEach(area => {
-      const btn = document.createElement('button');
-      btn.style.cssText = `display:flex;align-items:center;gap:8px;width:100%;padding:8px 0;background:none;border:none;color:var(--text-secondary);font-family:inherit;font-size:12px;cursor:pointer;`;
-      btn.innerHTML = `<span style="width:9px;height:9px;border-radius:50%;background:${AREA_COLORS[area]};flex-shrink:0"></span>${AREA_SHORT[area]} <span style="margin-left:auto;color:var(--text-dim)">${(sectionCounts[area]||0).toLocaleString()}</span>`;
-      btn.addEventListener('click', () => {
-        activeSection = activeSection === area ? null : area;
-        rebuildQuadtree();
-        updateVisibleCount();
-        render();
-        fab.classList.remove('open');
-        sheet.classList.remove('open');
-      });
-      content.appendChild(btn);
-    });
+  if (!content) return;
+  while (content.firstChild) content.removeChild(content.firstChild);
+
+  function addLabel(text) {
+    const l = document.createElement('div');
+    l.className = 'sheet-section-label';
+    l.textContent = text;
+    content.appendChild(l);
+    return l;
   }
+
+  // ---- Need-pathway input (mirrors the desktop sidebar) ----
+  addLabel('What are you trying to do?');
+  const ta = document.createElement('textarea');
+  ta.className = 'sheet-need-input';
+  ta.id = 'sheet-need-input';
+  ta.rows = 2;
+  ta.placeholder = 'e.g. land trusts in Atlanta';
+  content.appendChild(ta);
+  const needRow = document.createElement('div');
+  needRow.className = 'sheet-need-row';
+  const goBtn = document.createElement('button');
+  goBtn.className = 'sheet-need-btn';
+  goBtn.type = 'button';
+  goBtn.textContent = 'Find';
+  needRow.appendChild(goBtn);
+  content.appendChild(needRow);
+  goBtn.addEventListener('click', () => {
+    const inp = document.getElementById('need-input');
+    if (inp) {
+      inp.value = ta.value;
+      if (window.CommonweaveSearch) window.CommonweaveSearch.run();
+    }
+    fab.classList.remove('open');
+    sheet.classList.remove('open');
+  });
+
+  // ---- Tier filter ----
+  addLabel('Data quality');
+  const tierRow = document.createElement('div');
+  tierRow.className = 'sheet-tier-row';
+  ['A', 'B', 'C'].forEach(t => {
+    const b = document.createElement('button');
+    b.className = 'sheet-tier-btn' + (activeTiers.has(t) ? ' active' : '');
+    b.dataset.tier = t;
+    b.type = 'button';
+    b.textContent = t + (t === 'A' ? ' Curated' : t === 'B' ? ' Verified' : ' Inferred');
+    b.addEventListener('click', () => {
+      if (activeTiers.has(t)) activeTiers.delete(t);
+      else activeTiers.add(t);
+      b.classList.toggle('active');
+      syncTierButtons();
+      syncHighConfidenceToggle();
+      rebuildQuadtree();
+      updateVisibleCount();
+      render();
+      writeUrlState();
+    });
+    tierRow.appendChild(b);
+  });
+  content.appendChild(tierRow);
+
+  // ---- Section filter ----
+  addLabel('Tap section to filter');
+  AREAS_ORDERED.forEach(area => {
+    const btn = document.createElement('button');
+    btn.style.cssText = 'display:flex;align-items:center;gap:8px;width:100%;padding:8px 4px;background:none;border:none;color:var(--text-secondary);font-family:inherit;font-size:13px;cursor:pointer;border-bottom:1px solid var(--border);';
+    const dot = document.createElement('span');
+    dot.style.cssText = `width:10px;height:10px;border-radius:50%;background:${AREA_COLORS[area]};flex-shrink:0`;
+    btn.appendChild(dot);
+    const lab = document.createTextNode(' ' + AREA_SHORT[area]);
+    btn.appendChild(lab);
+    const cnt = document.createElement('span');
+    cnt.style.cssText = 'margin-left:auto;color:var(--text-dim);font-size:11px';
+    cnt.textContent = (sectionCounts[area] || 0).toLocaleString();
+    btn.appendChild(cnt);
+    btn.addEventListener('click', () => {
+      activeSection = activeSection === area ? null : area;
+      rebuildQuadtree();
+      updateVisibleCount();
+      render();
+      writeUrlState();
+      fab.classList.remove('open');
+      sheet.classList.remove('open');
+    });
+    content.appendChild(btn);
+  });
+
+  // ---- View mode quick switch ----
+  addLabel('View mode');
+  const viewRow = document.createElement('div');
+  viewRow.style.cssText = 'display:flex;gap:6px;margin-top:4px';
+  [['network', 'Network'], ['geo', 'Geographic'], ['health', 'System Health']].forEach(([m, lab]) => {
+    const b = document.createElement('button');
+    b.className = 'sheet-need-btn';
+    b.style.cssText = 'flex:1';
+    b.type = 'button';
+    b.textContent = lab;
+    b.addEventListener('click', () => {
+      setViewMode(m);
+      fab.classList.remove('open');
+      sheet.classList.remove('open');
+    });
+    viewRow.appendChild(b);
+  });
+  content.appendChild(viewRow);
 }
 
 // ══════════════════════════════════════════════════════════════
 // MAIN
 // ══════════════════════════════════════════════════════════════
+let mapReadyResolvers = [];
+let mapReady = false;
+function notifyMapReady() {
+  mapReady = true;
+  const fns = mapReadyResolvers;
+  mapReadyResolvers = [];
+  fns.forEach(fn => { try { fn(); } catch (e) { console.warn(e); } });
+}
+function waitForMapReady(cb) {
+  if (mapReady) { cb(); return; }
+  mapReadyResolvers.push(cb);
+  // Safety: don't sit on the loading screen forever if MapLibre never fires.
+  setTimeout(() => { if (!mapReady) cb(); }, 6000);
+}
+function fadeOutLoading() {
+  const loading = document.getElementById('loading');
+  if (!loading) return;
+  loading.classList.add('fade-out');
+  setTimeout(() => { loading.style.display = 'none'; }, 800);
+}
+
 async function main() {
   const { tierCounts } = await loadData();
+  setLoadingStatus('Preparing the map…');
+  setProgress(40);
 
+  // Mobile default: skip the heavy d3 force layout and start in geo mode.
+  // Desktop or URL-overridden: keep the existing default ('network'). We
+  // peek at the URL before applyUrlState() so we know whether the user
+  // explicitly asked for a particular view.
+  const urlParams = readUrlState();
+  if (IS_MOBILE && !(urlParams && urlParams.get('view'))) {
+    viewMode = 'geo';
+  }
+
+  // Restore filter / view state from the URL hash before we build the sim.
+  // Zoom and selectedId run after setup because they need canvas + simNodes.
+  applyUrlState();
+
+  // simNodes are needed for hover/click/search/detail panel regardless of
+  // mode. Building them is fast — running the d3 force ticks is what's slow,
+  // so we defer those until the loading screen is gone.
   const sim = buildSimulation();
+  buildQuadtree();
+  setupCanvas();
+  setupSidebar(tierCounts);
+  setupMobile();
+  updateStats(allPoints.length, allEdges.length, tierCounts);
 
-  runSimulation(sim, () => {
-    setProgress(90);
-    buildQuadtree();
-    setupCanvas();
-    setupSidebar(tierCounts);
-    setupMobile();
-    updateStats(allPoints.length, allEdges.length, tierCounts);
+  // Phase 3 + 4: expose state for the modular search/scoring/health code.
+  // simNodes carries lo/la (added during buildSimulation) so the modules
+  // can read them as if they were the raw GeoJSON points. mlMap is exposed
+  // via getter so consumers always see the current value (it's set later in
+  // initGeoMapIfNeeded, not at this point).
+  window.allPoints = simNodes;
+  window.allEdges = allEdges;
+  window.simNodes = simNodes;
+  window.pointsById = pointsById;
+  Object.defineProperty(window, 'mlMap', { get: () => mlMap, configurable: true });
+  Object.defineProperty(window, 'viewMode', { get: () => viewMode, configurable: true });
+
+  if (global_init_search()) { /* CommonweaveSearch.init() handles the panel. */ }
+  if (typeof initViewportHealth === 'function') initViewportHealth();
+
+  // Apply the chosen view mode. For geo/health this kicks off MapLibre +
+  // the cluster source; for network it shows the canvas immediately.
+  setViewMode(viewMode);
+  applyUrlStateAfterRender();
+  rebuildQuadtree();
+  updateVisibleCount();
+  render();
+
+  setProgress(70);
+  setLoadingStatus(viewMode === 'network' ? 'Settling the network…' : 'Drawing the basemap…');
+
+  function finishBoot() {
     setProgress(100);
+    fadeOutLoading();
+    startAnimationLoop();
+  }
 
-    setTimeout(() => {
-      const loading = document.getElementById('loading');
-      loading.classList.add('fade-out');
-      setTimeout(() => { loading.style.display = 'none'; }, 800);
-      startAnimationLoop();
-    }, 200);
+  // Geo/health: hide the loading overlay as soon as MapLibre has the
+  // basemap + cluster source ready. The d3 simulation keeps running in the
+  // background so a later switch to network mode finds a settled layout.
+  // Network: wait for the simulation to settle before fading, otherwise the
+  // user would see a scattered cloud reorganise itself into sections.
+  if (viewMode === 'geo' || viewMode === 'health') {
+    waitForMapReady(finishBoot);
+    runSimulation(sim, () => {
+      rebuildQuadtree();
+      if (viewMode === 'network') render();
+    });
+  } else {
+    runSimulation(sim, () => {
+      rebuildQuadtree();
+      if (viewMode === 'network') render();
+      finishBoot();
+    });
+  }
+
+  // Listen for hash changes (back/forward navigation) so the map keeps state
+  // in sync with the address bar.
+  window.addEventListener('hashchange', () => {
+    if (isRestoringUrl) return;
+    applyUrlState();
+    syncTierButtons();
+    syncHighConfidenceToggle();
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', !activeSection || b.dataset.area === activeSection);
+    });
+    rebuildQuadtree();
+    updateVisibleCount();
+    render();
+    applyUrlStateAfterRender();
   });
 }
 
