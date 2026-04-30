@@ -693,7 +693,7 @@ textarea.input { min-height: 140px; resize: vertical; }
 .spookier-page .footer-bottom { border-top-color: #1F1F26; color: rgba(237,230,210,0.55); }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 32px;
 }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
