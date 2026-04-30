@@ -436,6 +436,7 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 48px;
   position: relative;
   overflow: hidden;
+  align-items: stretch;
 }
 @media (max-width: 900px) { .visit { grid-template-columns: 1fr; padding: 32px; } }
 .visit h2 { color: var(--paper); }
@@ -454,6 +455,33 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .visit a { color: var(--yellow); }
 .visit a:hover { color: var(--paper); }
+
+/* SVG map sketch (in visit block) */
+.map {
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2A2930 0%, #1B1A1F 100%);
+  position: relative;
+  min-height: 280px;
+  border: 1px solid rgba(255,253,247,0.12);
+  display: flex;
+  align-items: stretch;
+}
+.map svg { width: 100%; height: auto; min-height: 280px; }
+
+/* Brand mark (SVG logo wrapper for nav + footer) */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.brand svg { display: block; }
+.footer .brand svg { height: 56px; width: auto; }
 
 /* Spookier teaser (on home) */
 .spookier-teaser {

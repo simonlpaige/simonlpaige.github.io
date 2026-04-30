@@ -34,6 +34,7 @@
     "description": "Locally owned party store in the Brookside neighborhood of Kansas City. Balloons, helium filling, party supplies, paper goods, costumes year-round, and pinatas.",
     "url": "https://simonlpaige.com/bpw/",
     "telephone": "+1-816-333-2332",
+    "email": "bkspartywarehouse@gmail.com",
     "image": "https://simonlpaige.com/bpw/images/img-01.jpg",
     "priceRange": "$$",
     "address": {
@@ -50,8 +51,10 @@
       "longitude": -94.5895
     },
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "10:00", "closes": "18:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "17:00" }
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "09:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Thursday","Friday"], "opens": "09:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "15:00" }
     ],
     "areaServed": "Kansas City Metro",
     "founder": "Jerri Brandon"
@@ -64,8 +67,43 @@
   <header class="nav" role="banner">
     <div class="container nav-inner">
       <a class="brand" href="/bpw/" aria-label="Brookside Party Warehouse home">
-        <span class="brand-dot" aria-hidden="true"></span>
-        Brookside Party Warehouse
+        <svg viewBox="0 0 220 64" width="242" height="70" style="overflow:visible" aria-hidden="true">
+          <g transform="translate(0 4) scale(0.7)">
+            <g transform="translate(14 20) rotate(-12) scale(0.7)">
+              <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M-3 30 L 0 36 L 3 30 Z" fill="#3A86E0" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+              <ellipse cx="0" cy="14" rx="18" ry="22" fill="#3A86E0" stroke="#1B1A1F" stroke-width="1.6"/>
+              <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+            </g>
+            <g transform="translate(36 18) rotate(14) scale(0.7)">
+              <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M-3 30 L 0 36 L 3 30 Z" fill="#F6C443" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+              <ellipse cx="0" cy="14" rx="18" ry="22" fill="#F6C443" stroke="#1B1A1F" stroke-width="1.6"/>
+              <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+            </g>
+            <g transform="translate(22 32) rotate(-6) scale(0.65)">
+              <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M-3 30 L 0 36 L 3 30 Z" fill="#4FB477" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+              <ellipse cx="0" cy="14" rx="18" ry="22" fill="#4FB477" stroke="#1B1A1F" stroke-width="1.6"/>
+              <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+            </g>
+            <g transform="translate(42 32) rotate(8) scale(0.65)">
+              <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M-3 30 L 0 36 L 3 30 Z" fill="#F4862A" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+              <ellipse cx="0" cy="14" rx="18" ry="22" fill="#F4862A" stroke="#1B1A1F" stroke-width="1.6"/>
+              <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+            </g>
+            <g transform="translate(28 26) rotate(0) scale(0.78)">
+              <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M-3 30 L 0 36 L 3 30 Z" fill="#E63946" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+              <ellipse cx="0" cy="14" rx="18" ry="22" fill="#E63946" stroke="#1B1A1F" stroke-width="1.6"/>
+              <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+            </g>
+            <path d="M28 76 C 26 84, 32 88, 28 96" stroke="#1B1A1F" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </g>
+          <text x="56" y="28" font-family="'Bricolage Grotesque', Georgia, serif" font-weight="800" font-size="18" fill="#1B1A1F" letter-spacing="0.5">BROOKSIDE</text>
+          <text x="56" y="42" font-family="'DM Sans', sans-serif" font-weight="600" font-size="9" fill="#1B1A1F" letter-spacing="2.4">PARTY · WAREHOUSE</text>
+        </svg>
       </a>
       <nav aria-label="Primary">
         <ul class="nav-links">
@@ -84,7 +122,7 @@
         <div>
           <span class="eyebrow">Brookside, Kansas City &middot; since the paper-warehouse days</span>
           <h1 style="margin-top:14px;">Party time in <span class="pop">Brookside</span>, every day.</h1>
-          <p class="lede">Balloons, helium, pinatas, costumes, cards, paper goods, and weird little party finds. Two floors of fun on 63rd Street, locally owned by Jerri Brandon and running since 1985.</p>
+          <p class="lede">Balloons, helium, pinatas, costumes, cards, paper goods, and weird little party finds. Two floors of fun on 63rd Street, locally owned by Jerri Brandon.</p>
           <div class="cta-row">
             <a class="btn btn--primary" href="/bpw/contact.html">Plan a visit</a>
             <a class="btn btn--ghost" href="#categories">Browse what we sell</a>
@@ -100,18 +138,18 @@
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span><span class="marquee-dot" style="background:#E63946"></span>Balloons &amp; helium</span>
-        <span><span class="marquee-dot" style="background:#F4862A"></span>Graduation HQ</span>
-        <span><span class="marquee-dot" style="background:#F6C443"></span>Costumes year-round</span>
-        <span><span class="marquee-dot" style="background:#4FB477"></span>Caspari paper goods</span>
-        <span><span class="marquee-dot" style="background:#3A86E0"></span>Pinatas</span>
-        <span><span class="marquee-dot" style="background:#E86A92"></span>Wedding supplies</span>
-        <span><span class="marquee-dot" style="background:#E63946"></span>Greeting cards</span>
-        <span><span class="marquee-dot" style="background:#F4862A"></span>Brookside WOW shop</span>
-        <span><span class="marquee-dot" style="background:#F6C443"></span>Balloons &amp; helium</span>
-        <span><span class="marquee-dot" style="background:#4FB477"></span>Graduation HQ</span>
-        <span><span class="marquee-dot" style="background:#3A86E0"></span>Costumes year-round</span>
-        <span><span class="marquee-dot" style="background:#E86A92"></span>Caspari paper goods</span>
+        <span><span class="marquee-dot" style="background:#E63946"></span>HELIUM FILLS WHILE-U-WAIT</span>
+        <span><span class="marquee-dot" style="background:#F6C443"></span>CLASS OF 2026 &mdash; WE GOTCHU</span>
+        <span><span class="marquee-dot" style="background:#4FB477"></span>50+ PI&Ntilde;ATAS IN STOCK</span>
+        <span><span class="marquee-dot" style="background:#3A86E0"></span>SPOOKIER UPSTAIRS &middot; ALL YEAR</span>
+        <span><span class="marquee-dot" style="background:#F4862A"></span>CUSTOM ORDERS &middot; 24HR TURN</span>
+        <span><span class="marquee-dot" style="background:#E86A92"></span>FREE STREET PARKING</span>
+        <span><span class="marquee-dot" style="background:#E63946"></span>HELIUM FILLS WHILE-U-WAIT</span>
+        <span><span class="marquee-dot" style="background:#F6C443"></span>CLASS OF 2026 &mdash; WE GOTCHU</span>
+        <span><span class="marquee-dot" style="background:#4FB477"></span>50+ PI&Ntilde;ATAS IN STOCK</span>
+        <span><span class="marquee-dot" style="background:#3A86E0"></span>SPOOKIER UPSTAIRS &middot; ALL YEAR</span>
+        <span><span class="marquee-dot" style="background:#F4862A"></span>CUSTOM ORDERS &middot; 24HR TURN</span>
+        <span><span class="marquee-dot" style="background:#E86A92"></span>FREE STREET PARKING</span>
       </div>
     </div>
 
@@ -239,18 +277,37 @@
             <div class="visit-rows">
               <div class="visit-row"><span class="k">Address</span><span>103 W 63rd Street, Kansas City, MO 64113</span></div>
               <div class="visit-row"><span class="k">Phone</span><a href="tel:+18163332332">816-333-2332</a></div>
-              <div class="visit-row"><span class="k">Mon to Sat</span><span>10am to 6pm</span></div>
-              <div class="visit-row"><span class="k">Sunday</span><span>12pm to 5pm</span></div>
+              <div class="visit-row"><span class="k">Email</span><a href="mailto:bkspartywarehouse@gmail.com">bkspartywarehouse@gmail.com</a></div>
+              <div class="visit-row"><span class="k">Mon&ndash;Wed</span><span>9:00am &ndash; 7:00pm</span></div>
+              <div class="visit-row"><span class="k">Thu&ndash;Fri</span><span>9:00am &ndash; 8:00pm</span></div>
+              <div class="visit-row"><span class="k">Saturday</span><span>9:00am &ndash; 6:00pm</span></div>
+              <div class="visit-row"><span class="k">Sunday</span><span>11:00am &ndash; 3:00pm</span></div>
               <div class="visit-row"><span class="k">Owned by</span><span>Jerri Brandon &middot; Brookside WOW (Women-Owned and Operated)</span></div>
             </div>
             <p class="note" style="color:rgba(255,253,247,0.55); margin-top:14px;">Hours can shift around holidays - call ahead if you are making a special trip.</p>
           </div>
-          <div class="map-wrap" style="margin-top:0; border-color:rgba(255,253,247,0.18);">
-            <iframe
-              title="Map showing Brookside Party Warehouse at 103 W 63rd Street, Kansas City, Missouri"
-              src="https://www.google.com/maps?q=103+W+63rd+St+Kansas+City+MO+64113&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map" role="img" aria-label="Sketch map showing Brookside Party Warehouse at 103 W 63rd Street, Kansas City, on the corner of W 63rd Street and Brookside Boulevard.">
+            <svg viewBox="0 0 400 280" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
+              <defs>
+                <pattern id="map-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,253,247,0.06)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="400" height="280" fill="url(#map-grid)"/>
+              <path d="M 0 140 L 400 140" stroke="rgba(255,253,247,0.20)" stroke-width="22" fill="none"/>
+              <path d="M 280 0 L 280 280" stroke="rgba(255,253,247,0.14)" stroke-width="14" fill="none"/>
+              <path d="M 60 0 L 60 280" stroke="rgba(255,253,247,0.10)" stroke-width="10" fill="none"/>
+              <text x="14" y="40" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="rgba(255,253,247,0.45)" letter-spacing="2">WORNALL</text>
+              <text x="14" y="132" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="rgba(255,253,247,0.55)" letter-spacing="2">W 63RD ST &rarr;</text>
+              <text x="296" y="40" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="rgba(255,253,247,0.45)" letter-spacing="2">BROOKSIDE BLVD</text>
+              <g transform="translate(190 140)">
+                <circle r="32" fill="rgba(230,57,70,0.18)"/>
+                <circle r="18" fill="#E63946"/>
+                <circle r="6" fill="#FFFDF7"/>
+                <text y="-44" text-anchor="middle" font-family="'Bricolage Grotesque', Georgia, serif" font-size="13" font-weight="700" fill="#FFFDF7">103 W 63RD ST</text>
+                <text y="60" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="9" fill="rgba(255,253,247,0.6)" letter-spacing="2">KANSAS CITY &middot; MO</text>
+              </g>
+            </svg>
           </div>
         </div>
       </div>
@@ -260,8 +317,46 @@
   <footer class="footer" role="contentinfo">
     <div class="container footer-grid">
       <div>
-        <div class="brand"><span class="brand-dot" aria-hidden="true"></span> Brookside Party Warehouse</div>
-        <p class="muted" style="margin-top:14px; max-width:42ch;">Locally owned party store on 63rd Street since 1985. Balloons, costumes, paper goods, and the kind of weird little finds you only get at a real shop.</p>
+        <div class="brand" aria-label="Brookside Party Warehouse">
+          <svg viewBox="0 0 220 64" width="200" height="56" style="overflow:visible" aria-hidden="true">
+            <g transform="translate(0 4) scale(0.7)">
+              <g transform="translate(14 20) rotate(-12) scale(0.7)">
+                <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                <path d="M-3 30 L 0 36 L 3 30 Z" fill="#3A86E0" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+                <ellipse cx="0" cy="14" rx="18" ry="22" fill="#3A86E0" stroke="#1B1A1F" stroke-width="1.6"/>
+                <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+              </g>
+              <g transform="translate(36 18) rotate(14) scale(0.7)">
+                <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                <path d="M-3 30 L 0 36 L 3 30 Z" fill="#F6C443" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+                <ellipse cx="0" cy="14" rx="18" ry="22" fill="#F6C443" stroke="#1B1A1F" stroke-width="1.6"/>
+                <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+              </g>
+              <g transform="translate(22 32) rotate(-6) scale(0.65)">
+                <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                <path d="M-3 30 L 0 36 L 3 30 Z" fill="#4FB477" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+                <ellipse cx="0" cy="14" rx="18" ry="22" fill="#4FB477" stroke="#1B1A1F" stroke-width="1.6"/>
+                <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+              </g>
+              <g transform="translate(42 32) rotate(8) scale(0.65)">
+                <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                <path d="M-3 30 L 0 36 L 3 30 Z" fill="#F4862A" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+                <ellipse cx="0" cy="14" rx="18" ry="22" fill="#F4862A" stroke="#1B1A1F" stroke-width="1.6"/>
+                <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+              </g>
+              <g transform="translate(28 26) rotate(0) scale(0.78)">
+                <path d="M0 32 C -2 44, 3 56, 0 72" stroke="#1B1A1F" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                <path d="M-3 30 L 0 36 L 3 30 Z" fill="#E63946" stroke="#1B1A1F" stroke-width="1" stroke-linejoin="round"/>
+                <ellipse cx="0" cy="14" rx="18" ry="22" fill="#E63946" stroke="#1B1A1F" stroke-width="1.6"/>
+                <ellipse cx="-6" cy="6" rx="4" ry="7" fill="rgba(255,255,255,0.55)" opacity="0.9"/>
+              </g>
+              <path d="M28 76 C 26 84, 32 88, 28 96" stroke="#1B1A1F" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            </g>
+            <text x="56" y="28" font-family="'Bricolage Grotesque', Georgia, serif" font-weight="800" font-size="18" fill="#1B1A1F" letter-spacing="0.5">BROOKSIDE</text>
+            <text x="56" y="42" font-family="'DM Sans', sans-serif" font-weight="600" font-size="9" fill="#1B1A1F" letter-spacing="2.4">PARTY &middot; WAREHOUSE</text>
+          </svg>
+        </div>
+        <p class="muted" style="margin-top:14px; max-width:42ch;">Locally owned party store on 63rd Street. Balloons, costumes, paper goods, and the kind of weird little finds you only get at a real shop.</p>
       </div>
       <div>
         <h4>Visit</h4>
@@ -269,6 +364,7 @@
           <li>103 W 63rd Street</li>
           <li>Kansas City, MO 64113</li>
           <li><a href="tel:+18163332332">816-333-2332</a></li>
+          <li><a href="mailto:bkspartywarehouse@gmail.com">bkspartywarehouse@gmail.com</a></li>
         </ul>
       </div>
       <div>
@@ -282,8 +378,10 @@
       <div>
         <h4>Hours</h4>
         <ul>
-          <li>Mon to Sat &middot; 10am to 6pm</li>
-          <li>Sunday &middot; 12pm to 5pm</li>
+          <li>Mon&ndash;Wed &middot; 9:00am &ndash; 7:00pm</li>
+          <li>Thu&ndash;Fri &middot; 9:00am &ndash; 8:00pm</li>
+          <li>Saturday &middot; 9:00am &ndash; 6:00pm</li>
+          <li>Sunday &middot; 11:00am &ndash; 3:00pm</li>
         </ul>
       </div>
     </div>
