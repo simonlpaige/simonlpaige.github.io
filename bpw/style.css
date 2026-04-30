@@ -120,13 +120,6 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 16px;
   flex-wrap: wrap;
 }
-@media (max-width: 640px) {
-  .nav-inner { padding-left: 16px; padding-right: 16px; }
-  .brand { padding-left: 0; }
-}
-@media (max-width: 768px) {
-  .nav-inner .brand { margin-left: 8px; padding-left: 8px; }
-}
 .brand {
   display: inline-flex;
   align-items: center;
@@ -436,7 +429,7 @@ img { max-width: 100%; height: auto; display: block; }
 .visit {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 48px;
   background: var(--ink);
   color: var(--paper);
   border-radius: var(--r-lg);
@@ -446,9 +439,7 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: stretch;
 }
 .visit > * { min-width: 0; }
-@media (min-width: 900px) {
-  .visit { grid-template-columns: 1.6fr 1fr; gap: 48px; }
-}
+@media (min-width: 901px) { .visit { grid-template-columns: 1.2fr 1fr; } }
 @media (max-width: 900px) { .visit { padding: 32px; } }
 .visit h2 { color: var(--paper); }
 .visit-rows { margin-top: 24px; display: grid; gap: 14px; }
@@ -479,12 +470,6 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: stretch;
 }
 .map svg { width: 100%; height: auto; min-height: 280px; }
-
-.map-link-wrap {
-  display: flex;
-  align-items: flex-start;
-  padding-top: 8px;
-}
 
 /* Brand mark (SVG logo wrapper for nav + footer) */
 .brand {
@@ -601,13 +586,13 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 720px) { .spook-photos { grid-template-columns: 1fr 1fr; } }
 .spook-photos figure {
   margin: 0;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
   border-radius: var(--r-md);
-  border: 1.5px solid rgba(237,230,210,0.18);
+  overflow: hidden;
+  border: 1px solid #2A2A33;
   background: #000;
+  aspect-ratio: 3 / 4;
 }
-.spook-photos figure img {
+.spook-photos img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -733,66 +718,11 @@ textarea.input { min-height: 140px; resize: vertical; }
 .stack { display: flex; flex-direction: column; gap: 12px; }
 .note { font-size: 13px; color: var(--ink-mute); font-style: italic; }
 
-/* Map link button */
-.btn-map {
-  display: inline-block;
-  padding: 12px 24px;
-  background: #1a1a1a;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  margin-top: 16px;
-}
+/* Social icons */
+.social-links { display: flex; gap: 12px; align-items: center; }
+.social-links a { display: flex; align-items: center; opacity: 0.75; transition: opacity 0.2s; }
+.social-links a:hover { opacity: 1; }
 
-/* Portrait photo wrapper - keeps tops visible */
-.portrait-photo {
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  width: 100%;
-}
-.portrait-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-/* Social icon links in nav */
-.social-icon {
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--paper);
-  color: var(--ink) !important;
-  border: 1.5px solid var(--ink);
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 0 !important;
-  min-height: 36px !important;
-}
-.social-icon:hover { background: var(--yellow); }
-.social-icon--dark {
-  background: transparent;
-  color: var(--bone) !important;
-  border-color: var(--bone);
-}
-.social-icon--dark:hover { background: var(--blood); color: var(--bone) !important; }
-
-/* Dark banner logo (Spookier page) */
-.dark-banner-logo {
-  background: var(--void);
-  text-align: center;
-  padding: 28px 16px 24px;
-  border-bottom: 1px solid #1F1F26;
-}
-.dark-banner-logo svg {
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
+@media (max-width: 600px) {
+  .nav-inner .brand { margin-left: 16px; }
 }
