@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brookside Party Warehouse - Build log &middot; Simon L. Paige</title>
+  <meta name="description" content="How I built a festive, durable site for Konrad's year-round party and costume store on 63rd in Brookside, Kansas City. The .com was blank when I walked in. Here's what happened next.">
+  <meta name="author" content="Simon L. Paige">
+  <link rel="canonical" href="https://simonlpaige.com/work/brookside-party-warehouse.html">
+
+  <meta property="og:title" content="Brookside Party Warehouse - Build log">
+  <meta property="og:description" content="A year-round costume and party store in Brookside, KCMO. Their .com was empty. I fixed that.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simonlpaige.com/work/brookside-party-warehouse.html">
+  <meta property="og:image" content="https://simonlpaige.com/bpw/images/img-01.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/favicon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css">
+
+  <style>
+    /* Build log specific - scoped, doesn't pollute global */
+    .buildlog-wrap { max-width: 740px; }
+    .buildlog h2 { margin-top: 48px; }
+    .buildlog p { margin-bottom: 18px; }
+    .receipts {
+      margin-top: 56px;
+      padding: 24px 28px;
+      background: #faf8f4;
+      border-left: 3px solid #2d2d2d;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .receipts .receipts-heading {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 14px;
+    }
+    .receipts .r-key { color: #666; display: inline-block; min-width: 140px; }
+    .receipts .r-val { color: #2d2d2d; }
+    .receipts a { color: #2d2d2d; text-decoration: underline; }
+    .buildlog-back {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 13px;
+      color: #666;
+      text-decoration: none;
+    }
+    .buildlog-back:hover { color: #2d2d2d; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://simonlpaige.com/work/brookside-party-warehouse.html#article",
+  "headline": "Brookside Party Warehouse - Case Study",
+  "url": "https://simonlpaige.com/work/brookside-party-warehouse.html",
+  "about": {
+    "@type": "LocalBusiness",
+    "name": "Brookside Party Warehouse",
+    "url": "https://simonlpaige.com/bpw/"
+  },
+  "author": {
+    "@id": "https://simonlpaige.com/#person"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Simon L. Paige",
+    "url": "https://simonlpaige.com/"
+  },
+  "dateModified": "2026-04-30"
+}
+</script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="wordmark" aria-label="Simon L. Paige, home">
+        <span class="wordmark-name">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
+      </a>
+      <nav aria-label="Main">
+        <ul class="site-nav">
+          <li><a href="/#work">Work</a></li>
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/process.html">Process</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero hero-personal">
+      <div class="wrap buildlog-wrap">
+        <a href="/#work" class="buildlog-back">&larr; back to the work</a>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Build log &middot; Brookside, Kansas City &middot; Live since 2026</p>
+        <h1>Brookside Party Warehouse</h1>
+        <p class="subhead">A party store on 63rd that sells balloons, helium, paper goods, and costumes year-round. Konrad bought it from Billy and Kelly and asked me to give it a real website. The .com was blank when I first looked it up.</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <article class="section buildlog">
+      <div class="wrap buildlog-wrap">
+
+        <h2>What they asked for</h2>
+        <p>Konrad already had me running the site for Everyday Produce, his stand a few miles south. One afternoon he mentioned the party store needed help too. The .com was empty. Customers on Yelp were clicking through to a parked page that said nothing. He wanted something festive, something that matched the energy of the store, and he wanted the year-round costume room front and center because almost nobody online knew it existed.</p>
+        <p>That last part is the real hook. Most party stores rent a strip-mall pop-up in October and shut it down by November. Brookside Party Warehouse keeps two floors and an attic full of costumes open every month of the year. That's a thing worth telling people, and the old web presence wasn't telling anyone.</p>
+
+        <h2>What I actually built</h2>
+        <p>A small multi-page site at <a href="https://simonlpaige.com/bpw/">simonlpaige.com/bpw/</a>. Home page with a confetti animation and the hours up top, a page for the costume room (the unique angle), a page for balloons and helium fills (people call the store asking about helium all the time), and a contact page with the address, phone, and email.</p>
+        <p>Plain HTML and CSS. No framework, no build step. Bricolage Grotesque for the headings because the store has personality and a buttoned-up serif would have felt wrong. A festive palette, a party-emoji favicon, and just enough motion to feel like the place without making the page heavy.</p>
+        <p>Hosted on GitHub Pages, DNS through Cloudflare, SSL automatic. Same setup as Everyday Produce. Same reasoning: a site that doesn't need a server bill and doesn't break when nobody's looking.</p>
+
+        <h2>The hook that opened the door</h2>
+        <p>I'd already walked into the store once or twice as a customer. The thing that turned it into a project was noticing the .com was blank. Yelp linked to it. Google linked to it. Anyone trying to confirm hours or ask about a costume was landing on a parked page.</p>
+        <p>So I told Konrad. Not as a pitch, not as a deck. Just: "hey, your .com is empty, wanted you to know." That was the whole conversation. He already trusted me from the produce site, and the gap was obvious once it was pointed out. No persuasion required.</p>
+
+        <h2>What was tricky</h2>
+        <p>Konrad runs two businesses. Getting his attention during spring, when both the produce stand and the party store are gearing up, is not a small ask. Decisions had to be quick and small. I wrote copy from what I already knew about the store, sent him short pages to look at on his phone, and got yes-or-no answers.</p>
+        <p>The festive aesthetic also took more CSS than a plain business-card site. Confetti animation, color choices that read as fun without looking like a kid's birthday invite, type that has personality but still reads cleanly on a phone. Worth the time, but it's not the kind of site you finish in an afternoon.</p>
+
+        <h2>What I'd do differently</h2>
+        <p>Get my own photos inside the store earlier. The costume room especially. It's something you have to see to understand. Right now the site describes it in words; a single good photo of those rooms would do more for the page than a paragraph of copy ever can. Next visit I'm bringing a camera.</p>
+
+        <h2>How Konrad actually uses it</h2>
+        <p>Same as Everyday Produce. He doesn't log in. He never will. Hours are hard-coded in the HTML. If they change for a holiday or a remodel, he texts me and I update the line. The site is a permanent answer to "are you open" and "do you have costumes," and that's the whole job.</p>
+
+        <aside class="receipts">
+          <div class="receipts-heading">Receipts</div>
+          <div><span class="r-key">Live site</span><span class="r-val"><a href="https://simonlpaige.com/bpw/" target="_blank" rel="noopener">simonlpaige.com/bpw/</a></span></div>
+          <div><span class="r-key">Tier</span><span class="r-val">Business client (second site)</span></div>
+          <div><span class="r-key">Build</span><span class="r-val">Included in ongoing relationship</span></div>
+          <div><span class="r-key">Monthly</span><span class="r-val">$49</span></div>
+          <div><span class="r-key">Pages</span><span class="r-val">Home, Costumes, Balloons &amp; Helium, Contact</span></div>
+          <div><span class="r-key">Stack</span><span class="r-val">HTML + CSS, GitHub Pages, Cloudflare DNS</span></div>
+          <div><span class="r-key">Launched</span><span class="r-val">April 2026</span></div>
+          <div><span class="r-key">Neighborhood</span><span class="r-val">Brookside, KCMO &middot; 63rd &amp; Wornall area</span></div>
+          <div><span class="r-key">Client since</span><span class="r-val">2026 (two-site client with Everyday Produce)</span></div>
+        </aside>
+
+        <h2 style="margin-top: 64px;">Want one like this?</h2>
+        <p>If your business is roughly this shape, local, real foot traffic, an online presence that's either missing or pointing nowhere, I'm probably your guy. Starter tier runs $399 and sites like this go live in about a week. <a href="/process.html">Here's how it works.</a></p>
+
+        <div class="cta-row" style="margin-top: 32px;">
+          <a href="tel:+18163160092" class="btn btn-primary">Call (816) 316-0092</a>
+          <a href="/process.html" class="btn btn-secondary">Read the process</a>
+        </div>
+
+      </div>
+    </article>
+
+  </main>
+
+  <hr>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-left">
+        <span class="wordmark-name wordmark-sm">Simon&nbsp;L<span class="wordmark-dot">.</span>&nbsp;Paige</span>
+      </div>
+      <div class="footer-right">
+        <a href="/">Home</a> &middot;
+        <a href="/process.html">Process</a> &middot;
+        <a href="/web-design/">Web design</a> &middot;
+        <a href="/privacy.html">Privacy</a> &middot;
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-credit">Built in Kansas City. Plain HTML, by hand. &middot; <a href="tel:+18163160092">(816) 316-0092</a> &middot; <a href="mailto:simon@simonlpaige.com">simon@simonlpaige.com</a></div>
+  </footer>
+
+</body>
+</html>
