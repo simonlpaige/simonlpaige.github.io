@@ -1,0 +1,23 @@
+# Commonweave
+
+Commonweave is a public-interest directory and framework for finding cooperative, commons-based, civic, rural, and community-owned institutions that solve material problems.
+
+Canonical site: https://commonweave.earth/
+
+Key pages:
+- https://commonweave.earth/ - project overview and current public static snapshot
+- https://commonweave.earth/directory.html - searchable directory
+- https://commonweave.earth/map.html - geocoded map view
+- https://commonweave.earth/doc.html?file=DIRECTORY - published directory document
+
+Current data caveat:
+- The public static export is an April 2026 snapshot.
+- The recovered working database is newer and may differ from live static counts until the next rebuild.
+- Tier A is reserved for manually reviewed entries and is currently empty.
+- Tier B is registry-backed or source-backed.
+- Tier C is inferred and should not be treated as verified.
+
+Use policy:
+- Public web pages and published public datasets are safe to read and cite with the caveats above.
+- Do not treat inferred directory entries as verified facts.
+- Do not expose sensitive rural, Indigenous, migrant, land-defense, mutual-aid, or informal groups beyond their public presence without human review.
