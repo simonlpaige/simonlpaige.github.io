@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-30T23:00:00.000Z",
+  "updated": "2026-04-30T23:00:00Z",
   "clients": [
     {
       "slug": "everyday-produce",
@@ -17,8 +17,8 @@
         "seo": 100
       },
       "reviews": null,
-      "filed": "2026-04-15T20:25:27.000Z",
-      "lastTouched": "2026-04-23T13:19:33.000Z",
+      "filed": "2026-04-15T20:25:27Z",
+      "lastTouched": "2026-04-23T13:19:33Z",
       "tier": "Custom",
       "thumbnail": "/work/thumbs/everyday-produce.png",
       "buildLogUrl": "/work/everyday-produce.html"
@@ -27,15 +27,15 @@
       "slug": "brookside-party-warehouse",
       "name": "Brookside Party Warehouse",
       "location": "Brookside, KCMO",
-      "url": "https://simonlpaige.com/bpw/",
+      "url": "https://brooksideparty.com",
       "up": true,
-      "lastCheckedAt": "2026-04-30T23:00:00.000Z",
+      "lastCheckedAt": "2026-04-30T23:00:00Z",
       "ttfbMs": null,
       "loadMs": null,
       "lighthouse": null,
       "reviews": null,
-      "filed": "2026-04-30T00:00:00.000Z",
-      "lastTouched": "2026-04-30T00:00:00.000Z",
+      "filed": "2026-04-30T00:00:00Z",
+      "lastTouched": "2026-04-30T00:00:00Z",
       "tier": "Business",
       "thumbnail": "/work/thumbs/brookside-party-warehouse.png",
       "buildLogUrl": "/work/brookside-party-warehouse.html"
