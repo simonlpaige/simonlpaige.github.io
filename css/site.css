@@ -1089,3 +1089,45 @@ a.contact-val:hover { color: var(--cherokee-deep); text-decoration-color: var(--
   .site-nav { gap: 8px 14px; }
   .site-nav a { font-size: 0.625rem; letter-spacing: 0.18em; }
 }
+
+/* ── Pricing sale notice ─────────────────────────────────────── */
+.pricing-note {
+  margin: 28px 0 24px;
+  padding: 22px 26px;
+  max-width: 820px;
+  background: var(--parchment-2);
+  border: var(--line-mid) solid var(--ink);
+  border-left: var(--line-fat) solid var(--cherokee);
+}
+.pricing-note-kicker {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cherokee-deep);
+  margin-bottom: 8px;
+}
+.pricing-note p:not(.pricing-note-kicker) {
+  max-width: 68ch;
+  color: var(--ink-2);
+}
+.plan-sale-label {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.pricing-fine-print {
+  max-width: 70ch;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
