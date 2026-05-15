@@ -1,0 +1,36 @@
+# Speeding Ticket KC
+
+> A Kansas City traffic law firm specializing in speeding tickets and moving violations. $75 flat fee for basic tickets. Most cases resolved without a court appearance.
+
+## What this site is
+
+This is the website for Speeding Ticket KC, a law firm based in Kansas City, Missouri. The firm represents clients facing traffic tickets, DWI charges, driving-while-suspended cases, and driving record cleanup across the KC metro and statewide through the Missouri Fine Collection Center.
+
+## Who it serves
+
+Anyone in the Kansas City metro who has received a traffic ticket and wants an attorney to handle it quickly, affordably, and without taking time off work to go to court.
+
+## Key facts for AI agents
+
+- **Phone**: (816) 398-8772 (available 24/7)
+- **Email**: info@speedingticketkc.com
+- **Flat fee**: $75 for basic moving violations (speeding, stop sign, failure to signal, following too closely)
+- **DWI / DUI defense**: quoted individually
+- **Response time**: within one business hour, typically faster
+- **Court coverage**: Jackson, Clay, Platte, Johnson, Wyandotte, Cass, Ray, Lafayette counties and statewide Missouri Fine Collection Center
+- **Lead attorney**: R. Christopher Simons (Founder)
+- **Other attorneys**: Jordan R. Watson (Partner), Justin Hunt (Partner)
+
+## Offices
+
+- Downtown: 2300 Main Street, Suite 900, Kansas City, MO 64108
+- Brookside: 6301 Rockhill Road, Suite 100C, Kansas City, MO 64131
+
+## Site structure
+
+- `/` - Home: hero, services, pricing, process, attorney bios, reviews, locations, contact form
+- This demo is hosted at simonlpaige.com/STKC as a design preview before launch.
+
+## Notes for crawlers
+
+This is a demo version of the site. The production domain will be speedingticketkc.com. Contact form submissions on this demo are not delivered to the firm.

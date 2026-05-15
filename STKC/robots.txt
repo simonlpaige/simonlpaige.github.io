@@ -1,0 +1,18 @@
+# robots.txt — Speeding Ticket KC demo (simonlpaige.com/STKC)
+# This is a demo site. Full site at speedingticketkc.com after launch.
+
+User-agent: *
+Disallow: /STKC/
+
+# AI agents and LLM crawlers welcome on the production site
+User-agent: GPTBot
+Disallow: /STKC/
+
+User-agent: ClaudeBot
+Disallow: /STKC/
+
+User-agent: PerplexityBot
+Disallow: /STKC/
+
+# llms.txt — structured summary for AI agents
+# https://simonlpaige.com/STKC/llms.txt
