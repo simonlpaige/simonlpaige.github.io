@@ -54,9 +54,6 @@ const Nav = () => {
           <a href="tel:18163988772" className="nav-phone">
             <IconPhone size={16}/> <span className="num">(816) 398-8772</span>
           </a>
-          <a href="style-guide.html" className="nav-phone" style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--ink-muted)' }} title="Brand & style guide">
-            Style guide
-          </a>
           <a href="#contact" onClick={(e) => onLink(e, 'contact')} className="btn btn-primary btn-sm">
             Free consultation
           </a>
