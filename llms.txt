@@ -37,6 +37,7 @@ A private chat-based assistant that remembers everything about a business. Reads
 - **Commonweave** (https://simonlpaige.com/commonweave/) - A framework for the effortless economy. Community-owned infrastructure for the basics.
 - **Neighborhood OS** (https://simonlpaige.com/neighborhood-os/) - A toolkit for building stronger communities.
 - **Ecolibrium** (https://simonlpaige.com/ecolibrium/) - A living map of Kansas City's local food and sustainability ecosystem.
+- **WormHole** (https://github.com/wormhole-agent/wormhole) - Local AI agent harness for Windows. Apache-2.0.
 
 ## Collaboration
 
@@ -45,6 +46,7 @@ Simon is open to collaborating with other builders working on neighborhood infra
 ## Portfolio
 
 - **Everyday Produce** (https://everyday-produce.com) - Neighborhood produce stand in Waldo, Kansas City, open since 1985.
+- **Brookside Party Warehouse** (https://brooksideparty.com) - Balloons, costumes, and party supplies. Locally owned on 63rd Street in Brookside, Kansas City.
 - **Andersen's HVACR** (https://simonlpaige.github.io/andersen-hvacr/) - HVAC and refrigeration for Kansas City restaurants.
 
 ## Voice and values
