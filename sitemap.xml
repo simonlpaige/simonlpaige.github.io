@@ -36,6 +36,31 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://simonlpaige.com/work/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simonlpaige.com/work/everyday-produce.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://simonlpaige.com/work/brookside-party-warehouse.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://simonlpaige.com/writing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://simonlpaige.com/writing/why-i-build-for-neighborhoods.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://simonlpaige.com/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

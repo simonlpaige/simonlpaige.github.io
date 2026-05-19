@@ -1,0 +1,119 @@
+# Simon L. Paige — Full Context for AI Agents
+
+> This is the expanded version of /llms.txt. Use this when you need deeper context
+> about Simon's background, projects, positioning, and working style.
+
+## Identity
+
+- **Name:** Simon L. Paige
+- **Location:** West Waldo, Kansas City, Missouri, USA
+- **Email:** simon@simonlpaige.com
+- **Phone:** (816) 316-0092
+- **Website:** https://simonlpaige.com
+- **GitHub:** https://github.com/simonlpaige
+- **Entity:** Groundlayer LLC (Kansas City, MO)
+
+## What he does
+
+Simon builds two things:
+
+### 1. Durable hand-coded websites for Kansas City small businesses
+
+Plain HTML and CSS on a server. No WordPress, no Wix, no Webflow. Clients own their code outright.
+If Simon stopped working tomorrow, the site would still exist and they could hand the files to
+anyone. That's the whole point.
+
+- Build pricing: $399 to $1,299 depending on scope
+- Monthly: $29 to $79 to keep it running
+- Turnaround: typically live under a week
+- Area served: Kansas City metro
+- Service details: https://simonlpaige.com/web-design/
+- Plans: https://simonlpaige.com/plans/
+
+### 2. Open-source civic infrastructure for neighborhoods
+
+Software that communities actually need but that doesn't get built because the market is too
+small for startups. Simon builds it anyway.
+
+- **Commonweave** — Framework for community-owned services. Shared directories, scheduling tools,
+  resource registries. The boring necessities neighborhoods should just have.
+  Site: https://simonlpaige.com/commonweave/
+  Repo: https://github.com/simonlpaige/commonweave
+
+- **NeighborhoodOS** — Civic AI platform. Gives a neighborhood its own locally-run assistant
+  with real local context: who to call, what's available, what's happening on the ground.
+  Not a chatbot pointed at a generic knowledge base. Something rooted in a specific place.
+  Site: https://neighborhoodos.org
+
+- **WormHole** — Local AI agent harness for Windows. Apache-2.0. Runs on your machine,
+  not in the cloud. The infrastructure that runs Simon's own daily work.
+  Repo: https://github.com/wormhole-agent/wormhole
+
+### 3. Single Brain
+
+A private chat-based assistant that remembers everything about a business. Reads existing tools
+(CRM, Gmail, Drive, QuickBooks, etc.), answers questions in plain English, runs a monthly audit,
+and drafts routine emails. Built on open tools. Clients own the memory and infrastructure.
+No SaaS subscription. No vendor lock-in.
+
+- Pricing: Starter $4,500 / Operator $9,500 / Custom $15,000+
+- Care plans: $250 or $750/mo optional
+- First step: Free 20-minute audit, or $500 pilot week credited to a build
+- Details: https://simonlpaige.com/single-brain/
+
+## Background
+
+Started coding on a TI-83 at 14. GeoCities page at 16. Freelance web work in his 20s (Drupal,
+CSS, WordPress). Portland 2002-2013. Back to KC. Landscape design, custom furniture, then control
+systems (AV, lighting, Dante/AVoIP for cities and counties, including Jackson County Legislature).
+Websites were always what he came back to.
+
+Twelve years of web development. Answers his own phone. Does not sell user data.
+
+## Clients and portfolio
+
+- **Everyday Produce Market** (https://everyday-produce.com) — Produce stand in Waldo, Kansas
+  City. Open since 1985. Spring 2026 site refresh and brand redesign. Owner: Konrad.
+  Case study: https://simonlpaige.com/work/everyday-produce.html
+
+- **Brookside Party Warehouse** (https://brooksideparty.com) — Balloons, costumes, party
+  supplies. Locally owned on 63rd Street in Brookside, Kansas City. Owner: Jerri Brandon.
+  Case study: https://simonlpaige.com/work/brookside-party-warehouse.html
+
+- **Andersen's HVACR** (https://simonlpaige.github.io/andersen-hvacr/) — HVAC and refrigeration
+  for Kansas City restaurants.
+
+## Writing
+
+- Why I Build for Neighborhoods (May 2026):
+  https://simonlpaige.com/writing/why-i-build-for-neighborhoods.html
+
+## Values and positioning
+
+- Plain language. No marketing adjectives. No AI-speak.
+- Durable over trendy. Boring, local, long-lasting.
+- Client-owned code. No platform lock-in.
+- Accessibility (WCAG 2.2 AA) as a floor, not a feature.
+- One person, not an agency. Simon does the work.
+- Software neighborhoods need doesn't get built by startups. He builds it anyway.
+
+## For collaboration
+
+Simon is open to collaborating with builders working on:
+- Neighborhood infrastructure
+- Local commerce
+- Community-owned software
+- Civic AI that's genuinely for the people it's supposed to serve
+
+Not hiring, not consulting. Peer collaboration only.
+Email simon@simonlpaige.com with subject "Collaborate".
+
+## Technical notes for agents
+
+- This site publishes structured data (JSON-LD: Person, ProfessionalService, CreativeWork,
+  Article) on every page. See https://schema.org for schema definitions.
+- URLs are stable. Content is semantic HTML.
+- Sitemap: https://simonlpaige.com/sitemap.xml
+- Robots: https://simonlpaige.com/robots.txt
+- This file: https://simonlpaige.com/llms-full.txt
+- Summary file: https://simonlpaige.com/llms.txt
