@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everblue - The Pooping Dog Generator</title>
+  <meta name="description" content="A highly interactive, fully accessible local AI design experiment that plays a synthesized fart sound and drops a poop emoji every time you click.">
+  <meta name="author" content="Simon L. Paige">
+  <link rel="canonical" href="https://simonlpaige.com/everblue/">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=JetBrains+Mono:wght@500;600&display=swap">
+  
+  <!-- Reuse the main site styles -->
+  <link rel="stylesheet" href="/css/site.css">
+
+  <style>
+    /* Custom page layout utilizing site variables */
+    .everblue-container {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      background: var(--parchment-2);
+      border: var(--line-thin) solid var(--rule);
+      border-radius: 8px;
+      box-shadow: 4px 4px 0px var(--ink-soft);
+    }
+
+    .everblue-title {
+      font-size: 3rem;
+      color: var(--cherokee);
+      margin-bottom: 0.5rem;
+    }
+
+    .everblue-subtitle {
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    /* Interactive dog frames */
+    .dog-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 450px;
+      padding: 0;
+      border: var(--line-mid) solid var(--ink);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 6px 6px 0px var(--ink-soft);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .dog-button:active {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0px var(--ink-soft);
+    }
+
+    .dog-button:focus-visible {
+      outline: 3px solid var(--cherokee);
+      outline-offset: 6px;
+    }
+
+    .dog-image {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .instruction-tag {
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--cherokee-deep);
+    }
+
+    /* Poop dropping particles */
+    .poop-particle {
+      position: absolute;
+      font-size: 2.5rem;
+      pointer-events: none;
+      user-select: none;
+      z-index: 10;
+      animation: dropAndSquish 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes dropAndSquish {
+      0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      70% {
+        transform: translate(-50%, calc(350px - 60px)) scale(1);
+        opacity: 1;
+      }
+      85% {
+        transform: translate(-50%, calc(350px - 50px)) scale(1.4, 0.7);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, calc(350px - 50px)) scale(1, 1);
+        opacity: 0;
+      }
+    }
+
+    /* Permanent poop pile layout */
+    .poop-pile {
+      position: absolute;
+      bottom: 10px;
+      font-size: 1.5rem;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.85;
+      animation: spawnPile 0.3s ease-out forwards;
+    }
+
+    @keyframes spawnPile {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .counter-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.25rem 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      background: var(--parchment-3);
+      border: var(--line-thin) solid var(--ink-soft);
+      border-radius: 4px;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <main id="main">
+    <div class="everblue-container">
+      <h1 class="everblue-title">Everblue</h1>
+      <p class="everblue-subtitle">The Hand-Crafted Poop Generator</p>
+
+      <!-- Dog interactive frame -->
+      <button id="dog-button" class="dog-button" aria-label="Click to hear a fart and make the dog poop!">
+        <img id="dog-img" class="dog-image" src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=800" alt="A funny pug puppy looking innocent">
+        <div id="particle-container"></div>
+      </button>
+
+      <p class="instruction-tag">👉 CLICK THE DOG TO RELEASE GAS 👈</p>
+      
+      <div id="counter" class="counter-badge">Farts Released: 0</div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; margin-bottom: 4rem;">
+    <p class="site-credit">Designed in KCMO &mdash; <a href="https://simonlpaige.com" rel="noopener">simonlpaige.com</a></p>
+  </footer>
+
+  <script>
+    // A hand-curated selection of hilarious Unsplash dog photos
+    const DOG_IMAGES = [
+      {
+        url: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=800",
+        alt: "A funny close-up pug puppy looking directly at you"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&q=80&w=800",
+        alt: "A Shiba Inu wearing glasses and looking extremely guilty"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1517423568366-8b83523034fd?auto=format&fit=crop&q=80&w=800",
+        alt: "A funny French bulldog looking upward sheepishly"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&q=80&w=800",
+        alt: "An incredibly goofy dog with its tongue fully out"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=800",
+        alt: "A goofy golden retriever looking upside down at the camera"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800",
+        alt: "A corgi puppy shot from behind, showing its iconic fluffy bottom"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1505628346881-b72b27e84530?auto=format&fit=crop&q=80&w=800",
+        alt: "A cute round-eyed puppy squatting slightly on the grass"
+      }
+    ];
+
+    let currentIdx = 0;
+    let fartCount = 0;
+
+    const dogButton = document.getElementById('dog-button');
+    const dogImg = document.getElementById('dog-img');
+    const counterBadge = document.getElementById('counter');
+    const particleContainer = document.getElementById('particle-container');
+
+    // Synthesis of a realistic, sputtering, gas-cracking fart sound using Web Audio API
+    function playSputteringFart() {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = 'sawtooth';
+      
+      // Start with a very low pitch characteristic of gas release
+      const baseFreq = 50 + Math.random() * 40; // 50Hz to 90Hz
+      osc.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+      
+      // Frequency modulator to make the sound bubbly, crackly, and sputtering
+      const mod = ctx.createOscillator();
+      const modGain = ctx.createGain();
+      mod.type = 'sawtooth';
+      mod.frequency.setValueAtTime(7 + Math.random() * 8, ctx.currentTime); // 7Hz to 15Hz sputtering rate
+      modGain.gain.setValueAtTime(15 + Math.random() * 20, ctx.currentTime); // depth of wobble
+      
+      mod.connect(modGain);
+      modGain.connect(osc.frequency);
+      
+      // Low-pass filter to give it a muffled, bass-heavy acoustic quality
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(140 + Math.random() * 80, ctx.currentTime);
+      
+      // WaveShaper node to inject crackly distortion
+      const shaper = ctx.createWaveShaper();
+      function makeDistortionCurve(amount) {
+        const k = typeof amount === 'number' ? amount : 50;
+        const n_samples = 44100;
+        const curve = new Float32Array(n_samples);
+        const deg = Math.PI / 180;
+        for (let i = 0; i < n_samples; ++i) {
+          const x = (i * 2) / n_samples - 1;
+          curve[i] = ((3 + k) * x * 20 * deg) / (Math.PI + k * Math.abs(x));
+        }
+        return curve;
+      }
+      shaper.curve = makeDistortionCurve(120);
+      shaper.oversample = '4x';
+      
+      osc.connect(shaper);
+      shaper.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      
+      // Amplitude envelope: sudden blast, sputtering sustain, swift decay
+      const duration = 0.45 + Math.random() * 0.55; // 0.45s to 1s duration
+      gain.gain.setValueAtTime(0.01, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.85, ctx.currentTime + 0.04);
+      
+      // Sputter ripples
+      const ripples = 4 + Math.floor(Math.random() * 4);
+      for (let i = 1; i <= ripples; i++) {
+        const timeOffset = (duration * i) / (ripples + 1);
+        gain.gain.setValueAtTime(0.15 + Math.random() * 0.45, ctx.currentTime + timeOffset);
+      }
+      
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+      
+      osc.start(ctx.currentTime);
+      mod.start(ctx.currentTime);
+      
+      osc.stop(ctx.currentTime + duration);
+      mod.stop(ctx.currentTime + duration);
+    }
+
+    // Trigger the pooping experience on click
+    dogButton.addEventListener('click', (e) => {
+      // 1. Play the synthesized sound
+      playSputteringFart();
+
+      // 2. Increment and update the counter
+      fartCount++;
+      counterBadge.innerText = `Farts Released: ${fartCount}`;
+
+      // 3. Get click coordinates relative to the button container
+      const rect = dogButton.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // 4. Create falling poop particle
+      const poop = document.createElement('span');
+      poop.className = 'poop-particle';
+      poop.innerText = '💩';
+      poop.style.left = `${x}px`;
+      poop.style.top = `${y}px`;
+      
+      particleContainer.appendChild(poop);
+
+      // Remove particle after animation concludes
+      setTimeout(() => {
+        poop.remove();
+        
+        // 5. Spawn a permanent little poop on the floor! (Max 15 to prevent rendering lag)
+        const activePiles = particleContainer.getElementsByClassName('poop-pile');
+        if (activePiles.length < 15) {
+          const pile = document.createElement('span');
+          pile.className = 'poop-pile';
+          pile.innerText = '💩';
+          
+          // Randomize positioning at the bottom floor
+          const randomFloorX = 30 + Math.random() * (rect.width - 60);
+          pile.style.left = `${randomFloorX}px`;
+          
+          // Slight rotational variation for messy realism
+          const randomRot = -30 + Math.random() * 60;
+          pile.style.transform = `rotate(${randomRot}deg)`;
+          
+          particleContainer.appendChild(pile);
+        }
+      }, 800);
+
+      // 6. Transition to a new random dog image (prevent selecting the immediate same one)
+      let nextIdx = currentIdx;
+      while (nextIdx === currentIdx) {
+        nextIdx = Math.floor(Math.random() * DOG_IMAGES.length);
+      }
+      currentIdx = nextIdx;
+
+      // Smoothly update source and alt
+      setTimeout(() => {
+        dogImg.src = DOG_IMAGES[currentIdx].url;
+        dogImg.alt = DOG_IMAGES[currentIdx].alt;
+      }, 150);
+    });
+  </script>
+</body>
+</html>
