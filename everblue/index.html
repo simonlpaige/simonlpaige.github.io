@@ -41,7 +41,38 @@
       color: var(--ink-soft);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Mode selector controls */
+    .mode-selector {
+      margin-bottom: 1.5rem;
+    }
+
+    .mode-btn {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      background: var(--parchment-3);
+      border: var(--line-thin) solid var(--ink-soft);
+      border-radius: 4px;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .mode-btn.active {
+      background: var(--cherokee);
+      color: var(--parchment);
+      border-color: var(--cherokee-deep);
+      box-shadow: 2px 2px 0px var(--ink);
+    }
+
+    .mode-btn:hover {
+      color: var(--ink);
+      border-color: var(--ink);
     }
 
     /* Interactive dog frames */
@@ -158,9 +189,15 @@
       <h1 class="everblue-title">Everblue</h1>
       <p class="everblue-subtitle">The Hand-Crafted Poop Generator</p>
 
+      <!-- Mode Selector -->
+      <div class="mode-selector">
+        <button id="btn-real" class="mode-btn active" aria-label="Switch to real pooping dogs mode">💩 Real Pooping Dogs</button>
+        <button id="btn-goofy" class="mode-btn" aria-label="Switch to goofy cartoon dog mode">🐶 Goofy Puppies</button>
+      </div>
+
       <!-- Dog interactive frame -->
       <button id="dog-button" class="dog-button" aria-label="Click to hear a fart and make the dog poop!">
-        <img id="dog-img" class="dog-image" src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=800" alt="A funny pug puppy looking innocent">
+        <img id="dog-img" class="dog-image" src="https://upload.wikimedia.org/wikipedia/commons/2/26/Defecating_dog_in_Vietnam.jpg" alt="A real dog squatting and pooping on a path">
         <div id="particle-container"></div>
       </button>
 
@@ -175,8 +212,24 @@
   </footer>
 
   <script>
-    // A hand-curated selection of hilarious Unsplash dog photos
-    const DOG_IMAGES = [
+    // Real photos of dogs caught in the act of pooping
+    const REAL_POOPING_DOGS = [
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/2/26/Defecating_dog_in_Vietnam.jpg",
+        alt: "A real dog squatting and pooping on a paved pathway"
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/4/44/Dog_defecation.JPG",
+        alt: "A real brown dog pooping on a gravel sidewalk"
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Dog_defecating_in_children%27s_playground%2C_Upton_Park_-_geograph.org.uk_-_4952047.jpg",
+        alt: "A real dog pooping on green grass inside a park boundary"
+      }
+    ];
+
+    // Clipart/Goofy dogs with tongue out or looking goofy
+    const GOOFY_DOGS = [
       {
         url: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=800",
         alt: "A funny close-up pug puppy looking directly at you"
@@ -209,11 +262,36 @@
 
     let currentIdx = 0;
     let fartCount = 0;
+    let currentMode = 'real'; // 'real' or 'goofy'
 
     const dogButton = document.getElementById('dog-button');
     const dogImg = document.getElementById('dog-img');
     const counterBadge = document.getElementById('counter');
     const particleContainer = document.getElementById('particle-container');
+    
+    const btnReal = document.getElementById('btn-real');
+    const btnGoofy = document.getElementById('btn-goofy');
+
+    // Switch modes
+    btnReal.addEventListener('click', () => {
+      if (currentMode === 'real') return;
+      currentMode = 'real';
+      btnReal.classList.add('active');
+      btnGoofy.classList.remove('active');
+      currentIdx = 0;
+      dogImg.src = REAL_POOPING_DOGS[0].url;
+      dogImg.alt = REAL_POOPING_DOGS[0].alt;
+    });
+
+    btnGoofy.addEventListener('click', () => {
+      if (currentMode === 'goofy') return;
+      currentMode = 'goofy';
+      btnGoofy.classList.add('active');
+      btnReal.classList.remove('active');
+      currentIdx = 0;
+      dogImg.src = GOOFY_DOGS[0].url;
+      dogImg.alt = GOOFY_DOGS[0].alt;
+    });
 
     // Synthesis of a realistic, sputtering, gas-cracking fart sound using Web Audio API
     function playSputteringFart() {
@@ -334,16 +412,17 @@
       }, 800);
 
       // 6. Transition to a new random dog image (prevent selecting the immediate same one)
+      const list = currentMode === 'real' ? REAL_POOPING_DOGS : GOOFY_DOGS;
       let nextIdx = currentIdx;
       while (nextIdx === currentIdx) {
-        nextIdx = Math.floor(Math.random() * DOG_IMAGES.length);
+        nextIdx = Math.floor(Math.random() * list.length);
       }
       currentIdx = nextIdx;
 
       // Smoothly update source and alt
       setTimeout(() => {
-        dogImg.src = DOG_IMAGES[currentIdx].url;
-        dogImg.alt = DOG_IMAGES[currentIdx].alt;
+        dogImg.src = list[currentIdx].url;
+        dogImg.alt = list[currentIdx].alt;
       }, 150);
     });
   </script>
