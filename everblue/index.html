@@ -178,6 +178,14 @@
       border-radius: 4px;
       color: var(--ink);
     }
+
+    .pool-status {
+      display: block;
+      margin-top: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-soft);
+    }
   </style>
 </head>
 <body>
@@ -197,13 +205,14 @@
 
       <!-- Dog interactive frame -->
       <button id="dog-button" class="dog-button" aria-label="Click to hear a fart and make the dog poop!">
-        <img id="dog-img" class="dog-image" src="https://upload.wikimedia.org/wikipedia/commons/2/26/Defecating_dog_in_Vietnam.jpg" alt="A real dog squatting and pooping on a path">
+        <img id="dog-img" class="dog-image" src="https://upload.wikimedia.org/wikipedia/commons/2/26/Defecating_dog_in_Vietnam.jpg" alt="A real dog squatting and pooping on a paved pathway">
         <div id="particle-container"></div>
       </button>
 
       <p class="instruction-tag">👉 CLICK THE DOG TO RELEASE GAS 👈</p>
       
       <div id="counter" class="counter-badge">Farts Released: 0</div>
+      <div id="pool-status" class="pool-status">Loading fresh search images from Wikimedia Commons...</div>
     </div>
   </main>
 
@@ -212,8 +221,8 @@
   </footer>
 
   <script>
-    // Real photos of dogs caught in the act of pooping
-    const REAL_POOPING_DOGS = [
+    // Local fallback list of real pooping dogs
+    const FALLBACK_REAL_DOGS = [
       {
         url: "https://upload.wikimedia.org/wikipedia/commons/2/26/Defecating_dog_in_Vietnam.jpg",
         alt: "A real dog squatting and pooping on a paved pathway"
@@ -260,6 +269,8 @@
       }
     ];
 
+    // Active pool of real pooping dogs (starts with fallback, expanded via API search on load)
+    let realDogsPool = [...FALLBACK_REAL_DOGS];
     let currentIdx = 0;
     let fartCount = 0;
     let currentMode = 'real'; // 'real' or 'goofy'
@@ -267,6 +278,7 @@
     const dogButton = document.getElementById('dog-button');
     const dogImg = document.getElementById('dog-img');
     const counterBadge = document.getElementById('counter');
+    const poolStatus = document.getElementById('pool-status');
     const particleContainer = document.getElementById('particle-container');
     
     const btnReal = document.getElementById('btn-real');
@@ -279,8 +291,8 @@
       btnReal.classList.add('active');
       btnGoofy.classList.remove('active');
       currentIdx = 0;
-      dogImg.src = REAL_POOPING_DOGS[0].url;
-      dogImg.alt = REAL_POOPING_DOGS[0].alt;
+      dogImg.src = realDogsPool[0].url;
+      dogImg.alt = realDogsPool[0].alt;
     });
 
     btnGoofy.addEventListener('click', () => {
@@ -292,6 +304,65 @@
       dogImg.src = GOOFY_DOGS[0].url;
       dogImg.alt = GOOFY_DOGS[0].alt;
     });
+
+    // Real-time client-side Wikimedia search fetch
+    async function loadFreshFecesPhotos() {
+      // Wikimedia Commons endpoint supporting JSON + CORS via origin=*
+      const queryUrl = 'https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch=dog%20defecating&srnamespace=6&format=json&origin=*&srlimit=50';
+      
+      try {
+        const response = await fetch(queryUrl);
+        const data = await response.json();
+        const searchItems = data.query.search;
+        
+        // Exclude icons, signs, and diagrams
+        const imageTitles = searchItems
+          .map(item => item.title)
+          .filter(title => {
+            const low = title.toLowerCase();
+            return !low.includes('sign') && !low.includes('no dog') && !low.includes('ban') && !low.includes('excrement-');
+          });
+
+        if (imageTitles.length === 0) {
+          poolStatus.innerText = `Active pool: ${realDogsPool.length} (Wikimedia search yielded no new matches)`;
+          return;
+        }
+
+        // Query Wikimedia in one single request for the direct URL of all matching files
+        const infoUrl = `https://commons.wikimedia.org/w/api.php?action=query&titles=${encodeURIComponent(imageTitles.join('|'))}&prop=imageinfo&iiprop=url&format=json&origin=*`;
+        const infoResponse = await fetch(infoUrl);
+        const infoData = await infoResponse.json();
+        const pages = infoData.query.pages;
+        
+        const fetchedList = [];
+        for (const pageId in pages) {
+          const page = pages[pageId];
+          if (page.imageinfo && page.imageinfo[0]) {
+            fetchedList.push({
+              url: page.imageinfo[0].url,
+              alt: "A real dog pooping (curated live from Wikimedia Commons)"
+            });
+          }
+        }
+
+        if (fetchedList.length > 0) {
+          // Merge and overwrite fallback with our fresh rich live feed
+          realDogsPool = fetchedList;
+          poolStatus.innerText = `Active pool: ${realDogsPool.length} fresh live pooping photos loaded!`;
+          
+          // Instantly refresh current image to show the first live one
+          if (currentMode === 'real') {
+            dogImg.src = realDogsPool[0].url;
+            dogImg.alt = realDogsPool[0].alt;
+          }
+        } else {
+          poolStatus.innerText = `Active pool: ${realDogsPool.length} (Live lookup failed, using local offline fallbacks)`;
+        }
+      } catch (err) {
+        console.error('Failed to resolve live search feed:', err);
+        poolStatus.innerText = `Active pool: ${realDogsPool.length} (Offline fallback mode active)`;
+      }
+    }
 
     // Synthesis of a realistic, sputtering, gas-cracking fart sound using Web Audio API
     function playSputteringFart() {
@@ -412,9 +483,9 @@
       }, 800);
 
       // 6. Transition to a new random dog image (prevent selecting the immediate same one)
-      const list = currentMode === 'real' ? REAL_POOPING_DOGS : GOOFY_DOGS;
+      const list = currentMode === 'real' ? realDogsPool : GOOFY_DOGS;
       let nextIdx = currentIdx;
-      while (nextIdx === currentIdx) {
+      while (nextIdx === currentIdx && list.length > 1) {
         nextIdx = Math.floor(Math.random() * list.length);
       }
       currentIdx = nextIdx;
@@ -425,6 +496,9 @@
         dogImg.alt = list[currentIdx].alt;
       }, 150);
     });
+
+    // Run active lookups immediately on load
+    window.addEventListener('DOMContentLoaded', loadFreshFecesPhotos);
   </script>
 </body>
 </html>
