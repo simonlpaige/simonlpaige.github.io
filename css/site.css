@@ -728,6 +728,24 @@ main { display: block; }
 .project-card.plain::before { display: none; }
 .project-card.plain { padding-top: 28px; }
 
+/* Project card with image */
+.project-card--image { padding: 0 0 24px 0; overflow: hidden; }
+.project-card--image::before { display: none; }
+.project-card--image .project-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 16px;
+}
+.project-card--image .project-name,
+.project-card--image .project-desc,
+.project-card--image .card-meta {
+  padding-left: 26px;
+  padding-right: 26px;
+}
+.project-card--image .project-name { margin-top: 0; }
+
 /* ── Feynman callout (the rented-software paragraph) ──────────── */
 .feynman {
   padding: 56px 0;
