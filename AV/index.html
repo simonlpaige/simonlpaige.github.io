@@ -176,6 +176,7 @@
       <input id="password-input" aria-label="Password" type="password" autocomplete="current-password" placeholder="Password">
       <input id="password-confirm" aria-label="Confirm password" class="hidden" type="password" autocomplete="new-password" placeholder="Confirm password">
         <button id="unlock-btn" class="primary">Unlock</button>
+        <button id="reset-auth-btn" type="button">Reset Local Password</button>
         <p class="error-msg" id="auth-error"></p>
       </div>
     </div>
@@ -514,6 +515,15 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       $('#app').classList.add('hidden');
       $('#lock-screen').classList.remove('hidden');
       $('#password-input').value = '';
+    }
+    function resetLocalPassword() {
+      if (!confirm('Reset only the local lock password for this browser? Your AV data will stay.')) return;
+      ['av_auth_hash', 'av_auth_salt', 'avAuthHash', 'avAuthSalt', 'av_session'].forEach(k => localStorage.removeItem(k));
+      sessionStorage.removeItem('av_session');
+      $('#password-input').value = '';
+      $('#password-confirm').value = '';
+      setupAuthScreen();
+      $('#auth-error').textContent = 'Password reset. Create a new one for this browser.';
     }
     function setupAuthScreen() {
       const firstRun = !hasPassword();
@@ -1292,6 +1302,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
     $('#password-input').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
     $('#password-confirm').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
     $('#lock-btn').addEventListener('click', lock);
+    $('#reset-auth-btn').addEventListener('click', resetLocalPassword);
     migrateAuthFromV1();
     setupAuthScreen();
     if (isAuthed()) showApp();
