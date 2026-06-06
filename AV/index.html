@@ -115,7 +115,46 @@
     .mode-row { display: flex; gap: 14px; flex-wrap: wrap; }
     .estimate-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: #f8fafc; }
     .estimate-card strong { font-size: 24px; display: block; margin-top: 6px; }
-      .schedule-row { grid-template-columns: 1fr; }
+    .bom-search-wrap { position: relative; }
+    .bom-results { position: absolute; top: calc(100% + 4px); left: 0; right: 0; background: #fff; border: 1px solid var(--line); border-radius: 7px; box-shadow: var(--shadow); z-index: 15; max-height: 260px; overflow: auto; }
+    .bom-result { padding: 9px 10px; border-bottom: 1px solid var(--line); cursor: pointer; }
+    .bom-result:hover { background: var(--soft); }
+    .kanban { display: grid; grid-template-columns: repeat(6, minmax(210px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+    .kanban-col { background: #eef3fb; border: 1px solid var(--line); border-radius: var(--radius); min-height: 320px; padding: 10px; }
+    .kanban-col h3 { margin: 0 0 10px; font-size: 15px; display: flex; justify-content: space-between; }
+    .project-card { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 11px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(15,23,42,.06); cursor: grab; }
+    .project-card:active { cursor: grabbing; }
+    .card-name { font-weight: 800; }
+    .card-client, .card-meta { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .card-value { font-weight: 850; margin-top: 8px; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, .55); z-index: 50; display: grid; place-items: center; padding: 18px; }
+    .modal { width: min(980px, 100%); max-height: 92vh; overflow: auto; background: #fff; border-radius: 8px; box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+    .modal-header, .modal-footer { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .modal-footer { border-top: 1px solid var(--line); border-bottom: 0; justify-content: flex-end; flex-wrap: wrap; }
+    .modal-body { padding: 16px; }
+    .modal-tabs { display: flex; gap: 8px; padding: 0 16px 12px; border-bottom: 1px solid var(--line); }
+    .modal-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .modal-panel { display: none; }
+    .modal-panel.active { display: grid; gap: var(--space-3); }
+    .dropzone { border: 2px dashed #a8b7cc; border-radius: var(--radius); background: #f8fafc; padding: 24px; text-align: center; cursor: pointer; }
+    .dropzone.drag { background: #e8f0ff; border-color: var(--accent); }
+    .import-type-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .import-type-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .formula-block { white-space: pre-wrap; background: #111827; color: #e5e7eb; border-radius: 7px; padding: 14px; overflow-x: auto; font-family: Consolas, Menlo, monospace; font-size: 13px; }
+    .strategy-note { background: #f8fafc; border: 1px solid var(--line); border-radius: 7px; padding: 12px; }
+    .print-root { display: none; }
+    @media (max-width: 1000px) {
+      .four, .three, .two { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tabs { display: none; }
+      #mobile-tab-select { display: block; }
+    }
+    @media (max-width: 640px) {
+      main { padding: 12px; }
+      .app-header { align-items: stretch; flex-direction: column; }
+      .form-grid, .check-grid { grid-template-columns: 1fr; }
+      .page-header { align-items: stretch; }
+      .row { align-items: stretch; }
       button { width: 100%; }
       .modal-footer button, .modal-tabs button, .import-type-tabs button { width: auto; }
     }
@@ -260,11 +299,11 @@
             <button id="product-new-btn" class="primary">+ Add Product</button>
             <input id="product-search" aria-label="Search product catalog" placeholder="Search catalog...">
             <select id="product-category-filter"></select>
-            <button id="product-import-btn">Import CSV/JSON</button>
+            <button id="product-import-btn">Import CSV</button>
             <button id="product-export-btn">Export Catalog</button>
           </div>
         </div>
-        <input type="file" id="product-file" aria-label="Product data file" class="hidden" accept=".csv,text/csv,application/json,.json">
+        <input type="file" id="product-file" aria-label="Product CSV file" class="hidden" accept=".csv,text/csv">
         <div class="panel table-wrap"><table id="products-table"></table></div>
       </section>
 
@@ -280,9 +319,9 @@
         <div class="page-header import-header"><h2>Import</h2></div>
         <div class="grid two import-panels">
           <div class="panel">
-            <h3>CSV/JSON Import</h3>
+            <h3>CSV Import</h3>
             <div class="import-type-tabs" id="import-type-tabs"></div>
-            <div class="dropzone" id="csv-dropzone">Drop CSV or JSON here, or click to browse<input type="file" id="csv-file" aria-label="Import data file" class="hidden" accept=".csv,text/csv,application/json,.json"></div>
+            <div class="dropzone" id="csv-dropzone">Drop CSV here or click to browse<input type="file" id="csv-file" aria-label="Import CSV file" class="hidden" accept=".csv,text/csv"></div>
             <div id="import-preview" style="margin-top:12px"></div>
             <div id="import-mapping" class="import-mapping" style="margin-top:12px"></div>
             <div class="row import-actions" style="margin-top:12px"><button id="import-confirm-btn" class="primary" disabled>Import Rows</button><button id="import-cancel-btn">Cancel</button></div>
@@ -357,90 +396,276 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
     const STAGES = ['lead','discovery','estimating','proposal','won','lost'];
     const CLIENT_TYPES = ['repeat','public','commercial','nonprofit','new'];
     const CATEGORIES = ['display','audio','camera','control','cable','rack','accessory','labor','custom'];
-    function inferBomCategory(text) {
-      const value = String(text || '').toLowerCase();
-      if (/(labor|install|program|engineer|commission|training|service|subcontract|pm\b|project management)/.test(value)) return 'labor';
-      if (/(display|tv|monitor|projector|screen|lcd|led|video wall)/.test(value)) return 'display';
-      if (/(mic|microphone|speaker|amp|amplifier|dsp|q-sys|qsys|biamp|tesira|shure|sennheiser|audio)/.test(value)) return 'audio';
-      if (/(camera|ptz|webcam|capture|ndi)/.test(value)) return 'camera';
-      if (/(control|touchpanel|touch panel|processor|crestron|extron|amx|button panel)/.test(value)) return 'control';
-      if (/(cable|wire|hdmi|cat6|plate|connector|termination|bulk|conduit|network|switch|poe|avoip|encoder|decoder)/.test(value)) return 'cable';
-      if (/(rack|pdu|ups|power|shelf|blank panel)/.test(value)) return 'rack';
-      return 'accessory';
+    const SYSTEM_FLAGS = [
+      ['videoConference', 'Video Conference'], ['streamingLivestream', 'Streaming/Livestream'], ['digitalSignage', 'Digital Signage'],
+      ['accessControl', 'Access Control'], ['security', 'Security'], ['lighting', 'Lighting'], ['audioDistribution', 'Audio Distribution'], ['rescueJob', 'Rescue Job']
+    ];
+    const DEFAULT_PRODUCTS = [
+      { model: "C65M-E1", manufacturer: "Vizio (OFE)", category: "display", dealerCost: 480, msrp: 849, markupPct: 35 },
+      { model: "BE98A", manufacturer: "Samsung", category: "display", dealerCost: 2400, msrp: 3999, markupPct: 30 },
+      { model: "EW6501-U", manufacturer: "LG", category: "display", dealerCost: 3200, msrp: 5499, markupPct: 28 },
+      { model: "MXA310", manufacturer: "Shure", category: "audio", dealerCost: 580, msrp: 895, markupPct: 32 },
+      { model: "MXA920", manufacturer: "Shure", category: "audio", dealerCost: 2100, msrp: 3200, markupPct: 30 },
+      { model: "MXN5", manufacturer: "Shure", category: "audio", dealerCost: 280, msrp: 449, markupPct: 30 },
+      { model: "P300", manufacturer: "Biamp", category: "audio", dealerCost: 850, msrp: 1299, markupPct: 28 },
+      { model: "Tesira SERVER-IO", manufacturer: "Biamp", category: "audio", dealerCost: 2800, msrp: 4200, markupPct: 28 },
+      { model: "QSC Core 110f", manufacturer: "QSC", category: "audio", dealerCost: 2200, msrp: 3399, markupPct: 28 },
+      { model: "AD-C4T", manufacturer: "QSC", category: "audio", dealerCost: 120, msrp: 189, markupPct: 30 },
+      { model: "PTZ Optics 12x-SDI", manufacturer: "PTZOptics", category: "camera", dealerCost: 890, msrp: 1299, markupPct: 30 },
+      { model: "EagleEye IV USB", manufacturer: "Poly", category: "camera", dealerCost: 340, msrp: 549, markupPct: 30 },
+      { model: "Studio P15", manufacturer: "AVer", category: "camera", dealerCost: 1100, msrp: 1699, markupPct: 28 },
+      { model: "DMC-4K-CO", manufacturer: "Crestron", category: "control", dealerCost: 380, msrp: 599, markupPct: 35 },
+      { model: "TSW-770", manufacturer: "Crestron", category: "control", dealerCost: 980, msrp: 1499, markupPct: 32 },
+      { model: "NX-1200", manufacturer: "AMX", category: "control", dealerCost: 890, msrp: 1350, markupPct: 32 },
+      { model: "MPC3-302", manufacturer: "Crestron", category: "control", dealerCost: 420, msrp: 649, markupPct: 32 },
+      { model: "HDMI 2.0 15ft", manufacturer: "Generic", category: "cable", dealerCost: 12, msrp: 25, markupPct: 50 },
+      { model: "Cat6 500ft spool", manufacturer: "Monoprice", category: "cable", dealerCost: 65, msrp: 120, markupPct: 45 },
+      { model: "Rack 14U wallmount", manufacturer: "Navepoint", category: "rack", dealerCost: 180, msrp: 299, markupPct: 40 },
+      { model: "Surge PDU 8-outlet", manufacturer: "Tripp-Lite", category: "rack", dealerCost: 85, msrp: 149, markupPct: 38 },
+      { model: "Installation Labor", manufacturer: "Internal", category: "labor", dealerCost: 95, msrp: 95, markupPct: 0, unit: "hr" },
+      { model: "Programming Labor", manufacturer: "Internal", category: "labor", dealerCost: 125, msrp: 125, markupPct: 0, unit: "hr" },
+      { model: "Project Management", manufacturer: "Internal", category: "labor", dealerCost: 110, msrp: 110, markupPct: 0, unit: "hr" }
+    ];
+    const BASELINE_WON = [
+      { id: "b1", projectType: "conference",  sell: 18400, cost: 11224, margin: 0.39, laborPct: 0.28, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b2", projectType: "conference",  sell: 31200, cost: 19032, margin: 0.39, laborPct: 0.28, rooms: 2, date: "2024-01-01", source: "baseline" },
+      { id: "b3", projectType: "courtroom",   sell: 48200, cost: 31812, margin: 0.34, laborPct: 0.32, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b4", projectType: "auditorium",  sell: 72400, cost: 47784, margin: 0.34, laborPct: 0.35, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b5", projectType: "worship",     sell: 38600, cost: 24704, margin: 0.36, laborPct: 0.30, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b6", projectType: "service",     sell: 2850,  cost: 1624,  margin: 0.43, laborPct: 0.20, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b7", projectType: "refresh",     sell: 14900, cost: 9388,  margin: 0.37, laborPct: 0.22, rooms: 1, date: "2024-01-01", source: "baseline" }
+    ];
+    const PRICING_PROFILES = {
+      conference:  { baseCost: 8500,  roomAdd: 3200, margin: 0.37, laborPct: 0.28, programmingPct: 0.08, contingency: 0.05 },
+      classroom:   { baseCost: 6200,  roomAdd: 2400, margin: 0.35, laborPct: 0.25, programmingPct: 0.06, contingency: 0.05 },
+      auditorium:  { baseCost: 32000, roomAdd: 8000, margin: 0.34, laborPct: 0.35, programmingPct: 0.10, contingency: 0.07 },
+      courtroom:   { baseCost: 22000, roomAdd: 5500, margin: 0.34, laborPct: 0.32, programmingPct: 0.09, contingency: 0.06 },
+      worship:     { baseCost: 18000, roomAdd: 4500, margin: 0.36, laborPct: 0.30, programmingPct: 0.09, contingency: 0.06 },
+      service:     { baseCost: 1200,  roomAdd: 400,  margin: 0.43, laborPct: 0.20, programmingPct: 0.03, contingency: 0.03 },
+      refresh:     { baseCost: 6500,  roomAdd: 1800, margin: 0.37, laborPct: 0.22, programmingPct: 0.05, contingency: 0.04 },
+      hospitality: { baseCost: 9500,  roomAdd: 2800, margin: 0.38, laborPct: 0.26, programmingPct: 0.07, contingency: 0.05 },
+      retail:      { baseCost: 7200,  roomAdd: 2000, margin: 0.36, laborPct: 0.24, programmingPct: 0.06, contingency: 0.05 }
+    };
+    const state = { currentTab: 'dashboard', selectedProjectId: null, selectedClientId: null, currentEstimate: null, unsavedBom: { projectId: null, items: [], updatedAt: now() }, importType: 'jetbuilt-proposal', importRows: [], importHeaders: [], importMapping: {}, modalProjectId: null };
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+    const fmt = n => (Number(n) || 0).toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    const pct = n => `${Math.round((Number(n) || 0) * 100)}%`;
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+    function uid() { return 'id_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-5); }
+    function now() { return new Date().toISOString(); }
+
+    const Bus = {
+      events: {},
+      on(name, fn) { (this.events[name] ||= []).push(fn); },
+      emit(name, payload) { (this.events[name] || []).forEach(fn => fn(payload)); }
+    };
+    const DB = {
+      get(key, fallback = null) {
+        const raw = localStorage.getItem(key);
+        if (raw == null) return fallback;
+        try { return JSON.parse(raw); } catch { return raw; }
+      },
+      set(key, value) { localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); return value; },
+      getAll(key) { return this.get(key, []); },
+      append(key, value) { const arr = this.getAll(key); arr.push(value); this.set(key, arr); return value; },
+      update(key, id, patch) { const arr = this.getAll(key); const i = arr.findIndex(x => x.id === id); if (i >= 0) { arr[i] = { ...arr[i], ...patch }; this.set(key, arr); return arr[i]; } return null; },
+      remove(key, id) { const arr = this.getAll(key).filter(x => x.id !== id); this.set(key, arr); },
+      export() { const data = {}; LS_KEYS.forEach(k => { if (!k.startsWith('av_auth')) data[k] = this.get(k); }); return JSON.stringify(data, null, 2); },
+      import(json) { const data = typeof json === 'string' ? JSON.parse(json) : json; Object.entries(data).forEach(([k, v]) => { if (LS_KEYS.includes(k) || k === 'av_model_overrides') this.set(k, v); }); Bus.emit('db:changed', { type: 'import' }); }
+    };
+
+    async function hashPassword(pw, salt) {
+      const enc = new TextEncoder();
+      const keyMat = await crypto.subtle.importKey("raw", enc.encode(pw), "PBKDF2", false, ["deriveBits"]);
+      const bits = await crypto.subtle.deriveBits(
+        { name: "PBKDF2", salt: enc.encode(salt), iterations: 100000, hash: "SHA-256" },
+        keyMat, 256
+      );
+      return btoa(String.fromCharCode(...new Uint8Array(bits)));
     }
-    function inferLaborRole(text) {
-      const value = String(text || '').toLowerCase();
-      if (/subcontract/.test(value)) return 'subcontract';
-      if (/program|control code|q-sys|qsys|lua/.test(value)) return 'programming';
-      if (/engineer|design|drawing|documentation|cad/.test(value)) return 'engineering';
-      if (/pm\b|project management|coordination/.test(value)) return 'pm';
-      if (/commission|test|tune|qa|quality|calibration/.test(value)) return 'commissioning';
-      if (/training|handoff|owner/.test(value)) return 'training';
-      if (/service|diagnostic|troubleshoot|repair/.test(value)) return 'service';
-      return 'install';
+    function makeSalt() {
+      const bytes = new Uint8Array(16);
+      crypto.getRandomValues(bytes);
+      return btoa(String.fromCharCode(...bytes));
     }
-    function categoryUnitCost(category) {
-      const products = getProducts().filter(p => p.category === category && Number(p.dealerCost) > 0);
-      if (!products.length) return { display: 1200, audio: 450, camera: 950, control: 1200, cable: 80, rack: 650, accessory: 250, custom: 350 }[category] || 300;
-      const costs = products.map(p => Number(p.dealerCost)).sort((a,b) => a - b);
-      return costs[Math.floor(costs.length / 2)];
-    }
-    function formulaEquipmentQuantities(project) {
-      return {
-        display: Number(project.displays) || 0,
-        audio: Math.max(0, (Number(project.mics) || 0) + (Number(project.speakers) || 0) + (project.dsp ? 1 : 0)),
-        camera: Number(project.cameras) || 0,
-        control: project.dsp || project.systems?.videoConference || project.systems?.lighting ? 1 : 0,
-        cable: Math.max(1, Math.ceil((Number(project.displays) || 0) * 2 + (Number(project.mics) || 0) + (Number(project.cameras) || 0) + (Number(project.rooms) || 1) * 3)),
-        rack: Math.max(1, Math.ceil((Number(project.rooms) || 1) / 3)),
-        accessory: Math.max(1, Number(project.rooms) || 1)
-      };
-    }
-    function buildEquipmentSchedule(project, bom, breakdown, optionScale = 1) {
-      const bomItems = (bom?.items || []).filter(i => i.category !== 'labor');
-      if (bomItems.length) {
-        return bomItems.map(i => {
-          const lineSell = lineTotal(i) * optionScale;
-          return { name: i.customName || productName(i.productId) || 'BOM item', category: i.category || 'custom', qty: Number(i.qty) || 1, unitSell: lineSell / (Number(i.qty) || 1), sell: lineSell, source: 'BOM' };
-        });
+    function hasPassword() { return !!localStorage.getItem('av_auth_hash') && !!localStorage.getItem('av_auth_salt'); }
+    function isAuthed() { return sessionStorage.getItem('av_session') === 'ok'; }
+    async function unlock() {
+      $('#auth-error').textContent = '';
+      const pw = $('#password-input').value;
+      if (!pw) return $('#auth-error').textContent = 'Password required.';
+      if (!hasPassword()) {
+        if (pw.length < 6) return $('#auth-error').textContent = 'Use at least 6 characters.';
+        if (pw !== $('#password-confirm').value) return $('#auth-error').textContent = 'Passwords do not match.';
+        const salt = makeSalt();
+        localStorage.setItem('av_auth_salt', salt);
+        localStorage.setItem('av_auth_hash', await hashPassword(pw, salt));
+      } else {
+        const salt = localStorage.getItem('av_auth_salt');
+        if (await hashPassword(pw, salt) !== localStorage.getItem('av_auth_hash')) return $('#auth-error').textContent = 'Wrong password.';
       }
-      const qtys = formulaEquipmentQuantities(project);
-      const raw = Object.entries(qtys).filter(([, qty]) => qty > 0).map(([category, qty]) => ({ name: label(category), category, qty, unitCost: categoryUnitCost(category), direct: qty * categoryUnitCost(category) }));
-      const rawTotal = raw.reduce((s, i) => s + i.direct, 0) || 1;
-      const scale = (breakdown.directEquipment * optionScale) / rawTotal;
-      return raw.map(i => {
-        const direct = i.direct * scale;
-        const sell = direct / (1 - breakdown.margin);
-        return { name: i.name, category: i.category, qty: i.qty, unitSell: sell / i.qty, sell, source: 'formula' };
-      });
+      sessionStorage.setItem('av_session', 'ok');
+      localStorage.setItem('av_session', now());
+      showApp();
     }
-    function laborBasis(project) {
-      const rooms = Number(project.rooms) || 1;
-      const complexity = 0.8 + ((Number(project.complexity) || 5) * 0.08);
-      return {
-        install: ((rooms * 7) + (Number(project.displays) || 0) * 2 + (Number(project.mics) || 0) * 0.8 + (Number(project.speakers) || 0) * 0.6 + (Number(project.cameras) || 0) * 1.6 + (project.dsp ? 3 : 0)) * complexity,
-        programming: ((project.dsp ? 5 : 0) + (project.systems?.videoConference ? 4 : 0) + (project.systems?.streamingLivestream ? 3 : 0) + (project.systems?.lighting ? 4 : 0)) * complexity,
-        engineering: (rooms * 2) + ((Number(project.complexity) || 5) * 0.7),
-        pm: rooms * 2,
-        commissioning: (rooms * 2.5) + (project.dsp ? 1.5 : 0),
-        training: rooms * 1.2,
-        service: project.systems?.rescueJob || project.projectType === 'service' ? 3 + ((Number(project.complexity) || 5) * 0.5) : 0,
-        subcontract: project.systems?.lighting || project.projectType === 'auditorium' ? rooms * 1.5 : 0
-      };
+    function lock() {
+      sessionStorage.removeItem('av_session');
+      $('#app').classList.add('hidden');
+      $('#lock-screen').classList.remove('hidden');
+      $('#password-input').value = '';
     }
-    function buildLaborSchedule(project, bom, breakdown, optionScale = 1) {
-      const bomLabor = (bom?.items || []).filter(i => i.category === 'labor');
-      const lines = [];
-      bomLabor.forEach(i => lines.push({ role: inferLaborRole(i.customName || productName(i.productId)), label: i.customName || productName(i.productId) || 'Labor', hours: Number(i.qty) || 1, rate: Number(i.unitCost) || LABOR_RATES.install, amount: lineTotal(i) * optionScale, source: 'BOM' }));
-      const targets = { install: breakdown.labor, programming: breakdown.programming * 0.65, engineering: breakdown.programming * 0.35, pm: breakdown.pm, commissioning: breakdown.contingency * 0.45, training: breakdown.contingency * 0.2, service: project.systems?.rescueJob ? breakdown.contingency * 0.2 : 0, subcontract: project.systems?.lighting ? breakdown.contingency * 0.15 : 0 };
-      const hours = laborBasis(project);
-      Object.entries(targets).forEach(([role, amount]) => {
-        if (!amount) return;
-        const rate = LABOR_RATES[role] || 105;
-        lines.push({ role, label: LABOR_LABELS[role] || label(role), hours: Math.max(0.5, (hours[role] || amount / rate) * optionScale), rate, amount: amount * optionScale, source: 'model' });
-      });
-      return lines;
+    function setupAuthScreen() {
+      const firstRun = !hasPassword();
+      $('#password-confirm').classList.toggle('hidden', !firstRun);
+      $('#lock-copy').textContent = firstRun ? 'Create a local password for this browser.' : 'Enter your password to unlock.';
+      $('#unlock-btn').textContent = firstRun ? 'Create Password' : 'Unlock';
     }
+    function showApp() {
+      seedData();
+      $('#lock-screen').classList.add('hidden');
+      $('#app').classList.remove('hidden');
+      initStaticControls();
+      renderAll();
+    }
+
+    function seedData() {
+      if (!DB.get('av_clients')) DB.set('av_clients', []);
+      if (!DB.get('av_projects')) DB.set('av_projects', []);
+      if (!DB.get('av_boms')) DB.set('av_boms', {});
+      if (!DB.get('av_activity_log')) DB.set('av_activity_log', []);
+      if (!DB.get('av_import_log')) DB.set('av_import_log', []);
+      if (!DB.get('av_settings')) DB.set('av_settings', { companyName: 'Your Company', password: null, defaultMargin: 0.37, defaultLaborPct: 0.28, currency: 'USD', taxRate: 0, showCost: false, theme: 'light' });
+      if (!DB.get('av_signals')) DB.set('av_signals', { courtroom: { publicSector: 4 }, auditorium: { publicSector: 3 }, service: { repeat: 4 }, refresh: { repeat: 2 } });
+      migrateFromV1();
+      if (DB.getAll('av_products').length === 0) DEFAULT_PRODUCTS.forEach(p => DB.append('av_products', { id: uid(), unit: 'ea', notes: '', ...p, createdAt: now(), updatedAt: now() }));
+      const won = DB.getAll('av_won_records');
+      if (won.length === 0) BASELINE_WON.forEach(r => DB.append('av_won_records', r));
+      else {
+        const ids = new Set(won.map(r => r.id));
+        BASELINE_WON.filter(r => !ids.has(r.id)).forEach(r => DB.append('av_won_records', r));
+      }
+    }
+    function migrateAuthFromV1() {
+      const oldHash = localStorage.getItem('avAuthHash');
+      const oldSalt = localStorage.getItem('avAuthSalt');
+      if (oldHash && oldSalt && !localStorage.getItem('av_auth_hash')) {
+        localStorage.setItem('av_auth_hash', oldHash);
+        localStorage.setItem('av_auth_salt', oldSalt);
+      }
+    }
+    function migrateFromV1() {
+      migrateAuthFromV1();
+      if (localStorage.getItem('av_migrated_v2')) return;
+      const oldWon = localStorage.getItem('avWonRecords');
+      if (oldWon && DB.getAll('av_won_records').length === 0) {
+        try { JSON.parse(oldWon).forEach(r => DB.append('av_won_records', { id: uid(), source: 'imported', ...r })); } catch (e) { console.warn('[migration] avWonRecords failed', e); }
+      }
+      const oldState = localStorage.getItem('avBidState');
+      if (oldState) {
+        try {
+          const s = JSON.parse(oldState);
+          if (!DB.getAll('av_projects').some(p => p.name === 'Imported from v1')) createProject({
+            name: 'Imported from v1', projectType: s.projectType || 'conference', stage: 'estimating', rooms: Number(s.rooms) || 1,
+            displays: Number(s.displays) || 0, mics: Number(s.mics) || 0, speakers: Number(s.speakers) || 0, cameras: Number(s.cameras) || 0,
+            dsp: !!s.dsp, systems: s.systems || {}, complexity: Number(s.complexity) || 5, notes: 'Auto-imported from previous version'
+          }, false);
+        } catch (e) { console.warn('[migration] avBidState failed', e); }
+      }
+      localStorage.setItem('av_migrated_v2', now());
+    }
+    function logActivity(action, label, entityId = null) {
+      const log = DB.getAll('av_activity_log');
+      log.unshift({ id: uid(), ts: now(), action, label, entityId });
+      DB.set('av_activity_log', log.slice(0, 200));
+    }
+
+    function createClient(data) {
+      const name = (data.name || '').trim();
+      if (!name) throw new Error('Client name required');
+      const company = (data.company || '').trim();
+      const dupe = getClients().find(c => c.name.toLowerCase() === name.toLowerCase() && (c.company || '').toLowerCase() === company.toLowerCase());
+      if (dupe) throw new Error('Duplicate client name/company');
+      const client = { id: uid(), type: 'new', tags: [], ...data, name, company, createdAt: now(), updatedAt: now() };
+      DB.append('av_clients', client);
+      logActivity('client:created', `New client: ${client.name}`, client.id);
+      Bus.emit('db:changed', { type: 'clients' });
+      return client;
+    }
+    function getClients() { return DB.getAll('av_clients'); }
+    function getClient(id) { return getClients().find(c => c.id === id); }
+    function updateClient(id, patch) {
+      const client = DB.update('av_clients', id, { ...patch, updatedAt: now() });
+      logActivity('client:updated', `Updated client: ${patch.name || id}`, id);
+      Bus.emit('db:changed', { type: 'clients' });
+      return client;
+    }
+    function deleteClient(id) {
+      const c = getClient(id);
+      getProjects().filter(p => p.clientId === id).forEach(p => updateProject(p.id, { clientId: null }, false));
+      DB.remove('av_clients', id);
+      logActivity('client:deleted', `Deleted client: ${c?.name || id}`, id);
+      Bus.emit('db:changed', { type: 'clients' });
+    }
+    function createProduct(data) {
+      if (!data.model) throw new Error('Model required');
+      const product = { id: uid(), manufacturer: '', category: 'custom', dealerCost: 0, msrp: 0, markupPct: 30, unit: 'ea', notes: '', ...data, createdAt: now(), updatedAt: now() };
+      DB.append('av_products', product);
+      logActivity('product:created', `New product: ${product.model}`, product.id);
+      Bus.emit('db:changed', { type: 'products' });
+      return product;
+    }
+    function getProducts() { return DB.getAll('av_products'); }
+    function getProduct(id) { return getProducts().find(p => p.id === id); }
+    function updateProduct(id, patch) { const p = DB.update('av_products', id, { ...patch, updatedAt: now() }); logActivity('product:updated', `Updated product: ${patch.model || id}`, id); Bus.emit('db:changed', { type: 'products' }); return p; }
+    function deleteProduct(id) { const p = getProduct(id); DB.remove('av_products', id); logActivity('product:deleted', `Deleted product: ${p?.model || id}`, id); Bus.emit('db:changed', { type: 'products' }); }
+    function getProjects() { return DB.getAll('av_projects'); }
+    function getProject(id) { return getProjects().find(p => p.id === id); }
+    function blankProject() {
+      return { name: '', clientId: null, projectType: 'conference', stage: 'lead', rooms: 1, displays: 1, mics: 2, speakers: 4, cameras: 1, dsp: false, systems: {}, complexity: 5, budget: null, notes: '', estimateMode: 'formula', proposalSentDate: null, closeDate: null };
+    }
+    function createProject(data, announce = true) {
+      const p = { ...blankProject(), ...data };
+      p.id = uid();
+      p.createdAt = now();
+      p.updatedAt = now();
+      p.stageHistory = p.stageHistory || [{ stage: p.stage || 'lead', date: now(), note: 'Created' }];
+      DB.append('av_projects', p);
+      if (announce) logActivity('project:created', `New project: ${p.name || p.projectType}`, p.id);
+      Bus.emit('db:changed', { type: 'projects' });
+      return p;
+    }
+    function updateProject(id, patch, announce = true) {
+      const p = DB.update('av_projects', id, { ...patch, updatedAt: now() });
+      if (announce) logActivity('project:updated', `Updated project: ${patch.name || id}`, id);
+      Bus.emit('db:changed', { type: 'projects' });
+      return p;
+    }
+    function deleteProject(id) {
+      const p = getProject(id);
+      DB.remove('av_projects', id);
+      const boms = DB.get('av_boms', {});
+      delete boms[id];
+      DB.set('av_boms', boms);
+      logActivity('project:deleted', `Deleted project: ${p?.name || id}`, id);
+      Bus.emit('db:changed', { type: 'projects' });
+    }
+    function moveProjectStage(projectId, newStage) {
+      const p = getProject(projectId);
+      if (!p || p.stage === newStage) return;
+      const history = [...(p.stageHistory || []), { stage: newStage, date: now(), note: `Moved from ${p.stage}` }];
+      updateProject(projectId, { stage: newStage, stageHistory: history });
+      if (newStage === 'won') addWonRecordForProject(projectId);
+    }
+    function addWonRecordForProject(projectId) {
+      const p = getProject(projectId);
+      if (!p || DB.getAll('av_won_records').some(r => r.projectId === projectId)) return;
+      const boms = DB.get('av_boms', {});
+      const result = computeEstimate(p, boms[p.id], p.estimateMode || 'formula');
+      DB.append('av_won_records', { id: uid(), projectId: p.id, projectType: p.projectType, sell: result.better, cost: result.breakdown.fullSubtotal, margin: result.breakdown.margin, laborPct: result.breakdown.labor / Math.max(result.breakdown.directEquipment, 1), rooms: p.rooms, date: now().slice(0,10), source: 'manual', notes: p.name });
+      logActivity('won:created', `Won record added: ${p.name}`, p.id);
+    }
+
     function computeEstimate(project, bom, mode = 'formula') {
       project = { ...blankProject(), ...(project || {}) };
       const profile = getProfile(project.projectType);
@@ -481,12 +706,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const fullSubtotal = subtotal + pm + contingency;
       const betterSell = fullSubtotal / (1 - profile.margin);
       const breakdown = { directEquipment, labor, programming, pm, contingency, fullSubtotal, margin: profile.margin, mode, bomEquip, bomLabor, roomScale, featureCost, complexityFactor, publicSignalFactor, rescueFactor, observedFactor };
-      const schedules = {
-        good: { equipment: buildEquipmentSchedule(project, bom, breakdown, 0.84), labor: buildLaborSchedule(project, bom, breakdown, 0.84) },
-        better: { equipment: buildEquipmentSchedule(project, bom, breakdown, 1), labor: buildLaborSchedule(project, bom, breakdown, 1) },
-        best: { equipment: buildEquipmentSchedule(project, bom, breakdown, 1.28), labor: buildLaborSchedule(project, bom, breakdown, 1.28) }
-      };
-      return { good: Math.round(betterSell * 0.84), better: Math.round(betterSell), best: Math.round(betterSell * 1.28), breakdown, schedules };
+      return { good: Math.round(betterSell * 0.84), better: Math.round(betterSell), best: Math.round(betterSell * 1.28), breakdown };
     }
     function sumBomCategory(items, type) { return (items || []).filter(i => type === 'labor' ? i.category === 'labor' : i.category !== 'labor').reduce((s, i) => s + (Number(i.lineTotal) || lineTotal(i)), 0); }
     function computeSystemExtras(systems) { let extra = 0; if (systems.videoConference) extra += 3500; if (systems.streamingLivestream) extra += 2800; if (systems.digitalSignage) extra += 2200; if (systems.accessControl) extra += 1800; if (systems.security) extra += 1500; if (systems.lighting) extra += 4200; if (systems.audioDistribution) extra += 2600; return extra; }
@@ -710,15 +930,8 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       logActivity('bid:generated', `Estimate for ${project.name || project.projectType}: Better=${fmt(result.better)}`, project.id);
     }
     function renderEstimates(result) {
-      const items = [['Good', result.good, 'Lean scope', 'good'], ['Better', result.better, 'Recommended', 'better'], ['Best', result.best, 'Premium scope', 'best']];
-      $('#estimate-output').innerHTML = items.map(([name, val, note, key]) => {
-        const equipment = (result.schedules?.[key]?.equipment || []).slice(0, 6);
-        const labor = (result.schedules?.[key]?.labor || []).slice(0, 6);
-        return `<div class="estimate-card"><span class="muted">${name}</span><strong>${fmt(val)}</strong><small>${note}</small>
-          <div class="schedule-list"><b>Equipment list</b>${equipment.map(i => `<div class="schedule-row"><span>${esc(i.name)}</span><code>${i.qty} x ${fmt(i.unitSell)}</code><b>${fmt(i.sell)}</b></div>`).join('')}</div>
-          <div class="schedule-list"><b>Detailed labor</b>${labor.map(i => `<div class="schedule-row"><span>${esc(i.label)}</span><code>${i.hours.toFixed(1)} hrs @ ${fmt(i.rate)}/hr</code><b>${fmt(i.amount)}</b></div>`).join('')}</div>
-        </div>`;
-      }).join('');
+      const items = [['Good', result.good, 'Lean scope'], ['Better', result.better, 'Recommended'], ['Best', result.best, 'Premium scope']];
+      $('#estimate-output').innerHTML = items.map(([name, val, note]) => `<div class="estimate-card"><span class="muted">${name}</span><strong>${fmt(val)}</strong><small>${note}</small></div>`).join('');
       $('#estimate-breakdown').textContent = JSON.stringify(result.breakdown, null, 2);
     }
     function renderBidComparison(projectType, betterSell) {
@@ -850,16 +1063,12 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
     function importProductFile(file) {
       if (!file) return;
       file.text().then(text => {
-        const { rows } = parseImportText(text, file);
+        const { rows } = parseCsv(text);
         rows.forEach(r => {
-          const model = pick(r, ['model','name','product','full name']);
+          const model = pick(r, ['model','name']);
           if (!model) return;
           const existing = getProducts().find(p => p.model.toLowerCase() === model.toLowerCase());
-          const manufacturer = pick(r, ['manufacturer','brand','vendor','source']) || '';
-          const dealerCost = num(pick(r, ['dealerCost','dealer cost','unit cost','cost','amount']));
-          const msrp = num(pick(r, ['msrp','mapp','map','price','list price']));
-          const markupPct = num(pick(r, ['markupPct','markup%','markup'])) || (msrp && dealerCost ? Math.max(0, ((msrp - dealerCost) / dealerCost) * 100) : 30);
-          const data = { model, manufacturer, category: pick(r, ['category']) || inferBomCategory(`${manufacturer} ${model}`), dealerCost, msrp, markupPct, notes: pick(r, ['part number','part_number','lead time','notes']) || '' };
+          const data = { model, manufacturer: pick(r, ['manufacturer','brand']) || '', category: pick(r, ['category']) || 'custom', dealerCost: num(pick(r, ['dealerCost','unit cost','cost'])), msrp: num(pick(r, ['msrp','price'])), markupPct: num(pick(r, ['markupPct','markup%','markup'])) || 30 };
           if (existing) { if (confirm(`Update existing product ${model}?`)) updateProduct(existing.id, data); }
           else createProduct(data);
         });
@@ -958,76 +1167,29 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const rows = lines.map(vals => Object.fromEntries(headers.map((h, i) => [h, vals[i] ?? ''])));
       return { headers, rows };
     }
-    function flattenObject(value, prefix = '', out = {}) {
-      if (!value || typeof value !== 'object') return out;
-      Object.entries(value).forEach(([key, val]) => {
-        const name = prefix ? `${prefix}.${key}` : key;
-        if (Array.isArray(val)) return;
-        if (val && typeof val === 'object') flattenObject(val, name, out);
-        else out[name] = val ?? '';
-      });
-      return out;
-    }
-    function carryContext(row) {
-      const keep = {};
-      Object.entries(row || {}).forEach(([key, val]) => {
-        if (/^(id|name|project|client|customer|company|status|stage|date|created|updated)/i.test(key)) keep[key] = val;
-      });
-      return keep;
-    }
-    function flattenJsonRecords(value, context = {}) {
-      if (Array.isArray(value)) return value.flatMap(item => flattenJsonRecords(item, context));
-      if (!value || typeof value !== 'object') return [];
-      const row = { ...context, ...flattenObject(value) };
-      const rows = [row];
-      Object.entries(value).forEach(([key, val]) => {
-        if (Array.isArray(val)) rows.push(...flattenJsonRecords(val, { ...carryContext(row), parentCollection: key }));
-        else if (val && typeof val === 'object' && /^(data|result|results|project|client|customer|vendor|product)$/i.test(key)) rows.push(...flattenJsonRecords(val, { ...carryContext(row), parentObject: key }));
-      });
-      return rows.filter(r => Object.values(r).some(v => v !== '' && v !== null && v !== undefined));
-    }
-    function parseImportText(text, file = {}) {
-      const trimmed = text.trim();
-      const isJson = /\.json$/i.test(file.name || '') || /^[\[{]/.test(trimmed);
-      if (!isJson) return parseCsv(text);
-      const rows = flattenJsonRecords(JSON.parse(trimmed));
-      const headers = [...new Set(rows.flatMap(r => Object.keys(r)))];
-      return { headers, rows };
-    }
     function handleCsvFile(file) {
       if (!file) return;
       file.text().then(text => {
-        const parsed = parseImportText(text, file);
+        const parsed = parseCsv(text);
         state.importRows = parsed.rows;
         state.importHeaders = parsed.headers;
         state.importMapping = autoMap(parsed.headers);
         renderImportPreview();
-      }).catch(e => alert('Import failed: ' + e.message));
-    }
-    function handleImportFile(file) {
-      handleCsvFile(file);
+      });
     }
     function autoMap(headers) {
-      const targets = ['project.name','project.id','client.company','sell','status','date','project.projectType','rooms','model','manufacturer','partNumber','qty','unitCost','unitSell','extendedCost','extendedSell','markupPct','category','itemKind','vendor','purchasingStatus','email','phone','cost','margin','laborPct'];
+      const targets = ['project.name','client.company','sell','status','date','project.projectType','rooms','model','manufacturer','qty','unitCost','markupPct','email','phone','cost','margin','laborPct'];
       const map = {};
       headers.forEach(h => {
         const low = h.toLowerCase();
-        map[h] = targets.find(t => low.includes(t.split('.').pop().toLowerCase()))
-          || (low.includes('project') && low.includes('id') ? 'project.id' : '')
-          || (low.includes('part') ? 'partNumber' : '')
-          || (low.includes('quantity') ? 'qty' : '')
-          || (low.includes('order') && low.includes('status') ? 'purchasingStatus' : '')
-          || (low.includes('unit') && low.includes('cost') ? 'unitCost' : '')
-          || (low.includes('total') && low.includes('cost') ? 'extendedCost' : '')
-          || (low.includes('project') && low.includes('cost') ? 'extendedCost' : '')
-          || (low.includes('price') || low.includes('sell') || low.includes('grand') || low.includes('total') ? 'sell' : '');
+        map[h] = targets.find(t => low.includes(t.split('.').pop().toLowerCase())) || (low.includes('grand') || low.includes('total') ? 'sell' : '');
       });
       return map;
     }
     function renderImportPreview() {
       const rows = state.importRows.slice(0, 5);
       $('#import-preview').innerHTML = `<p><strong>${state.importRows.length}</strong> rows detected as ${label(state.importType)}.</p><div class="table-wrap"><table><thead><tr>${state.importHeaders.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${state.importHeaders.map(h => `<td>${esc(r[h])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-      $('#import-mapping').innerHTML = `<div class="table-wrap"><table><thead><tr><th>CSV Column</th><th>Maps to</th></tr></thead><tbody>${state.importHeaders.map(h => `<tr><td>${esc(h)}</td><td><select data-map-col="${esc(h)}">${['','project.name','project.id','client.company','sell','status','date','project.projectType','rooms','model','manufacturer','partNumber','qty','unitCost','unitSell','extendedCost','extendedSell','markupPct','category','itemKind','vendor','purchasingStatus','email','phone','cost','margin','laborPct'].map(t => `<option value="${t}" ${state.importMapping[h]===t?'selected':''}>${t || 'Skip'}</option>`).join('')}</select></td></tr>`).join('')}</tbody></table></div>`;
+      $('#import-mapping').innerHTML = `<div class="table-wrap"><table><thead><tr><th>CSV Column</th><th>Maps to</th></tr></thead><tbody>${state.importHeaders.map(h => `<tr><td>${esc(h)}</td><td><select data-map-col="${esc(h)}">${['','project.name','client.company','sell','status','date','project.projectType','rooms','model','manufacturer','qty','unitCost','markupPct','email','phone','cost','margin','laborPct'].map(t => `<option value="${t}" ${state.importMapping[h]===t?'selected':''}>${t || 'Skip'}</option>`).join('')}</select></td></tr>`).join('')}</tbody></table></div>`;
       $('#import-mapping').onchange = e => { if (e.target.dataset.mapCol) state.importMapping[e.target.dataset.mapCol] = e.target.value; };
       $('#import-confirm-btn').disabled = false;
       $('#import-confirm-btn').textContent = `Import ${state.importRows.length} Rows`;
@@ -1076,16 +1238,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       if (!p) p = createProject({ name: projectName, projectType: 'conference', stage: 'estimating' });
       const boms = DB.get('av_boms', {});
       const bom = boms[p.id] || { projectId: p.id, items: [] };
-      const model = mapped(r,'model') || pick(r, ['product','name','model','full name','description']) || 'Imported line';
-      const manufacturer = mapped(r,'manufacturer') || mapped(r,'vendor') || pick(r, ['manufacturer','vendor','source','purchase source']);
-      const qty = num(mapped(r,'qty') || pick(r, ['qty','quantity','project quantity','order quantity'])) || 1;
-      const extendedCost = num(mapped(r,'extendedCost') || pick(r, ['project cost','extended cost','total cost','total order cost']));
-      const unitCost = num(mapped(r,'unitCost') || pick(r, ['unit cost','dealer cost','cost'])) || (extendedCost ? extendedCost / qty : 0);
-      const unitSell = num(mapped(r,'unitSell') || pick(r, ['unit sell','unit price','price']));
-      const extendedSell = num(mapped(r,'extendedSell') || mapped(r,'sell') || pick(r, ['project price','extended price','sell','total','grand total']));
-      const markupPct = num(mapped(r,'markupPct') || pick(r, ['markup%','markup'])) || (unitSell && unitCost ? Math.max(0, ((unitSell - unitCost) / unitCost) * 100) : (extendedSell && extendedCost ? Math.max(0, ((extendedSell - extendedCost) / extendedCost) * 100) : 30));
-      const category = mapped(r,'category') || inferBomCategory(`${manufacturer} ${model} ${mapped(r,'itemKind') || pick(r, ['kind','item kind','type'])}`);
-      bom.items.push({ id: uid(), customName: [manufacturer, model].filter(Boolean).join(' ') || model, qty, unitCost, markupPct, category, notes: mapped(r,'purchasingStatus') || pick(r, ['order status','status','notes']) || '' });
+      bom.items.push({ id: uid(), customName: mapped(r,'model') || pick(r, ['product','name','model']) || 'Imported line', qty: num(mapped(r,'qty') || pick(r, ['qty','quantity'])) || 1, unitCost: num(mapped(r,'unitCost') || pick(r, ['unit cost','cost'])), markupPct: num(mapped(r,'markupPct') || pick(r, ['markup%','markup'])) || 30, category: 'custom' });
       boms[p.id] = normalizeBom(bom);
       DB.set('av_boms', boms);
     }
@@ -1110,14 +1263,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       $('#settings-form').innerHTML = `<label>Company Name<input id="set-company" aria-label="Company name setting" value="${esc(settings.companyName || '')}"></label><label>Default Margin<input id="set-margin" aria-label="Default margin setting" type="number" step="0.01" value="${settings.defaultMargin || 0.37}"></label><label>Tax Rate<input id="set-tax" aria-label="Tax rate setting" type="number" step="0.01" value="${settings.taxRate || 0}"></label><label><span>Show Cost</span><select id="set-show-cost"><option value="false">No</option><option value="true" ${settings.showCost?'selected':''}>Yes</option></select></label><button id="settings-save" class="primary">Save Settings</button>`;
       $('#settings-save').onclick = () => { DB.set('av_settings', { ...settings, companyName: $('#set-company').value, defaultMargin: Number($('#set-margin').value) || 0.37, taxRate: Number($('#set-tax').value) || 0, showCost: $('#set-show-cost').value === 'true' }); logActivity('settings:updated', 'Updated settings', null); Bus.emit('db:changed', { type: 'settings' }); };
     }
-    function pick(row, names) {
-      const clean = v => String(v || '').toLowerCase().trim().replace(/[\s_-]+/g, '.');
-      const key = Object.keys(row).find(k => names.some(n => {
-        const kk = clean(k), nn = clean(n);
-        return kk === nn || kk.endsWith(`.${nn}`);
-      }));
-      return key ? row[key] : '';
-    }
+    function pick(row, names) { const key = Object.keys(row).find(k => names.some(n => k.toLowerCase().trim() === n.toLowerCase())); return key ? row[key] : ''; }
     function num(v) { return Number(String(v ?? '').replace(/[$,%\s]/g, '').replace(/,/g, '')) || 0; }
     function safeType(v) { const t = String(v || '').toLowerCase().trim(); return PROJECT_TYPES.includes(t) ? t : 'conference'; }
     function parseDate(v) { if (!v) return null; const d = new Date(v); return isNaN(d) ? null : d.toISOString().slice(0,10); }
@@ -1137,9 +1283,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const data = state.currentEstimate || (() => { const p = getBidProjectFromForm(); return { project: p, bom: getCurrentBom(), result: computeEstimate(p, getCurrentBom(), p.estimateMode) }; })();
       const settings = DB.get('av_settings', {});
       const rows = [['Type', label(data.project.projectType)], ['Rooms', data.project.rooms], ['Displays', data.project.displays], ['Mics', data.project.mics], ['Speakers', data.project.speakers], ['Cameras', data.project.cameras], ['Complexity', data.project.complexity]];
-      const equip = data.result.schedules?.better?.equipment || [];
-      const labor = data.result.schedules?.better?.labor || [];
-      $('#print-root').innerHTML = `<div class="proposal-print"><div class="proposal-title">${esc(settings.companyName || 'Your Company')}</div><h2>Project Estimate - ${esc(data.project.name || 'Unnamed Project')}</h2><p>Date: ${new Date().toLocaleDateString()}</p><table>${rows.map(([k,v]) => `<tr><th>${k}</th><td>${esc(v)}</td></tr>`).join('')}</table><hr><h3>Good Option: ${fmt(data.result.good)}</h3><h3>Better Option: ${fmt(data.result.better)}</h3><h3>Best Option: ${fmt(data.result.best)}</h3><h3>Equipment List - Better</h3><table><tr><th>Item</th><th>Category</th><th>Qty</th><th>Unit</th><th>Total</th></tr>${equip.map(i => `<tr><td>${esc(i.name)}</td><td>${esc(i.category)}</td><td>${i.qty}</td><td>${fmt(i.unitSell)}</td><td>${fmt(i.sell)}</td></tr>`).join('')}</table><h3>Detailed Labor - Better</h3><table><tr><th>Role</th><th>Hours</th><th>Rate</th><th>Total</th></tr>${labor.map(i => `<tr><td>${esc(i.label)}</td><td>${i.hours.toFixed(1)}</td><td>${fmt(i.rate)}</td><td>${fmt(i.amount)}</td></tr>`).join('')}</table>${data.bom?.items?.length ? `<h3>Saved BOM</h3><table><tr><th>Item</th><th>Qty</th><th>Total</th></tr>${data.bom.items.map(i => `<tr><td>${esc(i.customName || productName(i.productId))}</td><td>${i.qty}</td><td>${fmt(i.lineTotal)}</td></tr>`).join('')}</table>` : ''}<p class="footer">This estimate is valid for 30 days.</p></div>`;
+      $('#print-root').innerHTML = `<div class="proposal-print"><div class="proposal-title">${esc(settings.companyName || 'Your Company')}</div><h2>Project Estimate - ${esc(data.project.name || 'Unnamed Project')}</h2><p>Date: ${new Date().toLocaleDateString()}</p><table>${rows.map(([k,v]) => `<tr><th>${k}</th><td>${esc(v)}</td></tr>`).join('')}</table><hr><h3>Good Option: ${fmt(data.result.good)}</h3><h3>Better Option: ${fmt(data.result.better)}</h3><h3>Best Option: ${fmt(data.result.best)}</h3>${data.bom?.items?.length ? `<h3>BOM</h3><table><tr><th>Item</th><th>Qty</th><th>Total</th></tr>${data.bom.items.map(i => `<tr><td>${esc(i.customName || productName(i.productId))}</td><td>${i.qty}</td><td>${fmt(i.lineTotal)}</td></tr>`).join('')}</table>` : ''}<p class="footer">This estimate is valid for 30 days.</p></div>`;
       setTimeout(() => window.print(), 50);
     }
     window.AVBidGenerator = { DB, computeEstimate, createClient, updateClient, deleteClient, createProduct, updateProduct, deleteProduct, createProject, updateProject, deleteProject, PRICING_PROFILES, DEFAULT_PRODUCTS, BASELINE_WON, LS_KEYS };
@@ -1148,6 +1292,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
     $('#password-input').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
     $('#password-confirm').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
     $('#lock-btn').addEventListener('click', lock);
+    migrateAuthFromV1();
     setupAuthScreen();
     if (isAuthed()) showApp();
   </script>
