@@ -5,6 +5,7 @@ User-agent: *
 Allow: /
 Disallow: /logo-compare.html
 Disallow: /BUILD-NOTES.md
+Disallow: /AV/
 
 # Sitemap
 Sitemap: https://simonlpaige.com/sitemap.xml

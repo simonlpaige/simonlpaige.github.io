@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Sales Strategies and Bid Generator</title>
+  <meta name="description" content="Private AV sales strategy and bid generator.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="lock-screen" id="lockScreen">
+    <form class="lock-panel" id="unlockForm" autocomplete="off">
+      <p class="eyebrow">Private Tool</p>
+      <h1>Sales Strategies and Bid Generator</h1>
+      <p class="lock-copy">Unlock the local AV bid workspace. Imported report data stays in this browser unless you export it.</p>
+      <label for="passwordInput">Password</label>
+      <div class="unlock-row">
+        <input id="passwordInput" type="password" autocomplete="current-password" autofocus>
+        <button type="submit">Unlock</button>
+      </div>
+      <p class="lock-error" id="lockError" role="alert"></p>
+    </form>
+  </div>
+
+  <main class="workspace" id="workspace" hidden>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">AV Revenue Tool</p>
+        <h1>Sales Strategies and Bid Generator</h1>
+      </div>
+      <div class="header-actions">
+        <button class="ghost" id="copyBidBtn" type="button">Copy Bid</button>
+        <button class="ghost" id="downloadBtn" type="button">Download Plan</button>
+        <button class="danger" id="lockBtn" type="button">Lock</button>
+      </div>
+    </header>
+
+    <section class="status-band" aria-label="Data and estimate status">
+      <div>
+        <span class="status-label">Data source</span>
+        <strong id="dataStatus">Baseline only</strong>
+      </div>
+      <div>
+        <span class="status-label">Confidence</span>
+        <strong id="confidenceStatus">Medium</strong>
+      </div>
+      <div>
+        <span class="status-label">Target margin</span>
+        <strong id="marginStatus">36%</strong>
+      </div>
+      <div>
+        <span class="status-label">Recommended path</span>
+        <strong id="pathStatus">Better</strong>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Workspace views">
+      <button class="tab active" type="button" data-tab="builder">Bid Builder</button>
+      <button class="tab" type="button" data-tab="strategy">Sales Strategy</button>
+      <button class="tab" type="button" data-tab="reports">Report Import</button>
+      <button class="tab" type="button" data-tab="model">Model Rules</button>
+    </nav>
+
+    <section class="tab-panel active" id="builder">
+      <div class="grid three">
+        <form class="panel" id="bidForm">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Scope Intake</p>
+              <h2>Project Signals</h2>
+            </div>
+            <button type="button" class="mini" id="resetBtn">Reset</button>
+          </div>
+
+          <label>Project name
+            <input name="projectName" value="New AV Opportunity">
+          </label>
+
+          <label>Project type
+            <select name="projectType">
+              <option value="conference">Conference room</option>
+              <option value="courtroom">Courtroom or public meeting</option>
+              <option value="auditorium">Auditorium or performance space</option>
+              <option value="worship">House of worship</option>
+              <option value="education">Classroom or training room</option>
+              <option value="restaurant">Restaurant, bar, or venue</option>
+              <option value="residential">Residential media room</option>
+              <option value="service">Service or repair</option>
+              <option value="refresh">DSP/control refresh</option>
+            </select>
+          </label>
+
+          <div class="split">
+            <label>Customer type
+              <select name="customerType">
+                <option value="repeat">Repeat client</option>
+                <option value="public">Public sector</option>
+                <option value="commercial">Commercial</option>
+                <option value="nonprofit">Nonprofit</option>
+                <option value="new">New prospect</option>
+              </select>
+            </label>
+            <label>Decision stage
+              <select name="decisionStage">
+                <option value="ready">Ready to buy</option>
+                <option value="budgeting">Budgeting</option>
+                <option value="exploring">Exploring</option>
+                <option value="rescue">Problem rescue</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="number-grid">
+            <label>Rooms<input name="rooms" type="number" min="1" max="60" value="1"></label>
+            <label>Displays<input name="displays" type="number" min="0" max="60" value="2"></label>
+            <label>Mics<input name="mics" type="number" min="0" max="200" value="4"></label>
+            <label>Speakers<input name="speakers" type="number" min="0" max="300" value="8"></label>
+            <label>Cameras<input name="cameras" type="number" min="0" max="40" value="1"></label>
+            <label>DSP<input name="dsp" type="number" min="0" max="12" value="1"></label>
+          </div>
+
+          <fieldset>
+            <legend>Systems</legend>
+            <label class="check"><input type="checkbox" name="control" checked> Control UI or processor</label>
+            <label class="check"><input type="checkbox" name="networking" checked> Network or AVoIP setup</label>
+            <label class="check"><input type="checkbox" name="lighting"> Lighting integration</label>
+            <label class="check"><input type="checkbox" name="streaming"> Streaming or recording</label>
+            <label class="check"><input type="checkbox" name="training" checked> Training and handoff</label>
+          </fieldset>
+
+          <label>Complexity
+            <input name="complexity" type="range" min="1" max="5" value="3">
+          </label>
+
+          <label>Known budget
+            <input name="budget" placeholder="$ optional">
+          </label>
+
+          <label>Notes
+            <textarea name="notes" rows="6">Teams-capable room, owner wants a clean handoff, include commissioning and a realistic follow-up strategy.</textarea>
+          </label>
+        </form>
+
+        <section class="panel estimate-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Bid Output</p>
+              <h2>Good, Better, Best</h2>
+            </div>
+          </div>
+          <div class="estimate-stack" id="estimateCards"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Decision Support</p>
+              <h2>Assumptions</h2>
+            </div>
+          </div>
+          <div class="assumption-list" id="assumptions"></div>
+          <div class="metric-table" id="metricTable"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="strategy">
+      <div class="grid two">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Sales Motion</p>
+              <h2>Strategies</h2>
+            </div>
+          </div>
+          <div class="strategy-grid" id="strategyGrid"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Copy Blocks</p>
+              <h2>Follow-Up Draft</h2>
+            </div>
+          </div>
+          <textarea id="followupText" class="output-text" rows="22"></textarea>
+        </section>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="reports">
+      <div class="grid two">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Jetbuilt Reports</p>
+              <h2>Import CSV</h2>
+            </div>
+          </div>
+          <div class="drop-zone" id="dropZone">
+            <input id="fileInput" type="file" accept=".csv,text/csv" multiple>
+            <p>Drop CSV exports here or choose files.</p>
+            <span>Client detail, project list, proposal, line item, purchasing, or sales reports all help.</span>
+          </div>
+          <div class="import-actions">
+            <button type="button" id="useSampleBtn">Load AV Baseline Sample</button>
+            <button type="button" id="clearDataBtn" class="danger">Clear Imported Data</button>
+          </div>
+          <p class="fine-print">The app reads CSVs in your browser. It does not upload report files. Store private exports outside the public repo.</p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Model Feed</p>
+              <h2>Imported Signals</h2>
+            </div>
+          </div>
+          <div id="importSummary" class="import-summary"></div>
+          <div class="preview-table" id="previewTable"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="model">
+      <div class="grid two">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Pricing Logic</p>
+              <h2>Current Model</h2>
+            </div>
+          </div>
+          <div id="modelSummary" class="model-summary"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Report Checklist</p>
+              <h2>Best Exports</h2>
+            </div>
+          </div>
+          <ul class="checklist">
+            <li>Won or accepted proposal report with sell price, cost, margin, client, and date.</li>
+            <li>Client detail report so repeat-client behavior and account size can be weighted.</li>
+            <li>Line item or category report so display, audio, labor, control, network, and lighting patterns can be learned.</li>
+            <li>Project status report so stale, lost, and service-only opportunities do not pollute the winning-bid baseline.</li>
+            <li>Purchasing or cost report when available, especially for margin and vendor-risk calibration.</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
