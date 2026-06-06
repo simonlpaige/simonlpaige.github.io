@@ -28,6 +28,57 @@ const sampleRecords = [
   { projectType: "refresh", status: "won", sell: 14900, cost: 9400, margin: 0.369, laborPct: 0.38, category: "control dsp refresh" }
 ];
 
+const observedOpportunitySignals = [
+  {
+    projectType: "courtroom",
+    count: 4,
+    customerType: "public",
+    pattern: "public-sector courtroom and council-style work",
+    plays: [
+      "Lead with uptime, courtroom continuity, and reduced finger-pointing between AV, IT, and facilities.",
+      "Use alternates for recording, overflow, confidence monitoring, and microphone redundancy instead of burying them in one number.",
+      "Spell out procurement assumptions: badging, insurance, after-hours access, prevailing wage, and approval path."
+    ],
+    risks: ["schedule access", "public purchasing rules", "mission-critical audio intelligibility"]
+  },
+  {
+    projectType: "auditorium",
+    count: 3,
+    customerType: "public",
+    pattern: "school/auditorium repair and performance-space opportunities",
+    plays: [
+      "Tie the value story to event-readiness, calendar protection, and a clean operator handoff for nontechnical staff.",
+      "Separate lighting, projection, audio, and control recovery so the customer can approve a responsible phase now.",
+      "Ask about blackout dates, lift access, stage use, and who owns day-of-show support."
+    ],
+    risks: ["school calendar", "lift/ceiling access", "lighting-control ownership"]
+  },
+  {
+    projectType: "service",
+    count: 4,
+    customerType: "repeat",
+    pattern: "service, repair, and rescue calls",
+    plays: [
+      "Sell diagnosis first, then give a minimum-restore option and an improvement option.",
+      "Use a not-to-exceed service allowance when the fault chain is uncertain.",
+      "Convert the fix into a refresh conversation only after the immediate pain is handled."
+    ],
+    risks: ["unknown existing conditions", "parts availability", "scope creep after diagnosis"]
+  },
+  {
+    projectType: "refresh",
+    count: 2,
+    customerType: "repeat",
+    pattern: "DSP, touchpanel, control, and programming refresh work",
+    plays: [
+      "Frame the scope around reliability, supportability, and documentation, not just replacing a box.",
+      "Budget for file recovery, code review, commissioning, and a rollback plan.",
+      "Show a clear boundary between owner-requested changes and bug-fix support."
+    ],
+    risks: ["source-code access", "firmware compatibility", "commissioning time"]
+  }
+];
+
 const state = {
   importedRecords: [],
   lastResult: null,
@@ -240,6 +291,14 @@ function sourceRecords() {
   return state.importedRecords.length ? state.importedRecords : sampleRecords;
 }
 
+function matchingSignals(projectType) {
+  return observedOpportunitySignals.filter((signal) => signal.projectType === projectType);
+}
+
+function signalCount(projectType) {
+  return matchingSignals(projectType).reduce((sum, signal) => sum + signal.count, 0);
+}
+
 function successfulRecords() {
   return sourceRecords().filter((record) => {
     if (record.lostLike) return false;
@@ -253,6 +312,8 @@ function buildModel(projectType) {
   const success = successfulRecords();
   const typeMatches = success.filter((record) => record.projectType === projectType);
   const usable = typeMatches.length >= 3 ? typeMatches : success;
+  const observedSignals = matchingSignals(projectType);
+  const observedCount = signalCount(projectType);
   const importedWeight = state.importedRecords.length ? clamp(usable.length / 16, 0.2, 0.85) : 0;
   const learnedMargin = median(usable.map((record) => record.margin));
   const learnedLabor = median(usable.map((record) => record.laborPct));
@@ -261,11 +322,14 @@ function buildModel(projectType) {
     ...base,
     learnedCount: usable.length,
     typeCount: typeMatches.length,
+    observedSignals,
+    observedCount,
     margin: Number.isFinite(learnedMargin) ? (base.margin * (1 - importedWeight)) + (learnedMargin * importedWeight) : base.margin,
     laborPct: Number.isFinite(learnedLabor) ? (base.laborPct * (1 - importedWeight)) + (learnedLabor * importedWeight) : base.laborPct,
     medianSell: Number.isFinite(learnedSell) ? learnedSell : null,
     confidence: state.importedRecords.length >= 25 && typeMatches.length >= 5 ? "High" : state.importedRecords.length >= 6 ? "Medium" : "Baseline"
   };
+  if (!state.importedRecords.length && observedCount >= 3) model.confidence = "Observed baseline";
   model.margin = clamp(model.margin, 0.24, 0.48);
   model.laborPct = clamp(model.laborPct, 0.16, 0.58);
   return model;
@@ -300,6 +364,9 @@ function formValues() {
 function estimateProject(input, model) {
   const roomScale = 1 + ((input.rooms - 1) * 0.72);
   const complexityFactor = 0.86 + (input.complexity * 0.08);
+  const publicSignalFactor = input.customerType === "public" ? 1.06 : 1;
+  const rescueFactor = input.decisionStage === "rescue" ? 1.08 : 1;
+  const observedFactor = !state.importedRecords.length && model.observedCount >= 3 ? 1.03 : 1;
   const featureCost =
     (input.displays * 880) +
     (input.mics * 260) +
@@ -312,7 +379,7 @@ function estimateProject(input, model) {
     (input.streaming ? 2100 : 0) +
     (input.training ? 550 : 0);
 
-  const directEquipment = ((model.baseCost * roomScale) + featureCost) * complexityFactor;
+  const directEquipment = ((model.baseCost * roomScale) + featureCost) * complexityFactor * publicSignalFactor * rescueFactor * observedFactor;
   const labor = directEquipment * model.laborPct;
   const programming = directEquipment * model.programmingPct + (input.control ? 900 : 0) + (input.lighting ? 650 : 0);
   const pm = (directEquipment + labor + programming) * 0.075;
@@ -352,7 +419,7 @@ function estimateProject(input, model) {
 
 function generateAssumptions(input, model, result) {
   const assumptions = [
-    ["Model basis", `${model.confidence} confidence from ${model.learnedCount} usable record${model.learnedCount === 1 ? "" : "s"} plus AV baseline rules.`],
+    ["Model basis", `${model.confidence} confidence from ${model.learnedCount} usable price record${model.learnedCount === 1 ? "" : "s"}, ${model.observedCount} sanitized Jetbuilt history signal${model.observedCount === 1 ? "" : "s"}, and AV baseline rules.`],
     ["Scope posture", `${baselineProfiles[input.projectType].label}, ${input.rooms} room${input.rooms === 1 ? "" : "s"}, complexity ${input.complexity}/5.`],
     ["Margin posture", `Target margin is ${percent(result.targetMargin)} before final vendor cost checks.`],
     ["Labor posture", `Install, programming, PM, commissioning, and training are included as separate risk-bearing buckets.`]
@@ -365,6 +432,9 @@ function generateAssumptions(input, model, result) {
   if (input.lighting) assumptions.push(["Lighting integration", "Confirm scene ownership, processor access, schedules, and fallback behavior before final quote."]);
   if (input.networking) assumptions.push(["Network", "Hold a network discovery step for VLANs, PoE budget, multicast, switch access, and client IT owner."]);
   if (input.decisionStage === "rescue") assumptions.push(["Rescue work", "Lead with diagnosis, minimum viable restore, and a separate improvement path."]);
+  model.observedSignals.forEach((signal) => {
+    assumptions.push(["Observed pattern", `${signal.pattern}; watch ${signal.risks.join(", ")}.`]);
+  });
 
   return assumptions;
 }
@@ -396,6 +466,9 @@ function generateStrategies(input, result, model) {
   if (input.decisionStage === "rescue") {
     positioning.unshift("Sell the first step as stabilization, not a giant redesign. People buy relief before elegance.");
   }
+  model.observedSignals.forEach((signal) => {
+    signal.plays.forEach((play) => positioning.push(play));
+  });
 
   const risk = [
     "List assumptions plainly: owner-provided network, display locations, electrical availability, ceiling access, and after-hours work.",
@@ -406,6 +479,9 @@ function generateStrategies(input, result, model) {
   if (model.confidence !== "High") {
     risk.push("Import won proposal and line-item reports before treating this as a final estimating baseline.");
   }
+  model.observedSignals.forEach((signal) => {
+    risk.push(`For ${signal.pattern}, protect against ${signal.risks.join(", ")}.`);
+  });
 
   const close = [
     "Send a same-day recap with Good, Better, Best and the missing questions.",
@@ -500,9 +576,11 @@ function renderStrategies(strategies) {
 function renderModel(model) {
   const records = successfulRecords();
   const avgSell = average(records.map((record) => record.sell));
+  const signalLabels = model.observedSignals.map((signal) => `${signal.pattern} (${signal.count})`);
   const rows = [
     ["Usable successful records", model.learnedCount],
     ["Matching type records", model.typeCount],
+    ["Sanitized Jetbuilt signals", model.observedCount],
     ["Model confidence", model.confidence],
     ["Median matching sell", model.medianSell ? money(model.medianSell) : "Not enough data"],
     ["Average successful sell", avgSell ? money(avgSell) : "Not enough data"],
@@ -513,7 +591,9 @@ function renderModel(model) {
   ];
   els.modelSummary.innerHTML = rows.map(([label, value]) => `
     <div class="model-row"><span>${label}</span><strong>${value}</strong></div>
-  `).join("");
+  `).join("") + `
+    <div class="model-row model-note"><span>Observed patterns</span><strong>${signalLabels.join(", ") || "None for this type"}</strong></div>
+  `;
 }
 
 function renderImportSummary() {
@@ -528,7 +608,8 @@ function renderImportSummary() {
   els.importSummary.innerHTML = `
     <div class="model-row"><span>Imported rows</span><strong>${total}</strong></div>
     <div class="model-row"><span>Usable successful rows</span><strong>${success.length}</strong></div>
-    <div class="model-row"><span>Current source</span><strong>${total ? "Imported CSV" : "Built-in AV baseline"}</strong></div>
+    <div class="model-row"><span>Sanitized Jetbuilt signals</span><strong>${observedOpportunitySignals.reduce((sum, signal) => sum + signal.count, 0)}</strong></div>
+    <div class="model-row"><span>Current source</span><strong>${total ? "Imported CSV" : "Built-in AV baseline + history signals"}</strong></div>
     <div class="line-item"><span>Type coverage</span><span>${byType.join(", ") || "None"}</span></div>
   `;
 
@@ -557,7 +638,7 @@ function renderImportSummary() {
 }
 
 function updateStatus(input, model, result) {
-  els.dataStatus.textContent = state.importedRecords.length ? `${state.importedRecords.length} imported rows` : "Baseline only";
+  els.dataStatus.textContent = state.importedRecords.length ? `${state.importedRecords.length} imported rows` : "Baseline + history signals";
   els.confidenceStatus.textContent = model.confidence;
   els.marginStatus.textContent = percent(result.targetMargin);
   els.pathStatus.textContent = result.recommended;

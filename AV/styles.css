@@ -523,6 +523,15 @@ legend {
   grid-template-columns: 1fr auto;
 }
 
+.model-row.model-note {
+  gap: 6px;
+  grid-template-columns: 1fr;
+}
+
+.model-row.model-note strong {
+  overflow-wrap: anywhere;
+}
+
 .fine-print {
   font-size: 0.88rem;
 }
