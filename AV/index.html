@@ -1083,12 +1083,16 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const sourceName = [item.manufacturer, item.model || item.partNumber || item.name].filter(Boolean).join(' ').trim();
       const description = item.description || item.customName || item.notes || '';
       const qty = Number(item.qty ?? item.quantity) || 1;
-      const unitCost = num(item.unitCost ?? item.cost ?? item.dealerCost);
+      let unitCost = num(item.unitCost ?? item.cost ?? item.dealerCost);
       const unitSell = num(item.unitSell ?? item.sell ?? item.price ?? item.msrp);
       const originalCategory = item.category || item.type || '';
       let markupPct = num(item.markupPct ?? item.markup);
       const notes = [];
-      if (unitCost > 0 && unitSell > 0) markupPct = Math.max(0, ((unitSell - unitCost) / unitCost) * 100);
+      if (unitCost <= 0.01 && unitSell > 0) {
+        unitCost = unitSell;
+        markupPct = 0;
+        notes.push('Pricing anomaly: source has no usable cost; sell imported as cost with 0% markup to preserve quote price.');
+      } else if (unitCost > 0 && unitSell > 0) markupPct = Math.max(0, ((unitSell - unitCost) / unitCost) * 100);
       else if (unitCost <= 0 && unitSell > 0) {
         markupPct = 0;
         notes.push(`Pricing anomaly: sell-only source ${fmt(unitSell)}; cost left at $0.`);
