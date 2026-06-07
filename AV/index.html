@@ -385,12 +385,14 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
 
   <div class="print-root" id="print-root"></div>
 
+  <script src="./products-catalog.js"></script>
   <script>
     'use strict';
 
     const LS_KEYS = [
       'av_auth_hash', 'av_auth_salt', 'av_session', 'av_clients', 'av_products', 'av_projects',
-      'av_boms', 'av_won_records', 'av_signals', 'av_settings', 'av_activity_log', 'av_import_log'
+      'av_boms', 'av_won_records', 'av_signals', 'av_settings', 'av_activity_log', 'av_import_log',
+      'av_product_catalog_version'
     ];
     const DATA_KEYS = LS_KEYS.filter(k => !['av_auth_hash','av_auth_salt','av_session'].includes(k));
     const PROJECT_TYPES = ['conference','classroom','auditorium','courtroom','worship','service','refresh','hospitality','retail'];
@@ -401,7 +403,8 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       ['videoConference', 'Video Conference'], ['streamingLivestream', 'Streaming/Livestream'], ['digitalSignage', 'Digital Signage'],
       ['accessControl', 'Access Control'], ['security', 'Security'], ['lighting', 'Lighting'], ['audioDistribution', 'Audio Distribution'], ['rescueJob', 'Rescue Job']
     ];
-    const DEFAULT_PRODUCTS = [
+    const PRODUCT_CATALOG_VERSION = window.AV_PRODUCT_CATALOG_VERSION || 'baseline-2026-06-06';
+    const FALLBACK_PRODUCTS = [
       { model: "C65M-E1", manufacturer: "Vizio (OFE)", category: "display", dealerCost: 480, msrp: 849, markupPct: 35 },
       { model: "BE98A", manufacturer: "Samsung", category: "display", dealerCost: 2400, msrp: 3999, markupPct: 30 },
       { model: "EW6501-U", manufacturer: "LG", category: "display", dealerCost: 3200, msrp: 5499, markupPct: 28 },
@@ -427,6 +430,9 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       { model: "Programming Labor", manufacturer: "Internal", category: "labor", dealerCost: 125, msrp: 125, markupPct: 0, unit: "hr" },
       { model: "Project Management", manufacturer: "Internal", category: "labor", dealerCost: 110, msrp: 110, markupPct: 0, unit: "hr" }
     ];
+    const DEFAULT_PRODUCTS = Array.isArray(window.AV_PRODUCT_CATALOG) && window.AV_PRODUCT_CATALOG.length
+      ? window.AV_PRODUCT_CATALOG
+      : FALLBACK_PRODUCTS;
     const BASELINE_WON = [
       { id: "b1", projectType: "conference",  sell: 18400, cost: 11224, margin: 0.39, laborPct: 0.28, rooms: 1, date: "2024-01-01", source: "baseline" },
       { id: "b2", projectType: "conference",  sell: 31200, cost: 19032, margin: 0.39, laborPct: 0.28, rooms: 2, date: "2024-01-01", source: "baseline" },
@@ -548,13 +554,23 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       if (!DB.get('av_settings')) DB.set('av_settings', { companyName: 'Your Company', password: null, defaultMargin: 0.37, defaultLaborPct: 0.28, currency: 'USD', taxRate: 0, showCost: false, theme: 'light' });
       if (!DB.get('av_signals')) DB.set('av_signals', { courtroom: { publicSector: 4 }, auditorium: { publicSector: 3 }, service: { repeat: 4 }, refresh: { repeat: 2 } });
       migrateFromV1();
-      if (DB.getAll('av_products').length === 0) DEFAULT_PRODUCTS.forEach(p => DB.append('av_products', { id: uid(), unit: 'ea', notes: '', ...p, createdAt: now(), updatedAt: now() }));
+      syncProductCatalog();
       const won = DB.getAll('av_won_records');
       if (won.length === 0) BASELINE_WON.forEach(r => DB.append('av_won_records', r));
       else {
         const ids = new Set(won.map(r => r.id));
         BASELINE_WON.filter(r => !ids.has(r.id)).forEach(r => DB.append('av_won_records', r));
       }
+    }
+    function syncProductCatalog() {
+      if (!DEFAULT_PRODUCTS.length) return;
+      const currentVersion = localStorage.getItem('av_product_catalog_version');
+      if (currentVersion === PRODUCT_CATALOG_VERSION && DB.getAll('av_products').length > 0) return;
+      const stamped = DEFAULT_PRODUCTS.map(p => ({ id: p.id || uid(), unit: 'ea', notes: '', ...p, createdAt: p.createdAt || now(), updatedAt: now() }));
+      DB.set('av_products', stamped);
+      localStorage.setItem('av_product_catalog_version', PRODUCT_CATALOG_VERSION);
+      DB.append('av_import_log', { id: uid(), ts: now(), type: 'products-catalog', rows: stamped.length, created: stamped.length, skipped: 0, status: 'ok' });
+      logActivity('import:products-catalog', `Loaded current product catalog: ${stamped.length} products`, null);
     }
     function migrateAuthFromV1() {
       const oldHash = localStorage.getItem('avAuthHash');
