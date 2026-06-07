@@ -153,7 +153,7 @@
     .template-preview { white-space: pre-wrap; max-height: 220px; overflow: auto; background: #f8fafc; border: 1px solid var(--line); border-radius: 7px; padding: 10px; font-size: 12px; }
     .scope-grid { display: grid; grid-template-columns: minmax(280px, .85fr) minmax(320px, 1.15fr); gap: 14px; }
     .scope-output { min-height: 180px; border: 1px solid var(--line); border-radius: var(--radius); background: #f8fafc; padding: 12px; }
-    .scope-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .scope-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
     .scope-match-list, .scope-question-list { margin: 8px 0 0; padding-left: 18px; }
     .scope-item-preview { max-height: 260px; overflow: auto; }
     .print-root { display: none; }
@@ -439,13 +439,14 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
 
   <script src="./products-catalog.js"></script>
   <script src="./bom-templates.js"></script>
+  <script src="./jetbuilt-history.js"></script>
   <script>
     'use strict';
 
     const LS_KEYS = [
       'av_auth_hash', 'av_auth_salt', 'av_session', 'av_clients', 'av_products', 'av_projects',
       'av_boms', 'av_won_records', 'av_signals', 'av_settings', 'av_activity_log', 'av_import_log',
-      'av_product_catalog_version', 'av_bom_templates', 'av_bom_template_version'
+      'av_product_catalog_version', 'av_bom_templates', 'av_bom_template_version', 'av_jetbuilt_history_version'
     ];
     const DATA_KEYS = LS_KEYS.filter(k => !['av_auth_hash','av_auth_salt','av_session'].includes(k));
     const PROJECT_TYPES = ['conference','classroom','auditorium','courtroom','worship','service','refresh','hospitality','retail'];
@@ -459,6 +460,8 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
     const PRODUCT_CATALOG_VERSION = window.AV_PRODUCT_CATALOG_VERSION || 'baseline-2026-06-06';
     const BOM_TEMPLATE_VERSION = window.AV_BOM_TEMPLATE_VERSION || 'none';
     const DEFAULT_BOM_TEMPLATES = Array.isArray(window.AV_BOM_TEMPLATES) ? window.AV_BOM_TEMPLATES : [];
+    const JETBUILT_HISTORY_VERSION = window.AV_JETBUILT_HISTORY_VERSION || 'none';
+    const DEFAULT_JETBUILT_WON_RECORDS = Array.isArray(window.AV_JETBUILT_WON_RECORDS) ? window.AV_JETBUILT_WON_RECORDS : [];
     const FALLBACK_PRODUCTS = [
       { model: "C65M-E1", manufacturer: "Vizio (OFE)", category: "display", dealerCost: 480, msrp: 849, markupPct: 35 },
       { model: "BE98A", manufacturer: "Samsung", category: "display", dealerCost: 2400, msrp: 3999, markupPct: 30 },
@@ -612,6 +615,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       migrateFromV1();
       syncProductCatalog();
       syncBomTemplateSeed();
+      syncJetbuiltHistorySeed();
       const won = DB.getAll('av_won_records');
       if (won.length === 0) BASELINE_WON.forEach(r => DB.append('av_won_records', r));
       else {
@@ -635,6 +639,18 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       if (currentVersion === BOM_TEMPLATE_VERSION && getBomTemplates().length > 0) return;
       importBomTemplatePayload(DEFAULT_BOM_TEMPLATES);
       localStorage.setItem('av_bom_template_version', BOM_TEMPLATE_VERSION);
+    }
+    function syncJetbuiltHistorySeed() {
+      if (!DEFAULT_JETBUILT_WON_RECORDS.length || JETBUILT_HISTORY_VERSION === 'none') return;
+      const currentVersion = localStorage.getItem('av_jetbuilt_history_version');
+      const current = DB.getAll('av_won_records');
+      if (currentVersion === JETBUILT_HISTORY_VERSION && current.some(r => r.source === 'jetbuilt-pnl')) return;
+      const byId = new Map(current.map(record => [record.id, record]));
+      DEFAULT_JETBUILT_WON_RECORDS.forEach(record => byId.set(record.id, { ...record, source: 'jetbuilt-pnl' }));
+      DB.set('av_won_records', Array.from(byId.values()));
+      localStorage.setItem('av_jetbuilt_history_version', JETBUILT_HISTORY_VERSION);
+      DB.append('av_import_log', { id: uid(), ts: now(), type: 'jetbuilt-history-seed', rows: DEFAULT_JETBUILT_WON_RECORDS.length, created: DEFAULT_JETBUILT_WON_RECORDS.length, skipped: 0, status: 'ok' });
+      logActivity('import:jetbuilt-history', `Loaded Jetbuilt history: ${DEFAULT_JETBUILT_WON_RECORDS.length} won records`, null);
     }
     function migrateAuthFromV1() {
       const oldHash = localStorage.getItem('avAuthHash');
@@ -795,13 +811,32 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const contingency = subtotal * profile.contingency;
       const fullSubtotal = subtotal + pm + contingency;
       const betterSell = fullSubtotal / (1 - profile.margin);
-      const breakdown = { directEquipment, labor, programming, pm, contingency, fullSubtotal, margin: profile.margin, mode, bomEquip, bomLabor, roomScale, featureCost, complexityFactor, publicSignalFactor, rescueFactor, observedFactor };
+      const breakdown = { directEquipment, labor, programming, pm, contingency, fullSubtotal, margin: profile.margin, mode, bomEquip, bomLabor, roomScale, featureCost, complexityFactor, publicSignalFactor, rescueFactor, observedFactor, profileSource: profile.source || 'default', benchmarkCount: profile.benchmarkCount || 0 };
       return { good: Math.round(betterSell * 0.84), better: Math.round(betterSell), best: Math.round(betterSell * 1.28), breakdown };
     }
     function sumBomCategory(items, type) { return (items || []).filter(i => type === 'labor' ? i.category === 'labor' : i.category !== 'labor').reduce((s, i) => s + (Number(i.lineTotal) || lineTotal(i)), 0); }
     function computeSystemExtras(systems) { let extra = 0; if (systems.videoConference) extra += 3500; if (systems.streamingLivestream) extra += 2800; if (systems.digitalSignage) extra += 2200; if (systems.accessControl) extra += 1800; if (systems.security) extra += 1500; if (systems.lighting) extra += 4200; if (systems.audioDistribution) extra += 2600; return extra; }
     function computeProgrammingExtras(systems) { let extra = 0; if (systems.videoConference) extra += 800; if (systems.streamingLivestream) extra += 600; return extra; }
-    function getProfile(type) { const overrides = DB.get('av_model_overrides') || {}; return { ...(PRICING_PROFILES[type] || PRICING_PROFILES.conference), ...(overrides[type] || {}) }; }
+    function clamp(n, min, max) { return Math.max(min, Math.min(max, Number(n) || 0)); }
+    function getWonRecordsByType(type) { return DB.getAll('av_won_records').filter(r => r.projectType === type && Number(r.sell) > 0); }
+    function getHistoricalProfile(type) {
+      const recs = getWonRecordsByType(type).filter(r => r.source === 'jetbuilt-pnl' && Number(r.sell) > 0 && Number(r.cost) > 0);
+      if (recs.length < 8) return {};
+      const margins = recs.map(r => Number(r.margin) || ((Number(r.sell) - Number(r.cost)) / Math.max(Number(r.sell), 1))).filter(n => n > 0 && n < .8);
+      const laborPcts = recs.map(r => Number(r.laborPct)).filter(n => n > 0 && n < .8);
+      return {
+        margin: margins.length ? clamp(median(margins), .10, .45) : undefined,
+        laborPct: laborPcts.length ? clamp(median(laborPcts), .02, .40) : undefined,
+        source: 'jetbuilt-calibrated',
+        benchmarkCount: recs.length
+      };
+    }
+    function getProfile(type) {
+      const overrides = DB.get('av_model_overrides') || {};
+      const base = PRICING_PROFILES[type] || PRICING_PROFILES.conference;
+      const learned = getHistoricalProfile(type);
+      return { ...base, ...learned, ...(overrides[type] || {}) };
+    }
 
     function lineTotal(item) { return (Number(item.qty) || 0) * ((Number(item.unitCost) || 0) * (1 + (Number(item.markupPct) || 0) / 100)); }
     function normalizeBom(bom) {
@@ -931,11 +966,12 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const activeStages = ['lead','discovery','estimating','proposal'];
       const pipelineValue = projects.filter(p => activeStages.includes(p.stage)).reduce((s, p) => s + computeEstimate(p, boms[p.id], p.estimateMode || 'formula').better, 0);
       const wonRecords = DB.getAll('av_won_records');
+      const jetbuiltRecords = wonRecords.filter(r => r.source === 'jetbuilt-pnl').length;
       const year = new Date().getFullYear();
       const wonYTD = wonRecords.filter(r => new Date(r.date).getFullYear() === year).reduce((s, r) => s + (Number(r.sell) || 0), 0);
       const activeProposals = projects.filter(p => p.stage === 'proposal').length;
       const avgMargin = wonRecords.length ? wonRecords.reduce((s, r) => s + (Number(r.margin) || 0), 0) / wonRecords.length : 0;
-      const cards = [['Pipeline Value', fmt(pipelineValue)], ['Won YTD', fmt(wonYTD)], ['Active Proposals', activeProposals], ['Avg Margin', pct(avgMargin)]];
+      const cards = [['Pipeline Value', fmt(pipelineValue)], ['Won YTD', fmt(wonYTD)], ['Active Proposals', activeProposals], ['Avg Margin', pct(avgMargin)], ['Jetbuilt Benchmarks', jetbuiltRecords]];
       $('#stats-grid').innerHTML = cards.map(([k,v]) => `<div class="stat-card"><div class="muted">${k}</div><div class="stat-value">${v}</div></div>`).join('');
       const counts = Object.fromEntries(STAGES.map(s => [s, projects.filter(p => p.stage === s).length]));
       const max = Math.max(1, ...Object.values(counts));
@@ -1360,6 +1396,17 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const matches = scored.filter(match => match.score > 10).slice(0, 8);
       const matchSet = matches.length ? matches : scored.slice(0, 5);
       const profile = getProfile(signals.projectType);
+      const matchedSells = matchSet.map(match => Number(match.template.sell || match.template.itemSell || 0)).filter(n => n > 0);
+      const roomFactor = Math.min(2.4, 1 + (Math.max(1, signals.rooms) - 1) * 0.35);
+      const targetSell = current.budget || (matchedSells.length ? median(matchedSells) * roomFactor : 0);
+      const matchedEquipmentRatio = median(matchSet.map(match => {
+        const sell = Number(match.template.sell) || 0;
+        const itemSell = Number(match.template.itemSell) || 0;
+        return sell > 0 && itemSell > 0 ? itemSell / sell : 0;
+      }).filter(n => n > 0 && n < 1.4));
+      const targetEquipmentSell = targetSell ? targetSell * clamp(matchedEquipmentRatio || .55, .35, .75) : Infinity;
+      const systemCount = Object.values(signals.systems || {}).filter(Boolean).length;
+      const maxSuggestedItems = questionsOnly ? 0 : Math.min(54, Math.max(14, 10 + Math.max(1, signals.rooms) * 7 + systemCount * 4));
       const aggregate = new Map();
       matchSet.forEach((match, matchIndex) => {
         (match.template.items || []).forEach(item => {
@@ -1381,16 +1428,29 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
           aggregate.set(key, existing);
         });
       });
-      let items = Array.from(aggregate.values())
+      const candidates = Array.from(aggregate.values())
         .filter(entry => entry.templates.size > 1 || entry.score > 45 || entry.item.category === 'labor')
-        .sort((a, b) => b.templates.size - a.templates.size || b.score - a.score)
-        .slice(0, questionsOnly ? 0 : 70)
-        .map(entry => ({
-          ...entry.item,
-          id: uid(),
-          qty: Math.max(1, Math.round(median(entry.qtys))),
-          notes: [entry.item.notes, `Scope inference from ${entry.templates.size} similar Jetbuilt job${entry.templates.size === 1 ? '' : 's'}.`].filter(Boolean).join(' | ')
-        }));
+        .sort((a, b) => b.templates.size - a.templates.size || b.score - a.score);
+      let itemsSoFar = 0;
+      let runningEquipment = 0;
+      let items = candidates.map(entry => ({
+        ...entry.item,
+        id: uid(),
+        qty: Math.max(1, Math.round(median(entry.qtys))),
+        notes: [entry.item.notes, `Scope inference from ${entry.templates.size} similar Jetbuilt job${entry.templates.size === 1 ? '' : 's'}.`].filter(Boolean).join(' | ')
+      })).filter(item => {
+        if (questionsOnly) return false;
+        if (item.category === 'labor') return true;
+        if (itemsSoFar >= maxSuggestedItems) return false;
+        const itemSell = lineTotal(item);
+        const requiredSmallItem = itemSell < Math.max(1500, targetEquipmentSell * .03);
+        const keep = runningEquipment === 0 || runningEquipment + itemSell <= targetEquipmentSell * 1.12 || requiredSmallItem;
+        if (keep) {
+          runningEquipment += itemSell;
+          itemsSoFar += 1;
+        }
+        return keep;
+      });
       const hasLabor = items.some(item => item.category === 'labor');
       const equipmentSell = items.filter(item => item.category !== 'labor').reduce((sum, item) => sum + lineTotal(item), 0);
       const matchedLaborPct = median(matchSet.map(match => Number(match.template.laborPctOfCost || 0)).filter(Boolean));
@@ -1411,7 +1471,28 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const project = { ...current, projectType: signals.projectType, rooms: signals.rooms, displays: signals.displays, mics: signals.mics, speakers: signals.speakers, cameras: signals.cameras, dsp: signals.dsp, systems: signals.systems, estimateMode: 'hybrid' };
       const estimate = computeEstimate(project, bom, 'hybrid');
       const questions = buildGapQuestions(signals, scope);
-      return { scope, signals, matches: matchSet, items, bom, estimate, questions, createdAt: now() };
+      const benchmark = getBenchmarkSummary(signals.projectType, estimate.better);
+      const topScore = matchSet[0]?.score || 0;
+      const edgePenalty = benchmark.percentile != null && (benchmark.percentile > 90 || benchmark.percentile < 10) ? 10 : 0;
+      const bandPenalty = benchmark.bandCount && benchmark.bandCount < 8 ? 6 : 0;
+      const confidence = Math.round(Math.max(45, Math.min(92, 35 + Math.min(30, topScore / 2) + Math.min(20, matchSet.length * 3) + Math.min(10, benchmark.count / 10) - edgePenalty - bandPenalty)));
+      return { scope, signals, matches: matchSet, items, bom, estimate, questions, benchmark, confidence, createdAt: now() };
+    }
+    function getBenchmarkSummary(projectType, sell) {
+      const recs = getWonRecordsByType(projectType).sort((a, b) => Number(a.sell) - Number(b.sell));
+      if (!recs.length) return { count: 0, percentile: null, medianSell: 0, lowSell: 0, highSell: 0 };
+      const band = recs.filter(r => Number(r.sell) >= sell * .18 && Number(r.sell) <= sell * 2.2);
+      const source = band.length >= 5 ? band : recs;
+      const sells = source.map(r => Number(r.sell) || 0);
+      const rank = recs.filter(r => Number(r.sell) <= sell).length;
+      return {
+        count: recs.length,
+        bandCount: source.length,
+        percentile: Math.round(rank / recs.length * 100),
+        medianSell: median(sells),
+        lowSell: sells[Math.floor((sells.length - 1) * .25)] || sells[0],
+        highSell: sells[Math.floor((sells.length - 1) * .75)] || sells[sells.length - 1]
+      };
     }
     function buildGapQuestions(signals, scope) {
       const text = String(scope || '').toLowerCase();
@@ -1450,11 +1531,14 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       const matches = suggestion.matches.slice(0, 5).map(match => `<li><strong>${esc(match.template.name)}</strong> <span class="muted">${esc(match.template.jetbuiltProjectId || '')} - ${esc(label(match.template.projectType))} - ${fmt(match.template.sell || match.template.itemSell || 0)}</span></li>`).join('');
       const questions = suggestion.questions.map(q => `<li>${esc(q)}</li>`).join('');
       const items = suggestion.items.slice(0, 22).map(item => `<tr><td>${esc(item.customName)}</td><td>${esc(label(item.category))}</td><td>${item.qty}</td><td>${fmt(lineTotal(item))}</td></tr>`).join('');
+      const benchmark = suggestion.benchmark || {};
       box.innerHTML = `<div class="scope-summary">
         <div class="estimate-card"><span class="muted">Likely Bid</span><strong>${fmt(suggestion.estimate.better)}</strong><small>${esc(label(suggestion.signals.projectType))}</small></div>
         <div class="estimate-card"><span class="muted">Equipment</span><strong>${fmt(equip)}</strong><small>${suggestion.items.filter(i => i.category !== 'labor').length} lines</small></div>
         <div class="estimate-card"><span class="muted">Labor</span><strong>${fmt(labor)}</strong><small>${suggestion.items.filter(i => i.category === 'labor').length} lines</small></div>
+        <div class="estimate-card"><span class="muted">Confidence</span><strong>${suggestion.confidence}%</strong><small>${benchmark.count || 0} ${esc(label(suggestion.signals.projectType))} benchmarks</small></div>
       </div>
+      <div class="strategy-note" style="margin-bottom:12px">Benchmark: ${benchmark.count ? `${fmt(benchmark.lowSell)}-${fmt(benchmark.highSell)} middle range from ${benchmark.bandCount || benchmark.count} comparable ${esc(label(suggestion.signals.projectType))} records, ${fmt(benchmark.medianSell)} median, suggested bid at ${benchmark.percentile}th percentile of all same-type records.` : 'No same-type benchmark records yet.'} Model profile: ${esc(suggestion.estimate.breakdown.profileSource)}${suggestion.estimate.breakdown.benchmarkCount ? ` (${suggestion.estimate.breakdown.benchmarkCount} records)` : ''}.</div>
       <div class="grid two">
         <div><strong>Closest Jobs</strong><ol class="scope-match-list">${matches || '<li>No historical matches.</li>'}</ol></div>
         <div><strong>Interview Gaps</strong><ol class="scope-question-list">${questions || '<li>No obvious gaps.</li>'}</ol></div>
@@ -1747,7 +1831,8 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       $('#profiles-table').innerHTML = `<thead><tr><th>Type</th>${fields.map(f => `<th>${f}</th>`).join('')}</tr></thead><tbody>${PROJECT_TYPES.map(t => { const prof = getProfile(t); return `<tr><td>${label(t)}</td>${fields.map(f => `<td><input aria-label="${label(t)} ${f}" type="number" step="0.01" data-profile-type="${t}" data-profile-field="${f}" value="${prof[f]}"></td>`).join('')}</tr>`; }).join('')}</tbody>`;
       $('#profiles-table').onchange = e => { const t = e.target.dataset.profileType, f = e.target.dataset.profileField; if (!t) return; overrides[t] ||= {}; overrides[t][f] = Number(e.target.value); DB.set('av_model_overrides', overrides); logActivity('model:updated', `Updated ${t} ${f}`, null); };
       const recs = DB.getAll('av_won_records').sort((a,b) => (a.projectType+a.date).localeCompare(b.projectType+b.date));
-      $('#benchmarks-table').innerHTML = `<thead><tr><th>Type</th><th>Sell</th><th>Margin</th><th>Labor%</th><th>Rooms</th><th>Source</th><th></th></tr></thead><tbody>${recs.map(r => `<tr><td>${esc(r.projectType)}</td><td>${fmt(r.sell)}</td><td>${pct(r.margin)}</td><td>${pct(r.laborPct)}</td><td>${r.rooms}</td><td>${esc(r.source)}</td><td>${r.source === 'baseline' ? '<span class="pill">locked</span>' : `<button data-won-delete="${r.id}" class="danger">Delete</button>`}</td></tr>`).join('')}</tbody>`;
+      const jetbuiltCount = recs.filter(r => r.source === 'jetbuilt-pnl').length;
+      $('#benchmarks-table').innerHTML = `<caption class="muted" style="caption-side:top;text-align:left;padding:8px">${recs.length} benchmarks loaded, including ${jetbuiltCount} Jetbuilt P&L wins. Formula profiles calibrate margin and labor from Jetbuilt when a type has 8+ records.</caption><thead><tr><th>Type</th><th>Sell</th><th>Margin</th><th>Labor%</th><th>Rooms</th><th>Source</th><th></th></tr></thead><tbody>${recs.map(r => `<tr><td>${esc(r.projectType)}</td><td>${fmt(r.sell)}</td><td>${pct(r.margin)}</td><td>${pct(r.laborPct)}</td><td>${r.rooms}</td><td>${esc(r.source)}</td><td>${r.source === 'baseline' || r.source === 'jetbuilt-pnl' ? '<span class="pill">seed</span>' : `<button data-won-delete="${r.id}" class="danger">Delete</button>`}</td></tr>`).join('')}</tbody>`;
       $('#benchmarks-table').onclick = e => { if (e.target.dataset.wonDelete) { DB.remove('av_won_records', e.target.dataset.wonDelete); Bus.emit('db:changed', { type: 'won' }); } };
       const signals = DB.get('av_signals', {});
       $('#signals-table').innerHTML = `<thead><tr><th>Project Type</th><th>Signal</th><th>Count</th><th>Applied Factor</th><th></th></tr></thead><tbody>${Object.entries(signals).flatMap(([type, sigs]) => Object.entries(sigs).map(([sig, count]) => `<tr><td>${label(type)}</td><td>${label(sig)}</td><td>${count}</td><td>${sig==='publicSector' && count>=3 ? '1.08' : sig==='repeat' && count>=3 ? '1.05' : '1.00'}</td><td><button data-signal="${type}|${sig}|1">+</button><button data-signal="${type}|${sig}|-1">-</button></td></tr>`)).join('')}</tbody>`;
