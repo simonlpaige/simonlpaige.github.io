@@ -151,9 +151,15 @@
     .template-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .template-warning { color: #92400e; background: #fffbeb; border: 1px solid #fde68a; border-radius: 7px; padding: 8px; font-size: 12px; }
     .template-preview { white-space: pre-wrap; max-height: 220px; overflow: auto; background: #f8fafc; border: 1px solid var(--line); border-radius: 7px; padding: 10px; font-size: 12px; }
+    .scope-grid { display: grid; grid-template-columns: minmax(280px, .85fr) minmax(320px, 1.15fr); gap: 14px; }
+    .scope-output { min-height: 180px; border: 1px solid var(--line); border-radius: var(--radius); background: #f8fafc; padding: 12px; }
+    .scope-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .scope-match-list, .scope-question-list { margin: 8px 0 0; padding-left: 18px; }
+    .scope-item-preview { max-height: 260px; overflow: auto; }
     .print-root { display: none; }
     @media (max-width: 1000px) {
       .four, .three, .two { grid-template-columns: 1fr; }
+      .scope-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .tabs { display: none; }
       #mobile-tab-select { display: block; }
@@ -277,6 +283,23 @@
           <div class="page-header"><h3>BOM</h3><div class="row"><button id="bom-add-custom">Add Custom</button><span id="bom-subtotal" class="pill">$0</span></div></div>
           <div class="bom-search-wrap"><input id="bom-search" aria-label="Search BOM products" placeholder="Search products by model, manufacturer, or category"><div id="bom-results" class="bom-results hidden"></div></div>
           <div class="table-wrap" style="margin-top:12px"><table id="bom-table"></table></div>
+        </div>
+        <div class="panel">
+          <div class="page-header">
+            <div>
+              <h3>Scope Intelligence</h3>
+              <p class="muted" style="margin:0">Historical bid inference from imported Jetbuilt winners.</p>
+            </div>
+            <div class="row">
+              <button id="scope-question-btn">Gap Questions</button>
+              <button id="scope-generate-btn" class="primary">Generate Likely Bid</button>
+              <button id="scope-apply-btn" disabled>Apply Suggested BOM</button>
+            </div>
+          </div>
+          <div class="scope-grid" style="margin-top:12px">
+            <label>Scope Brief<textarea id="scope-brief" placeholder="Example: black box theater with new lighting control, audio reinforcement, streaming camera, owner display, off-hours install"></textarea></label>
+            <div id="scope-advisor-output" class="scope-output muted">No scope analyzed yet.</div>
+          </div>
         </div>
         <div class="panel">
           <div class="page-header">
@@ -485,7 +508,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       hospitality: { baseCost: 9500,  roomAdd: 2800, margin: 0.38, laborPct: 0.26, programmingPct: 0.07, contingency: 0.05 },
       retail:      { baseCost: 7200,  roomAdd: 2000, margin: 0.36, laborPct: 0.24, programmingPct: 0.06, contingency: 0.05 }
     };
-    const state = { currentTab: 'dashboard', selectedProjectId: null, selectedClientId: null, currentEstimate: null, unsavedBom: { projectId: null, items: [], updatedAt: now() }, importType: 'jetbuilt-proposal', importRows: [], importHeaders: [], importMapping: {}, modalProjectId: null };
+    const state = { currentTab: 'dashboard', selectedProjectId: null, selectedClientId: null, currentEstimate: null, scopeSuggestion: null, unsavedBom: { projectId: null, items: [], updatedAt: now() }, importType: 'jetbuilt-proposal', importRows: [], importHeaders: [], importMapping: {}, modalProjectId: null };
     const $ = sel => document.querySelector(sel);
     const $$ = sel => Array.from(document.querySelectorAll(sel));
     const fmt = n => (Number(n) || 0).toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
@@ -842,6 +865,9 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       $('#bom-template-sort').addEventListener('change', renderBomTemplates);
       $('#bom-template-refresh').addEventListener('click', renderBomTemplates);
       $('#bom-template-list').addEventListener('click', handleBomTemplateAction);
+      $('#scope-generate-btn').addEventListener('click', () => generateScopeSuggestion(false));
+      $('#scope-question-btn').addEventListener('click', () => generateScopeSuggestion(true));
+      $('#scope-apply-btn').addEventListener('click', applyScopeSuggestion);
       $('#draft-followup').addEventListener('click', draftFollowup);
       $('#client-new-btn').addEventListener('click', () => renderClientForm());
       $('#client-search').addEventListener('input', renderClients);
@@ -891,6 +917,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       renderBidSelectors();
       renderBom();
       renderBomTemplates();
+      renderScopeAdvisor();
       renderStrategy();
       renderClients();
       renderProducts();
@@ -1082,12 +1109,22 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
     function normalizeBomTemplateItem(item, template) {
       const sourceName = [item.manufacturer, item.model || item.partNumber || item.name].filter(Boolean).join(' ').trim();
       const description = item.description || item.customName || item.notes || '';
-      const qty = Number(item.qty ?? item.quantity) || 1;
+      let qty = Number(item.qty ?? item.quantity) || 1;
       let unitCost = num(item.unitCost ?? item.cost ?? item.dealerCost);
-      const unitSell = num(item.unitSell ?? item.sell ?? item.price ?? item.msrp);
+      let unitSell = num(item.unitSell ?? item.sell ?? item.price ?? item.msrp);
       const originalCategory = item.category || item.type || '';
       let markupPct = num(item.markupPct ?? item.markup);
       const notes = [];
+      const templateSell = num(template?.sell ?? template?.totalSell ?? template?.projectSell);
+      if (templateSell > 0 && qty > 1 && unitSell > 0 && qty * unitSell > templateSell * 1.5) {
+        unitSell = unitSell / qty;
+        if (unitCost > 0) unitCost = unitCost / qty;
+        notes.push('Pricing anomaly: source row used extended totals; converted to unit prices.');
+      }
+      if (qty > 10000 || (/^\d{4,}$/.test(String(item.model || item.partNumber || '').trim()) && qty > 1000)) {
+        qty = 1;
+        notes.push('Quantity anomaly: numeric part number looked like quantity; reset quantity to 1.');
+      }
       if (unitCost <= 0.01 && unitSell > 0) {
         unitCost = unitSell;
         markupPct = 0;
@@ -1243,6 +1280,205 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       saveBom(bom);
       logActivity('bom:template-applied', `Applied ${template.name}: ${imported.length} items`, state.selectedProjectId);
       renderAll();
+    }
+    function extractScopeSignals(scope, project = getBidProjectFromForm()) {
+      const text = String(scope || '').toLowerCase();
+      const typeScores = Object.fromEntries(PROJECT_TYPES.map(type => [type, 0]));
+      const bump = (type, amount) => typeScores[type] += amount;
+      if (/court|judge|jury|division|arraign|detention/.test(text)) bump('courtroom', 7);
+      if (/classroom|teaching|lecture|school|academy|university|training room/.test(text)) bump('classroom', 6);
+      if (/auditorium|theater|theatre|pac|stage|black box|perform/.test(text)) bump('auditorium', 7);
+      if (/church|sanctuary|worship|chapel|ministry/.test(text)) bump('worship', 6);
+      if (/service|repair|replace|troubleshoot|retune|re-tune/.test(text)) bump('service', 5);
+      if (/refresh|upgrade|retrofit|expansion|add(?:itional)?/.test(text)) bump('refresh', 4);
+      if (/hotel|restaurant|bar|casino|event space|hospitality/.test(text)) bump('hospitality', 5);
+      if (/retail|showroom|store/.test(text)) bump('retail', 5);
+      if (project?.projectType) bump(project.projectType, 2);
+      const detectedType = Object.entries(typeScores).sort((a, b) => b[1] - a[1])[0][1] > 0
+        ? Object.entries(typeScores).sort((a, b) => b[1] - a[1])[0][0]
+        : project.projectType || 'conference';
+      const countFor = pattern => {
+        const match = text.match(pattern);
+        return match ? Number(match[1]) || 0 : 0;
+      };
+      const words = text.match(/[a-z0-9][a-z0-9-]{2,}/g) || [];
+      const stop = new Set(['with','from','that','this','room','rooms','system','systems','project','upgrade','install','installation','new','and','for','the','add','need','needs','quote','bid','scope']);
+      const keywords = Array.from(new Set(words.filter(word => !stop.has(word) && word.length > 3))).slice(0, 40);
+      const systems = { ...(project.systems || {}) };
+      if (/zoom|teams|conference|uc\b|video conferenc/.test(text)) systems.videoConference = true;
+      if (/stream|livestream|camera|broadcast|record/.test(text)) systems.streamingLivestream = true;
+      if (/signage|menu board|lobby display/.test(text)) systems.digitalSignage = true;
+      if (/lighting|dimmer|fixture|console|dmx|house light/.test(text)) systems.lighting = true;
+      if (/speaker|audio distribution|distributed audio|gymnasium|sanctuary/.test(text)) systems.audioDistribution = true;
+      if (/security|access control|door/.test(text)) systems.security = true;
+      const rooms = countFor(/(\d+)\s*(?:rooms?|spaces?|classrooms?|courtrooms?|conference rooms?)/) || project.rooms || 1;
+      return {
+        text,
+        projectType: detectedType,
+        rooms,
+        displays: countFor(/(\d+)\s*(?:displays?|tvs?|monitors?|projectors?)/) || project.displays || (/display|tv|projector|screen|video wall|dvled/.test(text) ? 1 : 0),
+        mics: countFor(/(\d+)\s*(?:mics?|microphones?|wireless)/) || project.mics || (/mic|microphone|wireless|lav|handheld/.test(text) ? 2 : 0),
+        speakers: countFor(/(\d+)\s*(?:speakers?|loudspeakers?)/) || project.speakers || (/speaker|audio|pa\b|reinforcement/.test(text) ? 4 : 0),
+        cameras: countFor(/(\d+)\s*(?:cameras?|ptz)/) || project.cameras || (/camera|ptz|stream|record/.test(text) ? 1 : 0),
+        dsp: project.dsp || /dsp|biamp|qsc|tesira|audio processor|automix/.test(text),
+        systems,
+        keywords
+      };
+    }
+    function scoreTemplateForScope(template, signals) {
+      const haystack = [
+        template.name, template.client, template.projectType, template.jetbuiltProjectId,
+        ...(template.items || []).slice(0, 80).map(item => `${item.customName} ${item.category} ${item.notes}`)
+      ].join(' ').toLowerCase();
+      let score = template.projectType === signals.projectType ? 24 : 0;
+      if (signals.projectType === 'refresh' && /upgrade|replacement|add|box sale|refresh/.test(haystack)) score += 8;
+      if (signals.systems.lighting && /lighting|dimmer|dmx|fixture|console|etc|chauvet/.test(haystack)) score += 18;
+      if (signals.systems.streamingLivestream && /stream|camera|ptz|sdi|atem|record/.test(haystack)) score += 14;
+      if (signals.systems.videoConference && /conference|touch panel|extron|biamp|qsc|microphone|teams|zoom/.test(haystack)) score += 14;
+      if (signals.systems.audioDistribution && /speaker|audio|amp|dsp|mixer|shure|sennheiser|fulcrum|d&b/.test(haystack)) score += 14;
+      if (signals.displays && /display|projector|screen|tv|video wall|dvled/.test(haystack)) score += 8;
+      if (signals.mics && /mic|microphone|wireless|shure|sennheiser|dpa/.test(haystack)) score += 8;
+      if (signals.cameras && /camera|ptz|blackmagic|datavideo|panasonic/.test(haystack)) score += 8;
+      signals.keywords.forEach(keyword => { if (haystack.includes(keyword)) score += keyword.length > 6 ? 3 : 2; });
+      score += Math.min(8, Math.max(0, Number(template.margin) || 0) * 20);
+      score += Math.min(5, Math.log10(Math.max(1, Number(template.profit) || 1)));
+      return score;
+    }
+    function median(values) {
+      const nums = values.map(Number).filter(Number.isFinite).sort((a, b) => a - b);
+      if (!nums.length) return 0;
+      const mid = Math.floor(nums.length / 2);
+      return nums.length % 2 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+    }
+    function buildScopeBid(scope, questionsOnly = false) {
+      const current = getBidProjectFromForm();
+      const signals = extractScopeSignals(scope, current);
+      const scored = getBomTemplates()
+        .filter(template => template.items?.length)
+        .map(template => ({ template, score: scoreTemplateForScope(template, signals) }))
+        .sort((a, b) => b.score - a.score);
+      const matches = scored.filter(match => match.score > 10).slice(0, 8);
+      const matchSet = matches.length ? matches : scored.slice(0, 5);
+      const profile = getProfile(signals.projectType);
+      const aggregate = new Map();
+      matchSet.forEach((match, matchIndex) => {
+        (match.template.items || []).forEach(item => {
+          const itemText = `${item.customName} ${item.category} ${item.notes}`.toLowerCase();
+          let itemScore = match.score * (matchIndex === 0 ? 1.2 : 1);
+          if (signals.systems.lighting && /lighting|dimmer|dmx|fixture|console/.test(itemText)) itemScore += 20;
+          if (signals.systems.audioDistribution && /speaker|amp|dsp|mixer|audio/.test(itemText)) itemScore += 18;
+          if (signals.systems.streamingLivestream && /camera|ptz|sdi|atem|stream|record/.test(itemText)) itemScore += 18;
+          if (signals.systems.videoConference && /touch|control|extron|biamp|qsc|microphone|display/.test(itemText)) itemScore += 14;
+          if (signals.displays && /display|projector|screen|tv|video wall|dvled/.test(itemText)) itemScore += 14;
+          if (signals.mics && /mic|wireless|shure|sennheiser|dpa/.test(itemText)) itemScore += 14;
+          signals.keywords.forEach(keyword => { if (itemText.includes(keyword)) itemScore += 5; });
+          itemScore += Math.min(20, lineTotal(item) / 1000);
+          const key = slugText(`${item.customName}|${item.category}`);
+          const existing = aggregate.get(key) || { item, score: 0, qtys: [], templates: new Set() };
+          existing.score += itemScore;
+          existing.qtys.push(Number(item.qty) || 1);
+          existing.templates.add(match.template.jetbuiltProjectId || match.template.name);
+          aggregate.set(key, existing);
+        });
+      });
+      let items = Array.from(aggregate.values())
+        .filter(entry => entry.templates.size > 1 || entry.score > 45 || entry.item.category === 'labor')
+        .sort((a, b) => b.templates.size - a.templates.size || b.score - a.score)
+        .slice(0, questionsOnly ? 0 : 70)
+        .map(entry => ({
+          ...entry.item,
+          id: uid(),
+          qty: Math.max(1, Math.round(median(entry.qtys))),
+          notes: [entry.item.notes, `Scope inference from ${entry.templates.size} similar Jetbuilt job${entry.templates.size === 1 ? '' : 's'}.`].filter(Boolean).join(' | ')
+        }));
+      const hasLabor = items.some(item => item.category === 'labor');
+      const equipmentSell = items.filter(item => item.category !== 'labor').reduce((sum, item) => sum + lineTotal(item), 0);
+      const matchedLaborPct = median(matchSet.map(match => Number(match.template.laborPctOfCost || 0)).filter(Boolean));
+      const laborPct = matchedLaborPct || profile.laborPct || 0.28;
+      const currentLaborSell = items.filter(item => item.category === 'labor').reduce((sum, item) => sum + lineTotal(item), 0);
+      const targetLaborSell = equipmentSell * laborPct;
+      if (!questionsOnly && equipmentSell > 0 && (!hasLabor || currentLaborSell < targetLaborSell * 0.5)) {
+        const laborGap = Math.max(0, targetLaborSell - currentLaborSell);
+        const installHours = Math.max(8, Math.round(laborGap / 95));
+        const programmingHours = Math.max(signals.dsp || signals.systems.videoConference || signals.systems.lighting ? 6 : 0, Math.round((equipmentSell * (profile.programmingPct || 0.06)) / 125));
+        const pmHours = Math.max(2, Math.round((installHours + programmingHours) * 0.12));
+        items.push({ id: uid(), productId: null, customName: hasLabor ? 'Supplemental Installation Labor' : 'Installation Labor', qty: installHours, unitCost: 95, markupPct: 0, category: 'labor', notes: 'Estimated from similar Jetbuilt labor ratio.' });
+        if (programmingHours) items.push({ id: uid(), productId: null, customName: 'Programming and Commissioning', qty: programmingHours, unitCost: 125, markupPct: 0, category: 'labor', notes: 'Estimated from scope systems and historical programming ratio.' });
+        items.push({ id: uid(), productId: null, customName: 'Project Management', qty: pmHours, unitCost: 110, markupPct: 0, category: 'labor', notes: 'Estimated project management allowance.' });
+      }
+      items = items.map(item => normalizeBom({ items: [item] }).items[0]);
+      const bom = normalizeBom({ projectId: state.selectedProjectId || null, items });
+      const project = { ...current, projectType: signals.projectType, rooms: signals.rooms, displays: signals.displays, mics: signals.mics, speakers: signals.speakers, cameras: signals.cameras, dsp: signals.dsp, systems: signals.systems, estimateMode: 'hybrid' };
+      const estimate = computeEstimate(project, bom, 'hybrid');
+      const questions = buildGapQuestions(signals, scope);
+      return { scope, signals, matches: matchSet, items, bom, estimate, questions, createdAt: now() };
+    }
+    function buildGapQuestions(signals, scope) {
+      const text = String(scope || '').toLowerCase();
+      const questions = [];
+      if (!/(\d+)\s*(rooms?|spaces?|classrooms?|courtrooms?|conference rooms?)/.test(text)) questions.push('How many rooms or distinct zones are in this bid?');
+      if (!/owner|ofe|existing|reuse/.test(text)) questions.push('What equipment is owner-furnished, existing, or expected to be reused?');
+      if (signals.displays || /video|projector|display|screen|led/.test(text)) questions.push('For video, are we quoting displays/projectors/screens, distribution, mounting, and owner source devices?');
+      if (signals.mics || signals.speakers || /audio|speaker|mic|dsp/.test(text)) questions.push('For audio, confirm mic count, speaker coverage, DSP needs, assisted listening, and tuning expectations.');
+      if (signals.systems.lighting) questions.push('For lighting, confirm fixtures, control stations, DMX/network paths, rigging, lifts, and electrical scope boundaries.');
+      if (signals.systems.streamingLivestream || signals.cameras) questions.push('For camera/streaming, confirm camera positions, recording/stream destination, operator workflow, and SDI/IP cabling paths.');
+      if (!/labor|off-hours|night|weekend|union|prevailing|lift/.test(text)) questions.push('Any off-hours, union, prevailing wage, lift, rental, travel, or access constraints?');
+      if (!/training|support|warranty|service/.test(text)) questions.push('What training, warranty, support, and documentation should be included?');
+      if (!/network|vlan|ip|it|lan/.test(text)) questions.push('Who owns network configuration, VLANs, IP addresses, and firewall rules?');
+      return questions.slice(0, 9);
+    }
+    function generateScopeSuggestion(questionsOnly = false) {
+      const scope = $('#scope-brief').value.trim() || $('#bid-notes').value.trim() || $('#bid-name').value.trim();
+      if (!scope) return alert('Add a scope brief first.');
+      state.scopeSuggestion = buildScopeBid(scope, questionsOnly);
+      renderScopeAdvisor();
+    }
+    function renderScopeAdvisor() {
+      const box = $('#scope-advisor-output');
+      const apply = $('#scope-apply-btn');
+      if (!box || !apply) return;
+      const suggestion = state.scopeSuggestion;
+      apply.disabled = !suggestion?.items?.length;
+      if (!suggestion) {
+        box.classList.add('muted');
+        box.innerHTML = 'No scope analyzed yet.';
+        return;
+      }
+      box.classList.remove('muted');
+      const equip = sumBomCategory(suggestion.items, 'equipment');
+      const labor = sumBomCategory(suggestion.items, 'labor');
+      const matches = suggestion.matches.slice(0, 5).map(match => `<li><strong>${esc(match.template.name)}</strong> <span class="muted">${esc(match.template.jetbuiltProjectId || '')} - ${esc(label(match.template.projectType))} - ${fmt(match.template.sell || match.template.itemSell || 0)}</span></li>`).join('');
+      const questions = suggestion.questions.map(q => `<li>${esc(q)}</li>`).join('');
+      const items = suggestion.items.slice(0, 22).map(item => `<tr><td>${esc(item.customName)}</td><td>${esc(label(item.category))}</td><td>${item.qty}</td><td>${fmt(lineTotal(item))}</td></tr>`).join('');
+      box.innerHTML = `<div class="scope-summary">
+        <div class="estimate-card"><span class="muted">Likely Bid</span><strong>${fmt(suggestion.estimate.better)}</strong><small>${esc(label(suggestion.signals.projectType))}</small></div>
+        <div class="estimate-card"><span class="muted">Equipment</span><strong>${fmt(equip)}</strong><small>${suggestion.items.filter(i => i.category !== 'labor').length} lines</small></div>
+        <div class="estimate-card"><span class="muted">Labor</span><strong>${fmt(labor)}</strong><small>${suggestion.items.filter(i => i.category === 'labor').length} lines</small></div>
+      </div>
+      <div class="grid two">
+        <div><strong>Closest Jobs</strong><ol class="scope-match-list">${matches || '<li>No historical matches.</li>'}</ol></div>
+        <div><strong>Interview Gaps</strong><ol class="scope-question-list">${questions || '<li>No obvious gaps.</li>'}</ol></div>
+      </div>
+      ${suggestion.items.length ? `<div class="scope-item-preview table-wrap" style="margin-top:12px"><table><thead><tr><th>Suggested Item</th><th>Category</th><th>Qty</th><th>Total</th></tr></thead><tbody>${items}</tbody></table></div>` : '<p class="muted">Gap questions generated without applying a BOM.</p>'}`;
+    }
+    function applyScopeSuggestion() {
+      const suggestion = state.scopeSuggestion;
+      if (!suggestion?.items?.length) return;
+      const bom = getCurrentBom();
+      bom.items = [...(bom.items || []), ...suggestion.items.map(item => ({ ...item, id: uid(), notes: [item.notes, 'Applied from scope intelligence.'].filter(Boolean).join(' | ') }))];
+      saveBom(bom);
+      $('#bid-type').value = suggestion.signals.projectType;
+      $('#bid-rooms').value = suggestion.signals.rooms;
+      $('#bid-displays').value = suggestion.signals.displays;
+      $('#bid-mics').value = suggestion.signals.mics;
+      $('#bid-speakers').value = suggestion.signals.speakers;
+      $('#bid-cameras').value = suggestion.signals.cameras;
+      $('#bid-dsp').value = String(!!suggestion.signals.dsp);
+      $$('#systems-checks input').forEach(input => input.checked = !!suggestion.signals.systems[input.dataset.system]);
+      $$('input[name="estimate-mode"]').forEach(input => input.checked = input.value === 'hybrid');
+      logActivity('bom:scope-applied', `Applied scope-inferred BOM: ${suggestion.items.length} items`, state.selectedProjectId);
+      renderAll();
+      generateEstimate();
     }
     function renderStrategy() {
       const p = state.selectedProjectId ? getProject(state.selectedProjectId) : null;
