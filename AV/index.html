@@ -142,6 +142,14 @@
     .import-type-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
     .formula-block { white-space: pre-wrap; background: #111827; color: #e5e7eb; border-radius: 7px; padding: 14px; overflow-x: auto; font-family: Consolas, Menlo, monospace; font-size: 13px; }
     .strategy-note { background: #f8fafc; border: 1px solid var(--line); border-radius: 7px; padding: 12px; }
+    .template-toolbar { display: grid; grid-template-columns: 1fr 170px 170px auto; gap: 10px; align-items: end; }
+    .template-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+    .template-card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 12px; display: grid; gap: 8px; }
+    .template-card h4 { margin: 0; font-size: 15px; }
+    .template-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+    .template-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .template-warning { color: #92400e; background: #fffbeb; border: 1px solid #fde68a; border-radius: 7px; padding: 8px; font-size: 12px; }
+    .template-preview { white-space: pre-wrap; max-height: 220px; overflow: auto; background: #f8fafc; border: 1px solid var(--line); border-radius: 7px; padding: 10px; font-size: 12px; }
     .print-root { display: none; }
     @media (max-width: 1000px) {
       .four, .three, .two { grid-template-columns: 1fr; }
@@ -157,6 +165,7 @@
       .row { align-items: stretch; }
       button { width: 100%; }
       .modal-footer button, .modal-tabs button, .import-type-tabs button { width: auto; }
+      .template-toolbar { grid-template-columns: 1fr; }
     }
     @media print {
       body > *:not(.print-root) { display: none !important; }
@@ -267,6 +276,25 @@
           <div class="page-header"><h3>BOM</h3><div class="row"><button id="bom-add-custom">Add Custom</button><span id="bom-subtotal" class="pill">$0</span></div></div>
           <div class="bom-search-wrap"><input id="bom-search" aria-label="Search BOM products" placeholder="Search products by model, manufacturer, or category"><div id="bom-results" class="bom-results hidden"></div></div>
           <div class="table-wrap" style="margin-top:12px"><table id="bom-table"></table></div>
+        </div>
+        <div class="panel">
+          <div class="page-header">
+            <div>
+              <h3>BOM Library</h3>
+              <p class="muted" style="margin:0">Reusable Jetbuilt templates ranked by project profit. Applies by appending lines to the current BOM.</p>
+            </div>
+            <div class="row">
+              <button id="bom-template-import-btn">Import Template JSON</button>
+              <input type="file" id="bom-template-file" aria-label="BOM template JSON file" class="hidden" accept=".json,application/json">
+            </div>
+          </div>
+          <div class="template-toolbar" style="margin-top:12px">
+            <label>Search templates<input id="bom-template-search" aria-label="Search BOM templates" placeholder="Project, client, or Jetbuilt ID"></label>
+            <label>Type<select id="bom-template-type"></select></label>
+            <label>Sort<select id="bom-template-sort"><option value="profit">Profit</option><option value="margin">Margin</option><option value="date">Date</option><option value="items">Item count</option></select></label>
+            <button id="bom-template-refresh">Refresh</button>
+          </div>
+          <div id="bom-template-list" class="template-grid"></div>
         </div>
       </section>
 
@@ -386,13 +414,14 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
   <div class="print-root" id="print-root"></div>
 
   <script src="./products-catalog.js"></script>
+  <script src="./bom-templates.js"></script>
   <script>
     'use strict';
 
     const LS_KEYS = [
       'av_auth_hash', 'av_auth_salt', 'av_session', 'av_clients', 'av_products', 'av_projects',
       'av_boms', 'av_won_records', 'av_signals', 'av_settings', 'av_activity_log', 'av_import_log',
-      'av_product_catalog_version'
+      'av_product_catalog_version', 'av_bom_templates', 'av_bom_template_version'
     ];
     const DATA_KEYS = LS_KEYS.filter(k => !['av_auth_hash','av_auth_salt','av_session'].includes(k));
     const PROJECT_TYPES = ['conference','classroom','auditorium','courtroom','worship','service','refresh','hospitality','retail'];
@@ -404,6 +433,8 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       ['accessControl', 'Access Control'], ['security', 'Security'], ['lighting', 'Lighting'], ['audioDistribution', 'Audio Distribution'], ['rescueJob', 'Rescue Job']
     ];
     const PRODUCT_CATALOG_VERSION = window.AV_PRODUCT_CATALOG_VERSION || 'baseline-2026-06-06';
+    const BOM_TEMPLATE_VERSION = window.AV_BOM_TEMPLATE_VERSION || 'none';
+    const DEFAULT_BOM_TEMPLATES = Array.isArray(window.AV_BOM_TEMPLATES) ? window.AV_BOM_TEMPLATES : [];
     const FALLBACK_PRODUCTS = [
       { model: "C65M-E1", manufacturer: "Vizio (OFE)", category: "display", dealerCost: 480, msrp: 849, markupPct: 35 },
       { model: "BE98A", manufacturer: "Samsung", category: "display", dealerCost: 2400, msrp: 3999, markupPct: 30 },
@@ -549,12 +580,14 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       if (!DB.get('av_clients')) DB.set('av_clients', []);
       if (!DB.get('av_projects')) DB.set('av_projects', []);
       if (!DB.get('av_boms')) DB.set('av_boms', {});
+      if (!DB.get('av_bom_templates')) DB.set('av_bom_templates', []);
       if (!DB.get('av_activity_log')) DB.set('av_activity_log', []);
       if (!DB.get('av_import_log')) DB.set('av_import_log', []);
       if (!DB.get('av_settings')) DB.set('av_settings', { companyName: 'Your Company', password: null, defaultMargin: 0.37, defaultLaborPct: 0.28, currency: 'USD', taxRate: 0, showCost: false, theme: 'light' });
       if (!DB.get('av_signals')) DB.set('av_signals', { courtroom: { publicSector: 4 }, auditorium: { publicSector: 3 }, service: { repeat: 4 }, refresh: { repeat: 2 } });
       migrateFromV1();
       syncProductCatalog();
+      syncBomTemplateSeed();
       const won = DB.getAll('av_won_records');
       if (won.length === 0) BASELINE_WON.forEach(r => DB.append('av_won_records', r));
       else {
@@ -571,6 +604,13 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       localStorage.setItem('av_product_catalog_version', PRODUCT_CATALOG_VERSION);
       DB.append('av_import_log', { id: uid(), ts: now(), type: 'products-catalog', rows: stamped.length, created: stamped.length, skipped: 0, status: 'ok' });
       logActivity('import:products-catalog', `Loaded current product catalog: ${stamped.length} products`, null);
+    }
+    function syncBomTemplateSeed() {
+      if (!DEFAULT_BOM_TEMPLATES.length || BOM_TEMPLATE_VERSION === 'none') return;
+      const currentVersion = localStorage.getItem('av_bom_template_version');
+      if (currentVersion === BOM_TEMPLATE_VERSION && getBomTemplates().length > 0) return;
+      importBomTemplatePayload(DEFAULT_BOM_TEMPLATES);
+      localStorage.setItem('av_bom_template_version', BOM_TEMPLATE_VERSION);
     }
     function migrateAuthFromV1() {
       const oldHash = localStorage.getItem('avAuthHash');
@@ -778,6 +818,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       $('#product-category-filter').innerHTML = '<option value="">All categories</option>' + CATEGORIES.map(c => `<option value="${c}">${label(c)}</option>`).join('');
       $('#pipeline-type-filter').innerHTML = '<option value="">All types</option>' + PROJECT_TYPES.map(t => `<option value="${t}">${label(t)}</option>`).join('');
       $('#pipeline-stage-filter').innerHTML = '<option value="">All stages</option>' + STAGES.map(s => `<option value="${s}">${label(s)}</option>`).join('');
+      $('#bom-template-type').innerHTML = '<option value="">Selected type first</option>' + PROJECT_TYPES.map(t => `<option value="${t}">${label(t)}</option>`).join('');
       const types = [['jetbuilt-proposal','JetBuilt Proposals'],['jetbuilt-lineitems','JetBuilt Line Items'],['jetbuilt-clients','JetBuilt Clients'],['generic-bom','Generic BOM'],['won-records','Won Records']];
       $('#import-type-tabs').innerHTML = types.map(([v, t], i) => `<button class="${i===0?'active':''}" data-type="${v}">${t}</button>`).join('');
       bindEvents();
@@ -793,6 +834,13 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       $('#print-proposal-btn').addEventListener('click', printProposal);
       $('#bom-search').addEventListener('input', renderBomSearch);
       $('#bom-add-custom').addEventListener('click', () => addBomItem({ customName: '', category: 'custom', qty: 1, unitCost: 0, markupPct: 30 }));
+      $('#bom-template-import-btn').addEventListener('click', () => $('#bom-template-file').click());
+      $('#bom-template-file').addEventListener('change', e => importBomTemplateFile(e.target.files[0]));
+      $('#bom-template-search').addEventListener('input', renderBomTemplates);
+      $('#bom-template-type').addEventListener('change', renderBomTemplates);
+      $('#bom-template-sort').addEventListener('change', renderBomTemplates);
+      $('#bom-template-refresh').addEventListener('click', renderBomTemplates);
+      $('#bom-template-list').addEventListener('click', handleBomTemplateAction);
       $('#draft-followup').addEventListener('click', draftFollowup);
       $('#client-new-btn').addEventListener('click', () => renderClientForm());
       $('#client-search').addEventListener('input', renderClients);
@@ -841,6 +889,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       renderDashboard();
       renderBidSelectors();
       renderBom();
+      renderBomTemplates();
       renderStrategy();
       renderClients();
       renderProducts();
@@ -1012,6 +1061,183 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       b.items.push({ id: uid(), productId: null, customName: '', qty: 1, unitCost: 0, markupPct: 30, category: 'custom', notes: '', ...item });
       saveBom(b);
       renderBom();
+    }
+    function slugText(value) {
+      return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 90) || uid();
+    }
+    function getBomTemplates() { return DB.getAll('av_bom_templates'); }
+    function saveBomTemplates(templates) { DB.set('av_bom_templates', templates); }
+    function inferCategoryFromText(text, fallback = 'custom') {
+      const t = String(text || '').toLowerCase();
+      if (/labor|install|program|engineering|project management|pm\b|commission/.test(t)) return 'labor';
+      if (/display|monitor|tv|projector|screen|led wall|dvled|video wall/.test(t)) return 'display';
+      if (/speaker|microphone|mic\b|dsp|amplifier|mixer|audio|shure|qsc|biamp|sennheiser|dante/.test(t)) return 'audio';
+      if (/camera|ptz|capture|viewfinder|broadcast|sdi|atem|blackmagic/.test(t)) return 'camera';
+      if (/control|touchpanel|processor|relay|keypad|extron|crestron|amx|q-sys/.test(t)) return 'control';
+      if (/cable|wire|cat6|hdmi|dmx|xlr|sdi|ethernet|powercon|connector|adapter/.test(t)) return 'cable';
+      if (/rack|shelf|pdu|ups|case|enclosure|mount|bracket|yoke/.test(t)) return 'rack';
+      return CATEGORIES.includes(fallback) ? fallback : 'custom';
+    }
+    function normalizeBomTemplateItem(item, template) {
+      const sourceName = [item.manufacturer, item.model || item.partNumber || item.name].filter(Boolean).join(' ').trim();
+      const description = item.description || item.customName || item.notes || '';
+      const qty = Number(item.qty ?? item.quantity) || 1;
+      const unitCost = num(item.unitCost ?? item.cost ?? item.dealerCost);
+      const unitSell = num(item.unitSell ?? item.sell ?? item.price ?? item.msrp);
+      const originalCategory = item.category || item.type || '';
+      let markupPct = num(item.markupPct ?? item.markup);
+      const notes = [];
+      if (unitCost > 0 && unitSell > 0) markupPct = Math.max(0, ((unitSell - unitCost) / unitCost) * 100);
+      else if (unitCost <= 0 && unitSell > 0) {
+        markupPct = 0;
+        notes.push(`Pricing anomaly: sell-only source ${fmt(unitSell)}; cost left at $0.`);
+      } else if (unitCost > 0 && unitSell <= 0 && !markupPct) {
+        markupPct = 30;
+        notes.push('Pricing anomaly: cost-only source; default markup used.');
+      }
+      if (originalCategory) notes.push(`Jetbuilt category: ${originalCategory}`);
+      if (template?.jetbuiltProjectId) notes.push(`Jetbuilt ${template.jetbuiltProjectId}`);
+      if (item.room) notes.push(`Room: ${item.room}`);
+      if (item.option) notes.push(`Option: ${item.option}`);
+      if (description && description !== sourceName) notes.push(description);
+      const category = inferCategoryFromText([sourceName, description, originalCategory].join(' '), originalCategory);
+      return {
+        id: uid(),
+        productId: null,
+        customName: sourceName || description || item.name || 'Imported template item',
+        qty,
+        unitCost,
+        markupPct,
+        category,
+        notes: notes.filter(Boolean).join(' | ')
+      };
+    }
+    function normalizeBomTemplate(raw) {
+      const t = raw || {};
+      const jetbuiltProjectId = t.jetbuiltProjectId || t.projectId || t.id || '';
+      const name = t.name || t.sourceProjectName || t.projectName || 'Imported Jetbuilt template';
+      const items = (t.items || t.bom || t.lineItems || []).map(i => normalizeBomTemplateItem(i, { ...t, jetbuiltProjectId }));
+      const sourceSell = num(t.sell ?? t.totalSell ?? t.projectSell);
+      const sourceCost = num(t.cost ?? t.totalCost ?? t.projectCost);
+      let marginValue = t.margin != null ? num(t.margin) : (sourceSell > 0 ? (sourceSell - sourceCost) / sourceSell : 0);
+      if (marginValue > 1) marginValue = marginValue / 100;
+      const itemCost = items.reduce((s, i) => s + (Number(i.qty) || 1) * (Number(i.unitCost) || 0), 0);
+      const itemSell = items.reduce((s, i) => s + lineTotal(i), 0);
+      const warnings = [];
+      const variance = (actual, expected) => expected > 0 ? Math.abs(actual - expected) / expected : 0;
+      if (!items.length) warnings.push('No BOM items yet. This is an extraction target, not an apply-ready template.');
+      if (sourceCost > 0 && itemCost > 0 && variance(itemCost, sourceCost) > 0.10) warnings.push(`Item cost total differs from project cost by ${Math.round(variance(itemCost, sourceCost) * 100)}%.`);
+      if (sourceSell > 0 && itemSell > 0 && variance(itemSell, sourceSell) > 0.10) warnings.push(`Item sell total differs from project sell by ${Math.round(variance(itemSell, sourceSell) * 100)}%.`);
+      return {
+        id: `jetbuilt-template-${slugText(jetbuiltProjectId || name)}`,
+        name,
+        source: t.source || 'jetbuilt-top-profit',
+        jetbuiltProjectId,
+        client: t.client || '',
+        projectType: PROJECT_TYPES.includes(t.projectType) ? t.projectType : safeType(t.projectType),
+        rank: Number(t.rank) || null,
+        sell: sourceSell,
+        cost: sourceCost,
+        profit: num(t.profit) || (sourceSell - sourceCost),
+        margin: marginValue,
+        date: t.date || t.completedDate || t.contractedDate || '',
+        itemCount: items.length,
+        itemCost,
+        itemSell,
+        warnings,
+        items,
+        createdAt: t.createdAt || now(),
+        updatedAt: now(),
+        notes: t.notes || 'Imported from Jetbuilt BOM intelligence.'
+      };
+    }
+    function importBomTemplatePayload(payload) {
+      const raw = Array.isArray(payload) ? payload : (payload.templates || payload.projects || payload.bomTemplates || []);
+      if (!Array.isArray(raw)) throw new Error('Template JSON must be an array or contain templates/projects.');
+      const incoming = raw.map(normalizeBomTemplate);
+      const byId = new Map(getBomTemplates().map(t => [t.id, t]));
+      incoming.forEach(t => byId.set(t.id, t));
+      const merged = Array.from(byId.values()).sort((a,b) => (Number(a.rank) || 9999) - (Number(b.rank) || 9999) || (b.profit || 0) - (a.profit || 0));
+      saveBomTemplates(merged);
+      DB.append('av_import_log', { id: uid(), ts: now(), type: 'bom-template-json', rows: raw.length, created: incoming.length, skipped: 0, status: 'ok' });
+      logActivity('import:bom-templates', `Imported ${incoming.length} BOM templates`, null);
+      Bus.emit('db:changed', { type: 'bom-templates' });
+      return incoming.length;
+    }
+    function importBomTemplateFile(file) {
+      if (!file) return;
+      file.text().then(text => {
+        try {
+          const count = importBomTemplatePayload(JSON.parse(text));
+          alert(`Imported ${count} BOM templates.`);
+          $('#bom-template-file').value = '';
+        } catch (err) {
+          alert(`BOM template import failed: ${err.message}`);
+        }
+      });
+    }
+    function renderBomTemplates() {
+      const selectedType = $('#bom-template-type')?.value || '';
+      const bidType = $('#bid-type')?.value || '';
+      const q = ($('#bom-template-search')?.value || '').toLowerCase();
+      const sort = $('#bom-template-sort')?.value || 'profit';
+      let templates = getBomTemplates().filter(t => (!q || [t.name, t.client, t.jetbuiltProjectId, t.projectType].join(' ').toLowerCase().includes(q)));
+      if (selectedType) templates = templates.filter(t => t.projectType === selectedType);
+      templates.sort((a,b) => {
+        if (!selectedType && bidType && a.projectType !== b.projectType) {
+          if (a.projectType === bidType) return -1;
+          if (b.projectType === bidType) return 1;
+        }
+        if (sort === 'margin') return (b.margin || 0) - (a.margin || 0);
+        if (sort === 'date') return String(b.date || '').localeCompare(String(a.date || ''));
+        if (sort === 'items') return (b.itemCount || 0) - (a.itemCount || 0);
+        return (b.profit || 0) - (a.profit || 0);
+      });
+      $('#bom-template-list').innerHTML = templates.length ? templates.map(t => {
+        const preview = (t.items || []).slice(0, 12).map(i => `${i.qty}x ${i.customName} - ${label(i.category)} - ${fmt(lineTotal(i))}`).join('\n') || 'No line items extracted yet.';
+        return `<div class="template-card" data-template-id="${t.id}">
+          <h4>${esc(t.rank ? `${t.rank}. ` : '')}${esc(t.name)}</h4>
+          <div class="muted">${esc(t.client || 'No client')} ${t.jetbuiltProjectId ? `- ${esc(t.jetbuiltProjectId)}` : ''}</div>
+          <div class="template-meta">
+            <span class="pill">${esc(label(t.projectType))}</span>
+            <span class="pill good">${esc(fmt(t.profit))} profit</span>
+            <span class="pill">${esc(pct(t.margin))} margin</span>
+            <span class="pill">${t.itemCount || 0} items</span>
+            <span class="pill">Items ${esc(fmt(t.itemSell || 0))}</span>
+          </div>
+          ${(t.warnings || []).map(w => `<div class="template-warning">${esc(w)}</div>`).join('')}
+          <pre class="template-preview hidden">${esc(preview)}</pre>
+          <div class="template-actions">
+            <button data-template-preview="${t.id}">Preview</button>
+            <button class="primary" data-template-apply="${t.id}" ${t.itemCount ? '' : 'disabled'}>Apply</button>
+          </div>
+        </div>`;
+      }).join('') : '<p class="muted">No BOM templates yet. Import Jetbuilt template JSON after extracting project line items.</p>';
+    }
+    function handleBomTemplateAction(e) {
+      const previewId = e.target.dataset.templatePreview;
+      const applyId = e.target.dataset.templateApply;
+      if (previewId) {
+        const card = e.target.closest('.template-card');
+        card?.querySelector('.template-preview')?.classList.toggle('hidden');
+      }
+      if (applyId) applyBomTemplate(applyId);
+    }
+    function applyBomTemplate(templateId) {
+      const template = getBomTemplates().find(t => t.id === templateId);
+      if (!template || !template.items?.length) return alert('This template has no BOM items yet.');
+      const bom = getCurrentBom();
+      const existing = new Set((bom.items || []).map(i => slugText(`${i.customName}|${i.category}`)));
+      const imported = template.items.map(item => {
+        const key = slugText(`${item.customName}|${item.category}`);
+        const duplicateNote = existing.has(key) ? 'Possible duplicate from template apply.' : '';
+        existing.add(key);
+        return { ...item, id: uid(), notes: [item.notes, `Template: ${template.name}`, duplicateNote].filter(Boolean).join(' | ') };
+      });
+      bom.items = [...(bom.items || []), ...imported];
+      saveBom(bom);
+      logActivity('bom:template-applied', `Applied ${template.name}: ${imported.length} items`, state.selectedProjectId);
+      renderAll();
     }
     function renderStrategy() {
       const p = state.selectedProjectId ? getProject(state.selectedProjectId) : null;
