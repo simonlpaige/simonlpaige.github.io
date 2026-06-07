@@ -58,6 +58,7 @@
     button { cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 7px; padding: 8px 12px; }
     button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
     button.primary:hover { background: var(--accent-hover); }
+    button:disabled, button.primary:disabled { cursor: not-allowed; opacity: .55; background: #e5e7eb; border-color: #d1d5db; color: #6b7280; }
     button.danger { color: var(--bad); border-color: #fecaca; background: #fff7f7; }
     button.ghost { background: transparent; color: var(--header-text); border-color: rgba(255,255,255,.22); }
     input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 7px; padding: 8px 10px; background: #fff; color: var(--ink); }
@@ -1209,7 +1210,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
           <pre class="template-preview hidden">${esc(preview)}</pre>
           <div class="template-actions">
             <button data-template-preview="${t.id}">Preview</button>
-            <button class="primary" data-template-apply="${t.id}" ${t.itemCount ? '' : 'disabled'}>Apply</button>
+            <button class="primary" data-template-apply="${t.id}" ${t.itemCount ? '' : 'disabled'}>${t.itemCount ? 'Apply' : 'Pending'}</button>
           </div>
         </div>`;
       }).join('') : '<p class="muted">No BOM templates yet. Import Jetbuilt template JSON after extracting project line items.</p>';
