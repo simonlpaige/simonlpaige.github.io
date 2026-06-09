@@ -156,6 +156,16 @@
     .scope-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
     .scope-match-list, .scope-question-list { margin: 8px 0 0; padding-left: 18px; }
     .scope-item-preview { max-height: 260px; overflow: auto; }
+    .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+    .portal-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 14px; display: grid; gap: 8px; }
+    .portal-card h4 { margin: 0; font-size: 15px; }
+    .portal-card p { margin: 0; font-size: 13px; color: var(--muted); }
+    .portal-link { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font-weight: 700; font-size: 13px; text-decoration: none; }
+    .portal-link:hover { text-decoration: underline; }
+    .bid-parse-output { min-height: 100px; background: #f8fafc; border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; font-size: 13px; }
+    .parse-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 10px; }
+    .parse-signal { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 8px 10px; font-size: 13px; }
+    .parse-signal strong { display: block; font-size: 18px; margin-top: 2px; }
     .print-root { display: none; }
     @media (max-width: 1000px) {
       .four, .three, .two { grid-template-columns: 1fr; }
@@ -209,6 +219,7 @@
         <button class="tab-btn" data-tab="products">Products</button>
         <button class="tab-btn" data-tab="pipeline">Pipeline</button>
         <button class="tab-btn" data-tab="import">Import</button>
+        <button class="tab-btn" data-tab="bidintel">Bid Intel</button>
         <button class="tab-btn" data-tab="model">Model Rules</button>
       </nav>
       <select id="mobile-tab-select" aria-label="Select tab"></select>
@@ -383,6 +394,28 @@
             <div class="panel"><h3>Import History</h3><div class="table-wrap"><table id="import-log-table"></table></div></div>
             <div class="panel"><h3>Full Data Backup</h3><div class="row"><button id="backup-export">Export All Data (JSON)</button><button id="backup-import">Import JSON Backup</button><input type="file" id="backup-file" aria-label="Backup JSON file" class="hidden" accept="application/json,.json"></div></div>
           </div>
+        </div>
+      </section>
+
+      <section id="tab-bidintel" class="tab-section">
+        <div class="page-header"><h2>Bid Intel</h2><span class="muted" style="font-size:13px">Find live bids - paste an RFP to pre-fill Scope Intelligence</span></div>
+
+        <div class="panel">
+          <h3>Paste RFP / Bid Description</h3>
+          <p class="muted" style="margin:0 0 10px">Copy the project description from any portal and paste it below. Larry reads the text and pre-fills Scope Intelligence + the Bid Builder form so you can jump straight to pricing.</p>
+          <label>RFP Text<textarea id="bidintel-paste" style="min-height:140px" placeholder="Paste the full bid description, project summary, or RFP scope of work here..."></textarea></label>
+          <div class="row" style="margin-top:10px">
+            <button id="bidintel-parse-btn" class="primary">Parse Bid Text</button>
+            <button id="bidintel-apply-btn" disabled>Apply to Bid Builder</button>
+            <button id="bidintel-clear-btn">Clear</button>
+          </div>
+          <div id="bidintel-parse-output" class="bid-parse-output muted" style="margin-top:12px">No bid parsed yet. Paste an RFP and click Parse.</div>
+        </div>
+
+        <div class="panel">
+          <h3>Local Bid Sources</h3>
+          <p class="muted" style="margin:0 0 12px">Pre-filtered for AV / technology / IT / low-voltage work. Check these before submitting a bid on any project you didn't find yourself.</p>
+          <div class="portal-grid" id="portal-list"></div>
         </div>
       </section>
 
@@ -903,6 +936,9 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       $('#scope-generate-btn').addEventListener('click', () => generateScopeSuggestion(false));
       $('#scope-question-btn').addEventListener('click', () => generateScopeSuggestion(true));
       $('#scope-apply-btn').addEventListener('click', applyScopeSuggestion);
+      $('#bidintel-parse-btn').addEventListener('click', runBidParse);
+      $('#bidintel-apply-btn').addEventListener('click', applyBidParse);
+      $('#bidintel-clear-btn').addEventListener('click', () => { $('#bidintel-paste').value = ''; resetBidParse(); });
       $('#draft-followup').addEventListener('click', draftFollowup);
       $('#client-new-btn').addEventListener('click', () => renderClientForm());
       $('#client-search').addEventListener('input', renderClients);
@@ -959,6 +995,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       renderPipeline();
       renderImportLog();
       renderModel();
+      renderBidIntel();
     }
     function renderDashboard() {
       const projects = getProjects();
@@ -1564,6 +1601,162 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       renderAll();
       generateEstimate();
     }
+    /* ============================================================
+       BID INTEL
+       ============================================================ */
+    const BID_PORTALS = [
+      { name: 'SAM.gov (Federal)', region: 'National', volume: 'high', url: 'https://sam.gov/search/?index=opp&keywords=audio+visual&dateRange=custom&start=2025-01-01&end=2026-12-31&sort=-modifiedDate&sfm[status][0]=Active', tip: 'Filter by NAICS 238210 (Electrical) or 334310 (AV Equipment). Kansas City USACE + IRS Midwest run regular AV bids.' },
+      { name: 'KCMO City Procurement', region: 'Kansas City, MO', volume: 'medium', url: 'https://www.kcmo.gov/city-hall/departments-agencies/finance/contract-compliance-purchasing/bid-opportunities', tip: 'City Hall AV, community centers, parks. Check keyword: technology, low voltage, AV.' },
+      { name: 'Jackson County Procurement', region: 'Kansas City, MO', volume: 'medium', url: 'https://www.jacksongov.org/government/departments/purchasing', tip: 'You know when refreshes are coming. Courts, admin buildings, legislative chambers.' },
+      { name: 'MissouriBUYS (State)', region: 'Missouri', volume: 'high', url: 'https://missouribuys.mo.gov/', tip: 'State-level contracts. DESE (schools) and higher-ed are the biggest AV spenders.' },
+      { name: 'DemandStar', region: 'KC Metro + MO/KS', volume: 'high', url: 'https://app.demandstar.com/app/opportunities?keyword=audio+visual', tip: 'Aggregates municipal bids. One login covers most MO and KS cities. Best coverage for mid-size cities.' },
+      { name: 'BidNet Direct', region: 'KC Metro', volume: 'medium', url: 'https://www.bidnetdirect.com/public/solicitations/open?searchCode=audio+visual&location=Missouri', tip: 'Free browsing, paid alerts. Covers smaller KC-area municipalities not on DemandStar.' },
+      { name: 'ConstructConnect (iSqFt)', region: 'KC Metro', volume: 'high', url: 'https://app.constructconnect.com/', tip: 'Commercial construction pre-bid. GCs post sub-solicitations here before the prime is awarded. AV is always a sub.' },
+      { name: 'AGC Missouri', region: 'Missouri', volume: 'medium', url: 'https://www.agcmo.org/', tip: 'Associated General Contractors member network. Join for sub-wanted postings when GCs need AV subs on commercial build-outs.' },
+    ];
+    let _bidParseResult = null;
+
+    function parseBidText(text) {
+      const low = text.toLowerCase();
+      const typeMap = {
+        courtroom: ['courtroom', 'court room', 'judicial', 'hearing room', 'arraignment', 'jury'],
+        auditorium: ['auditorium', 'theater', 'theatre', 'performing arts', 'black box', 'event hall', 'arena', 'concert'],
+        worship: ['church', 'worship', 'sanctuary', 'chapel', 'mosque', 'synagogue', 'temple', 'congregation'],
+        classroom: ['classroom', 'training room', 'lecture hall', 'lecture room', 'education', 'school', 'university', 'college', 'k-12'],
+        hospitality: ['hotel', 'ballroom', 'banquet', 'restaurant', 'event center', 'convention'],
+        retail: ['retail', 'showroom', 'store front', 'kiosk', 'lobby display'],
+        refresh: ['upgrade', 'refresh', 'rip and replace', 'modernize', 'replace existing', 'failing system'],
+        conference: ['conference', 'meeting room', 'boardroom', 'board room', 'huddle', 'collaboration room'],
+      };
+      let projectType = 'conference';
+      for (const [type, kws] of Object.entries(typeMap)) {
+        if (kws.some(kw => low.includes(kw))) { projectType = type; break; }
+      }
+      const rn = (low.match(/(\d+)\s*(?:room|space|suite|courtroom|classroom|chamber)/) || [])[1];
+      const dn = (low.match(/(\d+)\s*(?:display|monitor|screen|tv|television|panel|projector)/) || [])[1];
+      const mn = (low.match(/(\d+)\s*(?:mic|microphone)/) || [])[1];
+      const sn = (low.match(/(\d+)\s*(?:speaker|loudspeaker)/) || [])[1];
+      const cn = (low.match(/(\d+)\s*(?:camera|ptz|webcam)/) || [])[1];
+      const rooms    = rn ? Math.min(parseInt(rn), 50) : 1;
+      const displays = dn ? parseInt(dn) : (low.includes('display') || low.includes('screen') ? 1 : 0);
+      const mics     = mn ? parseInt(mn) : (low.includes('mic') ? 2 : 0);
+      const speakers = sn ? parseInt(sn) : (low.includes('speaker') ? 4 : 0);
+      const cameras  = cn ? parseInt(cn) : (low.includes('camera') || low.includes('ptz') || low.includes('stream') ? 1 : 0);
+      const dsp = /dsp|digital signal|biamp|qsc core|tesira|symetrix|dante/.test(low);
+      const systems = {
+        videoConference:    /video\s*conf|zoom room|teams room|webex|telepresence/.test(low),
+        streamingLivestream:/stream|livestream|broadcast|live video|recording/.test(low),
+        digitalSignage:     /digital\s*sign|wayfinding|lobby display|announcement display/.test(low),
+        accessControl:      /access\s*control|card reader|badge/.test(low),
+        security:           /security camera|cctv|surveillance/.test(low),
+        lighting:           /lighting control|dimmer|theatrical light|stage light/.test(low),
+        audioDistribution:  /audio distribution|background music|paging|intercom|distributed audio/.test(low),
+        rescueJob:          /failing|broken|non-functional|replace existing|currently down|inoperable/.test(low),
+      };
+      let complexity = 5;
+      if (systems.videoConference) complexity++;
+      if (systems.streamingLivestream) complexity++;
+      if (systems.lighting) complexity++;
+      if (rooms > 3) complexity = Math.min(complexity + 1, 10);
+      if (/complex|advanced|custom|integration|multi.?room/.test(low)) complexity = Math.min(complexity + 1, 10);
+      complexity = Math.min(10, Math.max(1, complexity));
+      const budgetMatches = (text.match(/\$[\d,]+(?:\.\d{2})?/g) || []).map(v => parseInt(v.replace(/[$,]/g, ''))).filter(n => n >= 5000);
+      const budget = budgetMatches.length ? Math.max(...budgetMatches) : null;
+      const deadlineM = text.match(/due\s+(?:date|by)?:?\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4}|\d{1,2}\/\d{1,2}\/\d{2,4})/i);
+      const deadline = deadlineM ? deadlineM[1] : null;
+      const orgM = text.match(/(?:issued by|solicited by|owner:|agency:|department:|city of|county of|university of|school district)[:\s]+([A-Z][^\n,]{2,60})/i);
+      const orgName = orgM ? orgM[1].trim() : '';
+      const bidNumM = text.match(/(?:rfp|rfq|bid|solicitation|project)\s*#?\s*:?\s*([A-Z0-9][A-Z0-9-]{3,19})/i);
+      const bidNumber = bidNumM ? bidNumM[1] : '';
+      const confidence = Math.min(100, 35 + (orgName ? 15 : 0) + (budget ? 20 : 0) + (deadline ? 10 : 0) + (bidNumber ? 10 : 0) + Object.values(systems).filter(Boolean).length * 3 + (rooms > 1 ? 5 : 0));
+      const systemLabels = Object.entries(systems).filter(([, v]) => v).map(([k]) => k.replace(/([A-Z])/g, ' $1').trim().toLowerCase());
+      const scopeBrief = text.slice(0, 500).trim() + (systemLabels.length ? `\nDetected signals: ${systemLabels.join(', ')}` : '');
+      return { projectType, rooms, displays, mics, speakers, cameras, dsp, systems, complexity, budget, deadline, orgName, bidNumber, confidence, scopeBrief };
+    }
+
+    function runBidParse() {
+      const text = $('#bidintel-paste').value.trim();
+      if (!text) return alert('Paste some bid text first.');
+      _bidParseResult = parseBidText(text);
+      renderBidParseOutput(_bidParseResult);
+      $('#bidintel-apply-btn').disabled = false;
+    }
+
+    function resetBidParse() {
+      _bidParseResult = null;
+      $('#bidintel-apply-btn').disabled = true;
+      const box = $('#bidintel-parse-output');
+      box.classList.add('muted');
+      box.innerHTML = 'No bid parsed yet. Paste an RFP and click Parse.';
+    }
+
+    function renderBidParseOutput(p) {
+      const box = $('#bidintel-parse-output');
+      box.classList.remove('muted');
+      const systemHits = Object.entries(p.systems).filter(([, v]) => v).map(([k]) => `<span class="pill">${k.replace(/([A-Z])/g, ' $1').trim()}</span>`).join(' ');
+      const confCls = p.confidence >= 75 ? 'good' : p.confidence >= 50 ? 'warn' : 'bad';
+      box.innerHTML = `
+        <div class="row between" style="margin-bottom:8px">
+          <strong>Parse Result</strong>
+          <span class="pill ${confCls}">${p.confidence}% confidence</span>
+        </div>
+        <div class="parse-grid">
+          <div class="parse-signal"><span class="muted">Type</span><strong>${esc(label(p.projectType))}</strong></div>
+          <div class="parse-signal"><span class="muted">Rooms</span><strong>${p.rooms}</strong></div>
+          <div class="parse-signal"><span class="muted">Displays</span><strong>${p.displays}</strong></div>
+          <div class="parse-signal"><span class="muted">Mics</span><strong>${p.mics}</strong></div>
+          <div class="parse-signal"><span class="muted">Speakers</span><strong>${p.speakers}</strong></div>
+          <div class="parse-signal"><span class="muted">Cameras</span><strong>${p.cameras}</strong></div>
+          <div class="parse-signal"><span class="muted">Complexity</span><strong>${p.complexity}/10</strong></div>
+          ${p.budget ? `<div class="parse-signal"><span class="muted">Budget</span><strong>${fmt(p.budget)}</strong></div>` : ''}
+        </div>
+        ${systemHits ? `<div class="row" style="margin-top:10px;flex-wrap:wrap;gap:6px">${systemHits}</div>` : ''}
+        ${p.orgName ? `<div class="strategy-note" style="margin-top:10px"><strong>Org:</strong> ${esc(p.orgName)}${p.bidNumber ? ` &nbsp;|&nbsp; <strong>Bid #:</strong> ${esc(p.bidNumber)}` : ''}${p.deadline ? ` &nbsp;|&nbsp; <strong>Due:</strong> ${esc(p.deadline)}` : ''}</div>` : ''}
+        <p class="muted" style="margin:10px 0 0;font-size:12px">Click <strong>Apply to Bid Builder</strong> to pre-fill the form and Scope Intelligence with these signals.</p>
+      `;
+    }
+
+    function applyBidParse() {
+      const p = _bidParseResult;
+      if (!p) return;
+      navigate('bid');
+      $('#bid-type').value = p.projectType;
+      $('#bid-rooms').value = p.rooms;
+      $('#bid-displays').value = p.displays;
+      $('#bid-mics').value = p.mics;
+      $('#bid-speakers').value = p.speakers;
+      $('#bid-cameras').value = p.cameras;
+      $('#bid-dsp').value = String(p.dsp);
+      $('#bid-complexity').value = p.complexity;
+      if (p.budget) $('#bid-budget').value = p.budget;
+      if (p.orgName && !$('#bid-name').value) $('#bid-name').value = p.orgName + ' AV';
+      const notes = [$('#bid-notes').value, p.bidNumber ? `Bid #${p.bidNumber}` : '', p.deadline ? `Due: ${p.deadline}` : ''].filter(Boolean).join('\n').trim();
+      if (notes) $('#bid-notes').value = notes;
+      $$('#systems-checks input').forEach(input => { input.checked = !!p.systems[input.dataset.system]; });
+      $('#scope-brief').value = p.scopeBrief;
+      $$('input[name="estimate-mode"]').forEach(i => { i.checked = i.value === 'hybrid'; });
+      logActivity('bidintel:applied', `Applied bid parse: ${label(p.projectType)} / ${p.rooms} rooms / ${p.confidence}% confidence`, null);
+      generateEstimate();
+    }
+
+    function renderBidIntel() {
+      const list = $('#portal-list');
+      if (!list || list.dataset.rendered) return;
+      list.dataset.rendered = '1';
+      list.innerHTML = BID_PORTALS.map(p => {
+        const volCls = p.volume === 'high' ? 'good' : p.volume === 'medium' ? 'warn' : '';
+        return `<div class="portal-card">
+          <div class="row between"><h4>${esc(p.name)}</h4><span class="pill ${volCls}">${p.volume} volume</span></div>
+          <p>${esc(p.tip)}</p>
+          <div class="row between">
+            <span class="pill">${esc(p.region)}</span>
+            <a class="portal-link" href="${esc(p.url)}" target="_blank" rel="noopener">Open Portal &#8599;</a>
+          </div>
+        </div>`;
+      }).join('');
+    }
+    /* ============================================================ */
+
     function renderStrategy() {
       const p = state.selectedProjectId ? getProject(state.selectedProjectId) : null;
       const c = p?.clientId ? getClient(p.clientId) : null;
