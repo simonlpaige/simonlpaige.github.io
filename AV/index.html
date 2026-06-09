@@ -1632,7 +1632,7 @@ Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
       for (const [type, kws] of Object.entries(typeMap)) {
         if (kws.some(kw => low.includes(kw))) { projectType = type; break; }
       }
-      const rn = (low.match(/(\d+)\s*(?:room|space|suite|courtroom|classroom|chamber)/) || [])[1];
+      const rn = (low.match(/(\d+)\s*(?:[a-z]+\s+)?(?:room|space|suite|courtroom|classroom|chamber)/) || [])[1];
       const dn = (low.match(/(\d+)\s*(?:display|monitor|screen|tv|television|panel|projector)/) || [])[1];
       const mn = (low.match(/(\d+)\s*(?:mic|microphone)/) || [])[1];
       const sn = (low.match(/(\d+)\s*(?:speaker|loudspeaker)/) || [])[1];
