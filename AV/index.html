@@ -1,185 +1,2072 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AV Bid Generator</title>
+  <meta name="description" content="Password-protected AV bid and proposal tool for estimating projects, managing BOMs, clients, products, pipeline stages, and pricing rules.">
+  <link rel="canonical" href="https://simonlpaige.com/AV/">
+  <meta property="og:title" content="AV Bid Generator">
+  <meta property="og:description" content="A standalone AV estimating and proposal tool built for project signals, BOMs, clients, products, pipeline tracking, and pricing rules.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simonlpaige.com/AV/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AV Bid Generator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any modern browser",
+    "url": "https://simonlpaige.com/AV/",
+    "description": "Password-protected AV bid and proposal tool for estimating projects, managing BOMs, clients, products, pipeline stages, and pricing rules.",
+    "creator": {
+      "@type": "Person",
+      "name": "Simon L. Paige",
+      "url": "https://simonlpaige.com/"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --header-bg: #1a2332;
+      --header-text: #e8edf4;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --soft: #eef3fb;
+      --good: #16a34a;
+      --warn: #d97706;
+      --bad: #dc2626;
+      --shadow: 0 8px 22px rgba(15, 23, 42, .08);
+      --radius: 8px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--bg); }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 7px; padding: 8px 12px; }
+    button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    button.primary:hover { background: var(--accent-hover); }
+    button:disabled, button.primary:disabled { cursor: not-allowed; opacity: .55; background: #e5e7eb; border-color: #d1d5db; color: #6b7280; }
+    button.danger { color: var(--bad); border-color: #fecaca; background: #fff7f7; }
+    button.ghost { background: transparent; color: var(--header-text); border-color: rgba(255,255,255,.22); }
+    input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 7px; padding: 8px 10px; background: #fff; color: var(--ink); }
+    textarea { min-height: 88px; resize: vertical; }
+    label { display: grid; gap: 5px; color: #344054; font-size: 13px; font-weight: 650; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+    th { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0; background: #f8fafc; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+    .muted { color: var(--muted); }
+    .hidden { display: none !important; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 999px; background: var(--soft); color: #294160; font-size: 12px; font-weight: 700; }
+    .pill.good { background: #dcfce7; color: #166534; }
+    .pill.warn { background: #fef3c7; color: #92400e; }
+    .pill.bad { background: #fee2e2; color: #991b1b; }
+    .grid { display: grid; gap: var(--space-4); }
+    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); box-shadow: var(--shadow); }
+    .panel h3, .panel h4 { margin: 0 0 12px; }
+    .row { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+    .between { justify-content: space-between; }
+    .stack { display: grid; gap: var(--space-3); }
+    #lock-screen { min-height: 100vh; display: grid; place-items: center; background: radial-gradient(circle at top left, #32445f 0, #1a2332 36%, #111827 100%); padding: 24px; }
+    .lock-card { width: min(420px, 100%); background: #fff; border-radius: 8px; padding: 28px; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+    .lock-logo { width: 48px; height: 48px; border-radius: 8px; background: var(--header-bg); color: #fff; display: grid; place-items: center; font-weight: 900; margin-bottom: 12px; }
+    .lock-card h1 { margin: 0 0 6px; font-size: 26px; }
+    .error-msg { color: var(--bad); min-height: 20px; margin: 8px 0 0; font-size: 13px; }
+    #app { min-height: 100vh; }
+    .app-header { background: var(--header-bg); color: var(--header-text); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 18px; position: sticky; top: 0; z-index: 20; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+    .brand-mark { width: 34px; height: 34px; border-radius: 7px; background: #e8edf4; color: #1a2332; display: grid; place-items: center; font-weight: 900; }
+    .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tab-btn { color: var(--header-text); background: transparent; border-color: transparent; padding: 8px 10px; }
+    .tab-btn.active { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.22); }
+    #mobile-tab-select { display: none; max-width: 260px; }
+    main { padding: 20px; max-width: 1480px; margin: 0 auto; }
+    .tab-section { display: none; }
+    .tab-section.active { display: grid; gap: var(--space-4); }
+    .page-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .page-header h2 { margin: 0; font-size: 26px; }
+    .stat-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+    .stat-value { font-size: 26px; font-weight: 850; margin-top: 8px; }
+    .funnel-stage { display: grid; gap: 6px; margin-bottom: 10px; }
+    .funnel-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+    .bar-bg { height: 10px; background: #e5eaf2; border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+    .activity-item { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .activity-item:last-child { border-bottom: 0; }
+    .form-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-3); }
+    .check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .check-grid label { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+    .check-grid input, .mode-row input { width: auto; }
+    .mode-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .estimate-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: #f8fafc; }
+    .estimate-card strong { font-size: 24px; display: block; margin-top: 6px; }
+    .bom-search-wrap { position: relative; }
+    .bom-results { position: absolute; top: calc(100% + 4px); left: 0; right: 0; background: #fff; border: 1px solid var(--line); border-radius: 7px; box-shadow: var(--shadow); z-index: 15; max-height: 260px; overflow: auto; }
+    .bom-result { padding: 9px 10px; border-bottom: 1px solid var(--line); cursor: pointer; }
+    .bom-result:hover { background: var(--soft); }
+    .kanban { display: grid; grid-template-columns: repeat(6, minmax(210px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+    .kanban-col { background: #eef3fb; border: 1px solid var(--line); border-radius: var(--radius); min-height: 320px; padding: 10px; }
+    .kanban-col h3 { margin: 0 0 10px; font-size: 15px; display: flex; justify-content: space-between; }
+    .project-card { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 11px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(15,23,42,.06); cursor: grab; }
+    .project-card:active { cursor: grabbing; }
+    .card-name { font-weight: 800; }
+    .card-client, .card-meta { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .card-value { font-weight: 850; margin-top: 8px; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, .55); z-index: 50; display: grid; place-items: center; padding: 18px; }
+    .modal { width: min(980px, 100%); max-height: 92vh; overflow: auto; background: #fff; border-radius: 8px; box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+    .modal-header, .modal-footer { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .modal-footer { border-top: 1px solid var(--line); border-bottom: 0; justify-content: flex-end; flex-wrap: wrap; }
+    .modal-body { padding: 16px; }
+    .modal-tabs { display: flex; gap: 8px; padding: 0 16px 12px; border-bottom: 1px solid var(--line); }
+    .modal-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .modal-panel { display: none; }
+    .modal-panel.active { display: grid; gap: var(--space-3); }
+    .dropzone { border: 2px dashed #a8b7cc; border-radius: var(--radius); background: #f8fafc; padding: 24px; text-align: center; cursor: pointer; }
+    .dropzone.drag { background: #e8f0ff; border-color: var(--accent); }
+    .import-type-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .import-type-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .formula-block { white-space: pre-wrap; background: #111827; color: #e5e7eb; border-radius: 7px; padding: 14px; overflow-x: auto; font-family: Consolas, Menlo, monospace; font-size: 13px; }
+    .strategy-note { background: #f8fafc; border: 1px solid var(--line); border-radius: 7px; padding: 12px; }
+    .template-toolbar { display: grid; grid-template-columns: 1fr 170px 170px auto; gap: 10px; align-items: end; }
+    .template-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+    .template-card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 12px; display: grid; gap: 8px; }
+    .template-card h4 { margin: 0; font-size: 15px; }
+    .template-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+    .template-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .template-warning { color: #92400e; background: #fffbeb; border: 1px solid #fde68a; border-radius: 7px; padding: 8px; font-size: 12px; }
+    .template-preview { white-space: pre-wrap; max-height: 220px; overflow: auto; background: #f8fafc; border: 1px solid var(--line); border-radius: 7px; padding: 10px; font-size: 12px; }
+    .scope-grid { display: grid; grid-template-columns: minmax(280px, .85fr) minmax(320px, 1.15fr); gap: 14px; }
+    .scope-output { min-height: 180px; border: 1px solid var(--line); border-radius: var(--radius); background: #f8fafc; padding: 12px; }
+    .scope-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .scope-match-list, .scope-question-list { margin: 8px 0 0; padding-left: 18px; }
+    .scope-item-preview { max-height: 260px; overflow: auto; }
+    .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+    .portal-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 14px; display: grid; gap: 8px; }
+    .portal-card h4 { margin: 0; font-size: 15px; }
+    .portal-card p { margin: 0; font-size: 13px; color: var(--muted); }
+    .portal-link { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font-weight: 700; font-size: 13px; text-decoration: none; }
+    .portal-link:hover { text-decoration: underline; }
+    .bid-parse-output { min-height: 100px; background: #f8fafc; border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; font-size: 13px; }
+    .parse-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 10px; }
+    .parse-signal { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 8px 10px; font-size: 13px; }
+    .parse-signal strong { display: block; font-size: 18px; margin-top: 2px; }
+    .print-root { display: none; }
+    @media (max-width: 1000px) {
+      .four, .three, .two { grid-template-columns: 1fr; }
+      .scope-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tabs { display: none; }
+      #mobile-tab-select { display: block; }
+    }
+    @media (max-width: 640px) {
+      main { padding: 12px; }
+      .app-header { align-items: stretch; flex-direction: column; }
+      .form-grid, .check-grid { grid-template-columns: 1fr; }
+      .page-header { align-items: stretch; }
+      .row { align-items: stretch; }
+      button { width: 100%; }
+      .modal-footer button, .modal-tabs button, .import-type-tabs button { width: auto; }
+      .template-toolbar { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body > *:not(.print-root) { display: none !important; }
+      .print-root { display: block; color: #111; background: #fff; padding: 28px; }
+      .proposal-print table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+      .proposal-print th, .proposal-print td { border: 1px solid #ccc; padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <section id="lock-screen">
+    <div class="lock-card">
+      <div class="lock-logo">AV</div>
+      <h1>AV Bid Generator</h1>
+      <p class="muted" id="lock-copy">Enter your password to unlock.</p>
+      <div class="stack">
+      <input id="password-input" aria-label="Password" type="password" autocomplete="current-password" placeholder="Password">
+      <input id="password-confirm" aria-label="Confirm password" class="hidden" type="password" autocomplete="new-password" placeholder="Confirm password">
+        <button id="unlock-btn" class="primary">Unlock</button>
+        <button id="reset-auth-btn" type="button">Reset Local Password</button>
+        <p class="error-msg" id="auth-error"></p>
+      </div>
+    </div>
+  </section>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Courtroom & Government AV Consulting | Kansas City | Groundlayer AV</title>
-      <meta name="description" content="CTS-D certified AV design & commissioning for courtrooms, law firms, schools, and government facilities in Kansas City. Current Jackson County Courts AV operator. $25K–$200K projects." />
-      <meta name="robots" content="index, follow" />
-      <meta property="og:title" content="Courtroom & Government AV Consulting | Kansas City | Groundlayer AV" />
-      <meta property="og:description" content="CTS-D certified AV design & commissioning for courtrooms, law firms, schools, and government. Current Jackson County Courts AV operator." />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://groundlayer.co/av/" />
-      <meta property="og:image" content="https://groundlayer.co/av/og-image.png" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Groundlayer AV Consulting - CTS-D certified courtrooms and government AV" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Courtroom & Government AV Consulting | Kansas City" />
-      <meta name="twitter:description" content="CTS-D certified AV design & commissioning. Current Jackson County Courts AV operator. $25K-$200K projects." />
-      <meta name="twitter:image" content="https://groundlayer.co/av/og-image.png" />
-      <link rel="canonical" href="https://groundlayer.co/av/" />
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "LocalBusiness",
-            "@id": "https://groundlayer.co/av/#business",
-            "name": "Groundlayer AV Consulting",
-            "description": "CTS-D certified AV design, integration, and commissioning for courtrooms, law firms, schools, and government facilities in Kansas City. Current Jackson County Courts AV operator. Projects $25K-$200K.",
-            "url": "https://groundlayer.co/av/",
-            "telephone": "+1-816-316-0092",
-            "email": "info@groundlayer.co",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Kansas City",
-              "addressRegion": "MO",
-              "addressCountry": "US"
-            },
-            "areaServed": {
-              "@type": "City",
-              "name": "Kansas City"
-            },
-            "priceRange": "$25K-$200K",
-            "hasCredential": [
-              { "@type": "EducationalOccupationalCredential", "credentialCategory": "CTS-D" },
-              { "@type": "EducationalOccupationalCredential", "credentialCategory": "CTS-I" },
-              { "@type": "EducationalOccupationalCredential", "credentialCategory": "CTS" },
-              { "@type": "EducationalOccupationalCredential", "credentialCategory": "Q-SYS Level 2" },
-              { "@type": "EducationalOccupationalCredential", "credentialCategory": "ETC Lighting Certified Technician" }
-            ],
-            "sameAs": [
-              "https://groundlayer.co/av/"
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://groundlayer.co/av/#breadcrumb",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Groundlayer",
-                "item": "https://groundlayer.co/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "AV Consulting",
-                "item": "https://groundlayer.co/av/"
-              }
-            ]
-          },
-          {
-            "@type": "Service",
-            "@id": "https://groundlayer.co/av/#service-rooms",
-            "name": "Conference Room & Office AV",
-            "provider": { "@id": "https://groundlayer.co/av/#business" },
-            "description": "Microsoft Teams Rooms, Zoom Rooms, Google Meet, Webex, cameras, microphones, displays, room control, and clean user experiences for hybrid work.",
-            "areaServed": { "@type": "City", "name": "Kansas City" }
-          },
-          {
-            "@type": "Service",
-            "@id": "https://groundlayer.co/av/#service-schools",
-            "name": "School, Auditorium & Stadium AV",
-            "provider": { "@id": "https://groundlayer.co/av/#business" },
-            "description": "Classroom AV, auditorium projection and sound, performing arts systems, athletic facility audio, and district-wide deployments.",
-            "areaServed": { "@type": "City", "name": "Kansas City" }
-          },
-          {
-            "@type": "Service",
-            "@id": "https://groundlayer.co/av/#service-courtrooms",
-            "name": "Law Firm & Courtroom AV",
-            "provider": { "@id": "https://groundlayer.co/av/#business" },
-            "description": "Evidence presentation, judge and attorney UC integration, multi-camera video, assistive listening, recording, and reliable courtroom control.",
-            "areaServed": { "@type": "City", "name": "Kansas City" }
-          },
-          {
-            "@type": "Service",
-            "@id": "https://groundlayer.co/av/#service-carts",
-            "name": "Portable Media Cart Systems",
-            "provider": { "@id": "https://groundlayer.co/av/#business" },
-            "description": "Mobile presentation and conferencing systems that stay simple for end users while remaining serviceable for IT and facilities teams.",
-            "areaServed": { "@type": "City", "name": "Kansas City" }
-          },
-          {
-            "@type": "Service",
-            "@id": "https://groundlayer.co/av/#service-commissioning",
-            "name": "AV Commissioning & Handoff",
-            "provider": { "@id": "https://groundlayer.co/av/#business" },
-            "description": "As-built schematics, cable schedules, O&M documentation, user training, and validation workflows designed to reduce punch-list items and support faster sign-off.",
-            "areaServed": { "@type": "City", "name": "Kansas City" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://groundlayer.co/av/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Can you handle projects during business hours?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Design and off-hours commissioning are standard. Site visits are coordinated in advance. For urgent support, Groundlayer maintains a subcontractor network for business-hours response."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does your process look like?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Discovery call to understand your needs, followed by a site survey and detailed proposal. After approval, system design, DSP programming, commissioning, and operator training are handled. Installation labor is handled by trusted subcontractors."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What types of projects do you take on?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Courtroom AV, council chambers, law firm conference rooms, school auditoriums, classroom technology, portable media systems, and corporate boardrooms. Projects typically range from $25,000 to $200,000."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How long does a typical project take?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Design and proposal: 2-4 weeks. Procurement: 4-8 weeks depending on equipment. Installation and commissioning: 2-6 weeks. Training and handoff: 1 week. Total timeline is typically 2-6 months depending on scope."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you work with architects and general contractors?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Groundlayer provides CAD-ready system designs, cable schedules, and specification documents that integrate with your project's construction documents."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Are you insured and bonded?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "General liability insurance is in place. For projects requiring surety bonding, Groundlayer partners with licensed low-voltage contractors who hold active bonding."
-                }
-              }
-            ]
-          }
-        ]
+  <div id="app" class="hidden">
+    <header class="app-header">
+      <div class="brand"><div class="brand-mark">AV</div><div><div>AV Bid Generator</div><small class="muted" id="company-label"></small></div></div>
+      <nav class="tabs" id="tabs">
+        <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+        <button class="tab-btn" data-tab="bid">Bid Builder</button>
+        <button class="tab-btn" data-tab="strategy">Sales Strategy</button>
+        <button class="tab-btn" data-tab="clients">Clients</button>
+        <button class="tab-btn" data-tab="products">Products</button>
+        <button class="tab-btn" data-tab="pipeline">Pipeline</button>
+        <button class="tab-btn" data-tab="import">Import</button>
+        <button class="tab-btn" data-tab="bidintel">Bid Intel</button>
+        <button class="tab-btn" data-tab="model">Model Rules</button>
+      </nav>
+      <select id="mobile-tab-select" aria-label="Select tab"></select>
+      <button id="lock-btn" class="ghost">Lock</button>
+    </header>
+
+    <main>
+      <section id="tab-dashboard" class="tab-section active">
+        <div class="page-header"><h2>Dashboard</h2><button id="dash-refresh">Refresh</button></div>
+        <div class="grid four stats-grid" id="stats-grid"></div>
+        <div class="grid two">
+          <div class="panel"><h3>Pipeline Funnel</h3><div id="pipeline-funnel"></div></div>
+          <div class="panel"><h3>Won by Type</h3><div id="won-chart"></div></div>
+        </div>
+        <div class="panel"><h3>Activity Feed</h3><div id="activity-feed"></div></div>
+      </section>
+
+      <section id="tab-bid" class="tab-section">
+        <div class="page-header bid-header">
+          <h2>Bid Builder</h2>
+          <div class="row project-selector">
+            <select id="bid-project-select"></select>
+            <button id="bid-save-project" class="primary">Save to Pipeline</button>
+            <button id="print-proposal-btn">Export / Print</button>
+          </div>
+        </div>
+        <div class="grid two">
+          <div class="panel stack">
+            <h3>Project Signals</h3>
+            <div class="form-grid" id="bid-form">
+              <label>Name<input id="bid-name" aria-label="Project name" data-field="name" placeholder="Project name"></label>
+              <label>Client<select id="bid-client" data-field="clientId"></select></label>
+              <label>Type<select id="bid-type" data-field="projectType"></select></label>
+              <label>Rooms<input aria-label="Room count" type="number" min="1" id="bid-rooms" data-field="rooms" value="1"></label>
+              <label>Displays<input aria-label="Display count" type="number" min="0" id="bid-displays" data-field="displays" value="1"></label>
+              <label>Mics<input aria-label="Microphone count" type="number" min="0" id="bid-mics" data-field="mics" value="2"></label>
+              <label>Speakers<input aria-label="Speaker count" type="number" min="0" id="bid-speakers" data-field="speakers" value="4"></label>
+              <label>Cameras<input aria-label="Camera count" type="number" min="0" id="bid-cameras" data-field="cameras" value="1"></label>
+              <label>Complexity<input aria-label="Complexity from 1 to 10" type="number" min="1" max="10" id="bid-complexity" data-field="complexity" value="5"></label>
+              <label>Budget<input aria-label="Optional budget" type="number" min="0" id="bid-budget" data-field="budget" placeholder="Optional"></label>
+              <label>Stage<select id="bid-stage" data-field="stage"></select></label>
+              <label>DSP<select id="bid-dsp" data-field="dsp"><option value="false">No DSP</option><option value="true">DSP included</option></select></label>
+            </div>
+            <label>Notes<textarea id="bid-notes" data-field="notes" placeholder="Scope notes, risks, exclusions"></textarea></label>
+            <div>
+              <h4>Systems</h4>
+              <div class="check-grid" id="systems-checks"></div>
+            </div>
+            <div>
+              <h4>Estimate Mode</h4>
+              <div class="mode-row">
+                <label><input aria-label="Formula only estimate mode" type="radio" name="estimate-mode" value="formula" checked> Formula only</label>
+                <label><input aria-label="BOM override estimate mode" type="radio" name="estimate-mode" value="bom"> BOM override</label>
+                <label><input aria-label="Hybrid estimate mode" type="radio" name="estimate-mode" value="hybrid"> Hybrid</label>
+              </div>
+            </div>
+            <div class="row">
+              <button id="generate-btn" class="primary">Generate Estimate</button>
+              <button id="toggle-breakdown">Toggle Breakdown</button>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="panel">
+              <h3>Estimate</h3>
+              <div class="grid three" id="estimate-output"></div>
+              <pre class="formula-block hidden" id="estimate-breakdown"></pre>
+            </div>
+            <div class="panel"><h3>Bid Comparison</h3><div id="bid-comparison">Generate an estimate to compare against won records.</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="page-header"><h3>BOM</h3><div class="row"><button id="bom-add-custom">Add Custom</button><span id="bom-subtotal" class="pill">$0</span></div></div>
+          <div class="bom-search-wrap"><input id="bom-search" aria-label="Search BOM products" placeholder="Search products by model, manufacturer, or category"><div id="bom-results" class="bom-results hidden"></div></div>
+          <div class="table-wrap" style="margin-top:12px"><table id="bom-table"></table></div>
+        </div>
+        <div class="panel">
+          <div class="page-header">
+            <div>
+              <h3>Scope Intelligence</h3>
+              <p class="muted" style="margin:0">Historical bid inference from imported Jetbuilt winners.</p>
+            </div>
+            <div class="row">
+              <button id="scope-question-btn">Gap Questions</button>
+              <button id="scope-generate-btn" class="primary">Generate Likely Bid</button>
+              <button id="scope-apply-btn" disabled>Apply Suggested BOM</button>
+            </div>
+          </div>
+          <div class="scope-grid" style="margin-top:12px">
+            <label>Scope Brief<textarea id="scope-brief" placeholder="Example: black box theater with new lighting control, audio reinforcement, streaming camera, owner display, off-hours install"></textarea></label>
+            <div id="scope-advisor-output" class="scope-output muted">No scope analyzed yet.</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="page-header">
+            <div>
+              <h3>BOM Library</h3>
+              <p class="muted" style="margin:0">Reusable Jetbuilt templates ranked by project profit. Applies by appending lines to the current BOM.</p>
+            </div>
+            <div class="row">
+              <button id="bom-template-import-btn">Import Template JSON</button>
+              <input type="file" id="bom-template-file" aria-label="BOM template JSON file" class="hidden" accept=".json,application/json">
+            </div>
+          </div>
+          <div class="template-toolbar" style="margin-top:12px">
+            <label>Search templates<input id="bom-template-search" aria-label="Search BOM templates" placeholder="Project, client, or Jetbuilt ID"></label>
+            <label>Type<select id="bom-template-type"></select></label>
+            <label>Sort<select id="bom-template-sort"><option value="profit">Profit</option><option value="margin">Margin</option><option value="date">Date</option><option value="items">Item count</option></select></label>
+            <button id="bom-template-refresh">Refresh</button>
+          </div>
+          <div id="bom-template-list" class="template-grid"></div>
+        </div>
+      </section>
+
+      <section id="tab-strategy" class="tab-section">
+        <div class="page-header"><h2>Sales Strategy</h2><button id="draft-followup">Draft Follow-up</button></div>
+        <div class="panel stack">
+          <div id="client-context" class="strategy-note">No project selected. Select a bid project to inject client context.</div>
+          <div class="grid two">
+            <label>Customer Context<textarea id="customer-context"></textarea></label>
+            <label>Follow-up Draft<textarea id="followup-draft" readonly></textarea></label>
+          </div>
+          <div class="grid three" id="discovery-questions"></div>
+        </div>
+      </section>
+
+      <section id="tab-clients" class="tab-section">
+        <div class="page-header clients-header">
+          <h2>Clients</h2>
+          <div class="row"><button id="client-new-btn" class="primary">+ New Client</button><input id="client-search" aria-label="Search clients" placeholder="Search clients..."><select id="client-type-filter"></select></div>
+        </div>
+        <div class="grid two">
+          <div class="panel"><h3>Client List</h3><div id="clients-list"></div></div>
+          <div class="panel stack"><h3>Client Detail</h3><div id="client-detail">Select a client or create a new one.</div></div>
+        </div>
+      </section>
+
+      <section id="tab-products" class="tab-section">
+        <div class="page-header products-header">
+          <h2>Product Catalog</h2>
+          <div class="row">
+            <button id="product-new-btn" class="primary">+ Add Product</button>
+            <input id="product-search" aria-label="Search product catalog" placeholder="Search catalog...">
+            <select id="product-category-filter"></select>
+            <button id="product-import-btn">Import CSV</button>
+            <button id="product-export-btn">Export Catalog</button>
+          </div>
+        </div>
+        <input type="file" id="product-file" aria-label="Product CSV file" class="hidden" accept=".csv,text/csv">
+        <div class="panel table-wrap"><table id="products-table"></table></div>
+      </section>
+
+      <section id="tab-pipeline" class="tab-section">
+        <div class="page-header pipeline-header">
+          <h2>Pipeline</h2>
+          <div class="row pipeline-filters"><button id="pipeline-new-btn" class="primary">+ New Project</button><select id="pipeline-type-filter"></select><select id="pipeline-stage-filter"></select></div>
+        </div>
+        <div class="kanban" id="kanban-board"></div>
+      </section>
+
+      <section id="tab-import" class="tab-section">
+        <div class="page-header import-header"><h2>Import</h2></div>
+        <div class="grid two import-panels">
+          <div class="panel">
+            <h3>CSV Import</h3>
+            <div class="import-type-tabs" id="import-type-tabs"></div>
+            <div class="dropzone" id="csv-dropzone">Drop CSV here or click to browse<input type="file" id="csv-file" aria-label="Import CSV file" class="hidden" accept=".csv,text/csv"></div>
+            <div id="import-preview" style="margin-top:12px"></div>
+            <div id="import-mapping" class="import-mapping" style="margin-top:12px"></div>
+            <div class="row import-actions" style="margin-top:12px"><button id="import-confirm-btn" class="primary" disabled>Import Rows</button><button id="import-cancel-btn">Cancel</button></div>
+          </div>
+          <div class="stack">
+            <div class="panel"><h3>Import History</h3><div class="table-wrap"><table id="import-log-table"></table></div></div>
+            <div class="panel"><h3>Full Data Backup</h3><div class="row"><button id="backup-export">Export All Data (JSON)</button><button id="backup-import">Import JSON Backup</button><input type="file" id="backup-file" aria-label="Backup JSON file" class="hidden" accept="application/json,.json"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-bidintel" class="tab-section">
+        <div class="page-header"><h2>Bid Intel</h2><span class="muted" style="font-size:13px">Find live bids - paste an RFP to pre-fill Scope Intelligence</span></div>
+
+        <div class="panel">
+          <h3>Paste RFP / Bid Description</h3>
+          <p class="muted" style="margin:0 0 10px">Copy the project description from any portal and paste it below. Larry reads the text and pre-fills Scope Intelligence + the Bid Builder form so you can jump straight to pricing.</p>
+          <label>RFP Text<textarea id="bidintel-paste" style="min-height:140px" placeholder="Paste the full bid description, project summary, or RFP scope of work here..."></textarea></label>
+          <div class="row" style="margin-top:10px">
+            <button id="bidintel-parse-btn" class="primary">Parse Bid Text</button>
+            <button id="bidintel-apply-btn" disabled>Apply to Bid Builder</button>
+            <button id="bidintel-clear-btn">Clear</button>
+          </div>
+          <div id="bidintel-parse-output" class="bid-parse-output muted" style="margin-top:12px">No bid parsed yet. Paste an RFP and click Parse.</div>
+        </div>
+
+        <div class="panel">
+          <h3>Local Bid Sources</h3>
+          <p class="muted" style="margin:0 0 12px">Pre-filtered for AV / technology / IT / low-voltage work. Check these before submitting a bid on any project you didn't find yourself.</p>
+          <div class="portal-grid" id="portal-list"></div>
+        </div>
+      </section>
+
+      <section id="tab-model" class="tab-section">
+        <div class="page-header model-header"><h2>Pricing Model</h2></div>
+        <div class="grid two model-grid">
+          <div class="panel"><h3>Baseline Profiles</h3><div class="table-wrap"><table id="profiles-table"></table></div></div>
+          <div class="panel"><h3>Settings</h3><div id="settings-form" class="stack"></div></div>
+          <div class="panel"><h3>Won Record Benchmarks</h3><div class="table-wrap"><table id="benchmarks-table"></table></div></div>
+          <div class="panel"><h3>Observed Signals</h3><div class="table-wrap"><table id="signals-table"></table></div></div>
+          <div class="panel" style="grid-column:1 / -1"><h3>Formula Reference</h3><pre class="formula-block">directEquipment = (baseCost x roomScale + featureCost) x complexityFactor x publicSignalFactor x rescueFactor x observedFactor
+roomScale = 1 + (rooms - 1) x 0.6
+featureCost = displays x 800 + mics x 450 + speakers x 350 + cameras x 1200 + dsp x 2200 + system_extras
+complexityFactor = 1.0 + (complexity - 5) x 0.05
+labor = directEquipment x laborPct
+programming = directEquipment x programmingPct + extras
+pm = subtotal x 0.075
+contingency = subtotal x contingencyPct
+subtotal = directEquipment + labor + programming + pm + contingency
+sell = subtotal / (1 - margin)
+Good = sell x 0.84 | Better = sell x 1.0 | Best = sell x 1.28</pre></div>
+        </div>
+      </section>
+    </main>
+    <footer class="panel" style="box-shadow:none;margin:0 20px 20px;padding:12px 16px">
+      <p class="muted" style="margin:0">Designed in KCMO - <a href="https://simonlpaige.com" rel="noopener">simonlpaige.com</a></p>
+    </footer>
+  </div>
+
+  <div id="project-modal" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-header"><h3 id="project-modal-title">Project</h3><button id="modal-close" class="modal-close">x</button></div>
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-modal-tab="details">Details</button>
+        <button class="modal-tab" data-modal-tab="bom">BOM</button>
+        <button class="modal-tab" data-modal-tab="history">History</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-panel active" id="modal-details"></div>
+        <div class="modal-panel" id="modal-bom"></div>
+        <div class="modal-panel" id="modal-history"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-open-bid">Open in Bid Builder</button>
+        <button id="modal-won">Mark Won</button>
+        <button id="modal-lost">Mark Lost</button>
+        <button id="modal-delete" class="danger">Delete</button>
+        <button id="modal-save" class="primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="print-root" id="print-root"></div>
+
+  <script src="./products-catalog.js"></script>
+  <script src="./bom-templates.js"></script>
+  <script src="./jetbuilt-history.js"></script>
+  <script>
+    'use strict';
+
+    const LS_KEYS = [
+      'av_auth_hash', 'av_auth_salt', 'av_session', 'av_clients', 'av_products', 'av_projects',
+      'av_boms', 'av_won_records', 'av_signals', 'av_settings', 'av_activity_log', 'av_import_log',
+      'av_product_catalog_version', 'av_bom_templates', 'av_bom_template_version', 'av_jetbuilt_history_version'
+    ];
+    const DATA_KEYS = LS_KEYS.filter(k => !['av_auth_hash','av_auth_salt','av_session'].includes(k));
+    const PROJECT_TYPES = ['conference','classroom','auditorium','courtroom','worship','service','refresh','hospitality','retail'];
+    const STAGES = ['lead','discovery','estimating','proposal','won','lost'];
+    const CLIENT_TYPES = ['repeat','public','commercial','nonprofit','new'];
+    const CATEGORIES = ['display','audio','camera','control','cable','rack','accessory','labor','custom'];
+    const SYSTEM_FLAGS = [
+      ['videoConference', 'Video Conference'], ['streamingLivestream', 'Streaming/Livestream'], ['digitalSignage', 'Digital Signage'],
+      ['accessControl', 'Access Control'], ['security', 'Security'], ['lighting', 'Lighting'], ['audioDistribution', 'Audio Distribution'], ['rescueJob', 'Rescue Job']
+    ];
+    const PRODUCT_CATALOG_VERSION = window.AV_PRODUCT_CATALOG_VERSION || 'baseline-2026-06-06';
+    const BOM_TEMPLATE_VERSION = window.AV_BOM_TEMPLATE_VERSION || 'none';
+    const DEFAULT_BOM_TEMPLATES = Array.isArray(window.AV_BOM_TEMPLATES) ? window.AV_BOM_TEMPLATES : [];
+    const JETBUILT_HISTORY_VERSION = window.AV_JETBUILT_HISTORY_VERSION || 'none';
+    const DEFAULT_JETBUILT_WON_RECORDS = Array.isArray(window.AV_JETBUILT_WON_RECORDS) ? window.AV_JETBUILT_WON_RECORDS : [];
+    const FALLBACK_PRODUCTS = [
+      { model: "C65M-E1", manufacturer: "Vizio (OFE)", category: "display", dealerCost: 480, msrp: 849, markupPct: 35 },
+      { model: "BE98A", manufacturer: "Samsung", category: "display", dealerCost: 2400, msrp: 3999, markupPct: 30 },
+      { model: "EW6501-U", manufacturer: "LG", category: "display", dealerCost: 3200, msrp: 5499, markupPct: 28 },
+      { model: "MXA310", manufacturer: "Shure", category: "audio", dealerCost: 580, msrp: 895, markupPct: 32 },
+      { model: "MXA920", manufacturer: "Shure", category: "audio", dealerCost: 2100, msrp: 3200, markupPct: 30 },
+      { model: "MXN5", manufacturer: "Shure", category: "audio", dealerCost: 280, msrp: 449, markupPct: 30 },
+      { model: "P300", manufacturer: "Biamp", category: "audio", dealerCost: 850, msrp: 1299, markupPct: 28 },
+      { model: "Tesira SERVER-IO", manufacturer: "Biamp", category: "audio", dealerCost: 2800, msrp: 4200, markupPct: 28 },
+      { model: "QSC Core 110f", manufacturer: "QSC", category: "audio", dealerCost: 2200, msrp: 3399, markupPct: 28 },
+      { model: "AD-C4T", manufacturer: "QSC", category: "audio", dealerCost: 120, msrp: 189, markupPct: 30 },
+      { model: "PTZ Optics 12x-SDI", manufacturer: "PTZOptics", category: "camera", dealerCost: 890, msrp: 1299, markupPct: 30 },
+      { model: "EagleEye IV USB", manufacturer: "Poly", category: "camera", dealerCost: 340, msrp: 549, markupPct: 30 },
+      { model: "Studio P15", manufacturer: "AVer", category: "camera", dealerCost: 1100, msrp: 1699, markupPct: 28 },
+      { model: "DMC-4K-CO", manufacturer: "Crestron", category: "control", dealerCost: 380, msrp: 599, markupPct: 35 },
+      { model: "TSW-770", manufacturer: "Crestron", category: "control", dealerCost: 980, msrp: 1499, markupPct: 32 },
+      { model: "NX-1200", manufacturer: "AMX", category: "control", dealerCost: 890, msrp: 1350, markupPct: 32 },
+      { model: "MPC3-302", manufacturer: "Crestron", category: "control", dealerCost: 420, msrp: 649, markupPct: 32 },
+      { model: "HDMI 2.0 15ft", manufacturer: "Generic", category: "cable", dealerCost: 12, msrp: 25, markupPct: 50 },
+      { model: "Cat6 500ft spool", manufacturer: "Monoprice", category: "cable", dealerCost: 65, msrp: 120, markupPct: 45 },
+      { model: "Rack 14U wallmount", manufacturer: "Navepoint", category: "rack", dealerCost: 180, msrp: 299, markupPct: 40 },
+      { model: "Surge PDU 8-outlet", manufacturer: "Tripp-Lite", category: "rack", dealerCost: 85, msrp: 149, markupPct: 38 },
+      { model: "Installation Labor", manufacturer: "Internal", category: "labor", dealerCost: 95, msrp: 95, markupPct: 0, unit: "hr" },
+      { model: "Programming Labor", manufacturer: "Internal", category: "labor", dealerCost: 125, msrp: 125, markupPct: 0, unit: "hr" },
+      { model: "Project Management", manufacturer: "Internal", category: "labor", dealerCost: 110, msrp: 110, markupPct: 0, unit: "hr" }
+    ];
+    const DEFAULT_PRODUCTS = Array.isArray(window.AV_PRODUCT_CATALOG) && window.AV_PRODUCT_CATALOG.length
+      ? window.AV_PRODUCT_CATALOG
+      : FALLBACK_PRODUCTS;
+    const BASELINE_WON = [
+      { id: "b1", projectType: "conference",  sell: 18400, cost: 11224, margin: 0.39, laborPct: 0.28, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b2", projectType: "conference",  sell: 31200, cost: 19032, margin: 0.39, laborPct: 0.28, rooms: 2, date: "2024-01-01", source: "baseline" },
+      { id: "b3", projectType: "courtroom",   sell: 48200, cost: 31812, margin: 0.34, laborPct: 0.32, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b4", projectType: "auditorium",  sell: 72400, cost: 47784, margin: 0.34, laborPct: 0.35, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b5", projectType: "worship",     sell: 38600, cost: 24704, margin: 0.36, laborPct: 0.30, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b6", projectType: "service",     sell: 2850,  cost: 1624,  margin: 0.43, laborPct: 0.20, rooms: 1, date: "2024-01-01", source: "baseline" },
+      { id: "b7", projectType: "refresh",     sell: 14900, cost: 9388,  margin: 0.37, laborPct: 0.22, rooms: 1, date: "2024-01-01", source: "baseline" }
+    ];
+    const PRICING_PROFILES = {
+      conference:  { baseCost: 8500,  roomAdd: 3200, margin: 0.37, laborPct: 0.28, programmingPct: 0.08, contingency: 0.05 },
+      classroom:   { baseCost: 6200,  roomAdd: 2400, margin: 0.35, laborPct: 0.25, programmingPct: 0.06, contingency: 0.05 },
+      auditorium:  { baseCost: 32000, roomAdd: 8000, margin: 0.34, laborPct: 0.35, programmingPct: 0.10, contingency: 0.07 },
+      courtroom:   { baseCost: 22000, roomAdd: 5500, margin: 0.34, laborPct: 0.32, programmingPct: 0.09, contingency: 0.06 },
+      worship:     { baseCost: 18000, roomAdd: 4500, margin: 0.36, laborPct: 0.30, programmingPct: 0.09, contingency: 0.06 },
+      service:     { baseCost: 1200,  roomAdd: 400,  margin: 0.43, laborPct: 0.20, programmingPct: 0.03, contingency: 0.03 },
+      refresh:     { baseCost: 6500,  roomAdd: 1800, margin: 0.37, laborPct: 0.22, programmingPct: 0.05, contingency: 0.04 },
+      hospitality: { baseCost: 9500,  roomAdd: 2800, margin: 0.38, laborPct: 0.26, programmingPct: 0.07, contingency: 0.05 },
+      retail:      { baseCost: 7200,  roomAdd: 2000, margin: 0.36, laborPct: 0.24, programmingPct: 0.06, contingency: 0.05 }
+    };
+    const state = { currentTab: 'dashboard', selectedProjectId: null, selectedClientId: null, currentEstimate: null, scopeSuggestion: null, unsavedBom: { projectId: null, items: [], updatedAt: now() }, importType: 'jetbuilt-proposal', importRows: [], importHeaders: [], importMapping: {}, modalProjectId: null };
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+    const fmt = n => (Number(n) || 0).toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    const pct = n => `${Math.round((Number(n) || 0) * 100)}%`;
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+    function uid() { return 'id_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-5); }
+    function now() { return new Date().toISOString(); }
+
+    const Bus = {
+      events: {},
+      on(name, fn) { (this.events[name] ||= []).push(fn); },
+      emit(name, payload) { (this.events[name] || []).forEach(fn => fn(payload)); }
+    };
+    const DB = {
+      get(key, fallback = null) {
+        const raw = localStorage.getItem(key);
+        if (raw == null) return fallback;
+        try { return JSON.parse(raw); } catch { return raw; }
+      },
+      set(key, value) { localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); return value; },
+      getAll(key) { return this.get(key, []); },
+      append(key, value) { const arr = this.getAll(key); arr.push(value); this.set(key, arr); return value; },
+      update(key, id, patch) { const arr = this.getAll(key); const i = arr.findIndex(x => x.id === id); if (i >= 0) { arr[i] = { ...arr[i], ...patch }; this.set(key, arr); return arr[i]; } return null; },
+      remove(key, id) { const arr = this.getAll(key).filter(x => x.id !== id); this.set(key, arr); },
+      export() { const data = {}; LS_KEYS.forEach(k => { if (!k.startsWith('av_auth')) data[k] = this.get(k); }); return JSON.stringify(data, null, 2); },
+      import(json) { const data = typeof json === 'string' ? JSON.parse(json) : json; Object.entries(data).forEach(([k, v]) => { if (LS_KEYS.includes(k) || k === 'av_model_overrides') this.set(k, v); }); Bus.emit('db:changed', { type: 'import' }); }
+    };
+
+    async function hashPassword(pw, salt) {
+      const enc = new TextEncoder();
+      const keyMat = await crypto.subtle.importKey("raw", enc.encode(pw), "PBKDF2", false, ["deriveBits"]);
+      const bits = await crypto.subtle.deriveBits(
+        { name: "PBKDF2", salt: enc.encode(salt), iterations: 100000, hash: "SHA-256" },
+        keyMat, 256
+      );
+      return btoa(String.fromCharCode(...new Uint8Array(bits)));
+    }
+    function makeSalt() {
+      const bytes = new Uint8Array(16);
+      crypto.getRandomValues(bytes);
+      return btoa(String.fromCharCode(...bytes));
+    }
+    function hasPassword() { return !!localStorage.getItem('av_auth_hash') && !!localStorage.getItem('av_auth_salt'); }
+    function isAuthed() { return sessionStorage.getItem('av_session') === 'ok'; }
+    async function unlock() {
+      $('#auth-error').textContent = '';
+      const pw = $('#password-input').value;
+      if (!pw) return $('#auth-error').textContent = 'Password required.';
+      if (!hasPassword()) {
+        if (pw.length < 6) return $('#auth-error').textContent = 'Use at least 6 characters.';
+        if (pw !== $('#password-confirm').value) return $('#auth-error').textContent = 'Passwords do not match.';
+        const salt = makeSalt();
+        localStorage.setItem('av_auth_salt', salt);
+        localStorage.setItem('av_auth_hash', await hashPassword(pw, salt));
+      } else {
+        const salt = localStorage.getItem('av_auth_salt');
+        if (await hashPassword(pw, salt) !== localStorage.getItem('av_auth_hash')) return $('#auth-error').textContent = 'Wrong password.';
       }
-      </script>
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-      
-      <script type="module" crossorigin src="/av/assets/index-CK5TY3JW.js"></script>
-      <link rel="stylesheet" crossorigin href="/av/assets/index-CUlgd98I.css">
-    </head>
+      sessionStorage.setItem('av_session', 'ok');
+      localStorage.setItem('av_session', now());
+      showApp();
+    }
+    function lock() {
+      sessionStorage.removeItem('av_session');
+      $('#app').classList.add('hidden');
+      $('#lock-screen').classList.remove('hidden');
+      $('#password-input').value = '';
+    }
+    function resetLocalPassword() {
+      if (!confirm('Reset only the local lock password for this browser? Your AV data will stay.')) return;
+      ['av_auth_hash', 'av_auth_salt', 'avAuthHash', 'avAuthSalt', 'av_session'].forEach(k => localStorage.removeItem(k));
+      sessionStorage.removeItem('av_session');
+      $('#password-input').value = '';
+      $('#password-confirm').value = '';
+      setupAuthScreen();
+      $('#auth-error').textContent = 'Password reset. Create a new one for this browser.';
+    }
+    function setupAuthScreen() {
+      const firstRun = !hasPassword();
+      $('#password-confirm').classList.toggle('hidden', !firstRun);
+      $('#lock-copy').textContent = firstRun ? 'Create a local password for this browser.' : 'Enter your password to unlock.';
+      $('#unlock-btn').textContent = firstRun ? 'Create Password' : 'Unlock';
+    }
+    function showApp() {
+      seedData();
+      $('#lock-screen').classList.add('hidden');
+      $('#app').classList.remove('hidden');
+      initStaticControls();
+      renderAll();
+    }
 
-    <body>
-      
-      <div id="root"></div>
-      
-    </body>
-  </html>
-  
+    function seedData() {
+      if (!DB.get('av_clients')) DB.set('av_clients', []);
+      if (!DB.get('av_projects')) DB.set('av_projects', []);
+      if (!DB.get('av_boms')) DB.set('av_boms', {});
+      if (!DB.get('av_bom_templates')) DB.set('av_bom_templates', []);
+      if (!DB.get('av_activity_log')) DB.set('av_activity_log', []);
+      if (!DB.get('av_import_log')) DB.set('av_import_log', []);
+      if (!DB.get('av_settings')) DB.set('av_settings', { companyName: 'Your Company', password: null, defaultMargin: 0.37, defaultLaborPct: 0.28, currency: 'USD', taxRate: 0, showCost: false, theme: 'light' });
+      if (!DB.get('av_signals')) DB.set('av_signals', { courtroom: { publicSector: 4 }, auditorium: { publicSector: 3 }, service: { repeat: 4 }, refresh: { repeat: 2 } });
+      migrateFromV1();
+      syncProductCatalog();
+      syncBomTemplateSeed();
+      syncJetbuiltHistorySeed();
+      const won = DB.getAll('av_won_records');
+      if (won.length === 0) BASELINE_WON.forEach(r => DB.append('av_won_records', r));
+      else {
+        const ids = new Set(won.map(r => r.id));
+        BASELINE_WON.filter(r => !ids.has(r.id)).forEach(r => DB.append('av_won_records', r));
+      }
+    }
+    function syncProductCatalog() {
+      if (!DEFAULT_PRODUCTS.length) return;
+      const currentVersion = localStorage.getItem('av_product_catalog_version');
+      if (currentVersion === PRODUCT_CATALOG_VERSION && DB.getAll('av_products').length > 0) return;
+      const stamped = DEFAULT_PRODUCTS.map(p => ({ id: p.id || uid(), unit: 'ea', notes: '', ...p, createdAt: p.createdAt || now(), updatedAt: now() }));
+      DB.set('av_products', stamped);
+      localStorage.setItem('av_product_catalog_version', PRODUCT_CATALOG_VERSION);
+      DB.append('av_import_log', { id: uid(), ts: now(), type: 'products-catalog', rows: stamped.length, created: stamped.length, skipped: 0, status: 'ok' });
+      logActivity('import:products-catalog', `Loaded current product catalog: ${stamped.length} products`, null);
+    }
+    function syncBomTemplateSeed() {
+      if (!DEFAULT_BOM_TEMPLATES.length || BOM_TEMPLATE_VERSION === 'none') return;
+      const currentVersion = localStorage.getItem('av_bom_template_version');
+      if (currentVersion === BOM_TEMPLATE_VERSION && getBomTemplates().length > 0) return;
+      importBomTemplatePayload(DEFAULT_BOM_TEMPLATES);
+      localStorage.setItem('av_bom_template_version', BOM_TEMPLATE_VERSION);
+    }
+    function syncJetbuiltHistorySeed() {
+      if (!DEFAULT_JETBUILT_WON_RECORDS.length || JETBUILT_HISTORY_VERSION === 'none') return;
+      const currentVersion = localStorage.getItem('av_jetbuilt_history_version');
+      const current = DB.getAll('av_won_records');
+      if (currentVersion === JETBUILT_HISTORY_VERSION && current.some(r => r.source === 'jetbuilt-pnl')) return;
+      const byId = new Map(current.map(record => [record.id, record]));
+      DEFAULT_JETBUILT_WON_RECORDS.forEach(record => byId.set(record.id, { ...record, source: 'jetbuilt-pnl' }));
+      DB.set('av_won_records', Array.from(byId.values()));
+      localStorage.setItem('av_jetbuilt_history_version', JETBUILT_HISTORY_VERSION);
+      DB.append('av_import_log', { id: uid(), ts: now(), type: 'jetbuilt-history-seed', rows: DEFAULT_JETBUILT_WON_RECORDS.length, created: DEFAULT_JETBUILT_WON_RECORDS.length, skipped: 0, status: 'ok' });
+      logActivity('import:jetbuilt-history', `Loaded Jetbuilt history: ${DEFAULT_JETBUILT_WON_RECORDS.length} won records`, null);
+    }
+    function migrateAuthFromV1() {
+      const oldHash = localStorage.getItem('avAuthHash');
+      const oldSalt = localStorage.getItem('avAuthSalt');
+      if (oldHash && oldSalt && !localStorage.getItem('av_auth_hash')) {
+        localStorage.setItem('av_auth_hash', oldHash);
+        localStorage.setItem('av_auth_salt', oldSalt);
+      }
+    }
+    function migrateFromV1() {
+      migrateAuthFromV1();
+      if (localStorage.getItem('av_migrated_v2')) return;
+      const oldWon = localStorage.getItem('avWonRecords');
+      if (oldWon && DB.getAll('av_won_records').length === 0) {
+        try { JSON.parse(oldWon).forEach(r => DB.append('av_won_records', { id: uid(), source: 'imported', ...r })); } catch (e) { console.warn('[migration] avWonRecords failed', e); }
+      }
+      const oldState = localStorage.getItem('avBidState');
+      if (oldState) {
+        try {
+          const s = JSON.parse(oldState);
+          if (!DB.getAll('av_projects').some(p => p.name === 'Imported from v1')) createProject({
+            name: 'Imported from v1', projectType: s.projectType || 'conference', stage: 'estimating', rooms: Number(s.rooms) || 1,
+            displays: Number(s.displays) || 0, mics: Number(s.mics) || 0, speakers: Number(s.speakers) || 0, cameras: Number(s.cameras) || 0,
+            dsp: !!s.dsp, systems: s.systems || {}, complexity: Number(s.complexity) || 5, notes: 'Auto-imported from previous version'
+          }, false);
+        } catch (e) { console.warn('[migration] avBidState failed', e); }
+      }
+      localStorage.setItem('av_migrated_v2', now());
+    }
+    function logActivity(action, label, entityId = null) {
+      const log = DB.getAll('av_activity_log');
+      log.unshift({ id: uid(), ts: now(), action, label, entityId });
+      DB.set('av_activity_log', log.slice(0, 200));
+    }
+
+    function createClient(data) {
+      const name = (data.name || '').trim();
+      if (!name) throw new Error('Client name required');
+      const company = (data.company || '').trim();
+      const dupe = getClients().find(c => c.name.toLowerCase() === name.toLowerCase() && (c.company || '').toLowerCase() === company.toLowerCase());
+      if (dupe) throw new Error('Duplicate client name/company');
+      const client = { id: uid(), type: 'new', tags: [], ...data, name, company, createdAt: now(), updatedAt: now() };
+      DB.append('av_clients', client);
+      logActivity('client:created', `New client: ${client.name}`, client.id);
+      Bus.emit('db:changed', { type: 'clients' });
+      return client;
+    }
+    function getClients() { return DB.getAll('av_clients'); }
+    function getClient(id) { return getClients().find(c => c.id === id); }
+    function updateClient(id, patch) {
+      const client = DB.update('av_clients', id, { ...patch, updatedAt: now() });
+      logActivity('client:updated', `Updated client: ${patch.name || id}`, id);
+      Bus.emit('db:changed', { type: 'clients' });
+      return client;
+    }
+    function deleteClient(id) {
+      const c = getClient(id);
+      getProjects().filter(p => p.clientId === id).forEach(p => updateProject(p.id, { clientId: null }, false));
+      DB.remove('av_clients', id);
+      logActivity('client:deleted', `Deleted client: ${c?.name || id}`, id);
+      Bus.emit('db:changed', { type: 'clients' });
+    }
+    function createProduct(data) {
+      if (!data.model) throw new Error('Model required');
+      const product = { id: uid(), manufacturer: '', category: 'custom', dealerCost: 0, msrp: 0, markupPct: 30, unit: 'ea', notes: '', ...data, createdAt: now(), updatedAt: now() };
+      DB.append('av_products', product);
+      logActivity('product:created', `New product: ${product.model}`, product.id);
+      Bus.emit('db:changed', { type: 'products' });
+      return product;
+    }
+    function getProducts() { return DB.getAll('av_products'); }
+    function getProduct(id) { return getProducts().find(p => p.id === id); }
+    function updateProduct(id, patch) { const p = DB.update('av_products', id, { ...patch, updatedAt: now() }); logActivity('product:updated', `Updated product: ${patch.model || id}`, id); Bus.emit('db:changed', { type: 'products' }); return p; }
+    function deleteProduct(id) { const p = getProduct(id); DB.remove('av_products', id); logActivity('product:deleted', `Deleted product: ${p?.model || id}`, id); Bus.emit('db:changed', { type: 'products' }); }
+    function getProjects() { return DB.getAll('av_projects'); }
+    function getProject(id) { return getProjects().find(p => p.id === id); }
+    function blankProject() {
+      return { name: '', clientId: null, projectType: 'conference', stage: 'lead', rooms: 1, displays: 1, mics: 2, speakers: 4, cameras: 1, dsp: false, systems: {}, complexity: 5, budget: null, notes: '', estimateMode: 'formula', proposalSentDate: null, closeDate: null };
+    }
+    function createProject(data, announce = true) {
+      const p = { ...blankProject(), ...data };
+      p.id = uid();
+      p.createdAt = now();
+      p.updatedAt = now();
+      p.stageHistory = p.stageHistory || [{ stage: p.stage || 'lead', date: now(), note: 'Created' }];
+      DB.append('av_projects', p);
+      if (announce) logActivity('project:created', `New project: ${p.name || p.projectType}`, p.id);
+      Bus.emit('db:changed', { type: 'projects' });
+      return p;
+    }
+    function updateProject(id, patch, announce = true) {
+      const p = DB.update('av_projects', id, { ...patch, updatedAt: now() });
+      if (announce) logActivity('project:updated', `Updated project: ${patch.name || id}`, id);
+      Bus.emit('db:changed', { type: 'projects' });
+      return p;
+    }
+    function deleteProject(id) {
+      const p = getProject(id);
+      DB.remove('av_projects', id);
+      const boms = DB.get('av_boms', {});
+      delete boms[id];
+      DB.set('av_boms', boms);
+      logActivity('project:deleted', `Deleted project: ${p?.name || id}`, id);
+      Bus.emit('db:changed', { type: 'projects' });
+    }
+    function moveProjectStage(projectId, newStage) {
+      const p = getProject(projectId);
+      if (!p || p.stage === newStage) return;
+      const history = [...(p.stageHistory || []), { stage: newStage, date: now(), note: `Moved from ${p.stage}` }];
+      updateProject(projectId, { stage: newStage, stageHistory: history });
+      if (newStage === 'won') addWonRecordForProject(projectId);
+    }
+    function addWonRecordForProject(projectId) {
+      const p = getProject(projectId);
+      if (!p || DB.getAll('av_won_records').some(r => r.projectId === projectId)) return;
+      const boms = DB.get('av_boms', {});
+      const result = computeEstimate(p, boms[p.id], p.estimateMode || 'formula');
+      DB.append('av_won_records', { id: uid(), projectId: p.id, projectType: p.projectType, sell: result.better, cost: result.breakdown.fullSubtotal, margin: result.breakdown.margin, laborPct: result.breakdown.labor / Math.max(result.breakdown.directEquipment, 1), rooms: p.rooms, date: now().slice(0,10), source: 'manual', notes: p.name });
+      logActivity('won:created', `Won record added: ${p.name}`, p.id);
+    }
+
+    function computeEstimate(project, bom, mode = 'formula') {
+      project = { ...blankProject(), ...(project || {}) };
+      const profile = getProfile(project.projectType);
+      const rooms = Math.max(Number(project.rooms) || 1, 1);
+      const roomScale = 1 + (rooms - 1) * 0.6;
+      const featureCost = (Number(project.displays) || 0) * 800
+        + (Number(project.mics) || 0) * 450
+        + (Number(project.speakers) || 0) * 350
+        + (Number(project.cameras) || 0) * 1200
+        + (project.dsp ? 2200 : 0)
+        + computeSystemExtras(project.systems || {});
+      const complexityFactor = 1 + ((Number(project.complexity) || 5) - 5) * 0.05;
+      const signals = DB.get('av_signals') || {};
+      const typeSignals = signals[project.projectType] || {};
+      const publicSignalFactor = (typeSignals.publicSector || 0) >= 3 ? 1.08 : 1.0;
+      const rescueFactor = project.systems?.rescueJob ? 1.12 : 1.0;
+      const observedFactor = (typeSignals.repeat || 0) >= 3 ? 1.05 : 1.0;
+      let directEquipment;
+      const bomEquip = bom ? sumBomCategory(bom.items || [], 'equipment') : 0;
+      const bomLabor = bom ? sumBomCategory(bom.items || [], 'labor') : 0;
+      const formulaEquipment = (profile.baseCost * roomScale + featureCost) * complexityFactor * publicSignalFactor * rescueFactor * observedFactor;
+      if (mode === 'formula' || !bom || bomEquip === 0) directEquipment = formulaEquipment;
+      else if (mode === 'bom') directEquipment = bomEquip * complexityFactor * publicSignalFactor * rescueFactor * observedFactor;
+      else directEquipment = bomEquip > 0 ? bomEquip : formulaEquipment;
+      let labor, programming;
+      if (mode === 'hybrid' && bomLabor > 0) {
+        labor = bomLabor;
+        programming = 0;
+      } else {
+        labor = directEquipment * profile.laborPct;
+        programming = directEquipment * profile.programmingPct + computeProgrammingExtras(project.systems || {});
+      }
+      if (bom?.laborOverride != null) labor = Number(bom.laborOverride) || 0;
+      if (bom?.programmingOverride != null) programming = Number(bom.programmingOverride) || 0;
+      const subtotal = directEquipment + labor + programming;
+      const pm = subtotal * 0.075;
+      const contingency = subtotal * profile.contingency;
+      const fullSubtotal = subtotal + pm + contingency;
+      const betterSell = fullSubtotal / (1 - profile.margin);
+      const breakdown = { directEquipment, labor, programming, pm, contingency, fullSubtotal, margin: profile.margin, mode, bomEquip, bomLabor, roomScale, featureCost, complexityFactor, publicSignalFactor, rescueFactor, observedFactor, profileSource: profile.source || 'default', benchmarkCount: profile.benchmarkCount || 0 };
+      return { good: Math.round(betterSell * 0.84), better: Math.round(betterSell), best: Math.round(betterSell * 1.28), breakdown };
+    }
+    function sumBomCategory(items, type) { return (items || []).filter(i => type === 'labor' ? i.category === 'labor' : i.category !== 'labor').reduce((s, i) => s + (Number(i.lineTotal) || lineTotal(i)), 0); }
+    function computeSystemExtras(systems) { let extra = 0; if (systems.videoConference) extra += 3500; if (systems.streamingLivestream) extra += 2800; if (systems.digitalSignage) extra += 2200; if (systems.accessControl) extra += 1800; if (systems.security) extra += 1500; if (systems.lighting) extra += 4200; if (systems.audioDistribution) extra += 2600; return extra; }
+    function computeProgrammingExtras(systems) { let extra = 0; if (systems.videoConference) extra += 800; if (systems.streamingLivestream) extra += 600; return extra; }
+    function clamp(n, min, max) { return Math.max(min, Math.min(max, Number(n) || 0)); }
+    function getWonRecordsByType(type) { return DB.getAll('av_won_records').filter(r => r.projectType === type && Number(r.sell) > 0); }
+    function getHistoricalProfile(type) {
+      const recs = getWonRecordsByType(type).filter(r => r.source === 'jetbuilt-pnl' && Number(r.sell) > 0 && Number(r.cost) > 0);
+      if (recs.length < 8) return {};
+      const margins = recs.map(r => Number(r.margin) || ((Number(r.sell) - Number(r.cost)) / Math.max(Number(r.sell), 1))).filter(n => n > 0 && n < .8);
+      const laborPcts = recs.map(r => Number(r.laborPct)).filter(n => n > 0 && n < .8);
+      return {
+        margin: margins.length ? clamp(median(margins), .10, .45) : undefined,
+        laborPct: laborPcts.length ? clamp(median(laborPcts), .02, .40) : undefined,
+        source: 'jetbuilt-calibrated',
+        benchmarkCount: recs.length
+      };
+    }
+    function getProfile(type) {
+      const overrides = DB.get('av_model_overrides') || {};
+      const base = PRICING_PROFILES[type] || PRICING_PROFILES.conference;
+      const learned = getHistoricalProfile(type);
+      return { ...base, ...learned, ...(overrides[type] || {}) };
+    }
+
+    function lineTotal(item) { return (Number(item.qty) || 0) * ((Number(item.unitCost) || 0) * (1 + (Number(item.markupPct) || 0) / 100)); }
+    function normalizeBom(bom) {
+      bom.items = (bom.items || []).map(i => {
+        const unitSell = (Number(i.unitCost) || 0) * (1 + (Number(i.markupPct) || 0) / 100);
+        return { id: i.id || uid(), productId: i.productId || null, customName: i.customName || '', qty: Number(i.qty) || 1, unitCost: Number(i.unitCost) || 0, markupPct: Number(i.markupPct) || 0, unitSell, lineTotal: (Number(i.qty) || 1) * unitSell, category: i.category || 'custom', notes: i.notes || '' };
+      });
+      bom.updatedAt = now();
+      return bom;
+    }
+    function getCurrentBom() {
+      const pid = state.selectedProjectId;
+      if (!pid) return state.unsavedBom;
+      const boms = DB.get('av_boms', {});
+      return boms[pid] || { projectId: pid, items: [], laborOverride: null, programmingOverride: null, updatedAt: now() };
+    }
+    function saveBom(bom, pid = state.selectedProjectId) {
+      normalizeBom(bom);
+      if (!pid) state.unsavedBom = bom;
+      else {
+        const boms = DB.get('av_boms', {});
+        boms[pid] = { ...bom, projectId: pid };
+        DB.set('av_boms', boms);
+        logActivity('bom:updated', `BOM updated for ${getProject(pid)?.name || pid}`, pid);
+      }
+      Bus.emit('db:changed', { type: 'boms' });
+    }
+    const debouncedSaveBom = debounce(saveBom, 500);
+    function debounce(fn, ms) { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; }
+
+    function initStaticControls() {
+      if ($('#mobile-tab-select').children.length) return;
+      PROJECT_TYPES.forEach(t => $('#bid-type').insertAdjacentHTML('beforeend', `<option value="${t}">${label(t)}</option>`));
+      STAGES.forEach(s => $('#bid-stage').insertAdjacentHTML('beforeend', `<option value="${s}">${label(s)}</option>`));
+      SYSTEM_FLAGS.forEach(([key, text]) => $('#systems-checks').insertAdjacentHTML('beforeend', `<label><input aria-label="${text}" type="checkbox" data-system="${key}"> ${text}</label>`));
+      $$('#tabs .tab-btn').forEach(btn => $('#mobile-tab-select').insertAdjacentHTML('beforeend', `<option value="${btn.dataset.tab}">${btn.textContent}</option>`));
+      $('#client-type-filter').innerHTML = '<option value="">All types</option>' + CLIENT_TYPES.map(t => `<option value="${t}">${label(t)}</option>`).join('');
+      $('#product-category-filter').innerHTML = '<option value="">All categories</option>' + CATEGORIES.map(c => `<option value="${c}">${label(c)}</option>`).join('');
+      $('#pipeline-type-filter').innerHTML = '<option value="">All types</option>' + PROJECT_TYPES.map(t => `<option value="${t}">${label(t)}</option>`).join('');
+      $('#pipeline-stage-filter').innerHTML = '<option value="">All stages</option>' + STAGES.map(s => `<option value="${s}">${label(s)}</option>`).join('');
+      $('#bom-template-type').innerHTML = '<option value="">Selected type first</option>' + PROJECT_TYPES.map(t => `<option value="${t}">${label(t)}</option>`).join('');
+      const types = [['jetbuilt-proposal','JetBuilt Proposals'],['jetbuilt-lineitems','JetBuilt Line Items'],['jetbuilt-clients','JetBuilt Clients'],['generic-bom','Generic BOM'],['won-records','Won Records']];
+      $('#import-type-tabs').innerHTML = types.map(([v, t], i) => `<button class="${i===0?'active':''}" data-type="${v}">${t}</button>`).join('');
+      bindEvents();
+    }
+    function bindEvents() {
+      $$('#tabs .tab-btn').forEach(b => b.addEventListener('click', () => navigate(b.dataset.tab)));
+      $('#mobile-tab-select').addEventListener('change', e => navigate(e.target.value));
+      $('#dash-refresh').addEventListener('click', renderAll);
+      $('#bid-project-select').addEventListener('change', e => loadBidProject(e.target.value || null));
+      $('#bid-save-project').addEventListener('click', saveBidProject);
+      $('#generate-btn').addEventListener('click', generateEstimate);
+      $('#toggle-breakdown').addEventListener('click', () => $('#estimate-breakdown').classList.toggle('hidden'));
+      $('#print-proposal-btn').addEventListener('click', printProposal);
+      $('#bom-search').addEventListener('input', renderBomSearch);
+      $('#bom-add-custom').addEventListener('click', () => addBomItem({ customName: '', category: 'custom', qty: 1, unitCost: 0, markupPct: 30 }));
+      $('#bom-template-import-btn').addEventListener('click', () => $('#bom-template-file').click());
+      $('#bom-template-file').addEventListener('change', e => importBomTemplateFile(e.target.files[0]));
+      $('#bom-template-search').addEventListener('input', renderBomTemplates);
+      $('#bom-template-type').addEventListener('change', renderBomTemplates);
+      $('#bom-template-sort').addEventListener('change', renderBomTemplates);
+      $('#bom-template-refresh').addEventListener('click', renderBomTemplates);
+      $('#bom-template-list').addEventListener('click', handleBomTemplateAction);
+      $('#scope-generate-btn').addEventListener('click', () => generateScopeSuggestion(false));
+      $('#scope-question-btn').addEventListener('click', () => generateScopeSuggestion(true));
+      $('#scope-apply-btn').addEventListener('click', applyScopeSuggestion);
+      $('#bidintel-parse-btn').addEventListener('click', runBidParse);
+      $('#bidintel-apply-btn').addEventListener('click', applyBidParse);
+      $('#bidintel-clear-btn').addEventListener('click', () => { $('#bidintel-paste').value = ''; resetBidParse(); });
+      $('#draft-followup').addEventListener('click', draftFollowup);
+      $('#client-new-btn').addEventListener('click', () => renderClientForm());
+      $('#client-search').addEventListener('input', renderClients);
+      $('#client-type-filter').addEventListener('change', renderClients);
+      $('#product-new-btn').addEventListener('click', () => productPrompt());
+      $('#product-search').addEventListener('input', renderProducts);
+      $('#product-category-filter').addEventListener('change', renderProducts);
+      $('#product-export-btn').addEventListener('click', exportProductsCsv);
+      $('#product-import-btn').addEventListener('click', () => $('#product-file').click());
+      $('#product-file').addEventListener('change', e => importProductFile(e.target.files[0]));
+      $('#pipeline-new-btn').addEventListener('click', () => openProjectModal(null));
+      $('#pipeline-type-filter').addEventListener('change', renderPipeline);
+      $('#pipeline-stage-filter').addEventListener('change', renderPipeline);
+      $('#modal-close').addEventListener('click', closeProjectModal);
+      $$('.modal-tab').forEach(b => b.addEventListener('click', () => setModalTab(b.dataset.modalTab)));
+      $('#modal-save').addEventListener('click', saveModalProject);
+      $('#modal-delete').addEventListener('click', () => { if (state.modalProjectId && confirm('Delete this project?')) { deleteProject(state.modalProjectId); closeProjectModal(); } });
+      $('#modal-won').addEventListener('click', () => { if (state.modalProjectId) { moveProjectStage(state.modalProjectId, 'won'); openProjectModal(state.modalProjectId); } });
+      $('#modal-lost').addEventListener('click', () => { if (state.modalProjectId) { moveProjectStage(state.modalProjectId, 'lost'); openProjectModal(state.modalProjectId); } });
+      $('#modal-open-bid').addEventListener('click', () => { if (state.modalProjectId) { closeProjectModal(); navigate('bid'); loadBidProject(state.modalProjectId); } });
+      $('#csv-dropzone').addEventListener('click', () => $('#csv-file').click());
+      $('#csv-file').addEventListener('change', e => handleCsvFile(e.target.files[0]));
+      ['dragenter','dragover'].forEach(ev => $('#csv-dropzone').addEventListener(ev, e => { e.preventDefault(); $('#csv-dropzone').classList.add('drag'); }));
+      ['dragleave','drop'].forEach(ev => $('#csv-dropzone').addEventListener(ev, e => { e.preventDefault(); $('#csv-dropzone').classList.remove('drag'); }));
+      $('#csv-dropzone').addEventListener('drop', e => handleCsvFile(e.dataTransfer.files[0]));
+      $('#import-type-tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state.importType = b.dataset.type; $$('#import-type-tabs button').forEach(x => x.classList.toggle('active', x === b)); });
+      $('#import-confirm-btn').addEventListener('click', confirmImport);
+      $('#import-cancel-btn').addEventListener('click', resetImport);
+      $('#backup-export').addEventListener('click', () => download('av-bid-backup.json', DB.export(), 'application/json'));
+      $('#backup-import').addEventListener('click', () => $('#backup-file').click());
+      $('#backup-file').addEventListener('change', e => importBackup(e.target.files[0]));
+      Bus.on('db:changed', () => renderAll());
+    }
+    function label(s) { return String(s || '').replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); }
+    function navigate(tab) {
+      state.currentTab = tab;
+      $$('.tab-section').forEach(s => s.classList.toggle('active', s.id === `tab-${tab}`));
+      $$('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      $('#mobile-tab-select').value = tab;
+      Bus.emit('tab:navigate', { tab });
+      renderAll();
+    }
+    function renderAll() {
+      const settings = DB.get('av_settings', {});
+      $('#company-label').textContent = settings.companyName || 'Your Company';
+      renderDashboard();
+      renderBidSelectors();
+      renderBom();
+      renderBomTemplates();
+      renderScopeAdvisor();
+      renderStrategy();
+      renderClients();
+      renderProducts();
+      renderPipeline();
+      renderImportLog();
+      renderModel();
+      renderBidIntel();
+    }
+    function renderDashboard() {
+      const projects = getProjects();
+      const boms = DB.get('av_boms', {});
+      const activeStages = ['lead','discovery','estimating','proposal'];
+      const pipelineValue = projects.filter(p => activeStages.includes(p.stage)).reduce((s, p) => s + computeEstimate(p, boms[p.id], p.estimateMode || 'formula').better, 0);
+      const wonRecords = DB.getAll('av_won_records');
+      const jetbuiltRecords = wonRecords.filter(r => r.source === 'jetbuilt-pnl').length;
+      const year = new Date().getFullYear();
+      const wonYTD = wonRecords.filter(r => new Date(r.date).getFullYear() === year).reduce((s, r) => s + (Number(r.sell) || 0), 0);
+      const activeProposals = projects.filter(p => p.stage === 'proposal').length;
+      const avgMargin = wonRecords.length ? wonRecords.reduce((s, r) => s + (Number(r.margin) || 0), 0) / wonRecords.length : 0;
+      const cards = [['Pipeline Value', fmt(pipelineValue)], ['Won YTD', fmt(wonYTD)], ['Active Proposals', activeProposals], ['Avg Margin', pct(avgMargin)], ['Jetbuilt Benchmarks', jetbuiltRecords]];
+      $('#stats-grid').innerHTML = cards.map(([k,v]) => `<div class="stat-card"><div class="muted">${k}</div><div class="stat-value">${v}</div></div>`).join('');
+      const counts = Object.fromEntries(STAGES.map(s => [s, projects.filter(p => p.stage === s).length]));
+      const max = Math.max(1, ...Object.values(counts));
+      $('#pipeline-funnel').innerHTML = STAGES.map(s => `<div class="funnel-stage"><div class="funnel-meta"><strong>${label(s)}</strong><span>${counts[s]}</span></div><div class="bar-bg"><div class="bar-fill" style="width:${counts[s]/max*100}%"></div></div></div>`).join('');
+      renderWonChart(wonRecords);
+      const log = DB.getAll('av_activity_log').slice(0, 10);
+      $('#activity-feed').innerHTML = log.length ? log.map(a => `<div class="activity-item"><strong>${esc(a.label)}</strong><div class="muted">${esc(a.action)} - ${new Date(a.ts).toLocaleString()}</div></div>`).join('') : '<p class="muted">No activity yet.</p>';
+    }
+    function renderWonChart(records) {
+      const sums = {};
+      records.forEach(r => sums[r.projectType] = (sums[r.projectType] || 0) + (Number(r.sell) || 0));
+      const entries = Object.entries(sums).sort((a,b) => b[1] - a[1]);
+      if (!entries.length) return $('#won-chart').innerHTML = '<p class="muted">No won records.</p>';
+      const max = Math.max(...entries.map(e => e[1]));
+      const h = 34 * entries.length + 20;
+      $('#won-chart').innerHTML = `<svg viewBox="0 0 560 ${h}" width="100%" height="${h}" role="img" aria-label="Won records by project type">${entries.map(([type, val], i) => {
+        const y = 18 + i * 34, w = Math.max(4, val / max * 330);
+        return `<text x="0" y="${y+15}" font-size="12" fill="#667085">${label(type)}</text><rect x="120" y="${y}" width="${w}" height="20" rx="5" fill="#2563eb"></rect><text x="${128+w}" y="${y+15}" font-size="12" fill="#172033">${fmt(val)}</text>`;
+      }).join('')}</svg>`;
+    }
+    function renderBidSelectors() {
+      const clients = getClients();
+      const clientOpts = '<option value="">No client</option>' + clients.map(c => `<option value="${c.id}">${esc(c.company || c.name)}</option>`).join('');
+      $('#bid-client').innerHTML = clientOpts;
+      const selected = state.selectedProjectId || '';
+      $('#bid-project-select').innerHTML = '<option value="">-- New (unsaved) --</option>' + getProjects().map(p => `<option value="${p.id}">${esc(p.name || p.projectType)}</option>`).join('');
+      $('#bid-project-select').value = selected;
+      $('#bid-client').value = getBidField('clientId') || '';
+    }
+    function getBidProjectFromForm() {
+      const p = { ...blankProject(), id: state.selectedProjectId || null };
+      p.name = $('#bid-name').value.trim();
+      p.clientId = $('#bid-client').value || null;
+      p.projectType = $('#bid-type').value;
+      p.stage = $('#bid-stage').value;
+      p.rooms = Number($('#bid-rooms').value) || 1;
+      p.displays = Number($('#bid-displays').value) || 0;
+      p.mics = Number($('#bid-mics').value) || 0;
+      p.speakers = Number($('#bid-speakers').value) || 0;
+      p.cameras = Number($('#bid-cameras').value) || 0;
+      p.complexity = Number($('#bid-complexity').value) || 5;
+      p.budget = $('#bid-budget').value ? Number($('#bid-budget').value) : null;
+      p.dsp = $('#bid-dsp').value === 'true';
+      p.notes = $('#bid-notes').value;
+      p.estimateMode = document.querySelector('input[name="estimate-mode"]:checked')?.value || 'formula';
+      p.systems = {};
+      $$('#systems-checks input').forEach(i => p.systems[i.dataset.system] = i.checked);
+      return p;
+    }
+    function getBidField(field) { return getBidProjectFromForm()[field]; }
+    function setBidProject(p) {
+      $('#bid-name').value = p.name || '';
+      $('#bid-client').value = p.clientId || '';
+      $('#bid-type').value = p.projectType || 'conference';
+      $('#bid-stage').value = p.stage || 'lead';
+      $('#bid-rooms').value = p.rooms || 1;
+      $('#bid-displays').value = p.displays || 0;
+      $('#bid-mics').value = p.mics || 0;
+      $('#bid-speakers').value = p.speakers || 0;
+      $('#bid-cameras').value = p.cameras || 0;
+      $('#bid-complexity').value = p.complexity || 5;
+      $('#bid-budget').value = p.budget || '';
+      $('#bid-dsp').value = String(!!p.dsp);
+      $('#bid-notes').value = p.notes || '';
+      $$('#systems-checks input').forEach(i => i.checked = !!(p.systems || {})[i.dataset.system]);
+      $$('input[name="estimate-mode"]').forEach(i => i.checked = i.value === (p.estimateMode || 'formula'));
+    }
+    function loadBidProject(id) {
+      state.selectedProjectId = id || null;
+      const p = id ? getProject(id) : blankProject();
+      setBidProject(p || blankProject());
+      state.unsavedBom = { projectId: null, items: [], updatedAt: now() };
+      renderAll();
+    }
+    function saveBidProject() {
+      const data = getBidProjectFromForm();
+      if (!data.name) data.name = `${label(data.projectType)} estimate`;
+      let p;
+      if (state.selectedProjectId) p = updateProject(state.selectedProjectId, data);
+      else {
+        p = createProject(data);
+        if (state.unsavedBom.items.length) saveBom(state.unsavedBom, p.id);
+        state.selectedProjectId = p.id;
+      }
+      renderAll();
+      loadBidProject(p.id);
+    }
+    function generateEstimate() {
+      const project = getBidProjectFromForm();
+      const bom = getCurrentBom();
+      const result = computeEstimate(project, bom, project.estimateMode);
+      state.currentEstimate = { project, result, bom };
+      renderEstimates(result);
+      renderBidComparison(project.projectType, result.better);
+      logActivity('bid:generated', `Estimate for ${project.name || project.projectType}: Better=${fmt(result.better)}`, project.id);
+    }
+    function renderEstimates(result) {
+      const items = [['Good', result.good, 'Lean scope'], ['Better', result.better, 'Recommended'], ['Best', result.best, 'Premium scope']];
+      $('#estimate-output').innerHTML = items.map(([name, val, note]) => `<div class="estimate-card"><span class="muted">${name}</span><strong>${fmt(val)}</strong><small>${note}</small></div>`).join('');
+      $('#estimate-breakdown').textContent = JSON.stringify(result.breakdown, null, 2);
+    }
+    function renderBidComparison(projectType, betterSell) {
+      const recs = DB.getAll('av_won_records').filter(r => r.projectType === projectType).sort((a,b) => a.sell - b.sell);
+      if (recs.length < 2) return $('#bid-comparison').innerHTML = '<p class="muted">Not enough historical data for comparison.</p>';
+      const rank = recs.filter(r => r.sell <= betterSell).length;
+      const percentile = Math.round(rank / recs.length * 100);
+      const recent = recs.slice(-5).reverse();
+      $('#bid-comparison').innerHTML = `<p>Your Better estimate (${fmt(betterSell)}) is at the <strong>${percentile}th percentile</strong> of similar won bids.</p><div class="bar-bg"><div class="bar-fill" style="width:${percentile}%"></div></div><div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>Sell</th><th>Margin</th><th>Rooms</th><th>Date</th></tr></thead><tbody>${recent.map(r => `<tr><td>${fmt(r.sell)}</td><td>${pct(r.margin)}</td><td>${r.rooms || 1}</td><td>${esc(r.date)}</td></tr>`).join('')}</tbody></table></div>`;
+    }
+    function renderBom() {
+      const bom = normalizeBom(getCurrentBom());
+      const rows = bom.items.map(item => `<tr data-id="${item.id}">
+        <td><input aria-label="BOM item name" data-bom-field="customName" value="${esc(item.customName || productName(item.productId) || '')}" placeholder="Item"></td>
+        <td><select aria-label="BOM item category" data-bom-field="category">${CATEGORIES.map(c => `<option value="${c}" ${item.category===c?'selected':''}>${label(c)}</option>`).join('')}</select></td>
+        <td><input aria-label="BOM item quantity" type="number" min="0" step="0.01" data-bom-field="qty" value="${item.qty}"></td>
+        <td><input aria-label="BOM item unit cost" type="number" min="0" step="0.01" data-bom-field="unitCost" value="${item.unitCost}"></td>
+        <td><input aria-label="BOM item markup percent" type="number" min="0" max="200" step="0.01" data-bom-field="markupPct" value="${item.markupPct}"></td>
+        <td>${fmt(item.lineTotal)}</td>
+        <td><button class="danger" data-bom-delete="${item.id}">x</button></td>
+      </tr>`).join('');
+      $('#bom-table').innerHTML = `<thead><tr><th>Item</th><th>Category</th><th>Qty</th><th>Unit Cost</th><th>Markup%</th><th>Total</th><th></th></tr></thead><tbody>${rows || '<tr><td colspan="7" class="muted">No BOM items yet.</td></tr>'}</tbody>`;
+      $('#bom-table').oninput = e => updateBomField(e);
+      $('#bom-table').onchange = e => updateBomField(e);
+      $('#bom-table').onclick = e => { const id = e.target.dataset.bomDelete; if (!id) return; const b = getCurrentBom(); b.items = b.items.filter(i => i.id !== id); saveBom(b); renderBom(); };
+      $('#bom-subtotal').textContent = `Equip ${fmt(sumBomCategory(bom.items, 'equipment'))} | Labor ${fmt(sumBomCategory(bom.items, 'labor'))}`;
+    }
+    function productName(id) { const p = getProduct(id); return p ? `${p.manufacturer} ${p.model}` : ''; }
+    function updateBomField(e) {
+      const field = e.target.dataset.bomField;
+      if (!field) return;
+      const tr = e.target.closest('tr');
+      const b = getCurrentBom();
+      const item = b.items.find(i => i.id === tr.dataset.id);
+      if (!item) return;
+      item[field] = ['qty','unitCost','markupPct'].includes(field) ? Number(e.target.value) || 0 : e.target.value;
+      normalizeBom(b);
+      debouncedSaveBom(b);
+      renderBom();
+    }
+    function renderBomSearch() {
+      const q = $('#bom-search').value.trim().toLowerCase();
+      const box = $('#bom-results');
+      if (!q) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+      const hits = getProducts().filter(p => [p.model, p.manufacturer, p.category].join(' ').toLowerCase().includes(q)).slice(0, 10);
+      box.innerHTML = hits.map(p => `<div class="bom-result" data-product-id="${p.id}"><strong>${esc(p.model)}</strong> <span class="muted">${esc(p.manufacturer)} - ${esc(p.category)} - ${fmt(p.dealerCost)}</span></div>`).join('') || '<div class="bom-result muted">No matches</div>';
+      box.classList.remove('hidden');
+      box.onclick = e => { const row = e.target.closest('.bom-result'); if (row?.dataset.productId) { const p = getProduct(row.dataset.productId); addBomItem({ productId: p.id, customName: `${p.manufacturer} ${p.model}`, qty: 1, unitCost: p.dealerCost, markupPct: p.markupPct, category: p.category }); $('#bom-search').value=''; box.classList.add('hidden'); } };
+    }
+    function addBomItem(item) {
+      const b = getCurrentBom();
+      b.items.push({ id: uid(), productId: null, customName: '', qty: 1, unitCost: 0, markupPct: 30, category: 'custom', notes: '', ...item });
+      saveBom(b);
+      renderBom();
+    }
+    function slugText(value) {
+      return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 90) || uid();
+    }
+    function getBomTemplates() { return DB.getAll('av_bom_templates'); }
+    function saveBomTemplates(templates) { DB.set('av_bom_templates', templates); }
+    function inferCategoryFromText(text, fallback = 'custom') {
+      const t = String(text || '').toLowerCase();
+      if (/labor|install|program|engineering|project management|pm\b|commission/.test(t)) return 'labor';
+      if (/display|monitor|tv|projector|screen|led wall|dvled|video wall/.test(t)) return 'display';
+      if (/speaker|microphone|mic\b|dsp|amplifier|mixer|audio|shure|qsc|biamp|sennheiser|dante/.test(t)) return 'audio';
+      if (/camera|ptz|capture|viewfinder|broadcast|sdi|atem|blackmagic/.test(t)) return 'camera';
+      if (/control|touchpanel|processor|relay|keypad|extron|crestron|amx|q-sys/.test(t)) return 'control';
+      if (/cable|wire|cat6|hdmi|dmx|xlr|sdi|ethernet|powercon|connector|adapter/.test(t)) return 'cable';
+      if (/rack|shelf|pdu|ups|case|enclosure|mount|bracket|yoke/.test(t)) return 'rack';
+      return CATEGORIES.includes(fallback) ? fallback : 'custom';
+    }
+    function normalizeBomTemplateItem(item, template) {
+      const sourceName = [item.manufacturer, item.model || item.partNumber || item.name].filter(Boolean).join(' ').trim();
+      const description = item.description || item.customName || item.notes || '';
+      let qty = Number(item.qty ?? item.quantity) || 1;
+      let unitCost = num(item.unitCost ?? item.cost ?? item.dealerCost);
+      let unitSell = num(item.unitSell ?? item.sell ?? item.price ?? item.msrp);
+      const originalCategory = item.category || item.type || '';
+      let markupPct = num(item.markupPct ?? item.markup);
+      const notes = [];
+      const templateSell = num(template?.sell ?? template?.totalSell ?? template?.projectSell);
+      if (templateSell > 0 && qty > 1 && unitSell > 0 && qty * unitSell > templateSell * 1.5) {
+        unitSell = unitSell / qty;
+        if (unitCost > 0) unitCost = unitCost / qty;
+        notes.push('Pricing anomaly: source row used extended totals; converted to unit prices.');
+      }
+      if (qty > 10000 || (/^\d{4,}$/.test(String(item.model || item.partNumber || '').trim()) && qty > 1000)) {
+        qty = 1;
+        notes.push('Quantity anomaly: numeric part number looked like quantity; reset quantity to 1.');
+      }
+      if (unitCost <= 0.01 && unitSell > 0) {
+        unitCost = unitSell;
+        markupPct = 0;
+        notes.push('Pricing anomaly: source has no usable cost; sell imported as cost with 0% markup to preserve quote price.');
+      } else if (unitCost > 0 && unitSell > 0) markupPct = Math.max(0, ((unitSell - unitCost) / unitCost) * 100);
+      else if (unitCost <= 0 && unitSell > 0) {
+        markupPct = 0;
+        notes.push(`Pricing anomaly: sell-only source ${fmt(unitSell)}; cost left at $0.`);
+      } else if (unitCost > 0 && unitSell <= 0 && !markupPct) {
+        markupPct = 30;
+        notes.push('Pricing anomaly: cost-only source; default markup used.');
+      }
+      if (originalCategory) notes.push(`Jetbuilt category: ${originalCategory}`);
+      if (template?.jetbuiltProjectId) notes.push(`Jetbuilt ${template.jetbuiltProjectId}`);
+      if (item.room) notes.push(`Room: ${item.room}`);
+      if (item.option) notes.push(`Option: ${item.option}`);
+      if (description && description !== sourceName) notes.push(description);
+      const category = inferCategoryFromText([sourceName, description, originalCategory].join(' '), originalCategory);
+      return {
+        id: uid(),
+        productId: null,
+        customName: sourceName || description || item.name || 'Imported template item',
+        qty,
+        unitCost,
+        markupPct,
+        category,
+        notes: notes.filter(Boolean).join(' | ')
+      };
+    }
+    function normalizeBomTemplate(raw) {
+      const t = raw || {};
+      const jetbuiltProjectId = t.jetbuiltProjectId || t.projectId || t.id || '';
+      const name = t.name || t.sourceProjectName || t.projectName || 'Imported Jetbuilt template';
+      const items = (t.items || t.bom || t.lineItems || []).map(i => normalizeBomTemplateItem(i, { ...t, jetbuiltProjectId }));
+      const sourceSell = num(t.sell ?? t.totalSell ?? t.projectSell);
+      const sourceCost = num(t.cost ?? t.totalCost ?? t.projectCost);
+      let marginValue = t.margin != null ? num(t.margin) : (sourceSell > 0 ? (sourceSell - sourceCost) / sourceSell : 0);
+      if (marginValue > 1) marginValue = marginValue / 100;
+      const itemCost = items.reduce((s, i) => s + (Number(i.qty) || 1) * (Number(i.unitCost) || 0), 0);
+      const itemSell = items.reduce((s, i) => s + lineTotal(i), 0);
+      const warnings = [];
+      const variance = (actual, expected) => expected > 0 ? Math.abs(actual - expected) / expected : 0;
+      if (!items.length) warnings.push('No BOM items yet. This is an extraction target, not an apply-ready template.');
+      if (sourceCost > 0 && itemCost > 0 && variance(itemCost, sourceCost) > 0.10) warnings.push(`Item cost total differs from project cost by ${Math.round(variance(itemCost, sourceCost) * 100)}%.`);
+      if (sourceSell > 0 && itemSell > 0 && variance(itemSell, sourceSell) > 0.10) warnings.push(`Item sell total differs from project sell by ${Math.round(variance(itemSell, sourceSell) * 100)}%.`);
+      return {
+        id: `jetbuilt-template-${slugText(jetbuiltProjectId || name)}`,
+        name,
+        source: t.source || 'jetbuilt-top-profit',
+        jetbuiltProjectId,
+        client: t.client || '',
+        projectType: PROJECT_TYPES.includes(t.projectType) ? t.projectType : safeType(t.projectType),
+        rank: Number(t.rank) || null,
+        sell: sourceSell,
+        cost: sourceCost,
+        profit: num(t.profit) || (sourceSell - sourceCost),
+        margin: marginValue,
+        date: t.date || t.completedDate || t.contractedDate || '',
+        itemCount: items.length,
+        itemCost,
+        itemSell,
+        warnings,
+        items,
+        createdAt: t.createdAt || now(),
+        updatedAt: now(),
+        notes: t.notes || 'Imported from Jetbuilt BOM intelligence.'
+      };
+    }
+    function importBomTemplatePayload(payload) {
+      const raw = Array.isArray(payload) ? payload : (payload.templates || payload.projects || payload.bomTemplates || []);
+      if (!Array.isArray(raw)) throw new Error('Template JSON must be an array or contain templates/projects.');
+      const incoming = raw.map(normalizeBomTemplate);
+      const byId = new Map(getBomTemplates().map(t => [t.id, t]));
+      incoming.forEach(t => byId.set(t.id, t));
+      const merged = Array.from(byId.values()).sort((a,b) => (Number(a.rank) || 9999) - (Number(b.rank) || 9999) || (b.profit || 0) - (a.profit || 0));
+      saveBomTemplates(merged);
+      DB.append('av_import_log', { id: uid(), ts: now(), type: 'bom-template-json', rows: raw.length, created: incoming.length, skipped: 0, status: 'ok' });
+      logActivity('import:bom-templates', `Imported ${incoming.length} BOM templates`, null);
+      Bus.emit('db:changed', { type: 'bom-templates' });
+      return incoming.length;
+    }
+    function importBomTemplateFile(file) {
+      if (!file) return;
+      file.text().then(text => {
+        try {
+          const count = importBomTemplatePayload(JSON.parse(text));
+          alert(`Imported ${count} BOM templates.`);
+          $('#bom-template-file').value = '';
+        } catch (err) {
+          alert(`BOM template import failed: ${err.message}`);
+        }
+      });
+    }
+    function renderBomTemplates() {
+      const selectedType = $('#bom-template-type')?.value || '';
+      const bidType = $('#bid-type')?.value || '';
+      const q = ($('#bom-template-search')?.value || '').toLowerCase();
+      const sort = $('#bom-template-sort')?.value || 'profit';
+      let templates = getBomTemplates().filter(t => (!q || [t.name, t.client, t.jetbuiltProjectId, t.projectType].join(' ').toLowerCase().includes(q)));
+      if (selectedType) templates = templates.filter(t => t.projectType === selectedType);
+      templates.sort((a,b) => {
+        if (!selectedType && bidType && a.projectType !== b.projectType) {
+          if (a.projectType === bidType) return -1;
+          if (b.projectType === bidType) return 1;
+        }
+        if (sort === 'margin') return (b.margin || 0) - (a.margin || 0);
+        if (sort === 'date') return String(b.date || '').localeCompare(String(a.date || ''));
+        if (sort === 'items') return (b.itemCount || 0) - (a.itemCount || 0);
+        return (b.profit || 0) - (a.profit || 0);
+      });
+      $('#bom-template-list').innerHTML = templates.length ? templates.map(t => {
+        const preview = (t.items || []).slice(0, 12).map(i => `${i.qty}x ${i.customName} - ${label(i.category)} - ${fmt(lineTotal(i))}`).join('\n') || 'No line items extracted yet.';
+        return `<div class="template-card" data-template-id="${t.id}">
+          <h4>${esc(t.rank ? `${t.rank}. ` : '')}${esc(t.name)}</h4>
+          <div class="muted">${esc(t.client || 'No client')} ${t.jetbuiltProjectId ? `- ${esc(t.jetbuiltProjectId)}` : ''}</div>
+          <div class="template-meta">
+            <span class="pill">${esc(label(t.projectType))}</span>
+            <span class="pill good">${esc(fmt(t.profit))} profit</span>
+            <span class="pill">${esc(pct(t.margin))} margin</span>
+            <span class="pill">${t.itemCount || 0} items</span>
+            <span class="pill">Items ${esc(fmt(t.itemSell || 0))}</span>
+          </div>
+          ${(t.warnings || []).map(w => `<div class="template-warning">${esc(w)}</div>`).join('')}
+          <pre class="template-preview hidden">${esc(preview)}</pre>
+          <div class="template-actions">
+            <button data-template-preview="${t.id}">Preview</button>
+            <button class="primary" data-template-apply="${t.id}" ${t.itemCount ? '' : 'disabled'}>${t.itemCount ? 'Apply' : 'Pending'}</button>
+          </div>
+        </div>`;
+      }).join('') : '<p class="muted">No BOM templates yet. Import Jetbuilt template JSON after extracting project line items.</p>';
+    }
+    function handleBomTemplateAction(e) {
+      const previewId = e.target.dataset.templatePreview;
+      const applyId = e.target.dataset.templateApply;
+      if (previewId) {
+        const card = e.target.closest('.template-card');
+        card?.querySelector('.template-preview')?.classList.toggle('hidden');
+      }
+      if (applyId) applyBomTemplate(applyId);
+    }
+    function applyBomTemplate(templateId) {
+      const template = getBomTemplates().find(t => t.id === templateId);
+      if (!template || !template.items?.length) return alert('This template has no BOM items yet.');
+      const bom = getCurrentBom();
+      const existing = new Set((bom.items || []).map(i => slugText(`${i.customName}|${i.category}`)));
+      const imported = template.items.map(item => {
+        const key = slugText(`${item.customName}|${item.category}`);
+        const duplicateNote = existing.has(key) ? 'Possible duplicate from template apply.' : '';
+        existing.add(key);
+        return { ...item, id: uid(), notes: [item.notes, `Template: ${template.name}`, duplicateNote].filter(Boolean).join(' | ') };
+      });
+      bom.items = [...(bom.items || []), ...imported];
+      saveBom(bom);
+      logActivity('bom:template-applied', `Applied ${template.name}: ${imported.length} items`, state.selectedProjectId);
+      renderAll();
+    }
+    function extractScopeSignals(scope, project = getBidProjectFromForm()) {
+      const text = String(scope || '').toLowerCase();
+      const typeScores = Object.fromEntries(PROJECT_TYPES.map(type => [type, 0]));
+      const bump = (type, amount) => typeScores[type] += amount;
+      if (/court|judge|jury|division|arraign|detention/.test(text)) bump('courtroom', 7);
+      if (/classroom|teaching|lecture|school|academy|university|training room/.test(text)) bump('classroom', 6);
+      if (/auditorium|theater|theatre|pac|stage|black box|perform/.test(text)) bump('auditorium', 7);
+      if (/church|sanctuary|worship|chapel|ministry/.test(text)) bump('worship', 6);
+      if (/service|repair|replace|troubleshoot|retune|re-tune/.test(text)) bump('service', 5);
+      if (/refresh|upgrade|retrofit|expansion|add(?:itional)?/.test(text)) bump('refresh', 4);
+      if (/hotel|restaurant|bar|casino|event space|hospitality/.test(text)) bump('hospitality', 5);
+      if (/retail|showroom|store/.test(text)) bump('retail', 5);
+      if (project?.projectType) bump(project.projectType, 2);
+      const detectedType = Object.entries(typeScores).sort((a, b) => b[1] - a[1])[0][1] > 0
+        ? Object.entries(typeScores).sort((a, b) => b[1] - a[1])[0][0]
+        : project.projectType || 'conference';
+      const countFor = pattern => {
+        const match = text.match(pattern);
+        return match ? Number(match[1]) || 0 : 0;
+      };
+      const words = text.match(/[a-z0-9][a-z0-9-]{2,}/g) || [];
+      const stop = new Set(['with','from','that','this','room','rooms','system','systems','project','upgrade','install','installation','new','and','for','the','add','need','needs','quote','bid','scope']);
+      const keywords = Array.from(new Set(words.filter(word => !stop.has(word) && word.length > 3))).slice(0, 40);
+      const systems = { ...(project.systems || {}) };
+      if (/zoom|teams|conference|uc\b|video conferenc/.test(text)) systems.videoConference = true;
+      if (/stream|livestream|camera|broadcast|record/.test(text)) systems.streamingLivestream = true;
+      if (/signage|menu board|lobby display/.test(text)) systems.digitalSignage = true;
+      if (/lighting|dimmer|fixture|console|dmx|house light/.test(text)) systems.lighting = true;
+      if (/speaker|audio distribution|distributed audio|gymnasium|sanctuary/.test(text)) systems.audioDistribution = true;
+      if (/security|access control|door/.test(text)) systems.security = true;
+      const rooms = countFor(/(\d+)\s*(?:rooms?|spaces?|classrooms?|courtrooms?|conference rooms?)/) || project.rooms || 1;
+      return {
+        text,
+        projectType: detectedType,
+        rooms,
+        displays: countFor(/(\d+)\s*(?:displays?|tvs?|monitors?|projectors?)/) || project.displays || (/display|tv|projector|screen|video wall|dvled/.test(text) ? 1 : 0),
+        mics: countFor(/(\d+)\s*(?:mics?|microphones?|wireless)/) || project.mics || (/mic|microphone|wireless|lav|handheld/.test(text) ? 2 : 0),
+        speakers: countFor(/(\d+)\s*(?:speakers?|loudspeakers?)/) || project.speakers || (/speaker|audio|pa\b|reinforcement/.test(text) ? 4 : 0),
+        cameras: countFor(/(\d+)\s*(?:cameras?|ptz)/) || project.cameras || (/camera|ptz|stream|record/.test(text) ? 1 : 0),
+        dsp: project.dsp || /dsp|biamp|qsc|tesira|audio processor|automix/.test(text),
+        systems,
+        keywords
+      };
+    }
+    function scoreTemplateForScope(template, signals) {
+      const haystack = [
+        template.name, template.client, template.projectType, template.jetbuiltProjectId,
+        ...(template.items || []).slice(0, 80).map(item => `${item.customName} ${item.category} ${item.notes}`)
+      ].join(' ').toLowerCase();
+      let score = template.projectType === signals.projectType ? 24 : 0;
+      if (signals.projectType === 'refresh' && /upgrade|replacement|add|box sale|refresh/.test(haystack)) score += 8;
+      if (signals.systems.lighting && /lighting|dimmer|dmx|fixture|console|etc|chauvet/.test(haystack)) score += 18;
+      if (signals.systems.streamingLivestream && /stream|camera|ptz|sdi|atem|record/.test(haystack)) score += 14;
+      if (signals.systems.videoConference && /conference|touch panel|extron|biamp|qsc|microphone|teams|zoom/.test(haystack)) score += 14;
+      if (signals.systems.audioDistribution && /speaker|audio|amp|dsp|mixer|shure|sennheiser|fulcrum|d&b/.test(haystack)) score += 14;
+      if (signals.displays && /display|projector|screen|tv|video wall|dvled/.test(haystack)) score += 8;
+      if (signals.mics && /mic|microphone|wireless|shure|sennheiser|dpa/.test(haystack)) score += 8;
+      if (signals.cameras && /camera|ptz|blackmagic|datavideo|panasonic/.test(haystack)) score += 8;
+      signals.keywords.forEach(keyword => { if (haystack.includes(keyword)) score += keyword.length > 6 ? 3 : 2; });
+      score += Math.min(8, Math.max(0, Number(template.margin) || 0) * 20);
+      score += Math.min(5, Math.log10(Math.max(1, Number(template.profit) || 1)));
+      return score;
+    }
+    function median(values) {
+      const nums = values.map(Number).filter(Number.isFinite).sort((a, b) => a - b);
+      if (!nums.length) return 0;
+      const mid = Math.floor(nums.length / 2);
+      return nums.length % 2 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+    }
+    function buildScopeBid(scope, questionsOnly = false) {
+      const current = getBidProjectFromForm();
+      const signals = extractScopeSignals(scope, current);
+      const scored = getBomTemplates()
+        .filter(template => template.items?.length)
+        .map(template => ({ template, score: scoreTemplateForScope(template, signals) }))
+        .sort((a, b) => b.score - a.score);
+      const matches = scored.filter(match => match.score > 10).slice(0, 8);
+      const matchSet = matches.length ? matches : scored.slice(0, 5);
+      const profile = getProfile(signals.projectType);
+      const matchedSells = matchSet.map(match => Number(match.template.sell || match.template.itemSell || 0)).filter(n => n > 0);
+      const roomFactor = Math.min(2.4, 1 + (Math.max(1, signals.rooms) - 1) * 0.35);
+      const targetSell = current.budget || (matchedSells.length ? median(matchedSells) * roomFactor : 0);
+      const matchedEquipmentRatio = median(matchSet.map(match => {
+        const sell = Number(match.template.sell) || 0;
+        const itemSell = Number(match.template.itemSell) || 0;
+        return sell > 0 && itemSell > 0 ? itemSell / sell : 0;
+      }).filter(n => n > 0 && n < 1.4));
+      const targetEquipmentSell = targetSell ? targetSell * clamp(matchedEquipmentRatio || .55, .35, .75) : Infinity;
+      const systemCount = Object.values(signals.systems || {}).filter(Boolean).length;
+      const maxSuggestedItems = questionsOnly ? 0 : Math.min(54, Math.max(14, 10 + Math.max(1, signals.rooms) * 7 + systemCount * 4));
+      const aggregate = new Map();
+      matchSet.forEach((match, matchIndex) => {
+        (match.template.items || []).forEach(item => {
+          const itemText = `${item.customName} ${item.category} ${item.notes}`.toLowerCase();
+          let itemScore = match.score * (matchIndex === 0 ? 1.2 : 1);
+          if (signals.systems.lighting && /lighting|dimmer|dmx|fixture|console/.test(itemText)) itemScore += 20;
+          if (signals.systems.audioDistribution && /speaker|amp|dsp|mixer|audio/.test(itemText)) itemScore += 18;
+          if (signals.systems.streamingLivestream && /camera|ptz|sdi|atem|stream|record/.test(itemText)) itemScore += 18;
+          if (signals.systems.videoConference && /touch|control|extron|biamp|qsc|microphone|display/.test(itemText)) itemScore += 14;
+          if (signals.displays && /display|projector|screen|tv|video wall|dvled/.test(itemText)) itemScore += 14;
+          if (signals.mics && /mic|wireless|shure|sennheiser|dpa/.test(itemText)) itemScore += 14;
+          signals.keywords.forEach(keyword => { if (itemText.includes(keyword)) itemScore += 5; });
+          itemScore += Math.min(20, lineTotal(item) / 1000);
+          const key = slugText(`${item.customName}|${item.category}`);
+          const existing = aggregate.get(key) || { item, score: 0, qtys: [], templates: new Set() };
+          existing.score += itemScore;
+          existing.qtys.push(Number(item.qty) || 1);
+          existing.templates.add(match.template.jetbuiltProjectId || match.template.name);
+          aggregate.set(key, existing);
+        });
+      });
+      const candidates = Array.from(aggregate.values())
+        .filter(entry => entry.templates.size > 1 || entry.score > 45 || entry.item.category === 'labor')
+        .sort((a, b) => b.templates.size - a.templates.size || b.score - a.score);
+      let itemsSoFar = 0;
+      let runningEquipment = 0;
+      let items = candidates.map(entry => ({
+        ...entry.item,
+        id: uid(),
+        qty: Math.max(1, Math.round(median(entry.qtys))),
+        notes: [entry.item.notes, `Scope inference from ${entry.templates.size} similar Jetbuilt job${entry.templates.size === 1 ? '' : 's'}.`].filter(Boolean).join(' | ')
+      })).filter(item => {
+        if (questionsOnly) return false;
+        if (item.category === 'labor') return true;
+        if (itemsSoFar >= maxSuggestedItems) return false;
+        const itemSell = lineTotal(item);
+        const requiredSmallItem = itemSell < Math.max(1500, targetEquipmentSell * .03);
+        const keep = runningEquipment === 0 || runningEquipment + itemSell <= targetEquipmentSell * 1.12 || requiredSmallItem;
+        if (keep) {
+          runningEquipment += itemSell;
+          itemsSoFar += 1;
+        }
+        return keep;
+      });
+      const hasLabor = items.some(item => item.category === 'labor');
+      const equipmentSell = items.filter(item => item.category !== 'labor').reduce((sum, item) => sum + lineTotal(item), 0);
+      const matchedLaborPct = median(matchSet.map(match => Number(match.template.laborPctOfCost || 0)).filter(Boolean));
+      const laborPct = matchedLaborPct || profile.laborPct || 0.28;
+      const currentLaborSell = items.filter(item => item.category === 'labor').reduce((sum, item) => sum + lineTotal(item), 0);
+      const targetLaborSell = equipmentSell * laborPct;
+      if (!questionsOnly && equipmentSell > 0 && (!hasLabor || currentLaborSell < targetLaborSell * 0.5)) {
+        const laborGap = Math.max(0, targetLaborSell - currentLaborSell);
+        const installHours = Math.max(8, Math.round(laborGap / 95));
+        const programmingHours = Math.max(signals.dsp || signals.systems.videoConference || signals.systems.lighting ? 6 : 0, Math.round((equipmentSell * (profile.programmingPct || 0.06)) / 125));
+        const pmHours = Math.max(2, Math.round((installHours + programmingHours) * 0.12));
+        items.push({ id: uid(), productId: null, customName: hasLabor ? 'Supplemental Installation Labor' : 'Installation Labor', qty: installHours, unitCost: 95, markupPct: 0, category: 'labor', notes: 'Estimated from similar Jetbuilt labor ratio.' });
+        if (programmingHours) items.push({ id: uid(), productId: null, customName: 'Programming and Commissioning', qty: programmingHours, unitCost: 125, markupPct: 0, category: 'labor', notes: 'Estimated from scope systems and historical programming ratio.' });
+        items.push({ id: uid(), productId: null, customName: 'Project Management', qty: pmHours, unitCost: 110, markupPct: 0, category: 'labor', notes: 'Estimated project management allowance.' });
+      }
+      items = items.map(item => normalizeBom({ items: [item] }).items[0]);
+      const bom = normalizeBom({ projectId: state.selectedProjectId || null, items });
+      const project = { ...current, projectType: signals.projectType, rooms: signals.rooms, displays: signals.displays, mics: signals.mics, speakers: signals.speakers, cameras: signals.cameras, dsp: signals.dsp, systems: signals.systems, estimateMode: 'hybrid' };
+      const estimate = computeEstimate(project, bom, 'hybrid');
+      const questions = buildGapQuestions(signals, scope);
+      const benchmark = getBenchmarkSummary(signals.projectType, estimate.better);
+      const topScore = matchSet[0]?.score || 0;
+      const edgePenalty = benchmark.percentile != null && (benchmark.percentile > 90 || benchmark.percentile < 10) ? 10 : 0;
+      const bandPenalty = benchmark.bandCount && benchmark.bandCount < 8 ? 6 : 0;
+      const confidence = Math.round(Math.max(45, Math.min(92, 35 + Math.min(30, topScore / 2) + Math.min(20, matchSet.length * 3) + Math.min(10, benchmark.count / 10) - edgePenalty - bandPenalty)));
+      return { scope, signals, matches: matchSet, items, bom, estimate, questions, benchmark, confidence, createdAt: now() };
+    }
+    function getBenchmarkSummary(projectType, sell) {
+      const recs = getWonRecordsByType(projectType).sort((a, b) => Number(a.sell) - Number(b.sell));
+      if (!recs.length) return { count: 0, percentile: null, medianSell: 0, lowSell: 0, highSell: 0 };
+      const band = recs.filter(r => Number(r.sell) >= sell * .18 && Number(r.sell) <= sell * 2.2);
+      const source = band.length >= 5 ? band : recs;
+      const sells = source.map(r => Number(r.sell) || 0);
+      const rank = recs.filter(r => Number(r.sell) <= sell).length;
+      return {
+        count: recs.length,
+        bandCount: source.length,
+        percentile: Math.round(rank / recs.length * 100),
+        medianSell: median(sells),
+        lowSell: sells[Math.floor((sells.length - 1) * .25)] || sells[0],
+        highSell: sells[Math.floor((sells.length - 1) * .75)] || sells[sells.length - 1]
+      };
+    }
+    function buildGapQuestions(signals, scope) {
+      const text = String(scope || '').toLowerCase();
+      const questions = [];
+      if (!/(\d+)\s*(rooms?|spaces?|classrooms?|courtrooms?|conference rooms?)/.test(text)) questions.push('How many rooms or distinct zones are in this bid?');
+      if (!/owner|ofe|existing|reuse/.test(text)) questions.push('What equipment is owner-furnished, existing, or expected to be reused?');
+      if (signals.displays || /video|projector|display|screen|led/.test(text)) questions.push('For video, are we quoting displays/projectors/screens, distribution, mounting, and owner source devices?');
+      if (signals.mics || signals.speakers || /audio|speaker|mic|dsp/.test(text)) questions.push('For audio, confirm mic count, speaker coverage, DSP needs, assisted listening, and tuning expectations.');
+      if (signals.systems.lighting) questions.push('For lighting, confirm fixtures, control stations, DMX/network paths, rigging, lifts, and electrical scope boundaries.');
+      if (signals.systems.streamingLivestream || signals.cameras) questions.push('For camera/streaming, confirm camera positions, recording/stream destination, operator workflow, and SDI/IP cabling paths.');
+      if (!/labor|off-hours|night|weekend|union|prevailing|lift/.test(text)) questions.push('Any off-hours, union, prevailing wage, lift, rental, travel, or access constraints?');
+      if (!/training|support|warranty|service/.test(text)) questions.push('What training, warranty, support, and documentation should be included?');
+      if (!/network|vlan|ip|it|lan/.test(text)) questions.push('Who owns network configuration, VLANs, IP addresses, and firewall rules?');
+      return questions.slice(0, 9);
+    }
+    function generateScopeSuggestion(questionsOnly = false) {
+      const scope = $('#scope-brief').value.trim() || $('#bid-notes').value.trim() || $('#bid-name').value.trim();
+      if (!scope) return alert('Add a scope brief first.');
+      state.scopeSuggestion = buildScopeBid(scope, questionsOnly);
+      renderScopeAdvisor();
+    }
+    function renderScopeAdvisor() {
+      const box = $('#scope-advisor-output');
+      const apply = $('#scope-apply-btn');
+      if (!box || !apply) return;
+      const suggestion = state.scopeSuggestion;
+      apply.disabled = !suggestion?.items?.length;
+      if (!suggestion) {
+        box.classList.add('muted');
+        box.innerHTML = 'No scope analyzed yet.';
+        return;
+      }
+      box.classList.remove('muted');
+      const equip = sumBomCategory(suggestion.items, 'equipment');
+      const labor = sumBomCategory(suggestion.items, 'labor');
+      const matches = suggestion.matches.slice(0, 5).map(match => `<li><strong>${esc(match.template.name)}</strong> <span class="muted">${esc(match.template.jetbuiltProjectId || '')} - ${esc(label(match.template.projectType))} - ${fmt(match.template.sell || match.template.itemSell || 0)}</span></li>`).join('');
+      const questions = suggestion.questions.map(q => `<li>${esc(q)}</li>`).join('');
+      const items = suggestion.items.slice(0, 22).map(item => `<tr><td>${esc(item.customName)}</td><td>${esc(label(item.category))}</td><td>${item.qty}</td><td>${fmt(lineTotal(item))}</td></tr>`).join('');
+      const benchmark = suggestion.benchmark || {};
+      box.innerHTML = `<div class="scope-summary">
+        <div class="estimate-card"><span class="muted">Likely Bid</span><strong>${fmt(suggestion.estimate.better)}</strong><small>${esc(label(suggestion.signals.projectType))}</small></div>
+        <div class="estimate-card"><span class="muted">Equipment</span><strong>${fmt(equip)}</strong><small>${suggestion.items.filter(i => i.category !== 'labor').length} lines</small></div>
+        <div class="estimate-card"><span class="muted">Labor</span><strong>${fmt(labor)}</strong><small>${suggestion.items.filter(i => i.category === 'labor').length} lines</small></div>
+        <div class="estimate-card"><span class="muted">Confidence</span><strong>${suggestion.confidence}%</strong><small>${benchmark.count || 0} ${esc(label(suggestion.signals.projectType))} benchmarks</small></div>
+      </div>
+      <div class="strategy-note" style="margin-bottom:12px">Benchmark: ${benchmark.count ? `${fmt(benchmark.lowSell)}-${fmt(benchmark.highSell)} middle range from ${benchmark.bandCount || benchmark.count} comparable ${esc(label(suggestion.signals.projectType))} records, ${fmt(benchmark.medianSell)} median, suggested bid at ${benchmark.percentile}th percentile of all same-type records.` : 'No same-type benchmark records yet.'} Model profile: ${esc(suggestion.estimate.breakdown.profileSource)}${suggestion.estimate.breakdown.benchmarkCount ? ` (${suggestion.estimate.breakdown.benchmarkCount} records)` : ''}.</div>
+      <div class="grid two">
+        <div><strong>Closest Jobs</strong><ol class="scope-match-list">${matches || '<li>No historical matches.</li>'}</ol></div>
+        <div><strong>Interview Gaps</strong><ol class="scope-question-list">${questions || '<li>No obvious gaps.</li>'}</ol></div>
+      </div>
+      ${suggestion.items.length ? `<div class="scope-item-preview table-wrap" style="margin-top:12px"><table><thead><tr><th>Suggested Item</th><th>Category</th><th>Qty</th><th>Total</th></tr></thead><tbody>${items}</tbody></table></div>` : '<p class="muted">Gap questions generated without applying a BOM.</p>'}`;
+    }
+    function applyScopeSuggestion() {
+      const suggestion = state.scopeSuggestion;
+      if (!suggestion?.items?.length) return;
+      const bom = getCurrentBom();
+      bom.items = [...(bom.items || []), ...suggestion.items.map(item => ({ ...item, id: uid(), notes: [item.notes, 'Applied from scope intelligence.'].filter(Boolean).join(' | ') }))];
+      saveBom(bom);
+      $('#bid-type').value = suggestion.signals.projectType;
+      $('#bid-rooms').value = suggestion.signals.rooms;
+      $('#bid-displays').value = suggestion.signals.displays;
+      $('#bid-mics').value = suggestion.signals.mics;
+      $('#bid-speakers').value = suggestion.signals.speakers;
+      $('#bid-cameras').value = suggestion.signals.cameras;
+      $('#bid-dsp').value = String(!!suggestion.signals.dsp);
+      $$('#systems-checks input').forEach(input => input.checked = !!suggestion.signals.systems[input.dataset.system]);
+      $$('input[name="estimate-mode"]').forEach(input => input.checked = input.value === 'hybrid');
+      logActivity('bom:scope-applied', `Applied scope-inferred BOM: ${suggestion.items.length} items`, state.selectedProjectId);
+      renderAll();
+      generateEstimate();
+    }
+    /* ============================================================
+       BID INTEL
+       ============================================================ */
+    const BID_PORTALS = [
+      { name: 'SAM.gov (Federal)', region: 'National', volume: 'high', url: 'https://sam.gov/search/?index=opp&keywords=audio+visual&dateRange=custom&start=2025-01-01&end=2026-12-31&sort=-modifiedDate&sfm[status][0]=Active', tip: 'Filter by NAICS 238210 (Electrical) or 334310 (AV Equipment). Kansas City USACE + IRS Midwest run regular AV bids.' },
+      { name: 'KCMO City Procurement', region: 'Kansas City, MO', volume: 'medium', url: 'https://www.kcmo.gov/city-hall/departments-agencies/finance/contract-compliance-purchasing/bid-opportunities', tip: 'City Hall AV, community centers, parks. Check keyword: technology, low voltage, AV.' },
+      { name: 'Jackson County Procurement', region: 'Kansas City, MO', volume: 'medium', url: 'https://www.jacksongov.org/government/departments/purchasing', tip: 'You know when refreshes are coming. Courts, admin buildings, legislative chambers.' },
+      { name: 'MissouriBUYS (State)', region: 'Missouri', volume: 'high', url: 'https://missouribuys.mo.gov/', tip: 'State-level contracts. DESE (schools) and higher-ed are the biggest AV spenders.' },
+      { name: 'DemandStar', region: 'KC Metro + MO/KS', volume: 'high', url: 'https://app.demandstar.com/app/opportunities?keyword=audio+visual', tip: 'Aggregates municipal bids. One login covers most MO and KS cities. Best coverage for mid-size cities.' },
+      { name: 'BidNet Direct', region: 'KC Metro', volume: 'medium', url: 'https://www.bidnetdirect.com/public/solicitations/open?searchCode=audio+visual&location=Missouri', tip: 'Free browsing, paid alerts. Covers smaller KC-area municipalities not on DemandStar.' },
+      { name: 'ConstructConnect (iSqFt)', region: 'KC Metro', volume: 'high', url: 'https://app.constructconnect.com/', tip: 'Commercial construction pre-bid. GCs post sub-solicitations here before the prime is awarded. AV is always a sub.' },
+      { name: 'AGC Missouri', region: 'Missouri', volume: 'medium', url: 'https://www.agcmo.org/', tip: 'Associated General Contractors member network. Join for sub-wanted postings when GCs need AV subs on commercial build-outs.' },
+    ];
+    let _bidParseResult = null;
+
+    function parseBidText(text) {
+      const low = text.toLowerCase();
+      const typeMap = {
+        courtroom: ['courtroom', 'court room', 'judicial', 'hearing room', 'arraignment', 'jury'],
+        auditorium: ['auditorium', 'theater', 'theatre', 'performing arts', 'black box', 'event hall', 'arena', 'concert'],
+        worship: ['church', 'worship', 'sanctuary', 'chapel', 'mosque', 'synagogue', 'temple', 'congregation'],
+        classroom: ['classroom', 'training room', 'lecture hall', 'lecture room', 'education', 'school', 'university', 'college', 'k-12'],
+        hospitality: ['hotel', 'ballroom', 'banquet', 'restaurant', 'event center', 'convention'],
+        retail: ['retail', 'showroom', 'store front', 'kiosk', 'lobby display'],
+        refresh: ['upgrade', 'refresh', 'rip and replace', 'modernize', 'replace existing', 'failing system'],
+        conference: ['conference', 'meeting room', 'boardroom', 'board room', 'huddle', 'collaboration room'],
+      };
+      let projectType = 'conference';
+      for (const [type, kws] of Object.entries(typeMap)) {
+        if (kws.some(kw => low.includes(kw))) { projectType = type; break; }
+      }
+      const rn = (low.match(/(\d+)\s*(?:[a-z]+\s+)?(?:room|space|suite|courtroom|classroom|chamber)/) || [])[1];
+      const dn = (low.match(/(\d+)\s*(?:display|monitor|screen|tv|television|panel|projector)/) || [])[1];
+      const mn = (low.match(/(\d+)\s*(?:mic|microphone)/) || [])[1];
+      const sn = (low.match(/(\d+)\s*(?:speaker|loudspeaker)/) || [])[1];
+      const cn = (low.match(/(\d+)\s*(?:camera|ptz|webcam)/) || [])[1];
+      const rooms    = rn ? Math.min(parseInt(rn), 50) : 1;
+      const displays = dn ? parseInt(dn) : (low.includes('display') || low.includes('screen') ? 1 : 0);
+      const mics     = mn ? parseInt(mn) : (low.includes('mic') ? 2 : 0);
+      const speakers = sn ? parseInt(sn) : (low.includes('speaker') ? 4 : 0);
+      const cameras  = cn ? parseInt(cn) : (low.includes('camera') || low.includes('ptz') || low.includes('stream') ? 1 : 0);
+      const dsp = /dsp|digital signal|biamp|qsc core|tesira|symetrix|dante/.test(low);
+      const systems = {
+        videoConference:    /video\s*conf|zoom room|teams room|webex|telepresence/.test(low),
+        streamingLivestream:/stream|livestream|broadcast|live video|recording/.test(low),
+        digitalSignage:     /digital\s*sign|wayfinding|lobby display|announcement display/.test(low),
+        accessControl:      /access\s*control|card reader|badge/.test(low),
+        security:           /security camera|cctv|surveillance/.test(low),
+        lighting:           /lighting control|dimmer|theatrical light|stage light/.test(low),
+        audioDistribution:  /audio distribution|background music|paging|intercom|distributed audio/.test(low),
+        rescueJob:          /failing|broken|non-functional|replace existing|currently down|inoperable/.test(low),
+      };
+      let complexity = 5;
+      if (systems.videoConference) complexity++;
+      if (systems.streamingLivestream) complexity++;
+      if (systems.lighting) complexity++;
+      if (rooms > 3) complexity = Math.min(complexity + 1, 10);
+      if (/complex|advanced|custom|integration|multi.?room/.test(low)) complexity = Math.min(complexity + 1, 10);
+      complexity = Math.min(10, Math.max(1, complexity));
+      const budgetMatches = (text.match(/\$[\d,]+(?:\.\d{2})?/g) || []).map(v => parseInt(v.replace(/[$,]/g, ''))).filter(n => n >= 5000);
+      const budget = budgetMatches.length ? Math.max(...budgetMatches) : null;
+      const deadlineM = text.match(/due\s+(?:date|by)?:?\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4}|\d{1,2}\/\d{1,2}\/\d{2,4})/i);
+      const deadline = deadlineM ? deadlineM[1] : null;
+      const orgM = text.match(/(?:issued by|solicited by|owner:|agency:|department:|city of|county of|university of|school district)[:\s]+([A-Z][^\n,]{2,60})/i);
+      const orgName = orgM ? orgM[1].trim() : '';
+      const bidNumM = text.match(/(?:rfp|rfq|bid|solicitation|project)\s*#?\s*:?\s*([A-Z0-9][A-Z0-9-]{3,19})/i);
+      const bidNumber = bidNumM ? bidNumM[1] : '';
+      const confidence = Math.min(100, 35 + (orgName ? 15 : 0) + (budget ? 20 : 0) + (deadline ? 10 : 0) + (bidNumber ? 10 : 0) + Object.values(systems).filter(Boolean).length * 3 + (rooms > 1 ? 5 : 0));
+      const systemLabels = Object.entries(systems).filter(([, v]) => v).map(([k]) => k.replace(/([A-Z])/g, ' $1').trim().toLowerCase());
+      const scopeBrief = text.slice(0, 500).trim() + (systemLabels.length ? `\nDetected signals: ${systemLabels.join(', ')}` : '');
+      return { projectType, rooms, displays, mics, speakers, cameras, dsp, systems, complexity, budget, deadline, orgName, bidNumber, confidence, scopeBrief };
+    }
+
+    function runBidParse() {
+      const text = $('#bidintel-paste').value.trim();
+      if (!text) return alert('Paste some bid text first.');
+      _bidParseResult = parseBidText(text);
+      renderBidParseOutput(_bidParseResult);
+      $('#bidintel-apply-btn').disabled = false;
+    }
+
+    function resetBidParse() {
+      _bidParseResult = null;
+      $('#bidintel-apply-btn').disabled = true;
+      const box = $('#bidintel-parse-output');
+      box.classList.add('muted');
+      box.innerHTML = 'No bid parsed yet. Paste an RFP and click Parse.';
+    }
+
+    function renderBidParseOutput(p) {
+      const box = $('#bidintel-parse-output');
+      box.classList.remove('muted');
+      const systemHits = Object.entries(p.systems).filter(([, v]) => v).map(([k]) => `<span class="pill">${k.replace(/([A-Z])/g, ' $1').trim()}</span>`).join(' ');
+      const confCls = p.confidence >= 75 ? 'good' : p.confidence >= 50 ? 'warn' : 'bad';
+      box.innerHTML = `
+        <div class="row between" style="margin-bottom:8px">
+          <strong>Parse Result</strong>
+          <span class="pill ${confCls}">${p.confidence}% confidence</span>
+        </div>
+        <div class="parse-grid">
+          <div class="parse-signal"><span class="muted">Type</span><strong>${esc(label(p.projectType))}</strong></div>
+          <div class="parse-signal"><span class="muted">Rooms</span><strong>${p.rooms}</strong></div>
+          <div class="parse-signal"><span class="muted">Displays</span><strong>${p.displays}</strong></div>
+          <div class="parse-signal"><span class="muted">Mics</span><strong>${p.mics}</strong></div>
+          <div class="parse-signal"><span class="muted">Speakers</span><strong>${p.speakers}</strong></div>
+          <div class="parse-signal"><span class="muted">Cameras</span><strong>${p.cameras}</strong></div>
+          <div class="parse-signal"><span class="muted">Complexity</span><strong>${p.complexity}/10</strong></div>
+          ${p.budget ? `<div class="parse-signal"><span class="muted">Budget</span><strong>${fmt(p.budget)}</strong></div>` : ''}
+        </div>
+        ${systemHits ? `<div class="row" style="margin-top:10px;flex-wrap:wrap;gap:6px">${systemHits}</div>` : ''}
+        ${p.orgName ? `<div class="strategy-note" style="margin-top:10px"><strong>Org:</strong> ${esc(p.orgName)}${p.bidNumber ? ` &nbsp;|&nbsp; <strong>Bid #:</strong> ${esc(p.bidNumber)}` : ''}${p.deadline ? ` &nbsp;|&nbsp; <strong>Due:</strong> ${esc(p.deadline)}` : ''}</div>` : ''}
+        <p class="muted" style="margin:10px 0 0;font-size:12px">Click <strong>Apply to Bid Builder</strong> to pre-fill the form and Scope Intelligence with these signals.</p>
+      `;
+    }
+
+    function applyBidParse() {
+      const p = _bidParseResult;
+      if (!p) return;
+      navigate('bid');
+      $('#bid-type').value = p.projectType;
+      $('#bid-rooms').value = p.rooms;
+      $('#bid-displays').value = p.displays;
+      $('#bid-mics').value = p.mics;
+      $('#bid-speakers').value = p.speakers;
+      $('#bid-cameras').value = p.cameras;
+      $('#bid-dsp').value = String(p.dsp);
+      $('#bid-complexity').value = p.complexity;
+      if (p.budget) $('#bid-budget').value = p.budget;
+      if (p.orgName && !$('#bid-name').value) $('#bid-name').value = p.orgName + ' AV';
+      const notes = [$('#bid-notes').value, p.bidNumber ? `Bid #${p.bidNumber}` : '', p.deadline ? `Due: ${p.deadline}` : ''].filter(Boolean).join('\n').trim();
+      if (notes) $('#bid-notes').value = notes;
+      $$('#systems-checks input').forEach(input => { input.checked = !!p.systems[input.dataset.system]; });
+      $('#scope-brief').value = p.scopeBrief;
+      $$('input[name="estimate-mode"]').forEach(i => { i.checked = i.value === 'hybrid'; });
+      logActivity('bidintel:applied', `Applied bid parse: ${label(p.projectType)} / ${p.rooms} rooms / ${p.confidence}% confidence`, null);
+      generateEstimate();
+    }
+
+    function renderBidIntel() {
+      const list = $('#portal-list');
+      if (!list || list.dataset.rendered) return;
+      list.dataset.rendered = '1';
+      list.innerHTML = BID_PORTALS.map(p => {
+        const volCls = p.volume === 'high' ? 'good' : p.volume === 'medium' ? 'warn' : '';
+        return `<div class="portal-card">
+          <div class="row between"><h4>${esc(p.name)}</h4><span class="pill ${volCls}">${p.volume} volume</span></div>
+          <p>${esc(p.tip)}</p>
+          <div class="row between">
+            <span class="pill">${esc(p.region)}</span>
+            <a class="portal-link" href="${esc(p.url)}" target="_blank" rel="noopener">Open Portal &#8599;</a>
+          </div>
+        </div>`;
+      }).join('');
+    }
+    /* ============================================================ */
+
+    function renderStrategy() {
+      const p = state.selectedProjectId ? getProject(state.selectedProjectId) : null;
+      const c = p?.clientId ? getClient(p.clientId) : null;
+      const history = c ? getProjects().filter(x => x.clientId === c.id).length : 0;
+      $('#client-context').textContent = c ? `Client: ${c.name} | Type: ${c.type} | History: ${history} projects` : 'No project selected. Select a bid project to inject client context.';
+      if (c && !$('#customer-context').value) $('#customer-context').value = `${c.name} (${c.type}) - ${c.company || 'no company listed'}`;
+      const type = c?.type || 'new';
+      const emphasis = {
+        repeat: ['Where can we build on the last successful install?', 'What upgrades or add-ons would remove the next annoyance?', 'Which past standards should we preserve?'],
+        public: ['What documentation, compliance, and bidding constraints matter?', 'Where is low-bid pressure likely to hurt quality?', 'What turnover-proof training is needed?'],
+        new: ['What proof would make this feel low-risk?', 'Which references or case studies map to this project?', 'Who signs off technically and financially?'],
+        commercial: ['What daily workflow has to get faster?', 'What downtime window is acceptable?', 'What support level protects operations?'],
+        nonprofit: ['What donor, board, or volunteer constraints matter?', 'Which parts can phase without wasting money?', 'What training prevents staff overload?']
+      };
+      $('#discovery-questions').innerHTML = (emphasis[type] || emphasis.new).map(q => `<div class="strategy-note">${esc(q)}</div>`).join('');
+    }
+    function draftFollowup() {
+      const ctx = $('#customer-context').value || 'the project';
+      $('#followup-draft').value = `Thanks again for walking through ${ctx}.\n\nBased on what we discussed, I would keep the first pass focused on a reliable Better option, with clear alternates for anything that can be phased later. The next useful step is to confirm room counts, owner-furnished equipment, and any schedule constraints so the estimate stays honest.\n\nI can send a simple Good / Better / Best breakdown after that.`;
+    }
+    function renderClients() {
+      const q = ($('#client-search').value || '').toLowerCase();
+      const type = $('#client-type-filter').value;
+      const clients = getClients().filter(c => (!q || [c.name,c.company].join(' ').toLowerCase().includes(q)) && (!type || c.type === type));
+      $('#clients-list').innerHTML = clients.length ? clients.map(c => `<div class="activity-item" data-client-id="${c.id}"><strong>${esc(c.company || c.name)}</strong><div class="muted">${esc(c.name)} - ${esc(c.type || 'new')} - ${getProjects().filter(p => p.clientId === c.id).length} projects</div></div>`).join('') : '<p class="muted">No clients yet - add one to get started.</p>';
+      $('#clients-list').onclick = e => { const row = e.target.closest('[data-client-id]'); if (row) renderClientForm(getClient(row.dataset.clientId)); };
+      if (state.selectedClientId && getClient(state.selectedClientId)) renderClientForm(getClient(state.selectedClientId), false);
+    }
+    function renderClientForm(client = null, select = true) {
+      if (select) state.selectedClientId = client?.id || null;
+      const c = client || { name:'', company:'', email:'', phone:'', type:'new', notes:'', tags:[] };
+      const projects = c.id ? getProjects().filter(p => p.clientId === c.id) : [];
+      $('#client-detail').innerHTML = `<div class="stack">
+        <div class="grid two">
+          <label>Name<input id="client-name" aria-label="Client name" value="${esc(c.name)}"></label>
+          <label>Company<input id="client-company" aria-label="Client company" value="${esc(c.company)}"></label>
+          <label>Email<input id="client-email" aria-label="Client email" value="${esc(c.email || '')}"></label>
+          <label>Phone<input id="client-phone" aria-label="Client phone" value="${esc(c.phone || '')}"></label>
+          <label>Type<select id="client-type">${CLIENT_TYPES.map(t => `<option value="${t}" ${c.type===t?'selected':''}>${label(t)}</option>`).join('')}</select></label>
+          <label>Tags<input id="client-tags" aria-label="Client tags" value="${esc((c.tags || []).join(', '))}"></label>
+        </div>
+        <label>Notes<textarea id="client-notes">${esc(c.notes || '')}</textarea></label>
+        <div class="row"><button id="client-save" class="primary">${c.id ? 'Save Client' : 'Create Client'}</button>${c.id ? '<button id="client-delete" class="danger">Delete</button>' : ''}</div>
+        <div><strong>Linked Projects</strong><div>${projects.length ? projects.map(p => `<span class="pill">${esc(p.name)}</span>`).join(' ') : '<span class="muted">None</span>'}</div></div>
+      </div>`;
+      $('#client-save').onclick = () => {
+        const email = $('#client-email').value.trim();
+        if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return alert('Email format looks off.');
+        const data = { name: $('#client-name').value, company: $('#client-company').value, email, phone: $('#client-phone').value, type: $('#client-type').value, notes: $('#client-notes').value, tags: $('#client-tags').value.split(',').map(s => s.trim()).filter(Boolean) };
+        try { c.id ? updateClient(c.id, data) : createClient(data); } catch (err) { alert(err.message); }
+      };
+      const del = $('#client-delete');
+      if (del) del.onclick = () => { if (confirm('Delete client? Linked projects will be unlinked.')) deleteClient(c.id); };
+    }
+    function renderProducts() {
+      const q = ($('#product-search').value || '').toLowerCase();
+      const cat = $('#product-category-filter').value;
+      const rows = getProducts().filter(p => (!q || [p.model,p.manufacturer,p.category].join(' ').toLowerCase().includes(q)) && (!cat || p.category === cat));
+      $('#products-table').innerHTML = `<thead><tr><th>Model</th><th>Manufacturer</th><th>Category</th><th>Cost</th><th>Markup%</th><th>Sell</th><th></th></tr></thead><tbody>${rows.map(p => `<tr data-product-id="${p.id}"><td>${esc(p.model)}</td><td>${esc(p.manufacturer)}</td><td>${esc(p.category)}</td><td>${fmt(p.dealerCost)}</td><td><input aria-label="Markup percent for ${esc(p.model)}" type="number" min="0" max="200" value="${p.markupPct}" data-markup="${p.id}"></td><td>${fmt(p.dealerCost * (1 + p.markupPct/100))}</td><td><button class="danger" data-product-delete="${p.id}">Delete</button></td></tr>`).join('') || '<tr><td colspan="7" class="muted">No products.</td></tr>'}</tbody>`;
+      $('#products-table').onchange = e => { if (e.target.dataset.markup) updateProduct(e.target.dataset.markup, { markupPct: Number(e.target.value) || 0 }); };
+      $('#products-table').onclick = e => { if (e.target.dataset.productDelete && confirm('Delete product?')) deleteProduct(e.target.dataset.productDelete); };
+    }
+    function productPrompt() {
+      const model = prompt('Model name');
+      if (!model) return;
+      createProduct({ model, manufacturer: prompt('Manufacturer') || '', category: prompt('Category', 'custom') || 'custom', dealerCost: Number(prompt('Dealer cost', '0')) || 0, msrp: Number(prompt('MSRP', '0')) || 0, markupPct: Number(prompt('Markup %', '30')) || 30 });
+    }
+    function exportProductsCsv() {
+      const headers = ['model','manufacturer','category','dealerCost','msrp','markupPct'];
+      const body = getProducts().map(p => headers.map(h => csvCell(p[h])).join(',')).join('\n');
+      download('av-products.csv', headers.join(',') + '\n' + body, 'text/csv');
+    }
+    function csvCell(v) { const s = String(v ?? ''); return /[",\n]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s; }
+    function importProductFile(file) {
+      if (!file) return;
+      file.text().then(text => {
+        const { rows } = parseCsv(text);
+        rows.forEach(r => {
+          const model = pick(r, ['model','name']);
+          if (!model) return;
+          const existing = getProducts().find(p => p.model.toLowerCase() === model.toLowerCase());
+          const data = { model, manufacturer: pick(r, ['manufacturer','brand']) || '', category: pick(r, ['category']) || 'custom', dealerCost: num(pick(r, ['dealerCost','unit cost','cost'])), msrp: num(pick(r, ['msrp','price'])), markupPct: num(pick(r, ['markupPct','markup%','markup'])) || 30 };
+          if (existing) { if (confirm(`Update existing product ${model}?`)) updateProduct(existing.id, data); }
+          else createProduct(data);
+        });
+      });
+    }
+    function renderPipeline() {
+      const type = $('#pipeline-type-filter').value;
+      const stage = $('#pipeline-stage-filter').value;
+      const boms = DB.get('av_boms', {});
+      const projects = getProjects().filter(p => (!type || p.projectType === type) && (!stage || p.stage === stage));
+      $('#kanban-board').innerHTML = STAGES.map(s => {
+        const cards = projects.filter(p => p.stage === s).map(p => {
+          const client = getClient(p.clientId);
+          const estimate = computeEstimate(p, boms[p.id], p.estimateMode || 'formula').better;
+          return `<div class="project-card" draggable="true" data-id="${p.id}">
+            <div class="card-name">${esc(p.name || 'Unnamed Project')}</div>
+            <div class="card-client">${esc(client?.company || client?.name || 'No client')}</div>
+            <div><span class="pill">${esc(p.projectType)}</span></div>
+            <div class="card-meta">${p.rooms || 1} rooms - ${esc(p.estimateMode || 'formula')}</div>
+            <div class="card-value">~${fmt(estimate)}</div>
+          </div>`;
+        }).join('');
+        return `<div class="kanban-col" data-stage="${s}"><h3>${label(s)} <span>${projects.filter(p => p.stage === s).length}</span></h3>${cards}</div>`;
+      }).join('');
+      $$('.project-card').forEach(card => {
+        card.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', card.dataset.id));
+        card.addEventListener('click', () => openProjectModal(card.dataset.id));
+      });
+      $$('.kanban-col').forEach(col => {
+        col.addEventListener('dragover', e => e.preventDefault());
+        col.addEventListener('drop', e => { e.preventDefault(); moveProjectStage(e.dataTransfer.getData('text/plain'), col.dataset.stage); });
+      });
+    }
+    function openProjectModal(id) {
+      state.modalProjectId = id;
+      $('#project-modal').classList.remove('hidden');
+      renderProjectModal();
+    }
+    function closeProjectModal() { $('#project-modal').classList.add('hidden'); state.modalProjectId = null; }
+    function setModalTab(tab) {
+      $$('.modal-tab').forEach(b => b.classList.toggle('active', b.dataset.modalTab === tab));
+      $$('.modal-panel').forEach(p => p.classList.toggle('active', p.id === `modal-${tab}`));
+    }
+    function renderProjectModal() {
+      const p = state.modalProjectId ? getProject(state.modalProjectId) : blankProject();
+      $('#project-modal-title').textContent = p?.id ? `Project - ${p.name}` : 'Project - New';
+      $('#modal-details').innerHTML = `<div class="form-grid">
+        <label>Name<input id="m-name" aria-label="Modal project name" value="${esc(p.name || '')}"></label>
+        <label>Client<select id="m-client"><option value="">No client</option>${getClients().map(c => `<option value="${c.id}" ${p.clientId===c.id?'selected':''}>${esc(c.company || c.name)}</option>`).join('')}</select></label>
+        <label>Type<select id="m-type">${PROJECT_TYPES.map(t => `<option value="${t}" ${p.projectType===t?'selected':''}>${label(t)}</option>`).join('')}</select></label>
+        <label>Stage<select id="m-stage">${STAGES.map(s => `<option value="${s}" ${p.stage===s?'selected':''}>${label(s)}</option>`).join('')}</select></label>
+        <label>Rooms<input id="m-rooms" aria-label="Modal room count" type="number" min="1" value="${p.rooms || 1}"></label>
+        <label>Displays<input id="m-displays" aria-label="Modal display count" type="number" min="0" value="${p.displays || 0}"></label>
+        <label>Mics<input id="m-mics" aria-label="Modal microphone count" type="number" min="0" value="${p.mics || 0}"></label>
+        <label>Speakers<input id="m-speakers" aria-label="Modal speaker count" type="number" min="0" value="${p.speakers || 0}"></label>
+        <label>Cameras<input id="m-cameras" aria-label="Modal camera count" type="number" min="0" value="${p.cameras || 0}"></label>
+        <label>Complexity<input id="m-complexity" aria-label="Modal complexity from 1 to 10" type="number" min="1" max="10" value="${p.complexity || 5}"></label>
+        <label>Budget<input id="m-budget" aria-label="Modal budget" type="number" min="0" value="${p.budget || ''}"></label>
+        <label>Mode<select id="m-mode">${['formula','bom','hybrid'].map(m => `<option value="${m}" ${p.estimateMode===m?'selected':''}>${label(m)}</option>`).join('')}</select></label>
+      </div><label>Notes<textarea id="m-notes">${esc(p.notes || '')}</textarea></label>`;
+      const bom = state.modalProjectId ? (DB.get('av_boms', {})[state.modalProjectId] || { items: [] }) : { items: [] };
+      $('#modal-bom').innerHTML = `<div class="table-wrap"><table><thead><tr><th>Item</th><th>Category</th><th>Qty</th><th>Total</th></tr></thead><tbody>${(bom.items || []).map(i => `<tr><td>${esc(i.customName || productName(i.productId))}</td><td>${esc(i.category)}</td><td>${i.qty}</td><td>${fmt(i.lineTotal)}</td></tr>`).join('') || '<tr><td colspan="4" class="muted">No BOM saved. Open in Bid Builder to edit.</td></tr>'}</tbody></table></div>`;
+      $('#modal-history').innerHTML = (p.stageHistory || []).map(h => `<div class="activity-item"><strong>${label(h.stage)}</strong><div class="muted">${new Date(h.date).toLocaleString()} - ${esc(h.note || '')}</div></div>`).join('') || '<p class="muted">No history yet.</p>';
+    }
+    function readModalProject() {
+      return { name: $('#m-name').value.trim(), clientId: $('#m-client').value || null, projectType: $('#m-type').value, stage: $('#m-stage').value, rooms: Number($('#m-rooms').value)||1, displays: Number($('#m-displays').value)||0, mics: Number($('#m-mics').value)||0, speakers: Number($('#m-speakers').value)||0, cameras: Number($('#m-cameras').value)||0, complexity: Number($('#m-complexity').value)||5, budget: $('#m-budget').value ? Number($('#m-budget').value) : null, estimateMode: $('#m-mode').value, notes: $('#m-notes').value };
+    }
+    function saveModalProject() {
+      const data = readModalProject();
+      if (!data.name) return alert('Project name required.');
+      if (state.modalProjectId) {
+        const old = getProject(state.modalProjectId);
+        if (old.stage !== data.stage) data.stageHistory = [...(old.stageHistory || []), { stage: data.stage, date: now(), note: `Changed from ${old.stage}` }];
+        updateProject(state.modalProjectId, data);
+      } else {
+        const p = createProject(data);
+        state.modalProjectId = p.id;
+      }
+      closeProjectModal();
+    }
+    function parseCsv(text) {
+      const lines = [];
+      let row = [], cell = '', quoted = false;
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i], next = text[i+1];
+        if (ch === '"' && quoted && next === '"') { cell += '"'; i++; }
+        else if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { row.push(cell); cell = ''; }
+        else if ((ch === '\n' || ch === '\r') && !quoted) {
+          if (ch === '\r' && next === '\n') i++;
+          row.push(cell); if (row.some(v => v.trim())) lines.push(row); row = []; cell = '';
+        } else cell += ch;
+      }
+      row.push(cell); if (row.some(v => v.trim())) lines.push(row);
+      const headers = (lines.shift() || []).map(h => h.trim());
+      const rows = lines.map(vals => Object.fromEntries(headers.map((h, i) => [h, vals[i] ?? ''])));
+      return { headers, rows };
+    }
+    function handleCsvFile(file) {
+      if (!file) return;
+      file.text().then(text => {
+        const parsed = parseCsv(text);
+        state.importRows = parsed.rows;
+        state.importHeaders = parsed.headers;
+        state.importMapping = autoMap(parsed.headers);
+        renderImportPreview();
+      });
+    }
+    function autoMap(headers) {
+      const targets = ['project.name','client.company','sell','status','date','project.projectType','rooms','model','manufacturer','qty','unitCost','markupPct','email','phone','cost','margin','laborPct'];
+      const map = {};
+      headers.forEach(h => {
+        const low = h.toLowerCase();
+        map[h] = targets.find(t => low.includes(t.split('.').pop().toLowerCase())) || (low.includes('grand') || low.includes('total') ? 'sell' : '');
+      });
+      return map;
+    }
+    function renderImportPreview() {
+      const rows = state.importRows.slice(0, 5);
+      $('#import-preview').innerHTML = `<p><strong>${state.importRows.length}</strong> rows detected as ${label(state.importType)}.</p><div class="table-wrap"><table><thead><tr>${state.importHeaders.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${state.importHeaders.map(h => `<td>${esc(r[h])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+      $('#import-mapping').innerHTML = `<div class="table-wrap"><table><thead><tr><th>CSV Column</th><th>Maps to</th></tr></thead><tbody>${state.importHeaders.map(h => `<tr><td>${esc(h)}</td><td><select data-map-col="${esc(h)}">${['','project.name','client.company','sell','status','date','project.projectType','rooms','model','manufacturer','qty','unitCost','markupPct','email','phone','cost','margin','laborPct'].map(t => `<option value="${t}" ${state.importMapping[h]===t?'selected':''}>${t || 'Skip'}</option>`).join('')}</select></td></tr>`).join('')}</tbody></table></div>`;
+      $('#import-mapping').onchange = e => { if (e.target.dataset.mapCol) state.importMapping[e.target.dataset.mapCol] = e.target.value; };
+      $('#import-confirm-btn').disabled = false;
+      $('#import-confirm-btn').textContent = `Import ${state.importRows.length} Rows`;
+    }
+    function confirmImport() {
+      let created = 0, skipped = 0;
+      state.importRows.forEach(r => {
+        try {
+          if (state.importType === 'jetbuilt-clients') { importClientRow(r); created++; }
+          else if (state.importType === 'won-records') { importWonRow(r); created++; }
+          else if (state.importType === 'jetbuilt-lineitems' || state.importType === 'generic-bom') { importLineItemRow(r); created++; }
+          else { importProjectRow(r); created++; }
+        } catch (e) { skipped++; }
+      });
+      DB.append('av_import_log', { id: uid(), ts: now(), type: state.importType, rows: state.importRows.length, created, skipped, status: 'ok' });
+      logActivity('import:csv', `Imported ${created} rows (${skipped} skipped)`, null);
+      resetImport();
+      Bus.emit('db:changed', { type: 'import' });
+    }
+    function mapped(row, target) { const col = Object.keys(state.importMapping).find(k => state.importMapping[k] === target); return col ? row[col] : ''; }
+    function importClientRow(r) {
+      const name = mapped(r,'project.name') || mapped(r,'client.company') || pick(r, ['name','client']);
+      if (!name) throw new Error('No name');
+      const email = mapped(r,'email') || pick(r, ['email']);
+      if (email && getClients().some(c => (c.email || '').toLowerCase() === email.toLowerCase())) return;
+      createClient({ name, company: mapped(r,'client.company') || pick(r, ['company']), email, phone: mapped(r,'phone') || pick(r, ['phone']), type: 'new' });
+    }
+    function importProjectRow(r) {
+      const name = mapped(r,'project.name') || pick(r, ['project name','name']) || 'Imported project';
+      if (getProjects().some(p => p.name.toLowerCase() === name.toLowerCase())) return;
+      const company = mapped(r,'client.company') || pick(r, ['client','company']);
+      let clientId = null;
+      if (company) {
+        let c = getClients().find(x => (x.company || x.name).toLowerCase() === company.toLowerCase());
+        if (!c) c = createClient({ name: company, company, type: 'new' });
+        clientId = c.id;
+      }
+      const status = (mapped(r,'status') || '').toLowerCase();
+      const stage = status.includes('won') ? 'won' : status.includes('lost') ? 'lost' : status.includes('active') ? 'proposal' : 'lead';
+      const p = createProject({ name, clientId, projectType: safeType(mapped(r,'project.projectType') || pick(r, ['type','project type'])), rooms: num(mapped(r,'rooms')) || 1, stage, createdAt: parseDate(mapped(r,'date')) || now() });
+      if (stage === 'won' && (mapped(r,'sell') || pick(r, ['total','grand total']))) DB.append('av_won_records', { id: uid(), projectId: p.id, projectType: p.projectType, sell: num(mapped(r,'sell') || pick(r, ['total','grand total'])), cost: 0, margin: 0.35, laborPct: 0.28, rooms: p.rooms, date: now().slice(0,10), source: 'imported' });
+    }
+    function importLineItemRow(r) {
+      const projectName = pick(r, ['project','project name']) || 'Imported BOM';
+      let p = getProjects().find(x => x.name.toLowerCase() === projectName.toLowerCase());
+      if (!p) p = createProject({ name: projectName, projectType: 'conference', stage: 'estimating' });
+      const boms = DB.get('av_boms', {});
+      const bom = boms[p.id] || { projectId: p.id, items: [] };
+      bom.items.push({ id: uid(), customName: mapped(r,'model') || pick(r, ['product','name','model']) || 'Imported line', qty: num(mapped(r,'qty') || pick(r, ['qty','quantity'])) || 1, unitCost: num(mapped(r,'unitCost') || pick(r, ['unit cost','cost'])), markupPct: num(mapped(r,'markupPct') || pick(r, ['markup%','markup'])) || 30, category: 'custom' });
+      boms[p.id] = normalizeBom(bom);
+      DB.set('av_boms', boms);
+    }
+    function importWonRow(r) { DB.append('av_won_records', { id: uid(), projectId: null, projectType: safeType(mapped(r,'project.projectType') || pick(r, ['type'])), sell: num(mapped(r,'sell') || pick(r, ['sell','total'])), cost: num(mapped(r,'cost') || pick(r, ['cost'])), margin: num(mapped(r,'margin') || pick(r, ['margin'])) / (String(mapped(r,'margin')).includes('%') ? 100 : 1) || 0.35, laborPct: num(mapped(r,'laborPct') || pick(r, ['labor%','labor'])) / 100 || 0.28, rooms: num(mapped(r,'rooms')) || 1, date: parseDate(mapped(r,'date') || pick(r, ['date'])) || now().slice(0,10), source: 'imported' }); }
+    function resetImport() { state.importRows = []; state.importHeaders = []; state.importMapping = {}; $('#import-preview').innerHTML = ''; $('#import-mapping').innerHTML = ''; $('#import-confirm-btn').disabled = true; $('#import-confirm-btn').textContent = 'Import Rows'; $('#csv-file').value = ''; }
+    function renderImportLog() {
+      const rows = DB.getAll('av_import_log').slice().reverse();
+      $('#import-log-table').innerHTML = `<thead><tr><th>Date</th><th>Type</th><th>Rows</th><th>Status</th></tr></thead><tbody>${rows.map(r => `<tr><td>${new Date(r.ts).toLocaleString()}</td><td>${esc(r.type)}</td><td>${r.rows}</td><td>${esc(r.status)}</td></tr>`).join('') || '<tr><td colspan="4" class="muted">No imports yet.</td></tr>'}</tbody>`;
+    }
+    function renderModel() {
+      const overrides = DB.get('av_model_overrides', {});
+      const fields = ['baseCost','roomAdd','margin','laborPct','programmingPct','contingency'];
+      $('#profiles-table').innerHTML = `<thead><tr><th>Type</th>${fields.map(f => `<th>${f}</th>`).join('')}</tr></thead><tbody>${PROJECT_TYPES.map(t => { const prof = getProfile(t); return `<tr><td>${label(t)}</td>${fields.map(f => `<td><input aria-label="${label(t)} ${f}" type="number" step="0.01" data-profile-type="${t}" data-profile-field="${f}" value="${prof[f]}"></td>`).join('')}</tr>`; }).join('')}</tbody>`;
+      $('#profiles-table').onchange = e => { const t = e.target.dataset.profileType, f = e.target.dataset.profileField; if (!t) return; overrides[t] ||= {}; overrides[t][f] = Number(e.target.value); DB.set('av_model_overrides', overrides); logActivity('model:updated', `Updated ${t} ${f}`, null); };
+      const recs = DB.getAll('av_won_records').sort((a,b) => (a.projectType+a.date).localeCompare(b.projectType+b.date));
+      const jetbuiltCount = recs.filter(r => r.source === 'jetbuilt-pnl').length;
+      $('#benchmarks-table').innerHTML = `<caption class="muted" style="caption-side:top;text-align:left;padding:8px">${recs.length} benchmarks loaded, including ${jetbuiltCount} Jetbuilt P&L wins. Formula profiles calibrate margin and labor from Jetbuilt when a type has 8+ records.</caption><thead><tr><th>Type</th><th>Sell</th><th>Margin</th><th>Labor%</th><th>Rooms</th><th>Source</th><th></th></tr></thead><tbody>${recs.map(r => `<tr><td>${esc(r.projectType)}</td><td>${fmt(r.sell)}</td><td>${pct(r.margin)}</td><td>${pct(r.laborPct)}</td><td>${r.rooms}</td><td>${esc(r.source)}</td><td>${r.source === 'baseline' || r.source === 'jetbuilt-pnl' ? '<span class="pill">seed</span>' : `<button data-won-delete="${r.id}" class="danger">Delete</button>`}</td></tr>`).join('')}</tbody>`;
+      $('#benchmarks-table').onclick = e => { if (e.target.dataset.wonDelete) { DB.remove('av_won_records', e.target.dataset.wonDelete); Bus.emit('db:changed', { type: 'won' }); } };
+      const signals = DB.get('av_signals', {});
+      $('#signals-table').innerHTML = `<thead><tr><th>Project Type</th><th>Signal</th><th>Count</th><th>Applied Factor</th><th></th></tr></thead><tbody>${Object.entries(signals).flatMap(([type, sigs]) => Object.entries(sigs).map(([sig, count]) => `<tr><td>${label(type)}</td><td>${label(sig)}</td><td>${count}</td><td>${sig==='publicSector' && count>=3 ? '1.08' : sig==='repeat' && count>=3 ? '1.05' : '1.00'}</td><td><button data-signal="${type}|${sig}|1">+</button><button data-signal="${type}|${sig}|-1">-</button></td></tr>`)).join('')}</tbody>`;
+      $('#signals-table').onclick = e => { if (!e.target.dataset.signal) return; const [type, sig, delta] = e.target.dataset.signal.split('|'); signals[type][sig] = Math.max(0, (signals[type][sig] || 0) + Number(delta)); DB.set('av_signals', signals); Bus.emit('db:changed', { type: 'signals' }); };
+      const settings = DB.get('av_settings', {});
+      $('#settings-form').innerHTML = `<label>Company Name<input id="set-company" aria-label="Company name setting" value="${esc(settings.companyName || '')}"></label><label>Default Margin<input id="set-margin" aria-label="Default margin setting" type="number" step="0.01" value="${settings.defaultMargin || 0.37}"></label><label>Tax Rate<input id="set-tax" aria-label="Tax rate setting" type="number" step="0.01" value="${settings.taxRate || 0}"></label><label><span>Show Cost</span><select id="set-show-cost"><option value="false">No</option><option value="true" ${settings.showCost?'selected':''}>Yes</option></select></label><button id="settings-save" class="primary">Save Settings</button>`;
+      $('#settings-save').onclick = () => { DB.set('av_settings', { ...settings, companyName: $('#set-company').value, defaultMargin: Number($('#set-margin').value) || 0.37, taxRate: Number($('#set-tax').value) || 0, showCost: $('#set-show-cost').value === 'true' }); logActivity('settings:updated', 'Updated settings', null); Bus.emit('db:changed', { type: 'settings' }); };
+    }
+    function pick(row, names) { const key = Object.keys(row).find(k => names.some(n => k.toLowerCase().trim() === n.toLowerCase())); return key ? row[key] : ''; }
+    function num(v) { return Number(String(v ?? '').replace(/[$,%\s]/g, '').replace(/,/g, '')) || 0; }
+    function safeType(v) { const t = String(v || '').toLowerCase().trim(); return PROJECT_TYPES.includes(t) ? t : 'conference'; }
+    function parseDate(v) { if (!v) return null; const d = new Date(v); return isNaN(d) ? null : d.toISOString().slice(0,10); }
+    function importBackup(file) {
+      if (!file) return;
+      file.text().then(text => { try { DB.import(text); logActivity('backup:imported', 'Imported JSON backup', null); } catch (e) { alert('Backup import failed: ' + e.message); } });
+    }
+    function download(name, content, type) {
+      const blob = new Blob([content], { type });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+    function printProposal() {
+      const data = state.currentEstimate || (() => { const p = getBidProjectFromForm(); return { project: p, bom: getCurrentBom(), result: computeEstimate(p, getCurrentBom(), p.estimateMode) }; })();
+      const settings = DB.get('av_settings', {});
+      const rows = [['Type', label(data.project.projectType)], ['Rooms', data.project.rooms], ['Displays', data.project.displays], ['Mics', data.project.mics], ['Speakers', data.project.speakers], ['Cameras', data.project.cameras], ['Complexity', data.project.complexity]];
+      $('#print-root').innerHTML = `<div class="proposal-print"><div class="proposal-title">${esc(settings.companyName || 'Your Company')}</div><h2>Project Estimate - ${esc(data.project.name || 'Unnamed Project')}</h2><p>Date: ${new Date().toLocaleDateString()}</p><table>${rows.map(([k,v]) => `<tr><th>${k}</th><td>${esc(v)}</td></tr>`).join('')}</table><hr><h3>Good Option: ${fmt(data.result.good)}</h3><h3>Better Option: ${fmt(data.result.better)}</h3><h3>Best Option: ${fmt(data.result.best)}</h3>${data.bom?.items?.length ? `<h3>BOM</h3><table><tr><th>Item</th><th>Qty</th><th>Total</th></tr>${data.bom.items.map(i => `<tr><td>${esc(i.customName || productName(i.productId))}</td><td>${i.qty}</td><td>${fmt(i.lineTotal)}</td></tr>`).join('')}</table>` : ''}<p class="footer">This estimate is valid for 30 days.</p></div>`;
+      setTimeout(() => window.print(), 50);
+    }
+    window.AVBidGenerator = { DB, computeEstimate, createClient, updateClient, deleteClient, createProduct, updateProduct, deleteProduct, createProject, updateProject, deleteProject, PRICING_PROFILES, DEFAULT_PRODUCTS, BASELINE_WON, LS_KEYS };
+
+    $('#unlock-btn').addEventListener('click', unlock);
+    $('#password-input').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+    $('#password-confirm').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+    $('#lock-btn').addEventListener('click', lock);
+    $('#reset-auth-btn').addEventListener('click', resetLocalPassword);
+    migrateAuthFromV1();
+    setupAuthScreen();
+    if (isAuthed()) showApp();
+  </script>
+</body>
+</html>
