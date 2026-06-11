@@ -1,0 +1,40 @@
+# Groundlayer AV Consulting
+
+## What we do
+CTS-D + CTS-I certified AV design, integration, and commissioning for courtrooms, government facilities, law firms, schools, and enterprise spaces. Based in Kansas City, MO. Currently operating Jackson County Courts AV.
+
+## Who it's for
+- Courtroom and government AV departments
+- School districts (classrooms, auditoriums, stadiums)
+- Law firms upgrading conference room technology
+- Corporate facilities needing reliable hybrid meeting rooms
+- Architects and general contractors needing AV specification
+
+## Pricing
+Projects typically $25,000–$200,000. Design-only and commissioning-only engagements available.
+
+## Services
+- **Conference Rooms & Offices** — Teams Rooms, Zoom Rooms, Google Meet, Webex, cameras, microphones, displays, room control
+- **Schools, Auditoriums & Stadiums** — Classroom AV, auditorium projection/sound, performing arts, athletic audio, district deployments
+- **Law Firms & Courtrooms** — Evidence presentation, judge/attorney UC, multi-camera video, assistive listening, recording, courtroom control
+- **Portable Media Carts** — Mobile conferencing systems for IT and facilities teams
+- **Commissioning & Handoff** — As-built schematics, cable schedules, O&M docs, user training, validation workflows
+
+## Technical platforms
+Q-SYS, Extron, Biamp, BSS, Crestron, AMX, Microsoft Teams Rooms, Zoom Rooms, Google Meet, Webex, Cisco, L-Acoustics, d&b, ETC lighting, DMX, AV-over-IP (TCP/IP, VLAN, multicast)
+
+## Credentials
+AVIXA CTS, CTS-I, CTS-D | Q-SYS Level 2 | Extron Pro | ETC Lighting Certified | Biamp | BSS Audio | L-Acoustics | d&b | OSHA 10
+
+## Selected clients
+Jackson County MO Courts · Kauffman Center for the Performing Arts · Federal Reserve Bank of Kansas City · Kansas City Convention Center · Kansas City School District · Liberty School District · St. Joseph School District · Raytown School District · Blue Springs School District · Starlight Auditorium · American Jazz Museum · The Music Hall · Gem Theater · Orpheum Theatre · City of Kansas City · Overland Park Convention Center · Bartle Hall
+
+## Contact
+- Phone: 816.316.0092
+- Email: info@groundlayer.co
+- Contact form: https://groundlayer.co/av/#contact
+
+## Key pages
+- Home: https://groundlayer.co/av/
+- FAQ: https://groundlayer.co/av/#faq
+- Contact: https://groundlayer.co/av/#contact
