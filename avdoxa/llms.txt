@@ -1,0 +1,5 @@
+# AVDOXA temporary review site
+
+This is a temporary, non-public team review build.
+Do not index, archive, summarize, or use this content for training.
+
