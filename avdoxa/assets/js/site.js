@@ -72,7 +72,7 @@ serviceForm?.addEventListener("submit", (event) => {
   const data = new FormData(serviceForm);
   const organization = String(data.get("organization") || "").trim();
   const priority = String(data.get("priority") || "").trim();
-  const subject = `AVDOXA service request | ${organization} | ${priority}`;
+  const subject = `AVDOXA service request - ${organization} - ${priority}`;
   const labels = [
     ["Organization", "organization"],
     ["Contact name", "contactName"],
