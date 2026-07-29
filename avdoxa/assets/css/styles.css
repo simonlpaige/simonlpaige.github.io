@@ -691,7 +691,7 @@ select {
 }
 
 .case-study-band > span {
-  color: rgba(17, 20, 26, 0.62);
+  color: rgba(17, 20, 26, 0.78);
 }
 
 .case-study-band strong {
@@ -1343,7 +1343,7 @@ select {
 
 .urgent-card p {
   margin: 0;
-  color: rgba(17, 20, 26, 0.66);
+  color: rgba(17, 20, 26, 0.8);
   font-size: 0.76rem;
 }
 
