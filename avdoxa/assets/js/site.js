@@ -98,3 +98,80 @@ serviceForm?.addEventListener("submit", (event) => {
 
   window.location.href = `mailto:info@avdoxa.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
+
+const galleryDialog = document.querySelector("[data-gallery-dialog]");
+const galleryItems = [...document.querySelectorAll("[data-gallery-item]")];
+
+if (galleryDialog && galleryItems.length) {
+  const dialogImage = galleryDialog.querySelector("[data-gallery-image]");
+  const dialogCaption = galleryDialog.querySelector("[data-gallery-caption]");
+  const dialogCount = galleryDialog.querySelector("[data-gallery-count]");
+  const closeButton = galleryDialog.querySelector("[data-gallery-close]");
+  const previousButton = galleryDialog.querySelector("[data-gallery-previous]");
+  const nextButton = galleryDialog.querySelector("[data-gallery-next]");
+  let activeIndex = 0;
+  let opener = null;
+  let touchStartX = 0;
+
+  const showGalleryItem = (index) => {
+    activeIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[activeIndex];
+    const src = item.dataset.gallerySrc || "";
+    const alt = item.dataset.galleryAlt || "AVDOXA project image";
+    if (dialogImage) {
+      dialogImage.src = src;
+      dialogImage.alt = alt;
+    }
+    if (dialogCaption) dialogCaption.textContent = alt;
+    if (dialogCount) dialogCount.textContent = `${activeIndex + 1} of ${galleryItems.length}`;
+  };
+
+  const openGallery = (item, index) => {
+    opener = item;
+    showGalleryItem(index);
+    if (typeof galleryDialog.showModal === "function") galleryDialog.showModal();
+    else galleryDialog.setAttribute("open", "");
+    document.body.classList.add("gallery-open");
+    closeButton?.focus();
+  };
+
+  const closeGallery = () => {
+    if (typeof galleryDialog.close === "function") galleryDialog.close();
+    else {
+      galleryDialog.removeAttribute("open");
+      document.body.classList.remove("gallery-open");
+      opener?.focus();
+    }
+  };
+
+  galleryItems.forEach((item, index) => {
+    item.addEventListener("click", () => openGallery(item, index));
+  });
+
+  closeButton?.addEventListener("click", closeGallery);
+  previousButton?.addEventListener("click", () => showGalleryItem(activeIndex - 1));
+  nextButton?.addEventListener("click", () => showGalleryItem(activeIndex + 1));
+
+  galleryDialog.addEventListener("click", (event) => {
+    if (event.target === galleryDialog) closeGallery();
+  });
+
+  galleryDialog.addEventListener("close", () => {
+    document.body.classList.remove("gallery-open");
+    opener?.focus();
+  });
+  galleryDialog.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0]?.clientX || 0;
+  }, { passive: true });
+  galleryDialog.addEventListener("touchend", (event) => {
+    const distance = (event.changedTouches[0]?.clientX || 0) - touchStartX;
+    if (Math.abs(distance) < 48) return;
+    showGalleryItem(activeIndex + (distance < 0 ? 1 : -1));
+  }, { passive: true });
+
+  document.addEventListener("keydown", (event) => {
+    if (!galleryDialog.open) return;
+    if (event.key === "ArrowLeft") showGalleryItem(activeIndex - 1);
+    if (event.key === "ArrowRight") showGalleryItem(activeIndex + 1);
+  });
+}
