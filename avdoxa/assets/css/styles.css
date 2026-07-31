@@ -201,27 +201,34 @@ select {
 }
 
 .social-link {
-  display: inline-grid;
+  display: inline-flex;
   width: 32px;
   height: 32px;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
   color: rgba(241, 242, 238, 0.76);
-  border: 1px solid var(--line-light);
-  border-radius: 50%;
-  font: 800 0.58rem/1 var(--font-utility);
-  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.social-link .social-icon {
+  display: block;
+  width: 16px;
+  height: 18px;
+  overflow: visible;
+  fill: currentColor;
+}
+
+.social-link-facebook .social-icon {
+  width: 10px;
+}
+
+.social-link-youtube .social-icon {
+  width: 19px;
 }
 
 .social-link:hover {
-  color: var(--blackout);
-  background: var(--ready);
-  border-color: var(--ready);
+  color: var(--ready);
   transform: translateY(-2px);
-}
-
-.social-link-linkedin {
-  font-size: 0.68rem;
-  letter-spacing: -0.04em;
 }
 
 .mobile-socials {
@@ -232,7 +239,19 @@ select {
   width: 46px;
   height: 46px;
   color: var(--white);
-  font-size: 0.7rem;
+}
+
+.mobile-socials .social-icon {
+  width: 21px;
+  height: 23px;
+}
+
+.mobile-socials .social-link-facebook .social-icon {
+  width: 13px;
+}
+
+.mobile-socials .social-link-youtube .social-icon {
+  width: 25px;
 }
 
 .menu-button {
@@ -2185,6 +2204,19 @@ select {
 
 .footer-socials .social-link {
   color: rgba(241, 242, 238, 0.82);
+}
+
+.footer-socials .social-icon {
+  width: 18px;
+  height: 20px;
+}
+
+.footer-socials .social-link-facebook .social-icon {
+  width: 11px;
+}
+
+.footer-socials .social-link-youtube .social-icon {
+  width: 21px;
 }
 
 .footer-bottom {
