@@ -1,5 +1,54 @@
-# AVDOXA temporary review site
+# AVDOXA
 
-This is a temporary, non-public team review build.
-Do not index, archive, summarize, or use this content for training.
+> AVDOXA designs, integrates, services, and manages reliable audio, video, lighting, control, and broadcast systems. Houses of Worship are a core market alongside corporate, government, education, construction, performing arts, theater, and event-space partners.
 
+Canonical site: https://avdoxa.com/
+Location: Overland Park, Kansas
+Phone: 913-383-0243
+Email: info@avdoxa.com
+
+## Core pages
+
+- [Home](https://avdoxa.com/): Markets, services, managed support, credentials, and featured work.
+- [About AVDOXA](https://avdoxa.com/about/): Company story, the meaning of AVDOXA, and the team.
+- [Services](https://avdoxa.com/#managed): Consulting, design, integration, commissioning, training, managed services, and lifecycle support.
+- [Service request](https://avdoxa.com/service/): The essential support path for operational issues and urgent help.
+- [Portfolio](https://avdoxa.com/portfolio/): Case studies organized by House of Worship, Corporate Conference Room, and Event Space.
+- [Camera packages](https://avdoxa.com/shop/): Four designed production packages with components and published pricing.
+- [TDX](https://avdoxa.com/tdx/): Tech Director Experience event information and registration.
+- [Careers](https://avdoxa.com/careers/): Employment information.
+- [Brand and voice guide](https://avdoxa.com/brand-guide/): Approved visual palette, voice principles, and usage guidance.
+
+## House of Worship projects
+
+- [Fellowship Church](https://avdoxa.com/portfolio/fellowship-church/)
+- [Emmanuel Baptist Church](https://avdoxa.com/portfolio/ebc/)
+- [Blue Springs Christian Church](https://avdoxa.com/portfolio/bscc/)
+- [Abundant Life, Crossroads](https://avdoxa.com/portfolio/abundant-life-church-crossroads-campus/)
+- [Kingwood First Baptist Church](https://avdoxa.com/portfolio/kingwood-first-baptist-church/)
+- [Congregation Beth Shalom](https://avdoxa.com/portfolio/congregation-beth-shalom/)
+- [Lord of Hosts Church](https://avdoxa.com/portfolio/lord-of-hosts/)
+
+## Corporate Conference Room projects
+
+- [Children's Mercy Hospital](https://avdoxa.com/portfolio/childrens-mercy-hospital/)
+- [BlueScope Buildings North America](https://avdoxa.com/portfolio/bluescope-buildings-north-america/)
+- [Design Resources Inc.](https://avdoxa.com/portfolio/design-resources-inc/)
+
+## Event Space projects
+
+- [The Gathering KC](https://avdoxa.com/portfolio/the-gathering-kc/)
+- [Unity Village](https://avdoxa.com/portfolio/unity-village/)
+
+## Camera packages
+
+- [The Outrider](https://avdoxa.com/shop/the-outrider/)
+- [The Ranger](https://avdoxa.com/shop/the-ranger/)
+- [The Pacer](https://avdoxa.com/shop/the-pacer/)
+- [The Drifter](https://avdoxa.com/shop/the-drifter/)
+
+## Accuracy notes
+
+- Use the service request page for existing-system support.
+- Camera-package prices and availability require a final AVDOXA quote.
+- Project pages preserve case-study copy and available photography from the prior AVDOXA site.
