@@ -9,7 +9,10 @@
   <meta property="og:description" content="Save Simon's contact card or share your contact information.">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://simonlpaige.com/bc/">
+  <meta property="og:image" content="https://simonlpaige.com/bc/simon-paige-headshot.jpg">
+  <meta property="og:image:alt" content="Portrait of Simon L. Paige">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://simonlpaige.com/bc/simon-paige-headshot.jpg">
   <title>Simon L. Paige | AVDOXA</title>
   <style>
     :root {
@@ -98,7 +101,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      margin-bottom: 42px;
+      margin-bottom: 30px;
     }
 
     .brand-row img {
@@ -127,6 +130,53 @@
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+    }
+
+    .identity {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 178px;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .identity-copy { min-width: 0; }
+
+    .headshot {
+      position: relative;
+      width: 100%;
+      margin: 0 0 3px;
+      aspect-ratio: 1;
+    }
+
+    .headshot::before,
+    .headshot::after {
+      content: "";
+      position: absolute;
+      border-radius: 28px 28px 28px 8px;
+    }
+
+    .headshot::before {
+      inset: -8px 8px 8px -8px;
+      border: 2px solid var(--lime);
+    }
+
+    .headshot::after {
+      z-index: -1;
+      inset: 11px -11px -11px 11px;
+      background: var(--blue);
+    }
+
+    .headshot img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 34%;
+      border: 4px solid #fff;
+      border-radius: 28px 28px 28px 8px;
+      box-shadow: 0 16px 32px rgba(35, 22, 47, 0.2);
     }
 
     h1 {
@@ -349,6 +399,12 @@
       .profile { padding: 27px 20px 24px; }
       .brand-row { align-items: flex-start; margin-bottom: 34px; }
       .role-tag { max-width: 100px; white-space: normal; text-align: right; }
+      .identity { grid-template-columns: minmax(0, 1fr) 108px; gap: 15px; align-items: center; }
+      .headshot::before { inset: -6px 5px 5px -6px; }
+      .headshot::after { inset: 7px -7px -7px 7px; }
+      .headshot img,
+      .headshot::before,
+      .headshot::after { border-radius: 20px 20px 20px 6px; }
       .contact-list { grid-template-columns: 1fr; }
       .actions { grid-template-columns: 1fr; padding: 0 20px 24px; }
       .exchange { padding: 27px 20px 29px; }
@@ -378,9 +434,16 @@
           <span class="role-tag">Business card</span>
         </div>
 
-        <p class="name-kicker">AVDOXA · Kansas City</p>
-        <h1 id="contact-name">Simon L.<br>Paige</h1>
-        <p class="title">Business Development Manager</p>
+        <div class="identity">
+          <div class="identity-copy">
+            <p class="name-kicker">AVDOXA · Kansas City</p>
+            <h1 id="contact-name">Simon L.<br>Paige</h1>
+            <p class="title">Business Development Manager</p>
+          </div>
+          <figure class="headshot">
+            <img src="simon-paige-headshot.jpg" width="512" height="512" alt="Simon L. Paige" fetchpriority="high">
+          </figure>
+        </div>
 
         <div class="contact-list" aria-label="Contact Simon">
           <a class="contact-link" href="tel:+18163160092">
