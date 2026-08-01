@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#54277a">
+  <meta name="description" content="Save or exchange contact information with Jonny Rasch, Client Engagement Manager at AVDOXA.">
+  <meta property="og:title" content="Jonny Rasch | AVDOXA">
+  <meta property="og:description" content="Save Jonny's contact card or share your contact information.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://simonlpaige.com/bcjr/">
+  <meta property="og:image" content="https://simonlpaige.com/bcjr/jonny-rasch-headshot.jpg">
+  <meta property="og:image:alt" content="Portrait of Jonny Rasch">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://simonlpaige.com/bcjr/jonny-rasch-headshot.jpg">
+  <title>Jonny Rasch | AVDOXA</title>
+  <style>
+    :root {
+      --plum: #64358c;
+      --plum-dark: #40205f;
+      --blue: #28789f;
+      --lime: #86c52f;
+      --ink: #17131d;
+      --muted: #68616f;
+      --line: #ddd9e3;
+      --paper: #ffffff;
+      --mist: #f4f2f7;
+      --shadow: 0 24px 70px rgba(41, 24, 56, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(134, 197, 47, 0.13), transparent 25rem),
+        radial-gradient(circle at 92% 18%, rgba(40, 120, 159, 0.13), transparent 28rem),
+        var(--mist);
+      font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    button,
+    input,
+    textarea { font: inherit; }
+
+    .page {
+      width: min(100% - 28px, 760px);
+      margin: 0 auto;
+      padding: 28px 0 54px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(100, 53, 140, 0.14);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .signal-rail {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 0.7fr;
+      height: 7px;
+    }
+
+    .signal-rail span:nth-child(1) { background: var(--plum); }
+    .signal-rail span:nth-child(2) { background: var(--blue); }
+    .signal-rail span:nth-child(3) { background: var(--lime); }
+
+    .profile {
+      position: relative;
+      padding: 34px 28px 30px;
+      isolation: isolate;
+    }
+
+    .profile::after {
+      content: "X";
+      position: absolute;
+      z-index: -1;
+      top: 24px;
+      right: -18px;
+      color: rgba(134, 197, 47, 0.11);
+      font-family: "Arial Narrow", "Avenir Next Condensed", sans-serif;
+      font-size: clamp(10rem, 36vw, 17rem);
+      font-weight: 300;
+      line-height: 0.75;
+      transform: scaleX(0.7);
+      transform-origin: center;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .brand-row img {
+      display: block;
+      width: min(270px, 68%);
+      height: 76px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .role-tag {
+      color: var(--plum-dark);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .name-kicker {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .identity {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 198px;
+      gap: 26px;
+      align-items: end;
+    }
+
+    .identity-copy { min-width: 0; }
+
+    .headshot {
+      position: relative;
+      width: 100%;
+      margin: 0 0 3px;
+      aspect-ratio: 1;
+    }
+
+    .headshot::before,
+    .headshot::after {
+      content: "";
+      position: absolute;
+      border-radius: 28px 28px 28px 8px;
+    }
+
+    .headshot::before {
+      inset: -8px 8px 8px -8px;
+      border: 2px solid var(--lime);
+    }
+
+    .headshot::after {
+      z-index: -1;
+      inset: 11px -11px -11px 11px;
+      background: var(--blue);
+    }
+
+    .headshot img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 34%;
+      border: 4px solid #fff;
+      border-radius: 28px 28px 28px 8px;
+      box-shadow: 0 16px 32px rgba(35, 22, 47, 0.2);
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 0;
+      color: var(--plum-dark);
+      font-family: "Arial Narrow", "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: clamp(3.35rem, 12vw, 6.3rem);
+      font-weight: 700;
+      letter-spacing: -0.065em;
+      line-height: 0.84;
+    }
+
+    .title {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 3.3vw, 1.17rem);
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    .contact-link {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+      padding: 14px 15px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.74);
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .contact-link span {
+      color: var(--muted);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .contact-link strong {
+      overflow: hidden;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .contact-link-address strong {
+      line-height: 1.35;
+      white-space: normal;
+    }
+
+    .contact-link:hover {
+      border-color: rgba(40, 120, 159, 0.58);
+      box-shadow: 0 9px 24px rgba(40, 120, 159, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .company-socials {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 0 2px;
+    }
+
+    .social-title {
+      color: var(--muted);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: #4b4650;
+      background: #fff;
+      text-decoration: none;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .social-icon {
+      display: block;
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .social-link:hover {
+      color: #fff;
+      background: var(--ink);
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 28px 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border: 1px solid var(--plum);
+      border-radius: 15px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .button-primary {
+      color: #fff;
+      background: var(--plum);
+    }
+
+    .button-secondary {
+      color: var(--plum-dark);
+      background: #fff;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+    .button-primary:hover { background: var(--plum-dark); border-color: var(--plum-dark); }
+    .button-secondary:hover { color: #fff; background: var(--blue); border-color: var(--blue); }
+
+    .exchange {
+      border-top: 1px solid var(--line);
+      background: linear-gradient(145deg, #fbfafc, #f4f1f7);
+      padding: 32px 28px 34px;
+    }
+
+    .exchange-heading {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .exchange h2 {
+      margin: 0;
+      color: var(--plum-dark);
+      font-size: clamp(1.65rem, 6vw, 2.35rem);
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .exchange-heading p {
+      max-width: 270px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .success-message {
+      margin: 0 0 20px;
+      padding: 13px 15px;
+      border: 1px solid rgba(134, 197, 47, 0.65);
+      border-radius: 12px;
+      color: #2e5010;
+      background: rgba(134, 197, 47, 0.13);
+      font-weight: 700;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field { display: grid; gap: 6px; }
+    .field-full { grid-column: 1 / -1; }
+
+    label {
+      color: var(--plum-dark);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid #cbc5d1;
+      border-radius: 11px;
+      color: var(--ink);
+      background: #fff;
+      padding: 12px 13px;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    textarea {
+      min-height: 94px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(40, 120, 159, 0.12);
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .form-note {
+      max-width: 330px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    .send-button {
+      border: 1px solid var(--plum);
+      border-radius: 12px;
+      color: #fff;
+      background: var(--plum);
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+
+    .send-button:hover { background: var(--plum-dark); border-color: var(--plum-dark); transform: translateY(-1px); }
+
+    .page-footer {
+      margin: 18px 0 0;
+      color: #716a77;
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    .page-footer a { text-underline-offset: 3px; }
+
+    :focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .page { width: min(100% - 18px, 760px); padding-top: 9px; }
+      .card { border-radius: 22px; }
+      .profile { padding: 27px 20px 24px; }
+      .brand-row { align-items: flex-start; margin-bottom: 34px; }
+      .role-tag { max-width: 100px; white-space: normal; text-align: right; }
+      .identity { grid-template-columns: minmax(0, 1fr) 124px; gap: 12px; align-items: center; }
+      .headshot::before { inset: -6px 5px 5px -6px; }
+      .headshot::after { inset: 7px -7px -7px 7px; }
+      .headshot img,
+      .headshot::before,
+      .headshot::after { border-radius: 20px 20px 20px 6px; }
+      .contact-list { grid-template-columns: 1fr; }
+      .company-socials { align-items: flex-start; flex-direction: column; gap: 10px; }
+      .actions { grid-template-columns: 1fr; padding: 0 20px 24px; }
+      .exchange { padding: 27px 20px 29px; }
+      .exchange-heading { grid-template-columns: 1fr; gap: 9px; align-items: start; }
+      .exchange-heading p { max-width: none; }
+      .fields { grid-template-columns: 1fr; }
+      .field-full { grid-column: auto; }
+      .form-footer { align-items: stretch; flex-direction: column; }
+      .form-note { max-width: none; }
+      .send-button { min-height: 50px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="card">
+      <div class="signal-rail" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <section class="profile" aria-labelledby="contact-name">
+        <div class="brand-row">
+          <img src="/avdoxa/assets/images/avdoxa-logo-color.png" width="800" height="800" alt="AVDOXA, AVL Design Experience Group">
+          <span class="role-tag">Business card</span>
+        </div>
+
+        <div class="identity">
+          <div class="identity-copy">
+            <p class="name-kicker">AVDOXA · Kansas City</p>
+            <h1 id="contact-name">Jonny<br>Rasch</h1>
+            <p class="title">Client Engagement Manager</p>
+          </div>
+          <figure class="headshot">
+            <img src="jonny-rasch-headshot.jpg" width="400" height="400" alt="Jonny Rasch" fetchpriority="high">
+          </figure>
+        </div>
+
+        <div class="contact-list" aria-label="Contact Jonny">
+          <a class="contact-link" href="tel:+19133830243">
+            <span>Call or text</span>
+            <strong>913.383.0243</strong>
+          </a>
+          <a class="contact-link" href="mailto:jrasch@avdoxa.com">
+            <span>Email</span>
+            <strong>jrasch@avdoxa.com</strong>
+          </a>
+          <a class="contact-link" href="https://avdoxa.com" target="_blank" rel="noopener noreferrer">
+            <span>Company</span>
+            <strong>avdoxa.com</strong>
+          </a>
+          <a class="contact-link contact-link-address" href="https://maps.app.goo.gl/4VqY1GJXwXSyH7em7" target="_blank" rel="noopener noreferrer">
+            <span>Address</span>
+            <strong>10413 W 84th Terrace, Lenexa, KS 66214</strong>
+          </a>
+        </div>
+
+        <div class="company-socials">
+          <span class="social-title">Follow AVDOXA</span>
+          <nav class="social-links" aria-label="AVDOXA social media">
+            <a class="social-link" href="https://www.facebook.com/AVDOXA/" target="_blank" rel="noopener noreferrer" aria-label="AVDOXA on Facebook"><svg class="social-icon" viewBox="0 0 320 512" aria-hidden="true" focusable="false"><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+            <a class="social-link" href="https://www.instagram.com/avdoxa/" target="_blank" rel="noopener noreferrer" aria-label="AVDOXA on Instagram"><svg class="social-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
+            <a class="social-link" href="https://www.linkedin.com/company/avdoxa/" target="_blank" rel="noopener noreferrer" aria-label="AVDOXA on LinkedIn"><svg class="social-icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg></a>
+            <a class="social-link" href="https://www.youtube.com/@avdoxaAVL" target="_blank" rel="noopener noreferrer" aria-label="AVDOXA on YouTube"><svg class="social-icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+          </nav>
+        </div>
+      </section>
+
+      <div class="actions">
+        <a class="button button-primary" href="jonny-rasch.vcf" download="Jonny-Rasch.vcf">Save Jonny's contact</a>
+        <a class="button button-secondary" href="#exchange">Exchange contacts</a>
+      </div>
+
+      <section class="exchange" id="exchange" aria-labelledby="exchange-title">
+        <div class="exchange-heading">
+          <h2 id="exchange-title">Stay in touch.</h2>
+          <p>Share your details and they will go directly to Jonny's inbox.</p>
+        </div>
+
+        <p class="success-message" id="success-message" hidden>Thanks. Your contact information was sent to Jonny.</p>
+
+        <form action="https://formsubmit.co/jrasch@avdoxa.com" method="post">
+          <input type="hidden" name="_subject" value="New contact exchange from simonlpaige.com/bcjr">
+          <input type="hidden" name="_next" value="https://simonlpaige.com/bcjr/?sent=1#exchange">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_url" value="https://simonlpaige.com/bcjr/">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+
+          <div class="fields">
+            <div class="field">
+              <label for="full-name">Name</label>
+              <input id="full-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
+            </div>
+            <div class="field field-full">
+              <label for="note">Where did we meet? <span aria-hidden="true">(optional)</span></label>
+              <textarea id="note" name="note" placeholder="A quick reminder for Jonny"></textarea>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <p class="form-note">Your details are used only so Jonny can follow up with you.</p>
+            <button class="send-button" type="submit">Send my contact</button>
+          </div>
+        </form>
+      </section>
+    </article>
+
+    <p class="page-footer">AVDOXA · AVL Design Experience Group · <a href="https://avdoxa.com" target="_blank" rel="noopener noreferrer">The Experience Matters.</a></p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === '1') {
+      document.getElementById('success-message').hidden = false;
+      history.replaceState({}, '', window.location.pathname + '#exchange');
+    }
+  </script>
+</body>
+</html>
