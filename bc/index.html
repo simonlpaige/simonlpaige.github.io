@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#54277a">
+  <meta name="description" content="Save or exchange contact information with Simon L. Paige, Business Development Manager at AVDOXA.">
+  <meta property="og:title" content="Simon L. Paige | AVDOXA">
+  <meta property="og:description" content="Save Simon's contact card or share your contact information.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://simonlpaige.com/bc/">
+  <meta name="twitter:card" content="summary">
+  <title>Simon L. Paige | AVDOXA</title>
+  <style>
+    :root {
+      --plum: #64358c;
+      --plum-dark: #40205f;
+      --blue: #28789f;
+      --lime: #86c52f;
+      --ink: #17131d;
+      --muted: #68616f;
+      --line: #ddd9e3;
+      --paper: #ffffff;
+      --mist: #f4f2f7;
+      --shadow: 0 24px 70px rgba(41, 24, 56, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(134, 197, 47, 0.13), transparent 25rem),
+        radial-gradient(circle at 92% 18%, rgba(40, 120, 159, 0.13), transparent 28rem),
+        var(--mist);
+      font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    button,
+    input,
+    textarea { font: inherit; }
+
+    .page {
+      width: min(100% - 28px, 760px);
+      margin: 0 auto;
+      padding: 28px 0 54px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(100, 53, 140, 0.14);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .signal-rail {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 0.7fr;
+      height: 7px;
+    }
+
+    .signal-rail span:nth-child(1) { background: var(--plum); }
+    .signal-rail span:nth-child(2) { background: var(--blue); }
+    .signal-rail span:nth-child(3) { background: var(--lime); }
+
+    .profile {
+      position: relative;
+      padding: 34px 28px 30px;
+      isolation: isolate;
+    }
+
+    .profile::after {
+      content: "X";
+      position: absolute;
+      z-index: -1;
+      top: 24px;
+      right: -18px;
+      color: rgba(134, 197, 47, 0.11);
+      font-family: "Arial Narrow", "Avenir Next Condensed", sans-serif;
+      font-size: clamp(10rem, 36vw, 17rem);
+      font-weight: 300;
+      line-height: 0.75;
+      transform: scaleX(0.7);
+      transform-origin: center;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 42px;
+    }
+
+    .brand-row img {
+      display: block;
+      width: min(270px, 68%);
+      height: 76px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .role-tag {
+      color: var(--plum-dark);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .name-kicker {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 0;
+      color: var(--plum-dark);
+      font-family: "Arial Narrow", "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: clamp(3.35rem, 12vw, 6.3rem);
+      font-weight: 700;
+      letter-spacing: -0.065em;
+      line-height: 0.84;
+    }
+
+    .title {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 3.3vw, 1.17rem);
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    .contact-link {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+      padding: 14px 15px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.74);
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .contact-link span {
+      color: var(--muted);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .contact-link strong {
+      overflow: hidden;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .contact-link:hover {
+      border-color: rgba(40, 120, 159, 0.58);
+      box-shadow: 0 9px 24px rgba(40, 120, 159, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 28px 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border: 1px solid var(--plum);
+      border-radius: 15px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .button-primary {
+      color: #fff;
+      background: var(--plum);
+    }
+
+    .button-secondary {
+      color: var(--plum-dark);
+      background: #fff;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+    .button-primary:hover { background: var(--plum-dark); border-color: var(--plum-dark); }
+    .button-secondary:hover { color: #fff; background: var(--blue); border-color: var(--blue); }
+
+    .exchange {
+      border-top: 1px solid var(--line);
+      background: linear-gradient(145deg, #fbfafc, #f4f1f7);
+      padding: 32px 28px 34px;
+    }
+
+    .exchange-heading {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .exchange h2 {
+      margin: 0;
+      color: var(--plum-dark);
+      font-size: clamp(1.65rem, 6vw, 2.35rem);
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .exchange-heading p {
+      max-width: 270px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .success-message {
+      margin: 0 0 20px;
+      padding: 13px 15px;
+      border: 1px solid rgba(134, 197, 47, 0.65);
+      border-radius: 12px;
+      color: #2e5010;
+      background: rgba(134, 197, 47, 0.13);
+      font-weight: 700;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field { display: grid; gap: 6px; }
+    .field-full { grid-column: 1 / -1; }
+
+    label {
+      color: var(--plum-dark);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid #cbc5d1;
+      border-radius: 11px;
+      color: var(--ink);
+      background: #fff;
+      padding: 12px 13px;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    textarea {
+      min-height: 94px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(40, 120, 159, 0.12);
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .form-note {
+      max-width: 330px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    .send-button {
+      border: 1px solid var(--plum);
+      border-radius: 12px;
+      color: #fff;
+      background: var(--plum);
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+
+    .send-button:hover { background: var(--plum-dark); border-color: var(--plum-dark); transform: translateY(-1px); }
+
+    .page-footer {
+      margin: 18px 0 0;
+      color: #716a77;
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    .page-footer a { text-underline-offset: 3px; }
+
+    :focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .page { width: min(100% - 18px, 760px); padding-top: 9px; }
+      .card { border-radius: 22px; }
+      .profile { padding: 27px 20px 24px; }
+      .brand-row { align-items: flex-start; margin-bottom: 34px; }
+      .role-tag { max-width: 100px; white-space: normal; text-align: right; }
+      .contact-list { grid-template-columns: 1fr; }
+      .actions { grid-template-columns: 1fr; padding: 0 20px 24px; }
+      .exchange { padding: 27px 20px 29px; }
+      .exchange-heading { grid-template-columns: 1fr; gap: 9px; align-items: start; }
+      .exchange-heading p { max-width: none; }
+      .fields { grid-template-columns: 1fr; }
+      .field-full { grid-column: auto; }
+      .form-footer { align-items: stretch; flex-direction: column; }
+      .form-note { max-width: none; }
+      .send-button { min-height: 50px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="card">
+      <div class="signal-rail" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <section class="profile" aria-labelledby="contact-name">
+        <div class="brand-row">
+          <img src="/avdoxa/assets/images/avdoxa-logo-color.png" width="800" height="800" alt="AVDOXA, AVL Design Experience Group">
+          <span class="role-tag">Business card</span>
+        </div>
+
+        <p class="name-kicker">AVDOXA · Kansas City</p>
+        <h1 id="contact-name">Simon L.<br>Paige</h1>
+        <p class="title">Business Development Manager</p>
+
+        <div class="contact-list" aria-label="Contact Simon">
+          <a class="contact-link" href="tel:+18163160092">
+            <span>Call or text</span>
+            <strong>816.316.0092</strong>
+          </a>
+          <a class="contact-link" href="mailto:spaige@avdoxa.com">
+            <span>Email</span>
+            <strong>spaige@avdoxa.com</strong>
+          </a>
+          <a class="contact-link" href="https://avdoxa.com" target="_blank" rel="noopener noreferrer">
+            <span>Company</span>
+            <strong>avdoxa.com</strong>
+          </a>
+          <a class="contact-link" href="https://maps.google.com/?q=Lenexa%2C+Kansas" target="_blank" rel="noopener noreferrer">
+            <span>Based in</span>
+            <strong>Lenexa, Kansas</strong>
+          </a>
+        </div>
+      </section>
+
+      <div class="actions">
+        <a class="button button-primary" href="simon-l-paige.vcf" download="Simon-L-Paige.vcf">Save Simon's contact</a>
+        <a class="button button-secondary" href="#exchange">Exchange contacts</a>
+      </div>
+
+      <section class="exchange" id="exchange" aria-labelledby="exchange-title">
+        <div class="exchange-heading">
+          <h2 id="exchange-title">Stay in touch.</h2>
+          <p>Share your details and they will go directly to Simon's inbox.</p>
+        </div>
+
+        <p class="success-message" id="success-message" hidden>Thanks. Your contact information was sent to Simon.</p>
+
+        <form action="https://formsubmit.co/spaige@avdoxa.com" method="post">
+          <input type="hidden" name="_subject" value="New contact exchange from simonlpaige.com/bc">
+          <input type="hidden" name="_next" value="https://simonlpaige.com/bc/?sent=1#exchange">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_url" value="https://simonlpaige.com/bc/">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+
+          <div class="fields">
+            <div class="field">
+              <label for="full-name">Name</label>
+              <input id="full-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
+            </div>
+            <div class="field field-full">
+              <label for="note">Where did we meet? <span aria-hidden="true">(optional)</span></label>
+              <textarea id="note" name="note" placeholder="A quick reminder for Simon"></textarea>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <p class="form-note">Your details are used only so Simon can follow up with you.</p>
+            <button class="send-button" type="submit">Send my contact</button>
+          </div>
+        </form>
+      </section>
+    </article>
+
+    <p class="page-footer">AVDOXA · AVL Design Experience Group · <a href="https://avdoxa.com" target="_blank" rel="noopener noreferrer">The Experience Matters.</a></p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === '1') {
+      document.getElementById('success-message').hidden = false;
+      history.replaceState({}, '', window.location.pathname + '#exchange');
+    }
+  </script>
+</body>
+</html>
