@@ -134,8 +134,8 @@
 
     .identity {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 178px;
-      gap: 30px;
+      grid-template-columns: minmax(0, 1fr) 198px;
+      gap: 26px;
       align-items: end;
     }
 
@@ -229,6 +229,11 @@
       font-weight: 700;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    .contact-link-address strong {
+      line-height: 1.35;
+      white-space: normal;
     }
 
     .contact-link:hover {
@@ -399,7 +404,7 @@
       .profile { padding: 27px 20px 24px; }
       .brand-row { align-items: flex-start; margin-bottom: 34px; }
       .role-tag { max-width: 100px; white-space: normal; text-align: right; }
-      .identity { grid-template-columns: minmax(0, 1fr) 108px; gap: 15px; align-items: center; }
+      .identity { grid-template-columns: minmax(0, 1fr) 124px; gap: 12px; align-items: center; }
       .headshot::before { inset: -6px 5px 5px -6px; }
       .headshot::after { inset: 7px -7px -7px 7px; }
       .headshot img,
@@ -458,9 +463,9 @@
             <span>Company</span>
             <strong>avdoxa.com</strong>
           </a>
-          <a class="contact-link" href="https://maps.google.com/?q=Lenexa%2C+Kansas" target="_blank" rel="noopener noreferrer">
-            <span>Based in</span>
-            <strong>Lenexa, Kansas</strong>
+          <a class="contact-link contact-link-address" href="https://www.google.com/maps/search/?api=1&amp;query=10413+W+84th+Terrace%2C+Lenexa%2C+KS+66214" target="_blank" rel="noopener noreferrer">
+            <span>Address</span>
+            <strong>10413 W 84th Terrace, Lenexa, KS 66214</strong>
           </a>
         </div>
       </section>
