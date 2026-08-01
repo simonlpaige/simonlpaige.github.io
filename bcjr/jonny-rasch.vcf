@@ -1,0 +1,18 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Rasch;Jonny;;;
+FN:Jonny Rasch
+ORG:AVDOXA
+TITLE:Client Engagement Manager
+TEL;TYPE=CELL,VOICE:+19133830243
+EMAIL;TYPE=INTERNET,WORK:jrasch@avdoxa.com
+ADR;TYPE=WORK:;;10413 W 84th Terrace;Lenexa;KS;66214;USA
+URL:https://avdoxa.com
+PHOTO;VALUE=URI:https://simonlpaige.com/bcjr/jonny-rasch-headshot.jpg
+X-SOCIALPROFILE;TYPE=facebook:https://www.facebook.com/AVDOXA/
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/avdoxa/
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/company/avdoxa/
+X-SOCIALPROFILE;TYPE=youtube:https://www.youtube.com/@avdoxaAVL
+NOTE:Met Jonny through simonlpaige.com/bcjr
+REV:20260801T000000Z
+END:VCARD
