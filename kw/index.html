@@ -10,9 +10,12 @@
   <meta property="og:description" content="Call, email, or save Kaleigh White's contact information.">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://simonlpaige.com/kw/">
+  <meta property="og:image" content="https://simonlpaige.com/kw/kaleigh-white-headshot.jpg">
+  <meta property="og:image:alt" content="Portrait of Kaleigh White">
   <meta property="profile:first_name" content="Kaleigh">
   <meta property="profile:last_name" content="White">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://simonlpaige.com/kw/kaleigh-white-headshot.jpg">
   <title>Kaleigh White | Renewed Vision</title>
   <style>
     :root {
@@ -61,7 +64,9 @@
       color: inherit;
     }
 
-    button {
+    button,
+    input,
+    textarea {
       font: inherit;
     }
 
@@ -182,19 +187,29 @@
       line-height: 0.84;
     }
 
-    .initials {
-      display: grid;
-      width: 132px;
+    .headshot {
+      position: relative;
+      width: 156px;
+      margin: 0 4px 2px 0;
       aspect-ratio: 1;
-      place-items: center;
+      border-radius: 50%;
+    }
+
+    .headshot::before {
+      position: absolute;
+      inset: -7px;
       border: 1px solid var(--orange);
       border-radius: 50%;
-      color: var(--orange);
-      background: rgba(255, 108, 27, 0.06);
-      font-family: Consolas, "SFMono-Regular", monospace;
-      font-size: 2.1rem;
-      font-weight: 700;
-      letter-spacing: -0.08em;
+      content: "";
+    }
+
+    .headshot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% 30%;
     }
 
     .contact-list {
@@ -283,6 +298,120 @@
       border-color: var(--orange-dark);
     }
 
+    .exchange {
+      padding: 34px;
+      border-top: 1px solid var(--line);
+      background: #0c0e12;
+    }
+
+    .exchange-heading {
+      display: grid;
+      grid-template-columns: 1fr minmax(220px, 300px);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .exchange h2 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 3rem);
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .exchange-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .success-message {
+      margin: 0 0 20px;
+      padding: 12px 14px;
+      border: 1px solid #478c59;
+      border-radius: 12px;
+      color: #dff8e4;
+      background: #18321f;
+      font-weight: 700;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--muted);
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: var(--ink);
+      background: var(--surface-raised);
+      padding: 12px 13px;
+    }
+
+    textarea {
+      min-height: 98px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--orange);
+      outline: 3px solid rgba(255, 108, 27, 0.24);
+      outline-offset: 1px;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .form-note {
+      max-width: 360px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .submit-button {
+      min-height: 50px;
+      border: 1px solid var(--orange);
+      border-radius: 12px;
+      color: var(--night);
+      background: var(--orange);
+      padding: 12px 20px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background: #ff8847;
+      border-color: #ff8847;
+    }
+
     .status {
       min-height: 1.5em;
       margin: 12px 0 0;
@@ -334,9 +463,9 @@
         font-size: clamp(3rem, 15vw, 4.7rem);
       }
 
-      .initials {
-        width: 88px;
-        font-size: 1.5rem;
+      .headshot {
+        width: 94px;
+        margin-right: 0;
       }
 
       .profile::after {
@@ -358,6 +487,28 @@
       .actions {
         padding: 0 20px 24px;
       }
+
+      .exchange {
+        padding: 28px 20px;
+      }
+
+      .exchange-heading,
+      .fields {
+        grid-template-columns: 1fr;
+      }
+
+      .exchange-heading {
+        gap: 10px;
+      }
+
+      .field-full {
+        grid-column: auto;
+      }
+
+      .form-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -375,6 +526,7 @@
     "url": "https://simonlpaige.com/kw/",
     "telephone": "+1-903-646-2107",
     "email": "mailto:Kaleigh.white@renewedvision.com",
+    "image": "https://simonlpaige.com/kw/kaleigh-white-headshot.jpg",
     "worksFor": {
       "@type": "Organization",
       "name": "Renewed Vision",
@@ -402,7 +554,9 @@
               <p class="eyebrow">Renewed Vision</p>
               <h1 id="contact-name">Kaleigh<br>White</h1>
             </div>
-            <div class="initials" aria-hidden="true">KW</div>
+            <figure class="headshot">
+              <img src="kaleigh-white-headshot.jpg" width="800" height="1200" alt="Kaleigh White" fetchpriority="high">
+            </figure>
           </div>
 
           <div class="contact-list" aria-label="Contact Kaleigh White">
@@ -425,6 +579,51 @@
           <a class="button button-primary" href="kaleigh-white.vcf" download="Kaleigh-White.vcf">Save Kaleigh's contact</a>
           <button class="button button-secondary" id="share-card" type="button">Share this card</button>
         </div>
+
+        <section class="exchange" id="exchange" aria-labelledby="exchange-title">
+          <div class="exchange-heading">
+            <h2 id="exchange-title">Share your contact.</h2>
+            <p>Send Kaleigh your details and a quick reminder of where you met.</p>
+          </div>
+
+          <p class="success-message" id="success-message" hidden>Thanks. Your contact information was sent to Kaleigh.</p>
+
+          <form action="https://groundlayer.co/api/contact" method="POST">
+            <input type="hidden" name="_to" value="Kaleigh.white@renewedvision.com">
+            <input type="hidden" name="_subject" value="New contact from Kaleigh White's business card">
+            <input type="hidden" name="_next" value="https://simonlpaige.com/kw/?sent=true#exchange">
+            <input type="hidden" name="_sitename" value="Kaleigh White contact card">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-label="Leave this field blank" style="display:none">
+
+            <div class="fields">
+              <div class="field">
+                <label for="full-name">Name</label>
+                <input id="full-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text" autocomplete="organization">
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
+              </div>
+              <div class="field field-full">
+                <label for="message">Where did you meet?</label>
+                <textarea id="message" name="message" placeholder="A quick reminder for Kaleigh" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <p class="form-note">Your details go directly to Kaleigh and are used only so she can follow up.</p>
+              <button class="submit-button" type="submit">Send my contact</button>
+            </div>
+          </form>
+        </section>
       </article>
 
       <p class="status" id="share-status" role="status" aria-live="polite"></p>
@@ -438,6 +637,12 @@
     const shareButton = document.getElementById('share-card');
     const shareStatus = document.getElementById('share-status');
     const cardUrl = 'https://simonlpaige.com/kw/';
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('sent') === 'true') {
+      document.getElementById('success-message').hidden = false;
+      history.replaceState({}, '', window.location.pathname + '#exchange');
+    }
 
     shareButton.addEventListener('click', async () => {
       try {
