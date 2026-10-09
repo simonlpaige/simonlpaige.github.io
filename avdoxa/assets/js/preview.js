@@ -35,7 +35,7 @@ document.querySelectorAll('[data-review-form]').forEach(form=>{
  form.addEventListener('submit',event=>{
   event.preventDefault();
   const status=form.querySelector('.form-status');status.replaceChildren();
-  const recipient=form.dataset.kind==='service'?'help@avdoxa.com':(form.dataset.email||'info@avdoxa.com');
+  const recipient=form.dataset.kind==='service'?'help@avdoxa.com':form.dataset.kind==='project'?'sales@avdoxa.com,spaige@avdoxa.com':(form.dataset.email||'info@avdoxa.com');
   const subject=form.dataset.kind==='service'?'Service Request':(form.dataset.kind==='contact'?'Contact details for '+form.dataset.recipient:'Project Inquiry');
   const lines=[...new FormData(form)].filter(([key,value])=>!key.startsWith('_')&&String(value).trim()).map(([key,value])=>`${key}: ${value}`);
   const intro=document.createElement('p');intro.textContent='Your email draft is ready. Open it below and send it from your email app.';status.append(intro);
