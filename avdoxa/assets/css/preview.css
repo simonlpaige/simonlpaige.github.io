@@ -78,3 +78,6 @@ button.theme-toggle{background:var(--toggle-bg);color:var(--chrome-muted);border
 .sector-example>img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:var(--alt)}
 .sector-example>div{display:flex;flex-direction:column;flex:1;padding:20px}.sector-example .eyebrow{font-size:.75rem;margin-bottom:10px}.sector-example h4{font-family:Glacial,'Segoe UI',sans-serif;font-size:1.35rem;line-height:1.2;margin:0 0 12px}.sector-example p:not(.eyebrow){color:var(--muted);font-size:.9375rem;margin-bottom:0}.sector-example .text-link{margin-top:auto;padding-top:16px;font-size:.9375rem;align-self:flex-start}.sector-example:hover{text-decoration:none;border-color:var(--eyebrow)}.sector-example:hover .text-link{text-decoration:underline}
 @media(max-width:700px){.sector-example>div{padding:18px}}
+
+/* Text-led client examples until approved project photographs are available. */
+.sector-clients>div{justify-content:center;padding:28px}.sector-clients ul{margin:4px 0 20px;padding-left:22px}.sector-clients li{padding-block:6px}.sector-clients h4{font-size:1.5rem}
