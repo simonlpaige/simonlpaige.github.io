@@ -6,6 +6,6 @@ ORG:AVDOXA
 TITLE:Operations Manager
 URL:https://avdoxa.com/contact/jsnyder/
 ADR;TYPE=WORK:;;10413 W. 84th Terrace;Lenexa;KS;66214;United States
-NOTE:Contact AVDOXA main office at info@avdoxa.com or +1-913-383-0243. Direct contact details pending verification.
 EMAIL;TYPE=WORK:jsnyder@avdoxa.com
+TEL;TYPE=work;VALUE=uri:tel:+19133830243;ext=2032
 END:VCARD
