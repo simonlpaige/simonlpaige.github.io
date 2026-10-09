@@ -72,3 +72,9 @@ button.theme-toggle{background:var(--toggle-bg);color:var(--chrome-muted);border
 @media(max-width:980px){#navigation{background:var(--chrome-bg)}}
 /* Allow hover biographies to be dismissed without moving focus. */
 .person.bio-dismissed .bio-overlay{opacity:0}
+
+/* Real project previews within each industry card. */
+.sector-example{display:flex;flex-direction:column;flex:1;margin-top:24px;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:var(--ink);background:var(--alt)}
+.sector-example>img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:var(--alt)}
+.sector-example>div{display:flex;flex-direction:column;flex:1;padding:20px}.sector-example .eyebrow{font-size:.75rem;margin-bottom:10px}.sector-example h4{font-family:Glacial,'Segoe UI',sans-serif;font-size:1.35rem;line-height:1.2;margin:0 0 12px}.sector-example p:not(.eyebrow){color:var(--muted);font-size:.9375rem;margin-bottom:0}.sector-example .text-link{margin-top:auto;padding-top:16px;font-size:.9375rem;align-self:flex-start}.sector-example:hover{text-decoration:none;border-color:var(--eyebrow)}.sector-example:hover .text-link{text-decoration:underline}
+@media(max-width:700px){.sector-example>div{padding:18px}}
