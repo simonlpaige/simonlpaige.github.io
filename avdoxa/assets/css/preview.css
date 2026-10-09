@@ -41,3 +41,4 @@ button.theme-toggle{display:flex;align-items:center;gap:2px;padding:3px;border:1
 @media(hover:none){.bio-overlay{display:none}}
 @media(prefers-reduced-motion:reduce){.bio-overlay{transition:none}}
 .person-link::after{content:"";position:absolute;inset:0;z-index:1}.person .person-connections{position:relative;z-index:2;pointer-events:none}.person-connections a{pointer-events:auto}#tdx-videos,#partner-program{scroll-margin-top:100px}
+.person .bio-overlay p{color:#fff}.person-link:hover{text-decoration:none}
