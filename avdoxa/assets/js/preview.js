@@ -31,19 +31,6 @@ menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded')
 navigation?.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {setMenu(false); menu.focus();} });
 window.addEventListener('resize', () => { if (innerWidth > 980) setMenu(false); });
-document.querySelectorAll('[data-review-form]').forEach(form=>{
- form.addEventListener('submit',event=>{
-  event.preventDefault();
-  const status=form.querySelector('.form-status');status.replaceChildren();
-  const recipient=form.dataset.kind==='service'?'help@avdoxa.com':form.dataset.kind==='project'?'sales@avdoxa.com,spaige@avdoxa.com':(form.dataset.email||'info@avdoxa.com');
-  const subject=form.dataset.kind==='service'?'Service Request':(form.dataset.kind==='contact'?'Contact details for '+form.dataset.recipient:'Project Inquiry');
-  const lines=[...new FormData(form)].filter(([key,value])=>!key.startsWith('_')&&String(value).trim()).map(([key,value])=>`${key}: ${value}`);
-  const intro=document.createElement('p');intro.textContent='Your email draft is ready. Open it below and send it from your email app.';status.append(intro);
-  const email=document.createElement('a');email.className='button';email.textContent='Open email draft';email.href=`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\r\n'))}`;status.append(email);
-  const address=document.createElement('p');address.textContent=`To: ${recipient} · Subject: ${subject}`;status.append(address);
-  status.hidden=false;status.focus();
- });
-});
 // Photo links work without JavaScript; the dialog adds keyboard gallery browsing.
 (() => {
  const links = [...document.querySelectorAll('[data-photo]')];
@@ -86,9 +73,6 @@ document.querySelectorAll('[data-review-form]').forEach(form=>{
  });
 })();
 
-/* Carry the requested specialty into the project inquiry without injecting content. */
-{ const field=document.querySelector('select[name="specialty"]'); const choice=new URLSearchParams(location.search).get("specialty"); if(field && [...field.options].some(option=>option.value===choice)) field.value=choice; }
-
 document.querySelectorAll('[data-video]').forEach(button=>button.addEventListener('click',()=>{
  const frame=document.createElement('iframe');
  frame.src=`https://www.youtube-nocookie.com/embed/${button.dataset.video}?autoplay=1`;
@@ -96,3 +80,12 @@ document.querySelectorAll('[data-video]').forEach(button=>button.addEventListene
  frame.referrerPolicy='strict-origin-when-cross-origin';frame.allowFullscreen=true;
  button.replaceWith(frame);frame.focus();
 }));
+
+// Only presentation messages are exchanged; WordPress handles every form field and submission.
+const nativeFrames=[...document.querySelectorAll('iframe[data-native-form]')];
+function syncNativeTheme(){nativeFrames.forEach(frame=>frame.contentWindow?.postMessage({type:'avdoxa-theme',theme:activeTheme()},'https://avdoxa.com'))}
+nativeFrames.forEach(frame=>frame.addEventListener('load',syncNativeTheme));
+themeMedia.addEventListener('change',syncNativeTheme);
+document.querySelector('.theme-toggle')?.addEventListener('click',syncNativeTheme);
+document.querySelector('.theme-toggle')?.addEventListener('keydown',event=>{if(event.key==='Escape')syncNativeTheme()});
+window.addEventListener('message',event=>{if(event.origin!=='https://avdoxa.com'||event.data?.type!=='avdoxa-form-height')return;const frame=nativeFrames.find(f=>f.contentWindow===event.source);const height=Number(event.data.height);if(frame&&Number.isFinite(height)&&height>=100&&height<=10000){frame.style.height=Math.max(180,height)+'px';if(frame.dataset.nativeTheme!==activeTheme()){frame.dataset.nativeTheme=activeTheme();frame.contentWindow?.postMessage({type:'avdoxa-theme',theme:activeTheme()},'https://avdoxa.com')}}});
