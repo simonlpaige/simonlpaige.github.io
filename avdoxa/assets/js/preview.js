@@ -89,3 +89,10 @@ themeMedia.addEventListener('change',syncNativeTheme);
 document.querySelector('.theme-toggle')?.addEventListener('click',syncNativeTheme);
 document.querySelector('.theme-toggle')?.addEventListener('keydown',event=>{if(event.key==='Escape')syncNativeTheme()});
 window.addEventListener('message',event=>{if(event.origin!=='https://avdoxa.com'||event.data?.type!=='avdoxa-form-height')return;const frame=nativeFrames.find(f=>f.contentWindow===event.source);const height=Number(event.data.height);if(frame&&Number.isFinite(height)&&height>=100&&height<=10000){frame.style.height=Math.max(180,height)+'px';if(frame.dataset.nativeTheme!==activeTheme()){frame.dataset.nativeTheme=activeTheme();frame.contentWindow?.postMessage({type:'avdoxa-theme',theme:activeTheme()},'https://avdoxa.com')}}});
+
+// Hover/focus biographies can be dismissed with Escape and reopen on a new visit.
+document.querySelectorAll('.person').forEach(card=>{
+ card.addEventListener('mouseleave',()=>card.classList.remove('bio-dismissed'));
+ card.addEventListener('focusout',event=>{if(!card.contains(event.relatedTarget))card.classList.remove('bio-dismissed')});
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')document.querySelectorAll('.person:hover,.person:focus-within').forEach(card=>card.classList.add('bio-dismissed'))});
