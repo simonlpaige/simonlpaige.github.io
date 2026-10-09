@@ -1,29 +1,26 @@
 let themePreference = 'auto';
 try { themePreference = sessionStorage.getItem('avdoxa-preview-theme') || 'auto'; } catch (_) {}
-if (!['auto', 'light', 'dark'].includes(themePreference)) themePreference = 'auto';
-const themeMedia = matchMedia('(prefers-color-scheme: dark)');
-function refreshThemeControl() {
-  const active = themePreference === 'auto' ? (themeMedia.matches ? 'dark' : 'light') : themePreference;
-  document.querySelectorAll('[data-theme-choice]').forEach(button => {
-    button.setAttribute('aria-pressed', String(button.dataset.themeChoice === active));
-  });
-  const control = document.querySelector('.theme-toggle');
-  if (control) control.title = themePreference === 'auto' ? 'Theme follows your system' : 'Select the active theme again to follow your system';
+if (!['auto','light','dark'].includes(themePreference)) themePreference='auto';
+const themeMedia=matchMedia('(prefers-color-scheme: dark)');
+const activeTheme=()=>themePreference==='auto'?(themeMedia.matches?'dark':'light'):themePreference;
+function refreshThemeControl(){
+ const button=document.querySelector('.theme-toggle');
+ if(!button)return;
+ const dark=activeTheme()==='dark';
+ button.setAttribute('aria-checked',String(dark));
+ button.dataset.active=dark?'dark':'light';
+ button.title=`Switch to ${dark?'light':'dark'} theme. Press Escape to follow your system.`;
 }
-function setTheme(value) {
-  themePreference = value;
-  if (value === 'auto') delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = value;
-  try { sessionStorage.setItem('avdoxa-preview-theme', value); } catch (_) {}
-  refreshThemeControl();
+function setTheme(value){
+ themePreference=value;
+ if(value==='auto')delete document.documentElement.dataset.theme;
+ else document.documentElement.dataset.theme=value;
+ try{sessionStorage.setItem('avdoxa-preview-theme',value)}catch(_){}
+ refreshThemeControl();
 }
-document.querySelectorAll('[data-theme-choice]').forEach(button => {
-  button.addEventListener('click', () => {
-    const active = themePreference === 'auto' ? (themeMedia.matches ? 'dark' : 'light') : themePreference;
-    setTheme(themePreference !== 'auto' && button.dataset.themeChoice === active ? 'auto' : button.dataset.themeChoice);
-  });
-});
-themeMedia.addEventListener('change', refreshThemeControl);
+document.querySelector('.theme-toggle')?.addEventListener('click',()=>setTheme(activeTheme()==='dark'?'light':'dark'));
+document.querySelector('.theme-toggle')?.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();setTheme('auto')}});
+themeMedia.addEventListener('change',refreshThemeControl);
 refreshThemeControl();
 const menu = document.querySelector('.menu'), navigation = document.querySelector('#navigation');
 function setMenu(open) {
@@ -34,61 +31,18 @@ menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded')
 navigation?.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {setMenu(false); menu.focus();} });
 window.addEventListener('resize', () => { if (innerWidth > 980) setMenu(false); });
-document.querySelectorAll('.person').forEach(card => {
-  const details = card.querySelector('.bio-details');
-  if (!details) return;
-  let pinned = false;
-  details.querySelector('summary').addEventListener('click', () => { pinned = !details.open; });
-  card.addEventListener('pointerenter', e => {
-    if (e.pointerType === 'mouse' && matchMedia('(hover:hover)').matches) details.open = true;
-  });
-  card.addEventListener('pointerleave', () => {
-    if (!pinned && !card.contains(document.activeElement)) details.open = false;
-  });
-  card.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && details.open) {
-      details.open = false; pinned = false; details.querySelector('summary').focus();
-    }
-  });
-});
-// This internal preview validates and reviews input locally. It never posts to an external system.
-document.querySelectorAll('[data-review-form]').forEach(form => {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const status = form.querySelector('.form-status');
-    status.replaceChildren();
-    const headline = document.createElement('p');
-    headline.textContent = 'Preview validation passed. Nothing was sent.';
-    headline.style.fontWeight = '700';
-    status.append(headline);
-    for (const [key, value] of new FormData(form)) {
-      if (key.startsWith('_')) continue;
-      if (!String(value).trim()) continue;
-      const line = document.createElement('p');
-      const field = form.querySelector(`[name="${key}"]`);
-      const label = field?.closest('label')?.childNodes[0]?.textContent?.trim() || key;
-      line.textContent = `${label}: ${value}`;
-      status.append(line);
-    }
-    const note = document.createElement('p');
-    note.textContent = form.dataset.kind === 'service'
-      ? 'Service requests go to help@avdoxa.com with the subject Service Request. You can open the reviewed request in your email app below.'
-      : 'Production delivery and its confirmation must be verified from avdoxa.com before release.';
-    status.append(note);
-    if (form.dataset.kind === 'service') {
-      const body = [...new FormData(form)].filter(([key]) => !key.startsWith('_')).map(([key,value]) => `${key}: ${value}`).join('\r\n');
-      const email = document.createElement('a');
-      email.className = 'button';
-      email.textContent = 'Open service email';
-      email.href = `mailto:help@avdoxa.com?subject=Service%20Request&body=${encodeURIComponent(body)}`;
-      status.append(email);
-      const hint = document.createElement('p');
-      hint.textContent = 'This opens a draft in your email app. Send it there to deliver your request.';
-      status.append(hint);
-    }
-    status.hidden = false;
-    status.focus();
-  });
+document.querySelectorAll('[data-review-form]').forEach(form=>{
+ form.addEventListener('submit',event=>{
+  event.preventDefault();
+  const status=form.querySelector('.form-status');status.replaceChildren();
+  const recipient=form.dataset.kind==='service'?'help@avdoxa.com':(form.dataset.email||'info@avdoxa.com');
+  const subject=form.dataset.kind==='service'?'Service Request':(form.dataset.kind==='contact'?'Contact details for '+form.dataset.recipient:'Project Inquiry');
+  const lines=[...new FormData(form)].filter(([key,value])=>!key.startsWith('_')&&String(value).trim()).map(([key,value])=>`${key}: ${value}`);
+  const intro=document.createElement('p');intro.textContent='Your email draft is ready. Open it below and send it from your email app.';status.append(intro);
+  const email=document.createElement('a');email.className='button';email.textContent='Open email draft';email.href=`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\r\n'))}`;status.append(email);
+  const address=document.createElement('p');address.textContent=`To: ${recipient} · Subject: ${subject}`;status.append(address);
+  status.hidden=false;status.focus();
+ });
 });
 // Photo links work without JavaScript; the dialog adds keyboard gallery browsing.
 (() => {
@@ -134,3 +88,11 @@ document.querySelectorAll('[data-review-form]').forEach(form => {
 
 /* Carry the requested specialty into the project inquiry without injecting content. */
 { const field=document.querySelector('select[name="specialty"]'); const choice=new URLSearchParams(location.search).get("specialty"); if(field && [...field.options].some(option=>option.value===choice)) field.value=choice; }
+
+document.querySelectorAll('[data-video]').forEach(button=>button.addEventListener('click',()=>{
+ const frame=document.createElement('iframe');
+ frame.src=`https://www.youtube-nocookie.com/embed/${button.dataset.video}?autoplay=1`;
+ frame.title=button.dataset.title;frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+ frame.referrerPolicy='strict-origin-when-cross-origin';frame.allowFullscreen=true;
+ button.replaceWith(frame);frame.focus();
+}));
