@@ -81,3 +81,10 @@ button.theme-toggle{background:var(--toggle-bg);color:var(--chrome-muted);border
 
 /* Text-led client examples until approved project photographs are available. */
 .sector-clients>div{justify-content:center;padding:28px}.sector-clients ul{margin:4px 0 20px;padding-left:22px}.sector-clients li{padding-block:6px}.sector-clients h4{font-size:1.5rem}
+
+/* One example card per sector, with consultation inside the same card. */
+.service-sector{display:flex;flex-direction:column;min-width:0}.service-sector>h3{font-size:1.8rem}.service-sector>p{margin-bottom:0}
+.sector-case-link{display:flex;flex-direction:column;flex:1;text-decoration:none;color:var(--ink)}.sector-case-link:hover{text-decoration:none}.sector-case-link:hover .text-link{text-decoration:underline}
+.sector-case-link>img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:var(--alt)}.sector-case-link>div{display:flex;flex-direction:column;flex:1;padding:20px}
+.sector-example>.sector-plan{margin:0;padding:8px 20px 20px;align-self:flex-start;min-height:44px}.sector-clients>.sector-plan{padding-inline:28px}
+@media(max-width:700px){.sector-case-link>div{padding:18px}.sector-example>.sector-plan{padding-inline:18px}.sector-clients>.sector-plan{padding-inline:28px}}
