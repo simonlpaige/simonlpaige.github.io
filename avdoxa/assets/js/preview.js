@@ -131,3 +131,6 @@ document.querySelectorAll('[data-review-form]').forEach(form => {
   toggle.textContent = paused ? 'Resume logo motion' : 'Pause logo motion';
  });
 })();
+
+/* Carry the requested specialty into the project inquiry without injecting content. */
+{ const field=document.querySelector('select[name="specialty"]'); const choice=new URLSearchParams(location.search).get("specialty"); if(field && [...field.options].some(option=>option.value===choice)) field.value=choice; }
