@@ -53,3 +53,6 @@ button.theme-toggle{display:flex;align-items:center;gap:2px;padding:3px;border:1
 
 /* Keep portfolio calls to action aligned with consistent space above and below. */
 .project-link{display:flex;flex-direction:column}.project-link>img{display:block;flex-shrink:0}.project-link>div{display:flex;flex-direction:column;flex:1}.project-link>div>p:not(.eyebrow){margin-bottom:0}.project-link>div>.text-link{margin-top:auto;padding-top:20px;align-self:flex-start}
+
+/* Align service-card links at the bottom with comfortable spacing. */
+.specialty-card{display:flex;flex-direction:column}.specialty-card>p{margin-bottom:0}.specialty-card>.text-link{margin-top:auto;padding-top:20px;align-self:flex-start}
