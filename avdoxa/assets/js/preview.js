@@ -30,7 +30,7 @@ function setMenu(open) {
 menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
 navigation?.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {setMenu(false); menu.focus();} });
-window.addEventListener('resize', () => { if (innerWidth > 980) setMenu(false); });
+window.addEventListener('resize', () => { if (innerWidth > 1160) setMenu(false); });
 // Photo links work without JavaScript; the dialog adds keyboard gallery browsing.
 (() => {
  const links = [...document.querySelectorAll('[data-photo]')];
